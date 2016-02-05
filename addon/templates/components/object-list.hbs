@@ -1,0 +1,31 @@
+<div class="card-header ch-alt m-b-20">
+  <h2>{{title}}</h2>
+  {{#if new}}
+    <button class="btn btn-float btn-danger btn-icon" {{action 'new'}}>
+      <i class="zmdi zmdi-plus"></i>
+    </button>
+  {{/if}}
+</div>
+
+<div class="table-responsive model-list">
+  {{#if objects}}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          {{#each columns as |column|}}
+            <td>Heading</td>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each objects as |object|}}
+          {{object-list-row object=object columns=columns action='objectSelected'}}
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <div class="card-body card-padding">
+      No {{plural}} found.
+    </div>
+  {{/if}}
+</div>

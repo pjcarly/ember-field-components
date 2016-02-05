@@ -1,0 +1,26 @@
+<header id="header" class="gradient-blue-background{{if sidebarShown ' sidebar-toggled'}}">
+  <ul class="header-inner">
+
+    <li id="menu-trigger" class={{if sidebarShown 'open'}} {{action "toggleSidebar"}} >
+      <div class="line-wrap">
+        <div class="line top"></div>
+        <div class="line center"></div>
+        <div class="line bottom"></div>
+      </div>
+    </li>
+
+    <li class="logo hidden-xs">
+      {{#link-to 'index'}}Conception{{/link-to}}
+    </li>
+
+    <li class="pull-right">
+      <ul class="top-menu">
+        <li>
+          <a href="">
+            <i class="zmdi zmdi-hc-2x zmdi-search"></i>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</header>

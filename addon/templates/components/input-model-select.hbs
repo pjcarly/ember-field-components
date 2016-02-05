@@ -1,0 +1,33 @@
+<div class="input-model-select">
+  {{#if hasBlock}}
+    {{yield (action 'showModal')}}
+  {{else}}
+    <div class="field">
+      {{value.name}}
+
+      {{#if hasValue}}
+        <button class="clear-lookup" {{action 'clearLookup'}}>
+          <i class="zmdi zmdi-close"></i>
+        </button>
+      {{/if}}
+    </div>
+
+    <button class="btn btn-default waves-effect" {{action 'showModal'}}>
+      <i class="zmdi zmdi-search"></i>
+    </button>
+  {{/if}}
+
+  <!-- Modal -->
+  <div class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+          {{model-list modelName=modelType modelSelected='modelSelected'}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

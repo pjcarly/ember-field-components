@@ -1,0 +1,11 @@
+<div class="input-number">
+  <span class="input-addon input-prefix{{if hasPrefix ' hasContent'}}">
+    {{prefix}}
+  </span>
+
+  {{input type='tel' value=computedValue class='form-control' placeholder=placeholder}}
+
+  <span class="input-addon input-suffix{{if hasSuffix ' hasContent'}}">
+    {{suffix}}
+  </span>
+</div>

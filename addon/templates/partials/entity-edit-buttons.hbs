@@ -1,0 +1,7 @@
+<div class="text-right">
+  <button {{action 'cancel'}} class="btn btn-default m-t-10">Cancel</button>
+  {{#if model.isNew}}
+    <button {{action 'saveAndNew'}} class="btn btn-primary m-t-10">Save &amp; New</button>
+  {{/if}}
+  <button {{action 'save'}} class="btn btn-primary m-t-10">Save</button>
+</div>

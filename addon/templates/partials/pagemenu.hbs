@@ -1,0 +1,9 @@
+<ul class="actions">
+    {{#each pageMenuItems as |menuitem|}}
+        <li>
+        	<a href="" {{action 'pageMenuAction' menuitem.action}}>
+            	<i class="zmdi {{menuitem.icon}}"></i>
+            </a>
+        </li>
+    {{/each}}
+</ul>

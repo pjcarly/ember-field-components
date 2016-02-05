@@ -1,0 +1,7 @@
+<div class="input-select">
+  <select {{action 'valueSelected' on='change'}}>
+    {{#each selectoptions as |selectoption|}}
+      {{option-selected selectoption value}}
+    {{/each}}
+  </select>
+</div>

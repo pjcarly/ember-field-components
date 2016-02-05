@@ -1,0 +1,10 @@
+<div class="output-field-email">
+  {{#output-text}}
+    {{value}}
+    {{#unless isBlankOrInline}}
+      <a class="btn btn-output" href="mailto:{{value}}">
+        <i class="zmdi zmdi-email"></i>
+      </a>
+    {{/unless}}
+  {{/output-text}}
+</div>
