@@ -1,0 +1,96 @@
+.bootstrap-select > .selectpicker {
+  background: none !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.bootstrap-select > .selectpicker:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: "";
+  height: calc(100% - 2px);
+  width: 30px;
+  background-color: #FFF;
+  background-position: right calc(100% - 7px);
+  background-repeat: no-repeat;
+  background-image: url("img/select.png");
+  pointer-events: none;
+  z-index: 5;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .bootstrap-select > .selectpicker:before {
+    background-image: url("img/select@2x.png");
+    background-size: 12px 12px;
+  }
+}
+.bootstrap-select > .selectpicker:after {
+  position: absolute;
+  z-index: 3;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  width: 0;
+  content: "";
+  -webkit-transition: all;
+  -o-transition: all;
+  transition: all;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+.bootstrap-select > .selectpicker:not(.disabled):after, .bootstrap-select > .selectpicker:not(.readonly):after {
+  background: #2196f3;
+}
+.bootstrap-select > .selectpicker.disabled:after, .bootstrap-select > .selectpicker.readonly:after {
+  background: #ccc;
+}
+.bootstrap-select.open > .selectpicker:after {
+  width: 100%;
+}
+.bootstrap-select .bs-searchbox {
+  padding: 0 18px;
+  margin: 5px 0 10px;
+  position: relative;
+}
+.bootstrap-select .bs-searchbox input {
+  border: 0;
+}
+.bootstrap-select.btn-group .dropdown-menu li a.opt {
+  padding-left: 17px;
+}
+.bootstrap-select .check-mark {
+  margin-top: -5px !important;
+  font-size: 19px;
+  -webkit-transition: all;
+  -o-transition: all;
+  transition: all;
+  -webkit-transition-duration: 200ms;
+  transition-duration: 200ms;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  display: block !important;
+  position: absolute;
+  top: 7px;
+  right: 15px;
+}
+.bootstrap-select .selected .check-mark {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+.bootstrap-select .notify {
+  bottom: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  border: 0 !important;
+  background: #f44336 !important;
+  color: #fff !important;
+  text-align: center;
+}

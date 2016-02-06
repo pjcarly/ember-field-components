@@ -6,7 +6,6 @@ export default Ember.Component.extend(InputComponent, {
   selector: '[data-toggle="pen"]',
 
   didInsertElement: function() {
-    alert('hello');
     var selector = this.get('selector');
     var element = this.$(selector);
     var domElement = this.$(selector).get(0);

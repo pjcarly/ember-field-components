@@ -1,5 +1,5 @@
 <div class="input-select-search">
-  <select class="selectpicker" {{action 'valueSelected' on='change'}} tabindex="-1">
+  <select class="selectpicker" {{action 'valueSelected' on='change'}} tabindex="-1" data-live-search="true">
     {{#each selectoptions as |selectoption|}}
       {{option-selected selectoption value}}
     {{/each}}
