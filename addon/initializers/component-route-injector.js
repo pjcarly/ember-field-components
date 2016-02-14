@@ -1,6 +1,4 @@
-// app/initializers/component-router-injector.js
-export function initialize(container, application) {
-  // Injects all Ember components with a router object:
+export function initialize(application) {
   application.inject('component', 'router', 'router:main');
 }
 

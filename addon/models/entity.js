@@ -7,12 +7,6 @@ import ModelMetaMixin from '../mixins/model-meta';
 import ModelCopyMixin from '../mixins/model-entity-copy';
 
 var Entity = DS.Model.extend(ValidatorMixin, ModelRelationshipsRollbackMixin, ModelCopyMixin, {
-  created: Attribute.setType('datetime', {
-    readOnly: true
-  }),
-  changed: Attribute.setType('datetime', {
-    readOnly: true
-  }),
   isNew: Ember.computed('id', function() {
     return Ember.isBlank(this.get('id'));
   }),
