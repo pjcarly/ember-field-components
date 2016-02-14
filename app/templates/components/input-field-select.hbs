@@ -1,1 +1,5 @@
-{{input-select selectoptions=selectoptions value=value valueSelected='valueSelected'}}
+{{#if isButtonGroup}}
+  {{input-button-group selectoptions=selectoptions value=value valueSelected='valueSelected'}}
+{{else}}
+  {{input-select selectoptions=selectoptions value=value valueSelected='valueSelected'}}
+{{/if}}

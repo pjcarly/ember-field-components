@@ -11,6 +11,10 @@ export default Ember.Component.extend(FieldInputComponent, {
 
     return fieldOptions.selectOptions;
   }),
+  isButtonGroup: Ember.computed(function() {
+    let fieldAttributeOptions = this.get('fieldAttributeOptions');
+    return !Ember.isBlank(fieldAttributeOptions) && fieldAttributeOptions.hasOwnProperty('widget') && fieldAttributeOptions.widget === 'button-group';
+  }),
   actions: {
     valueSelected: function(value) {
 
