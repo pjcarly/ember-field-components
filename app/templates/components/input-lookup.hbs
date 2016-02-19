@@ -15,7 +15,9 @@
 {{#if hasPrefix}}
   <span class="input-group-addon">{{prefix}}</span>
 {{/if}}
-{{input type='text' value=computedValue class='form-control' placeholder=placeholder readonly=true}}
+<button {{action 'showModal'}} class="btn btn-default lookup-toggle" type="button">
+  {{computedValue}}
+</button>
 {{#if hasSuffix}}
   <span class="input-group-addon">{{suffix}}</span>
 {{/if}}
