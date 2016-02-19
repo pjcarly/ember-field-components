@@ -1,3 +1,3 @@
 {{#each columns as |column|}}
-  <td {{action 'click'}}>Rij</td>
+  <td {{action 'click'}}>{{get-field model=object field=column.value}}</td>
 {{/each}}

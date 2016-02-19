@@ -8,41 +8,41 @@
       {{output-field model=model field=field inline=true link=false}}
     {{else}}
       {{#if isText}}
-				{{input-field-text model=model field=field placeholder=placeholder}}
+				{{input-field-text model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isBoolean}}
-				{{input-field-boolean model=model field=field placeholder=placeholder}}
+				{{input-field-boolean model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isSwitch}}
-				{{input-field-switch model=model field=field placeholder=placeholder}}
+				{{input-field-switch model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isNumber}}
-				{{input-field-number model=model field=field placeholder=placeholder}}
+				{{input-field-number model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isPrice}}
-				{{input-field-price model=model field=field placeholder=placeholder}}
+				{{input-field-price model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isPercentage}}
-				{{input-field-percentage model=model field=field placeholder=placeholder}}
+				{{input-field-percentage model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isAddress}}
-				{{input-field-address model=model field=field placeholder=placeholder}}
+				{{input-field-address model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isSelect}}
-				{{input-field-select model=model field=field placeholder=placeholder}}
+				{{input-field-select model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isLanguage}}
-				{{input-field-language model=model field=field placeholder=placeholder}}
+				{{input-field-language model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isLink}}
-				{{input-field-link model=model field=field placeholder=placeholder}}
+				{{input-field-link model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isPhone}}
-				{{input-field-phone model=model field=field placeholder=placeholder}}
+				{{input-field-phone model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isEmail}}
-				{{input-field-email model=model field=field placeholder=placeholder}}
+				{{input-field-email model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
       {{else if isBelongsTo}}
-        {{input-field-belongsto model=model field=field placeholder=placeholder}}
+        {{input-field-belongsto model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
       {{else if isDate}}
-        {{input-field-date model=model field=field placeholder=placeholder}}
+        {{input-field-date model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
       {{else if isDateTime}}
-        {{input-field-datetime model=model field=field placeholder=placeholder}}
+        {{input-field-datetime model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
       {{else if isTime}}
-        {{input-field-time model=model field=field placeholder=placeholder}}
+        {{input-field-time model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
       {{else if isTextArea}}
-        {{input-field-textarea model=model field=field placeholder=placeholder}}
+        {{input-field-textarea model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
       {{else if isRichText}}
-        {{input-field-richtext model=model field=field placeholder=placeholder}}
+        {{input-field-richtext model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else}}
 				Field <em>"{{field}}"</em> with type <em>"{{type}}"</em> not found
 			{{/if}}
@@ -60,41 +60,41 @@
     {{output-field model=model field=field inline=true link=false}}
   {{else}}
     {{#if isText}}
-      {{input-field-text model=model field=field placeholder=placeholder}}
+      {{input-field-text model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isBoolean}}
-      {{input-field-boolean model=model field=field placeholder=placeholder}}
+      {{input-field-boolean model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isSwitch}}
-      {{input-field-switch model=model field=field placeholder=placeholder}}
+      {{input-field-switch model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isNumber}}
-      {{input-field-number model=model field=field placeholder=placeholder}}
+      {{input-field-number model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isPrice}}
-      {{input-field-price model=model field=field placeholder=placeholder}}
+      {{input-field-price model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isPercentage}}
-      {{input-field-percentage model=model field=field placeholder=placeholder}}
+      {{input-field-percentage model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isAddress}}
-      {{input-field-address model=model field=field placeholder=placeholder}}
+      {{input-field-address model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isSelect}}
-      {{input-field-select model=model field=field placeholder=placeholder}}
+      {{input-field-select model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isLanguage}}
-      {{input-field-language model=model field=field placeholder=placeholder}}
+      {{input-field-language model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isLink}}
-      {{input-field-link model=model field=field placeholder=placeholder}}
+      {{input-field-link model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isPhone}}
-      {{input-field-phone model=model field=field placeholder=placeholder}}
+      {{input-field-phone model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isEmail}}
-      {{input-field-email model=model field=field placeholder=placeholder}}
+      {{input-field-email model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isBelongsTo}}
-      {{input-field-belongsto model=model field=field placeholder=placeholder}}
+      {{input-field-belongsto model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isDate}}
-      {{input-field-date model=model field=field placeholder=placeholder}}
+      {{input-field-date model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isDateTime}}
-      {{input-field-datetime model=model field=field placeholder=placeholder}}
+      {{input-field-datetime model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isTime}}
-      {{input-field-time model=model field=field placeholder=placeholder}}
+      {{input-field-time model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isTextArea}}
-      {{input-field-textarea model=model field=field placeholder=placeholder}}
+      {{input-field-textarea model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isRichText}}
-      {{input-field-richtext model=model field=field placeholder=placeholder}}
+      {{input-field-richtext model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else}}
       Field <em>"{{field}}"</em> with type <em>"{{type}}"</em> not found
     {{/if}}

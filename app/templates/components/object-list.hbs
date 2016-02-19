@@ -1,11 +1,8 @@
-<div class="card-header ch-alt m-b-20">
-  <h2>{{title}}</h2>
-  {{#if new}}
-    <button class="btn btn-float btn-danger btn-icon" {{action 'new'}}>
-      <i class="zmdi zmdi-plus"></i>
-    </button>
-  {{/if}}
-</div>
+{{#if title}}
+  <div class="card-header ch-alt m-b-20">
+    <h2>{{title}}</h2>
+  </div>
+{{/if}}
 
 <div class="table-responsive model-list">
   {{#if objects}}
@@ -13,13 +10,13 @@
       <thead>
         <tr>
           {{#each columns as |column|}}
-            <td>Heading</td>
+            <th>{{column.label}}</th>
           {{/each}}
         </tr>
       </thead>
       <tbody>
         {{#each objects as |object|}}
-          {{object-list-row object=object columns=columns action='objectSelected'}}
+          {{object-list-row object=object columns=columns objectSelected='objectSelected'}}
         {{/each}}
       </tbody>
     </table>

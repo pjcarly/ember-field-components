@@ -1,3 +1,7 @@
-<div class="input-datetime">
-  {{input type='datetime-local' value=computedValue class='form-control' placeholder=placeholder}}
-</div>
+{{#if hasPrefix}}
+  <span class="input-group-addon">{{prefix}}</span>
+{{/if}}
+{{input type='datetime-local' value=computedValue class='form-control' placeholder=placeholder}}
+{{#if hasSuffix}}
+  <span class="input-group-addon">{{suffix}}</span>
+{{/if}}

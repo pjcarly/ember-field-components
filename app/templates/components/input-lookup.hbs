@@ -1,33 +1,34 @@
-<div class="input-model-select">
-  {{#if hasBlock}}
-    {{yield (action 'showModal')}}
-  {{else}}
-    <div class="field">
-      {{value.name}}
-
-      {{#if hasValue}}
-        <button class="clear-lookup" {{action 'clearLookup'}}>
-          <i class="zmdi zmdi-close"></i>
-        </button>
-      {{/if}}
-    </div>
-
-    <button class="btn btn-default waves-effect" {{action 'showModal'}}>
-      <i class="zmdi zmdi-search"></i>
-    </button>
-  {{/if}}
-
-  <!-- Modal -->
-  <div class="modal fade" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-body">
-          {{object-list objects=selectOptions columns=columns}}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </div>
+<!-- Modal -->
+<div class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        {{object-list objects=selectOptions columns=columns objectSelected='objectSelected'}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
 </div>
+
+{{#if hasPrefix}}
+  <span class="input-group-addon">{{prefix}}</span>
+{{/if}}
+{{input type='text' value=computedValue class='form-control' placeholder=placeholder readonly=true}}
+{{#if hasSuffix}}
+  <span class="input-group-addon">{{suffix}}</span>
+{{/if}}
+
+<span class="input-group-btn">
+
+  {{#if showClearButton}}
+    <button type="button" class="btn btn-default" {{action 'clearLookup'}}>
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+  {{/if}}
+
+  <button type="button" class="btn btn-default" {{action 'showModal'}}>
+    <span class="glyphicon glyphicon-search"></span>
+  </button>
+</span>

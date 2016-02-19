@@ -1,12 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  objects: [],
-  columns: [],
+  tagName: 'div',
+  classNames: ['object-list'],
 
   actions: {
-    objectSelected: function(model) {
-      this.sendAction('modelSelected', model);
+    objectSelected: function(object) {
+      this.sendAction('objectSelected', object);
     },
     new: function() {
       this.sendAction('newModel');

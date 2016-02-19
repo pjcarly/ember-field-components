@@ -1,20 +1,23 @@
 import Ember from 'ember';
+import InputComponent from '../mixins/component-input';
 
-export default Ember.Component.extend({
-  selectOptions: [{
-    'value': 'nl',
-    'label': 'Dutch'
-  }, {
-    'value': 'fr',
-    'label': 'French'
-  }, {
-    'value': 'en',
-    'label': 'English'
-  }],
+export default Ember.Component.extend(InputComponent, {
+  type: 'lookup',
+  hasInputButton: true,
 
-  columns: ['value', 'label'],
+  selectOptions: [],
+  columns: [],
+  nameColumn: null,
 
-  hasValue: Ember.computed('value', function() {
+  computedValue: Ember.computed('value', 'nameColumn', function(){
+    if(Ember.isNone(this.get('value'))){
+      return null;
+    } else {
+      return this.get('value.'+this.get('nameColumn'));
+    }
+  }),
+
+  showClearButton: Ember.computed('value', function(){
     return !Ember.isNone(this.get('value'));
   }),
 
@@ -22,10 +25,10 @@ export default Ember.Component.extend({
     showModal: function() {
       this.$('.modal').modal('show');
     },
-    modelSelected: function(selectedModel) {
+    objectSelected: function(selectedObject) {
       this.$('.modal').modal('hide');
-      this.set('value', selectedModel);
-      this.sendAction('valueChanged', selectedModel);
+      this.set('value', selectedObject);
+      this.sendAction('valueChanged', selectedObject);
     },
     clearLookup: function() {
       this.set('value', null);

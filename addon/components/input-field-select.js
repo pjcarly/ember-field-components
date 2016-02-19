@@ -17,14 +17,11 @@ export default Ember.Component.extend(FieldInputComponent, {
   }),
   actions: {
     valueSelected: function(value) {
-
       if (!Ember.isBlank(value)) {
         this.set('value', value);
       } else {
         this.set('value', null);
       }
-
-      this.notifyPropertyChange('model');
     }
   }
 });
