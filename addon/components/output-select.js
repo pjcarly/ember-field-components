@@ -2,15 +2,15 @@ import OutputText from '../components/output-text';
 
 export default OutputText.extend({
   value: null,
-  selectoptions: [],
+  selectOptions: [],
 
-  selectedvalue: Ember.computed('value', 'selectoptions', function() {
+  selectedvalue: Ember.computed('value', 'selectOptions', function() {
     let value = this.get('value');
     if (!Ember.isBlank(value)) {
-      let selectoptions = this.get('selectoptions');
-      Ember.assert('No selectoptions passed', !Ember.isEmpty(selectoptions));
+      let selectOptions = this.get('selectOptions');
+      Ember.assert('No selectOptions passed', !Ember.isEmpty(selectOptions));
 
-      let selectedoption = selectoptions.findBy('value', value);
+      let selectedoption = selectOptions.findBy('value', value);
 
       if (!Ember.isBlank(selectedoption)) {
         if (selectedoption.hasOwnProperty('label')) {

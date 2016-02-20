@@ -1,4 +1,4 @@
-<select class="selectpicker form-control" {{action 'valueSelected' on='change'}} tabindex="-1" data-live-search="true">
+<select class="selectpicker form-control" {{action 'valueChanged' on='change'}} tabindex="-1" data-live-search="true">
   {{#if emptyValue}}
     {{option-none selected=true}}
   {{/if}}

@@ -14,9 +14,9 @@
 			{{else if isNumber}}
 				{{input-field-number model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isPrice}}
-				{{input-field-price model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
+				{{input-field-price model=model field=field placeholder=placeholder suffix=suffix}}
 			{{else if isPercentage}}
-				{{input-field-percentage model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
+				{{input-field-percentage model=model field=field placeholder=placeholder prefix=prefix}}
 			{{else if isSelect}}
 				{{input-field-select model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isLink}}
@@ -63,8 +63,6 @@
       {{input-field-percentage model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isSelect}}
       {{input-field-select model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
-    {{else if isLanguage}}
-      {{input-field-language model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isLink}}
       {{input-field-link model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isPhone}}

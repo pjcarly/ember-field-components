@@ -9,7 +9,8 @@ export default Ember.Component.extend(InputComponent, {
     return this.get('value');
   }),
   actions: {
-    valueChanged: function() {
+    valueChanged: function(value) {
+      this.set('value', !this.get('value'));
       this.sendAction('valueChanged', this.get('value'));
     }
   }

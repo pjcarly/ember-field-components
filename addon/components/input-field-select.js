@@ -2,7 +2,7 @@ import Ember from 'ember';
 import FieldInputComponent from '../mixins/component-field-input-super';
 
 export default Ember.Component.extend(FieldInputComponent, {
-  selectoptions: Ember.computed('fieldOptions', 'value', function() {
+  selectOptions: Ember.computed('fieldOptions', 'value', function() {
     var fieldOptions = this.get('fieldOptions');
 
     if (!Ember.isBlank(fieldOptions.defaultValue) && Ember.isBlank(this.get('value'))) {
@@ -16,7 +16,7 @@ export default Ember.Component.extend(FieldInputComponent, {
     return !Ember.isBlank(fieldAttributeOptions) && fieldAttributeOptions.hasOwnProperty('widget') && fieldAttributeOptions.widget === 'button-group';
   }),
   actions: {
-    valueSelected: function(value) {
+    valueChanged: function(value) {
       if (!Ember.isBlank(value)) {
         this.set('value', value);
       } else {

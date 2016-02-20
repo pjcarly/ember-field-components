@@ -9,7 +9,7 @@ export default Ember.Component.extend(InputComponent, {
     return Ember.isBlank(this.get('value'));
   }),
   actions: {
-    valueSelected: function() {
+    valueChanged: function() {
       let value = this.$('select').val();
       this.sendAction('valueChanged', value);
     }

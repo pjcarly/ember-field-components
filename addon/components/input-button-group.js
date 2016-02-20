@@ -3,7 +3,7 @@ import InputComponent from '../mixins/component-input';
 
 export default Ember.Component.extend(InputComponent, {
   actions: {
-    valueSelected: function(value) {
+    valueChanged: function(value) {
       this.controller.set('value', value);
       this.sendAction('valueChanged', value);
     }

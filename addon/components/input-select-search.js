@@ -11,7 +11,7 @@ export default Ember.Component.extend(InputComponent, {
     domElement.selectpicker();
   },
   actions: {
-    valueSelected: function() {
+    valueChanged: function() {
       let value = this.$('select').val();
       this.sendAction('valueChanged', value);
     }
