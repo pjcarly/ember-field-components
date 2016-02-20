@@ -16,5 +16,3 @@ var Entity = DS.Model.extend(ValidatorMixin, ModelRelationshipsRollbackMixin, Mo
 });
 
 export default Entity;
-
-Entity.reopenClass(ModelMetaMixin);

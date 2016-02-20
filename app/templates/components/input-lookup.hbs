@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        {{object-list objects=selectOptions columns=columns objectSelected='objectSelected'}}
+        {{object-list objects=selectOptions columns=columns objectSelected='objectSelected' noresults=noresults}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -16,7 +16,13 @@
   <span class="input-group-addon">{{prefix}}</span>
 {{/if}}
 <button {{action 'showModal'}} class="btn btn-default lookup-toggle" type="button">
-  {{computedValue}}
+  {{#if showClearButton}}
+    {{computedValue}}
+  {{else}}
+    <span class="placeholder">
+      {{placeholder}}
+    </span>
+  {{/if}}
 </button>
 {{#if hasSuffix}}
   <span class="input-group-addon">{{suffix}}</span>

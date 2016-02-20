@@ -11,20 +11,14 @@
 				{{input-field-text model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isBoolean}}
 				{{input-field-boolean model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
-			{{else if isSwitch}}
-				{{input-field-switch model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isNumber}}
 				{{input-field-number model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isPrice}}
 				{{input-field-price model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isPercentage}}
 				{{input-field-percentage model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
-			{{else if isAddress}}
-				{{input-field-address model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isSelect}}
 				{{input-field-select model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
-			{{else if isLanguage}}
-				{{input-field-language model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isLink}}
 				{{input-field-link model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else if isPhone}}
@@ -41,8 +35,6 @@
         {{input-field-time model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
       {{else if isTextArea}}
         {{input-field-textarea model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
-      {{else if isRichText}}
-        {{input-field-richtext model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else}}
 				Field <em>"{{field}}"</em> with type <em>"{{type}}"</em> not found
 			{{/if}}
@@ -63,16 +55,12 @@
       {{input-field-text model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isBoolean}}
       {{input-field-boolean model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
-    {{else if isSwitch}}
-      {{input-field-switch model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isNumber}}
       {{input-field-number model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isPrice}}
       {{input-field-price model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isPercentage}}
       {{input-field-percentage model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
-    {{else if isAddress}}
-      {{input-field-address model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isSelect}}
       {{input-field-select model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isLanguage}}
@@ -93,8 +81,6 @@
       {{input-field-time model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isTextArea}}
       {{input-field-textarea model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
-    {{else if isRichText}}
-      {{input-field-richtext model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else}}
       Field <em>"{{field}}"</em> with type <em>"{{type}}"</em> not found
     {{/if}}

@@ -8,6 +8,7 @@ export default Ember.Component.extend(InputComponent, {
   selectOptions: [],
   columns: [],
   nameColumn: null,
+  noresults: 'No Results',
 
   computedValue: Ember.computed('value', 'nameColumn', function(){
     if(Ember.isNone(this.get('value'))){

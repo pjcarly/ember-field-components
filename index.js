@@ -7,9 +7,6 @@ module.exports = {
     this._super.included(app);
 
     if(app.import){
-      app.import(app.bowerDirectory + '/pen/src/pen.js');
-      app.import(app.bowerDirectory + '/pen/src/pen.css');
-
       app.import(app.bowerDirectory + '/bootstrap-select/dist/js/bootstrap-select.js');
       app.import(app.bowerDirectory + '/bootstrap-select/dist/css/bootstrap-select.css');
     }

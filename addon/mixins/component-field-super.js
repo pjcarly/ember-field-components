@@ -1,16 +1,13 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import InlineAttribute from '../objects/inline-attribute';
 import FieldTypeComponent from '../mixins/component-field-type';
 
 export default Ember.Mixin.create(FieldTypeComponent, {
   tagName: 'span',
   field: null,
-  subfield: null,
   model: null,
   link: null,
   inline: false,
-  valueGetTogler: false,
 
   isBlankOrInline: Ember.computed('inline', function() {
     let field = this.get('field');
@@ -26,22 +23,14 @@ export default Ember.Mixin.create(FieldTypeComponent, {
     let model = this.get('model');
     let field = this.get('field');
 
-    if (model instanceof DS.Model) {
-      let protoKey = model.constructor.proto()[field];
-      if (protoKey) {
-        // in the meta we find information about the property
-        let meta = model.constructor.metaForProperty(field);
+    let protoKey = model.constructor.proto()[field];
+    if (protoKey) {
+      // in the meta we find information about the property
+      let meta = model.constructor.metaForProperty(field);
 
-        if (meta.hasOwnProperty('options')) {
-          return meta.options;
-        }
+      if (meta.hasOwnProperty('options')) {
+        return meta.options;
       }
-    }
-    if (model instanceof InlineAttribute) { // check for meta data somewhere
-      let modelType = this.get('modelType');
-      return Ember.get(modelType.settings.computedOptions, field);
-    } else {
-      console.log('INVALID Instance Type as modelAttribute');
     }
   }),
 

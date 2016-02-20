@@ -20,17 +20,11 @@ export default Ember.Mixin.create({
   isSelect: Ember.computed('type', function() {
     return this.get('type') === 'select';
   }),
-  isLanguage: Ember.computed('type', function() {
-    return this.get('type') === 'language';
-  }),
   isLink: Ember.computed('type', function() {
     return this.get('type') === 'link';
   }),
   isPercentage: Ember.computed('type', function() {
     return this.get('type') === 'percentage';
-  }),
-  isAddress: Ember.computed('type', function() {
-    return this.get('type') === 'address';
   }),
   isPhone: Ember.computed('type', function() {
     return this.get('type') === 'phone';
@@ -55,9 +49,6 @@ export default Ember.Mixin.create({
   }),
   isTextArea: Ember.computed('type', function() {
     return this.get('type') === 'textarea';
-  }),
-  isRichText: Ember.computed('type', function() {
-    return this.get('type') === 'richtext';
   }),
   isNotBlankType: Ember.computed('type', function() {
     return !Ember.isBlank(this.get('type'));

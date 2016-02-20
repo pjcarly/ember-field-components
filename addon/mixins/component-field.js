@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import FieldTypeComponent from '../mixins/component-field-type';
+import ModelUtils from '../classes/model-utils';
 
 export default Ember.Mixin.create(FieldTypeComponent, {
   model: null,
@@ -14,10 +15,6 @@ export default Ember.Mixin.create(FieldTypeComponent, {
     var modelType = this.get('modelType');
     var field = this.get('field');
 
-    if (modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('labels') && modelType.settings.labels[field]) {
-      return modelType.settings.labels[field];
-    } else {
-      return field.capitalize();
-    }
+    return ModelUtils.getLabel(modelType, field);
   })
 });

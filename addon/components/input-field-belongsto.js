@@ -1,27 +1,74 @@
 import Ember from 'ember';
 import FieldInputComponent from '../mixins/component-field-input-super';
+import ModelUtils from '../classes/model-utils';
 
-export default Ember.Component.extend(FieldInputComponent, {
+export default Ember.Component.extend({
   store: Ember.inject.service(),
 
-  parentModelType: Ember.computed('field', 'model', function() {
-    var field = this.get('field');
-    var model = this.get('model');
+  selectOptions: Ember.computed('columns', function(){
+    let selectOptions = [];
+    let store = this.get('store');
+    let field = this.get('field');
+    let model = this.get('model');
+    let columns = this.get('columns');
 
-    var relationships = Ember.get(model.constructor, 'relationshipsByName');
+    let parentModelTypeName = ModelUtils.getParentModelTypeName(model, field);
+    let models = store.peekAll(parentModelTypeName);
 
-    if (relationships.has(field) && relationships.get(field).kind === 'belongsTo') {
-      var relationship = relationships.get(field);
-      return relationship.type;
-    }
+    return models;
+  }),
+
+  nameColumn: Ember.computed('field', 'model', function(){
+    let field = this.get('field');
+    let model = this.get('model');
+
+    let parentModelType = ModelUtils.getParentModelType(model, field, this.get('store'));
+    return ModelUtils.getNameColumn(parentModelType);
+  }),
+
+  columns: Ember.computed('field', 'model', function() {
+    let columns = [];
+    let field = this.get('field');
+    let model = this.get('model');
+
+    let parentModelType = ModelUtils.getParentModelType(model, field, this.get('store'));
+    let columnValues = ModelUtils.getDefaultListViewColumns(parentModelType);
+
+    columnValues.forEach(function(columnValue){
+      let column = {};
+      column.value = columnValue;
+      column.label = ModelUtils.getLabel(parentModelType, columnValue);
+      columns.push(column);
+    });
+
+    return columns;
+  }),
+
+  noresults: Ember.computed('field', 'model', function(){
+    let field = this.get('field');
+    let model = this.get('model');
+
+    let parentModelType = ModelUtils.getParentModelType(model, field, this.get('store'));
+    let plural = ModelUtils.getPlural(parentModelType);
+
+    return 'No '+plural+' found';
   }),
 
   parentModel: Ember.computed('field', 'model', function() {
-    var relationshipType = this.get('parentModelType');
-    var relationshipId = this.get('model').get(this.get('field')).get('id');
-    if (!Ember.isNone(relationshipId)) {
-      var store = this.get('store');
-      return store.find(relationshipType, relationshipId);
+    let field = this.get('field');
+    let model = this.get('model');
+
+    return model.get(field);
+  }),
+
+  actions: {
+    valueChanged: function(value){
+      console.log(value);
+
+      let field = this.get('field');
+      let model = this.get('model');
+
+      model.set(field, value);
     }
-  })
+  }
 });

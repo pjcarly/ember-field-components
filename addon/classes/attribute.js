@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import Address from '../objects/address';
 
 export function setType(type, options) {
   var defaultOptions = {};
@@ -38,11 +37,6 @@ export function setType(type, options) {
         defaultValidations.wholenumber = true;
         delete defaultValidations.decimals;
       }
-      break;
-    case 'address':
-      defaultOptions = {
-        defaultValue: Address.create()
-      };
       break;
     case 'email':
       defaultValidations = {
