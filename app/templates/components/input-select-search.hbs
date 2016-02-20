@@ -1,7 +1,8 @@
-<div class="input-select-search">
-  <select class="selectpicker" {{action 'valueSelected' on='change'}} tabindex="-1" data-live-search="true">
-    {{#each selectoptions as |selectoption|}}
-      {{option-selected selectoption value}}
-    {{/each}}
-  </select>
-</div>
+<select class="selectpicker form-control" {{action 'valueSelected' on='change'}} tabindex="-1" data-live-search="true">
+  {{#if emptyValue}}
+    {{option-none selected=true}}
+  {{/if}}
+  {{#each selectOptions as |selectOption|}}
+    {{option-selected selectOption value}}
+  {{/each}}
+</select>

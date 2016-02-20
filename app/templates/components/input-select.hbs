@@ -1,7 +1,8 @@
-<div class="input-select">
-  <select {{action 'valueSelected' on='change'}}>
-    {{#each selectoptions as |selectoption|}}
-      {{option-selected selectoption value}}
-    {{/each}}
-  </select>
-</div>
+<select {{action 'valueSelected' on='change'}} class="form-control">
+  {{#if emptyValue}}
+    {{option-none selected=true}}
+  {{/if}}
+  {{#each selectOptions as |selectOption|}}
+    {{option-selected selectOption value}}
+  {{/each}}
+</select>

@@ -1,17 +1,7 @@
 import Ember from 'ember';
 import InputComponent from '../mixins/component-input';
+import ComputedValue from '../mixins/component-computed-value';
 
-export default Ember.Component.extend(InputComponent, {
-  type: 'email',
-  computedValue: Ember.computed('value', {
-    get: function() {
-      var value = this.get('value');
-      return value;
-    },
-    set: function(key, value) {
-      this.set('value', value);
-      this.sendAction('valueChanged', value);
-      return value;
-    }
-  })
+export default Ember.Component.extend(InputComponent, ComputedValue, {
+  type: 'email'
 });

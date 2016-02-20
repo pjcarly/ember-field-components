@@ -1,5 +1,5 @@
 <div class="btn-group" role="group" aria-label="...">
-  {{#each selectoptions as |selectoption|}}
-    {{command-button action=(action 'valueSelected' selectoption.value) active=(is-equal selectoption.value value) label=selectoption.label}}
+  {{#each selectOptions as |selectOption|}}
+    {{command-button action=(action 'valueSelected' selectOption.value) active=(is-equal selectOption.value value) label=selectOption.label}}
   {{/each}}
 </div>

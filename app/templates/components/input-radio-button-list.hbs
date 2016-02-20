@@ -1,0 +1,10 @@
+{{#if false}}
+  {{#each selectOptions as |selectOption|}}
+    <div class="radio">
+      <label class="active">
+        <input type="radio" value="{{selectOption.value}}" {{action 'valueSelected' selectOption.value}} checked="{{is-equal selectOption.value value}}">
+        {{selectOption.label}}
+      </label>
+    </div>
+  {{/each}}
+{{/if}}

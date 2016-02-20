@@ -1,26 +1,28 @@
 # Ember-field-components
 
-This README outlines the details of collaborating on this Ember addon.
+This addon provides a  set of components which are meant to tie directly to the attribute type of a model field with build in validation on save, however, separate components for each type are supported as well.
 
-## Installation
+## Supported attributes
+* `placeholder`
+* `prefix`
+* `suffix`
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+## Separate Input Components
 
-## Running
+* `input-checkbox`
+* `input-date`
+* `input-datetime`
+* `input-email`
+* `input-lookup`
+* `input-number`
+* `input-password`
+* `input-phone`
+* `input-select`
+* `input-text`
+* `input-textarea`
+* `input-time`
+* `input-url`
+* `input-switch`
 
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+## Validation
+Validation is done with a fork of ember-cli-data-validation, see github.com/pjcarly/ember-cli-data-validation

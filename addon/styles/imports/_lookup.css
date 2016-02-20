@@ -6,10 +6,12 @@
   text-align: left;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
-  cursor: text;
   border: 1px solid #ccc;
 }
 .input.lookup .lookup-toggle:hover {
   background-color: white;
   border: 1px solid #ccc;
+}
+.input.lookup > button {
+  font-weight: normal !important;
 }
