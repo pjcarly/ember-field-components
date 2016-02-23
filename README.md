@@ -7,7 +7,7 @@ Use setType from classes/attribute.js to create your attrtibute types on your mo
 
 For example:
 
-```
+```javascript
 import Ember from 'ember';
 import DS from 'ember-data';
 import Attribute from 'ember-field-components/classes/attribute';
@@ -16,7 +16,8 @@ export default DS.Model.extend({
   firstName: Attribute.setType('string'),
   lastName: Attribute.setType('string'),
   email: Attribute.setType('email')
-}```
+}
+```
 
 supported attribute types are:
 
@@ -43,7 +44,7 @@ Next to attribute types, `DS.belongsTo` is also supported
 Attributes with type `select` require you to define select options, possible values in your select list.
 This is how you define selectOptions:
 
-```
+```javascript
 import Ember from 'ember';
 import DS from 'ember-data';
 import Attribute from 'ember-field-components/classes/attribute';
@@ -62,7 +63,8 @@ export default DS.Model.extend({
     }],
     defaultValue: 'draft'
   })
-}```
+}
+```
 
 the value, is the value in your `<option>` and the label, is the value you'll see appear in your select list.
 
@@ -72,7 +74,7 @@ the value, is the value in your `<option>` and the label, is the value you'll se
 These attribute types require you to define the precision and amount of decimals
 
 For example:
-```
+```javascript
 import Ember from 'ember';
 import DS from 'ember-data';
 import Attribute from 'ember-field-components/classes/attribute';
@@ -82,7 +84,8 @@ export default DS.Model.extend({
     precision: 18,
     decimals: 3
   })
-}```
+}
+```
 
 * `precision` are the total amount of digits in your number
 * `decimals` are the amount of digits after the decimal mark
@@ -123,7 +126,7 @@ Standard we use the [capitalized](http://emberjs.com/api/classes/Ember.String.ht
 
 For example:
 
-```
+```javascript
 import Ember from 'ember';
 import DS from 'ember-data';
 import Attribute from 'ember-field-components/classes/attribute';
