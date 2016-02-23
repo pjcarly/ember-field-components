@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import FieldInputComponent from '../mixins/component-field-input-super';
+import { hasWidget } from '../classes/model-utils';
 
 export default Ember.Component.extend(FieldInputComponent, {
   selectOptions: Ember.computed('fieldOptions', 'value', function() {
@@ -13,7 +14,11 @@ export default Ember.Component.extend(FieldInputComponent, {
   }),
   isButtonGroup: Ember.computed(function() {
     let fieldAttributeOptions = this.get('fieldAttributeOptions');
-    return !Ember.isBlank(fieldAttributeOptions) && fieldAttributeOptions.hasOwnProperty('widget') && fieldAttributeOptions.widget === 'button-group';
+    return hasWidget(fieldAttributeOptions, 'button-group');
+  }),
+  isSelectSearch: Ember.computed(function() {
+    let fieldAttributeOptions = this.get('fieldAttributeOptions');
+    return hasWidget(fieldAttributeOptions, 'select-search');
   }),
   actions: {
     valueChanged: function(value) {

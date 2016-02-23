@@ -97,3 +97,6 @@
   color: #fff !important;
   text-align: center;
 }
+.bootstrap-select ul.dropdown-menu {
+  text-align: left;
+}

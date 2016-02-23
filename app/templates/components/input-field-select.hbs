@@ -1,5 +1,7 @@
 {{#if isButtonGroup}}
   {{input-button-group selectOptions=selectOptions value=value valueChanged='valueChanged'}}
+{{else if isSelectSearch}}
+  {{input-select-search selectOptions=selectOptions value=value valueChanged='valueChanged'}}
 {{else}}
   {{input-select selectOptions=selectOptions value=value valueChanged='valueChanged'}}
 {{/if}}

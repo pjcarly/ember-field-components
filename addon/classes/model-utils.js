@@ -64,3 +64,7 @@ export function getLabel(modelType, field){
     return field.capitalize();
   }
 }
+
+export function hasWidget(fieldAttributeOptions, widgetName) {
+  return !Ember.isBlank(fieldAttributeOptions) && fieldAttributeOptions.hasOwnProperty('widget') && fieldAttributeOptions.widget === widgetName;
+}
