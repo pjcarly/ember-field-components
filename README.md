@@ -104,7 +104,6 @@ All input fields are rendered with a Label and an Input field, you can ommit the
 * placeholder
 * prefix
  * *not supported for:*
-  * input-price
   * input-button-group
   * input-checkbox
   * input-switch
@@ -113,7 +112,6 @@ All input fields are rendered with a Label and an Input field, you can ommit the
   * input-textarea
 * suffix
   * *not supported for:*
-  * input-percentage
   * input-button-group
   * input-checkbox
   * input-switch

@@ -1,3 +1,6 @@
-import OutputDatetime from '../components/output-datetime';
+import Ember from 'ember';
+import OutputComponent from '../mixins/component-output';
 
-export default OutputDatetime.extend();
+export default Ember.Component.extend(OutputComponent, {
+  type: 'time'
+});

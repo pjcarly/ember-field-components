@@ -1,0 +1,148 @@
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#string" aria-controls="home" role="tab" data-toggle="tab">String</a></li>
+    <li role="presentation"><a href="#number" aria-controls="profile" role="tab" data-toggle="tab">Number</a></li>
+    <li role="presentation"><a href="#boolean" aria-controls="messages" role="tab" data-toggle="tab">Boolean</a></li>
+    <li role="presentation"><a href="#selectlists" aria-controls="settings" role="tab" data-toggle="tab">Select Lists</a></li>
+    <li role="presentation"><a href="#datetime" aria-controls="settings" role="tab" data-toggle="tab">Date Time</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="string">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>String</h2>
+        </div>
+
+        <div class="col-md-6">
+          <h3 class="text-center">Input</h3>
+
+          <h4>Input-Text</h4>
+          {{input-text prefix="hi" suffix="beautiful" valueChanged="textValueChanged" value=textValue}}<br/>
+          <h4>Input-Textarea</h4>
+          {{input-textarea placeholder="description" valueChanged="valueChanged" value=textAreaValue}}<br/>
+          <h4>Input-Password</h4>
+          {{input-password prefix="secure password" valueChanged="textValueChanged" value=textValue}}<br/>
+          <h4>Input-Email</h4>
+          {{input-email valueChanged="valueChanged" value=emailValue}}<br/>
+          <h4>Input-Phone</h4>
+          {{input-phone prefix="tel:" valueChanged="phoneValueChanged" value=phoneValue}}<br/>
+          <h4>Input-Url</h4>
+          {{input-url prefix="website" valueChanged="valueChanged" value=urlValue}}<br/>
+        </div>
+
+        <div class="col-md-6">
+          <h3 class="text-center">Output</h3>
+          <h4>Output-Text</h4>
+          {{output-text prefix="hi" suffix="beautiful" value=textValue}}<br/>
+          <h4>Output-TextArea</h4>
+          {{output-textarea value=textAreaValue}}<br/>
+          <h4>Output-Password</h4>
+          {{output-password value=textValue}}<br/>
+          <h4>Output-Email</h4>
+          {{output-email value=emailValue}}<br/>
+          <h4>Output-Phone</h4>
+          {{output-phone prefix="tel: " value=phoneValue}}<br/>
+          <h4>Output-Url</h4>
+          {{output-url prefix="url: " value=urlValue}}<br/>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="number">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>Number</h2>
+        </div>
+
+        <div class="col-md-6">
+          <h3 class="text-center">Input</h3>
+
+          <h4>Input-Number</h4>
+          {{input-number valueChanged="valueChanged"}}<br/>
+        </div>
+
+        <div class="col-md-6">
+          <h3 class="text-center">Output</h3>
+          TODO
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="boolean">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>Boolean</h2>
+        </div>
+
+        <div class="col-md-6">
+          <h3 class="text-center">Input</h3>
+
+          <h4>Input-Checkbox</h4>
+          {{input-checkbox valueChanged="booleanValueChanged" value=booleanValue}}<br/>
+          <h4>Input-Switch</h4>
+          {{input-switch valueChanged="booleanValueChanged" value=booleanValue}}<br/>
+        </div>
+
+        <div class="col-md-6">
+          <h3 class="text-center">Output</h3>
+          <h4>Output-Checkbox</h4>
+          {{output-checkbox value=booleanValue}}
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="selectlists">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>Select List</h2>
+        </div>
+
+        <div class="col-md-6">
+          <h3 class="text-center">Input</h3>
+
+          <h4>Input-Button-Group</h4>
+          {{input-button-group selectOptions=selectOptions valueChanged="valueChanged"}}<br/>
+          <h4>Input-Lookup</h4>
+          {{input-lookup selectOptions=selectOptions columns=columns nameColumn="label" valueChanged="valueChanged"}}<br/>
+          <h4>Input-Select</h4>
+          {{input-select prefix="language" selectOptions=selectOptions valueChanged="valueChanged"}}<br/>
+          <h4>Input-Select-Search</h4>
+          {{input-select-search selectOptions=selectOptions valueChanged="valueChanged"}}<br/>
+        </div>
+
+        <div class="col-md-6">
+          <h3 class="text-center">Output</h3>
+
+          TODO
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="datetime">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>Date &amp; Time</h2>
+        </div>
+
+
+        <div class="col-md-6">
+          <h3 class="text-center">Input</h3>
+
+          <h4>Input-Date</h4>
+          {{input-date valueChanged="valueChanged"}}<br/>
+          <h4>Input-DateTime</h4>
+          {{input-datetime valueChanged="valueChanged"}}<br/>
+          <h4>Input-Time</h4>
+          {{input-time prefix="time" valueChanged="valueChanged"}}<br/>
+        </div>
+
+        <div class="col-md-6">
+          <h3 class="text-center">Output</h3>
+
+          TODO
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

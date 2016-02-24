@@ -1,0 +1,17 @@
+{{#if hasPrefix}}
+ {{prefix}}
+{{/if}}
+
+{{value}}
+
+{{#if hasSuffix}}
+  {{suffix}}
+{{/if}}
+
+{{#if isButtonGroup}}
+  <span class="input-group-btn">
+    <a class="btn btn-default" href="{{if displayHttp 'http://'}}{{value}}" target="_blank">
+      <span class="glyphicon glyphicon-globe"></span>
+    </a>
+  </span>
+{{/if}}
