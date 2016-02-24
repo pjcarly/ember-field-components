@@ -18,7 +18,7 @@ export default Ember.Component.extend(InputComponent, {
     }
   }),
 
-  showClearButton: Ember.computed('value', function(){
+  hasValue: Ember.computed('value', function(){
     return !Ember.isNone(this.get('value'));
   }),
 

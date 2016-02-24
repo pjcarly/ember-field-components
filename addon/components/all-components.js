@@ -7,6 +7,9 @@ export default Ember.Component.extend({
   emailValue: 'mickey@mouse.be',
   phoneValue: '+32123456789',
   urlValue: 'www.google.com',
+  numberValue: 9001,
+  selectValue: null,
+  lookupValue: null,
 
   selectOptions: [{
     'value': 'nl',
@@ -54,6 +57,18 @@ export default Ember.Component.extend({
     urlValueChanged: function(value) {
       console.log(value);
       this.set('urlValue', value);
+    },
+    numberValueChanged: function(value){
+      console.log(value);
+      this.set('numberValue');
+    },
+    selectValueChanged: function(value){
+      console.log(value);
+      this.set('selectValue', value);
+    },
+    lookupValueChanged: function(value){
+      console.log(value);
+      this.set('lookupValue', value);
     }
   }
 });

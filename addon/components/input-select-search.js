@@ -10,6 +10,9 @@ export default Ember.Component.extend(InputComponent, {
     var domElement = this.$('select');
     domElement.selectpicker();
   },
+  valueObserver: Ember.observer('value', function(){
+    this.$('select').selectpicker('val', this.get('value'));
+  }),
   actions: {
     valueChanged: function() {
       let value = this.$('select').val();

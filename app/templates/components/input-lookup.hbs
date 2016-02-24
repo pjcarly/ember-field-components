@@ -16,7 +16,7 @@
   <span class="input-group-addon">{{prefix}}</span>
 {{/if}}
 <button {{action 'showModal'}} class="btn btn-default lookup-toggle" type="button">
-  {{#if showClearButton}}
+  {{#if hasValue}}
     {{computedValue}}
   {{else}}
     <span class="placeholder">
@@ -29,7 +29,7 @@
 {{/if}}
 
 <span class="input-group-btn">
-  {{#if showClearButton}}
+  {{#if hasValue}}
     <button type="button" class="btn btn-default" {{action 'clearLookup'}}>
       <span class="glyphicon glyphicon-remove"></span>
     </button>
