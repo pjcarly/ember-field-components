@@ -134,17 +134,22 @@
           <h3 class="text-center">Input</h3>
 
           <h4>Input-Date</h4>
-          {{input-date valueChanged="valueChanged"}}<br/>
+          {{input-date valueChanged="dateValueChanged" value=dateValue}}<br/>
           <h4>Input-DateTime</h4>
-          {{input-datetime valueChanged="valueChanged"}}<br/>
+          {{input-datetime valueChanged="dateTimeValueChanged" value=dateTimeValue}}<br/>
           <h4>Input-Time</h4>
-          {{input-time prefix="time" valueChanged="valueChanged"}}<br/>
+          {{input-time prefix="time" valueChanged="timeValueChanged" value=timeValue}}<br/>
         </div>
 
         <div class="col-md-6">
           <h3 class="text-center">Output</h3>
 
-          TODO
+          <h4>Output-Date</h4>
+          {{output-date value=dateValue format="DD/MM/YYYY"}}<br/>
+          <h4>Output-Datetime</h4>
+          {{output-datetime value=dateTimeValue format="DD/MM/YYYY HH:mm:ss"}}<br/>
+          <h4>Output-Select</h4>
+          {{output-time value=timeValue format="HH:mm:ss"}}<br/>
         </div>
       </div>
     </div>

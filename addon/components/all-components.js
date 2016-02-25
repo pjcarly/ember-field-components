@@ -10,6 +10,9 @@ export default Ember.Component.extend({
   numberValue: 9001,
   selectValue: null,
   lookupValue: null,
+  dateValue: null,
+  dateTimeValue: null,
+  timeValue: null,
 
   selectOptions: [{
     'value': 'nl',
@@ -69,6 +72,18 @@ export default Ember.Component.extend({
     lookupValueChanged: function(value){
       console.log(value);
       this.set('lookupValue', value);
+    },
+    dateValueChanged: function(value){
+      console.log(value);
+      this.set('dateValue', value);
+    },
+    dateTimeValueChanged: function(value){
+      console.log(value);
+      this.set('dateTimeValue', value);
+    },
+    timeValueChanged: function(value){
+      console.log(value);
+      this.set('timeValue', value);
     }
   }
 });

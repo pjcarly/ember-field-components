@@ -1,8 +1,0 @@
-{{#if selectable}}
-  <td {{action 'toggleSelect'}}>
-    {{input-checkbox value=selected}}
-  </td>
-{{/if}}
-{{#each columns as |column|}}
-    <td {{action 'click'}}>{{output-field model=model field=column inline='true' link=link}}</td>
-{{/each}}

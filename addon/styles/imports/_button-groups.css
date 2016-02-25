@@ -1,0 +1,6 @@
+.input.button-group > .btn-group > button, .output.button-group > .btn-group > button {
+  padding: 0;
+}
+.input.button-group > .btn-group > button > div, .output.button-group > .btn-group > button > div {
+  padding: 6px 12px;
+}
