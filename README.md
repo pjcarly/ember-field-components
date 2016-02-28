@@ -104,20 +104,20 @@ All input fields are rendered with a Label and an Input field, you can ommit the
 * placeholder
 * prefix
  * *not supported for:*
-  * input-button-group
-  * input-checkbox
-  * input-switch
-  * input-lookup
-  * input-select
-  * input-textarea
+  * button-group
+  * checkbox
+  * switch
+  * lookup
+  * select
+  * textarea
 * suffix
   * *not supported for:*
-  * input-button-group
-  * input-checkbox
-  * input-switch
-  * input-lookup
-  * input-select
-  * input-textarea
+  * button-group
+  * checkbox
+  * switch
+  * lookup
+  * select
+  * textarea
 
 ### Customizing your Labels
 Standard we use the [capitalized](http://emberjs.com/api/classes/Ember.String.html#method_capitalize) version of your fieldname as a label, however you can customize the value by reopening your entity class.
@@ -165,6 +165,36 @@ export default entity;
 * input-textarea
 * input-time
 * input-url
+
+
+
+## Output Field Components
+
+### Supported attributes
+* format [Moment Formatting](http://momentjs.com/)
+ * *only supported for:*
+  * date
+  * dateTime
+  * time
+
+## Stand alone Output Components
+
+* input-button-group
+* input-checkbox
+* input-date
+* input-datetime
+* input-email
+* input-lookup
+* input-number
+* input-password
+* input-phone
+* input-select
+* input-switch
+* input-text
+* input-textarea
+* input-time
+* input-url
+
 
 ## Validation
 Validation is done with a fork of ember-cli-data-validation, see github.com/pjcarly/ember-cli-data-validation
