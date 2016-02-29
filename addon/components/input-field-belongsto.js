@@ -63,8 +63,6 @@ export default Ember.Component.extend({
 
   actions: {
     valueChanged: function(value){
-      console.log(value);
-
       let field = this.get('field');
       let model = this.get('model');
 

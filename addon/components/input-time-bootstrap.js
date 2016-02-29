@@ -3,14 +3,14 @@ import InputComponent from '../mixins/component-input';
 import InputMomentFormat from '../mixins/component-input-moment-format';
 
 export default Ember.Component.extend(InputComponent, InputMomentFormat, {
-  type: 'date-bootstrap',
+  type: 'time-bootstrap',
   fieldSettings: Ember.inject.service(),
   isInputGroup: true,
 
-  momentFormat: Ember.computed('format', 'fieldSettings.dateFormat', function(){
+  momentFormat: Ember.computed('format', 'fieldSettings.timeFormat', function(){
     let format = this.get('format');
     if(Ember.isBlank(format)){
-      return this.get('fieldSettings.dateFormat');
+      return this.get('fieldSettings.timeFormat');
     } else {
       return format;
     }

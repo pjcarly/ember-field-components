@@ -1,1 +1,5 @@
-{{input-datetime value=value valueChanged='valueChanged' placeholder=placeholder prefix=prefix suffix=suffix}}
+{{#if isBootstrap}}
+  {{input-datetime-bootstrap value=value valueChanged='valueChanged' placeholder=placeholder prefix=prefix suffix=suffix}}
+{{else}}
+  {{input-datetime value=value valueChanged='valueChanged' placeholder=placeholder prefix=prefix suffix=suffix}}
+{{/if}}

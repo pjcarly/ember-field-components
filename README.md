@@ -24,9 +24,11 @@ supported attribute types are:
 * `string`
 * `number`
 * `boolean`
- * extra widget: `switch` available
+  * extra widget: `switch` available
 * `date`
+  * extra widget: `bootstrap` available
 * `datetime`
+  * extra widget: `bootstrap` available
 * `email`
 * `link`
 * `percentage`
@@ -37,8 +39,12 @@ supported attribute types are:
   * extra widget: `select-search` available
 * `textarea`
 * `time`
+  * extra widget: `bootstrap` available
 
 Next to attribute types, `DS.belongsTo` is also supported
+
+### Date, DateTime and Time
+These components display the html5 input on mobile devices, and bootstrap-datetimepicker on other devices. If we can't figure out the correct User Agent, we default to HTML5. You can force bootstrap by passing `widget: bootstrap` in the field options
 
 ### Select Lists
 Attributes with type `select` require you to define select options, possible values in your select list.
