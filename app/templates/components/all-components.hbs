@@ -1,5 +1,9 @@
 <div>
 
+  <div class="row">
+    {{user-agent-debugger}}
+  </div>
+
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#string" aria-controls="home" role="tab" data-toggle="tab">String</a></li>
@@ -135,10 +139,16 @@
 
           <h4>Input-Date</h4>
           {{input-date valueChanged="dateValueChanged" value=dateValue}}<br/>
+          <h4>Input-Date-Bootstrap</h4>
+          {{input-date-bootstrap valueChanged="dateValueChanged" value=dateValue}}<br/>
           <h4>Input-DateTime</h4>
           {{input-datetime valueChanged="dateTimeValueChanged" value=dateTimeValue}}<br/>
+          <h4>Input-DateTime-Bootstrap</h4>
+          {{input-datetime-bootstrap valueChanged="dateTimeValueChanged" value=dateTimeValue}}<br/>
           <h4>Input-Time</h4>
           {{input-time prefix="time" valueChanged="timeValueChanged" value=timeValue}}<br/>
+          <h4>Input-Time-Bootstrap</h4>
+          {{input-time-bootstrap prefix="time" valueChanged="timeValueChanged" value=timeValue}}<br/>
         </div>
 
         <div class="col-md-6">
