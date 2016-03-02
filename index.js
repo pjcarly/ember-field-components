@@ -3,6 +3,9 @@
 
 module.exports = {
   name: 'ember-field-components',
+  isDevelopingAddon: function(){
+    return true;
+  },
   included: function(app) {
     this._super.included(app);
 

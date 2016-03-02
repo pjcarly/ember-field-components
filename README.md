@@ -159,7 +159,9 @@ export default entity;
 * input-button-group
 * input-checkbox
 * input-date
+* input-date-bootstrap
 * input-datetime
+* input-datetime-bootstrap
 * input-email
 * input-lookup
 * input-number
@@ -170,6 +172,7 @@ export default entity;
 * input-text
 * input-textarea
 * input-time
+* input-time-bootstrap
 * input-url
 
 
@@ -185,21 +188,7 @@ export default entity;
 
 ## Stand alone Output Components
 
-* input-button-group
-* input-checkbox
-* input-date
-* input-datetime
-* input-email
-* input-lookup
-* input-number
-* input-password
-* input-phone
-* input-select
-* input-switch
-* input-text
-* input-textarea
-* input-time
-* input-url
+More here later.
 
 
 ## Validation
