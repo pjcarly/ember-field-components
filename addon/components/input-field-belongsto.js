@@ -1,16 +1,13 @@
 import Ember from 'ember';
-import FieldInputComponent from '../mixins/component-field-input-super';
 import ModelUtils from '../classes/model-utils';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
 
   selectOptions: Ember.computed('columns', function(){
-    let selectOptions = [];
     let store = this.get('store');
     let field = this.get('field');
     let model = this.get('model');
-    let columns = this.get('columns');
 
     let parentModelTypeName = ModelUtils.getParentModelTypeName(model, field);
     let models = store.peekAll(parentModelTypeName);

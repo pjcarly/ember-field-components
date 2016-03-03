@@ -1,9 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import Attribute from '../classes/attribute';
 import ValidatorMixin from 'ember-cli-data-validation/mixins/validator';
 import ModelRelationshipsRollbackMixin from '../mixins/model-relationships-rollback';
-import ModelMetaMixin from '../mixins/model-meta';
 import ModelCopyMixin from '../mixins/model-entity-copy';
 
 var Entity = DS.Model.extend(ValidatorMixin, ModelRelationshipsRollbackMixin, ModelCopyMixin, {
