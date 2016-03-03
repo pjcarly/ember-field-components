@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import DS from 'ember-data';
 import FieldTypeComponent from '../mixins/component-field-type';
 
 export default Ember.Mixin.create(FieldTypeComponent, {
