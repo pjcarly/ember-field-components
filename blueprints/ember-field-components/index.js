@@ -1,14 +1,16 @@
 module.exports = {
     afterInstall: function () {
-        return this.addBowerPackageToProject('bootstrap-select', '^1.9.4')
+        var addBowerPackageToProject = this.addBowerPackageToProject.bind(this);
+
+        return addBowerPackageToProject('bootstrap-select', '^1.9.4')
             .then(function () {
-                return this.addBowerPackageToProject('moment', '^2.11.2');
-            }.bind(this))
+                return addBowerPackageToProject('moment', '^2.11.2');
+            })
             .then(function () {
-                return this.addBowerPackageToProject('eonasdan-bootstrap-datetimepicker', '^4.17.37');
-            }.bind(this))
+                return addBowerPackageToProject('eonasdan-bootstrap-datetimepicker', '^4.17.37');
+            })
             .then(function () {
-                return this.addBowerPackageToProject('ua-parser-js', '^0.7.10');
-            }.bind(this));
+                return addBowerPackageToProject('ua-parser-js', '^0.7.10');
+            });
     }
 };
