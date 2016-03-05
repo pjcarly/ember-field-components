@@ -1,7 +1,7 @@
 {{#if isInline}}
 <div class="form-group{{if isRequired ' required'}}{{if hasError ' has-error'}}{{if isReadOnly ' read-only'}}">
   <label class="control-label">
-    {{label}}
+    {{labelComputed}}
   </label>
   <div>
     {{#if isReadOnly}}

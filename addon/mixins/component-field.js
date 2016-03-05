@@ -7,14 +7,22 @@ export default Ember.Mixin.create(FieldTypeComponent, {
   field: null,
   inline: false,
   link: null,
+  label: null,
 
   isInline: Ember.computed('inline', function() {
     return !this.get('inline');
   }),
-  label: Ember.computed('modelType', 'field', function() {
-    var modelType = this.get('modelType');
-    var field = this.get('field');
 
-    return ModelUtils.getLabel(modelType, field);
+  labelComputed: Ember.computed('label', 'modelType', 'field', function() {
+    let label = this.get('label');
+    if(Ember.isBlank(label)){
+      let modelType = this.get('modelType');
+      let field = this.get('field');
+
+      return ModelUtils.getLabel(modelType, field);
+    }
+    else {
+      return label;
+    }
   })
 });
