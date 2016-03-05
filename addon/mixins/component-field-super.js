@@ -33,22 +33,13 @@ export default Ember.Mixin.create(FieldTypeComponent, {
     }
   }),
 
-  formatGetter: function(value) {
-    return value;
-  },
-
-  formatSetter: function(value) {
-    return value;
-  },
-
   value: Ember.computed('model', 'field', {
     get: function() {
-      let value = this.formatGetter(this.get('model').get(this.get('field')));
+      let value = this.get('model').get(this.get('field'));
       return value;
     },
     set: function(key, value) {
       Ember.run.once(this, function() {
-        value = this.formatSetter(value);
         this.get('model').set(this.get('field'), value);
       });
 
@@ -58,6 +49,7 @@ export default Ember.Mixin.create(FieldTypeComponent, {
 
   actions: {
     valueChanged: function(value) {
+      console.log('value');
       this.get('model').set(this.get('field'), value);
     }
   }

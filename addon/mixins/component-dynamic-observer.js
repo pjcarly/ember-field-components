@@ -9,7 +9,7 @@ export default Ember.Mixin.create({
     var model = this.get('model');
     var field = this.get('field');
 
-    model.addObserver(field, this, this.valueChanged);
+    model.addObserver(field, this, this.valueObserver);
   },
 
   willDestroy: function() {
@@ -17,6 +17,11 @@ export default Ember.Mixin.create({
     var model = this.get('model');
     var field = this.get('field');
 
-    model.removeObserver(field, this, this.valueChanged);
+    model.removeObserver(field, this, this.valueObserver);
+  },
+
+  valueObserver: function(){
+    // this function observes changes in the model of the field, as we can't put dynamic computed properties
+    this.notifyPropertyChange('model');
   }
 });
