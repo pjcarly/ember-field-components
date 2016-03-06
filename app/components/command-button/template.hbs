@@ -1,1 +1,7 @@
-<div{{action 'click'}}>{{label}}</div>
+<div{{action 'click'}}>
+  {{#if hasBlock}}
+    {{yield}}
+  {{else}}
+    {{label}}
+  {{/if}}
+</div>
