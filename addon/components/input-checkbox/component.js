@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import InputComponent from '../mixins/component-input';
+import InputComponent from '../../mixins/component-input';
 
 export default Ember.Component.extend(InputComponent, {
   type: 'checkbox',

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ModelUtils from '../classes/model-utils';
+import ModelUtils from '../../classes/model-utils';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),

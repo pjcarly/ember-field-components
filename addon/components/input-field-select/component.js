@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import FieldInputComponent from '../mixins/component-field-input-super';
-import { hasWidget } from '../classes/model-utils';
+import FieldInputComponent from '../../mixins/component-field-input-super';
+import { hasWidget } from '../../classes/model-utils';
 
 export default Ember.Component.extend(FieldInputComponent, {
   selectOptions: Ember.computed('fieldOptions', 'value', function() {
