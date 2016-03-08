@@ -40,7 +40,6 @@ export function setType(type, options) {
       break;
     case 'email':
       defaultValidations = {
-        max: 255,
         email: true
       };
       break;
