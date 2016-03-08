@@ -1,3 +1,3 @@
-import OutputComponent from 'ember-field-components/components/output-time';
+import OutputComponent from 'ember-field-components/components/output-time/component';
 
 export default OutputComponent;

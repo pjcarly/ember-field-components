@@ -1,3 +1,3 @@
-import InputField from 'ember-field-components/components/input-field-belongsto';
+import InputField from 'ember-field-components/components/input-field-belongsto/component';
 
 export default InputField;

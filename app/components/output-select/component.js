@@ -1,4 +1,4 @@
-import OutputText from 'ember-field-components/components/output-text';
+import OutputText from 'ember-field-components/components/output-text/component';
 
 export default OutputText.extend({
     value: null,
