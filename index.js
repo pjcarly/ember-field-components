@@ -20,16 +20,8 @@ module.exports = {
         app.import(app.bowerDirectory + '/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js');
         app.import(app.bowerDirectory + '/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css');
     },
-    treeForTemplates: function (tree) {
-        if (tree) {
-            return mergeTrees([tree, this.podsTemplates()]);
-        } else {
-            return this.podsTemplates();
-        }
-    },
-    podsTemplates: function () {
-        // Add templates from pods directory, since Ember CLI doesn't include them by default
-        return new Funnel(this.project.root + '/node_modules/ember-field-components/app', {
+    treeForTemplates: function () {
+        return new Funnel(this.project.root + '/node_modules/ember-sf/app', {
             include: ['**/*.hbs'],
 
             getDestinationPath: function (relativePath) {
