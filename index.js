@@ -21,7 +21,7 @@ module.exports = {
         app.import(app.bowerDirectory + '/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css');
     },
     treeForTemplates: function () {
-        return new Funnel(this.project.root + '/node_modules/ember-sf/app', {
+        return new Funnel(this.project.root + '/node_modules/'+this.name+'/app', {
             include: ['**/*.hbs'],
 
             getDestinationPath: function (relativePath) {
