@@ -1,4 +1,4 @@
-import OutputFieldNumber from '../components/output-field-number';
+import OutputFieldNumber from '../../components/output-field-number';
 
 export default OutputFieldNumber.extend({
   suffix: '%'

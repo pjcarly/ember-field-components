@@ -9,7 +9,7 @@ export default Ember.Mixin.create(FieldTypeComponent, {
   link: null,
   label: null,
 
-  isInline: Ember.computed('inline', function() {
+  isNotInline: Ember.computed('inline', function() {
     return !this.get('inline');
   }),
 
