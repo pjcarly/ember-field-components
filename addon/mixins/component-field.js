@@ -9,6 +9,17 @@ export default Ember.Mixin.create(FieldTypeComponent, {
   link: null,
   label: null,
 
+  init: function(){
+    this._super(...arguments);
+
+    let classes = this.get('class');
+    if(Ember.isBlank(classes)){
+      this.classNameBindings = [];
+    } else {
+      this.classNameBindings = classes.split(' ');
+    }
+  },
+
   isNotInline: Ember.computed('inline', function() {
     return !this.get('inline');
   }),

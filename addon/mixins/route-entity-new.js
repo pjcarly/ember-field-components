@@ -78,7 +78,7 @@ export default Ember.Mixin.create(EntityEditRoute, {
         recachedModelCopy.rollbackAttributes();
       }
 
-      return this._super();
+      return this._super(...arguments);
     }
   }
 });

@@ -4,7 +4,7 @@ import VatPercentageSelectionModel from '../mixins/model-vat-percentage-selectio
 
 export default Ember.Mixin.create(VatPercentageSelectionModel, {
   init: function() {
-    this._super();
+    this._super(...arguments);
 
     let vatPercentage = this.get('vatPercentage');
     let vatSpread = this.get('vatSpread');

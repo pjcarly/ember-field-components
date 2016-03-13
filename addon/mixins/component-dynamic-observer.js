@@ -5,7 +5,7 @@ export default Ember.Mixin.create({
   field: null,
 
   init: function() {
-    this._super();
+    this._super(...arguments);
     var model = this.get('model');
     var field = this.get('field');
 
@@ -13,7 +13,7 @@ export default Ember.Mixin.create({
   },
 
   willDestroy: function() {
-    this._super();
+    this._super(...arguments);
     var model = this.get('model');
     var field = this.get('field');
 
