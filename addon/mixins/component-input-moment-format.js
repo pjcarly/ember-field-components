@@ -7,15 +7,15 @@ export default Ember.Mixin.create({
     get: function() {
       var value = this.get('value');
 
-      if (!Ember.isEmpty(value)) {
-        return moment.unix(value).format(this.get('momentFormat'));
+      if (!Ember.isEmpty(value) && (value instanceof Date)) {
+        return moment(value).format(this.get('momentFormat'));
       }
     },
     set: function(key, value) {
 
       if (!Ember.isEmpty(value)) {
-        var unix = moment(value, this.get('momentFormat')).unix();
-        this.set('value', unix);
+        var date = moment(value, this.get('momentFormat')).toDate();
+        this.set('value', date);
       } else {
         this.set('value', null);
       }

@@ -31,8 +31,6 @@
       {{output-field-link model=model field=field inline=inline}}
     {{else if isTextArea}}
       {{output-field-textarea model=model field=field inline=inline}}
-    {{else if isRichText}}
-      {{output-field-richtext model=model field=field inline=inline}}
 		{{else if isNotBlankType}}
 			Field <em>"{{field}}"</em> with type <em>"{{type}}"</em> not found
 		{{/if}}

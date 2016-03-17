@@ -17,8 +17,7 @@ export default DS.Model.extend({
   lastName: Attribute.setType('string'),
   email: Attribute.setType('email')
 }
-```
-
+```javascript
 supported attribute types are:
 
 * `string`
@@ -29,19 +28,38 @@ supported attribute types are:
   * extra widget: `bootstrap` available
 * `datetime`
   * extra widget: `bootstrap` available
+* `time`
+  * extra widget: `bootstrap` available
 * `email`
 * `link`
-* `percentage`
 * `phone`
-* `price`
 * `select`
   * extra widget: `button-group` available
   * extra widget: `select-search` available
 * `textarea`
-* `time`
-  * extra widget: `bootstrap` available
+* `price`
+* `percentage`
 
 Next to attribute types, `DS.belongsTo` is also supported
+
+## Transforms
+In order to define custom attribute types, Ember expects a transform to be present. For each attribte type you define, we expect a value to be returned, here is the value we expect:
+
+* `string` => standard Ember Data transform
+* `number` => standard Ember Data transform
+* `boolean`=> standard Ember Data transform
+* `date`=> standard Ember Data transform
+* `datetime` => Not defined in Ember Data, use the Date Transform
+* `time`  => Not defined in Ember Data, use the Date Transform
+* `email` => Not defined in Ember Data, String transform
+* `link` => Not defined in Ember Data, String transform
+* `phone` => Not defined in Ember Data, String transform
+* `select` => Not defined in Ember Data, String transform
+* `textarea` => Not defined in Ember Data, String transform
+* `price` => Not defined in Ember Data, Number transform
+* `percentage` => Not defined in Ember Data, Number transform
+
+## Components
 
 ### Date, DateTime and Time
 These components display the html5 input on mobile devices, and bootstrap-datetimepicker on other devices. If we can't figure out the correct User Agent, we default to HTML5. You can force bootstrap by passing `widget: bootstrap` in the field options
