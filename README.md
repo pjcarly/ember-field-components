@@ -18,6 +18,7 @@ export default DS.Model.extend({
   email: Attribute.setType('email')
 }
 ```
+
 supported attribute types are:
 
 * `string`
@@ -39,7 +40,6 @@ supported attribute types are:
 * `textarea`
 * `price`
 * `percentage`
-```
 
 Next to attribute types, `DS.belongsTo` is also supported
 
