@@ -183,7 +183,7 @@ export default entity;
 * format [Moment Formatting](http://momentjs.com/)
  * *only supported for:*
   * date
-  * dateTime
+  * datetime
   * time
 
 ## Stand alone Output Components
