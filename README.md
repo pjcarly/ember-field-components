@@ -17,7 +17,7 @@ export default DS.Model.extend({
   lastName: Attribute.setType('string'),
   email: Attribute.setType('email')
 }
-```javascript
+```
 supported attribute types are:
 
 * `string`
@@ -39,6 +39,7 @@ supported attribute types are:
 * `textarea`
 * `price`
 * `percentage`
+```
 
 Next to attribute types, `DS.belongsTo` is also supported
 
@@ -62,7 +63,7 @@ In order to define custom attribute types, Ember expects a transform to be prese
 ## Components
 
 ### Date, DateTime and Time
-These components display the html5 input on mobile devices, and bootstrap-datetimepicker on other devices. If we can't figure out the correct User Agent, we default to HTML5. You can force bootstrap by passing `widget: bootstrap` in the field options
+These components display the html5 input on mobile devices, and bootstrap-datetimepicker on other devices. If we cannot figure out the correct User Agent, we default to HTML5. You can force bootstrap by passing `widget: bootstrap` in the field options
 
 ### Select Lists
 Attributes with type `select` require you to define select options, possible values in your select list.
