@@ -27,11 +27,11 @@
       {{else if isBelongsTo}}
         {{input-field-belongsto model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
       {{else if isDate}}
-        {{input-field-date model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
+        {{input-field-date model=model field=field placeholder=placeholder prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate}}
       {{else if isDateTime}}
-        {{input-field-datetime model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
+        {{input-field-datetime model=model field=field placeholder=placeholder prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate}}
       {{else if isTime}}
-        {{input-field-time model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
+        {{input-field-time model=model field=field placeholder=placeholder prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate}}
       {{else if isTextArea}}
         {{input-field-textarea model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
 			{{else}}
@@ -70,11 +70,11 @@
     {{else if isBelongsTo}}
       {{input-field-belongsto model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else if isDate}}
-      {{input-field-date model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
+      {{input-field-date model=model field=field placeholder=placeholder prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate}}
     {{else if isDateTime}}
-      {{input-field-datetime model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
+      {{input-field-datetime model=model field=field placeholder=placeholder prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate}}
     {{else if isTime}}
-      {{input-field-time model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
+      {{input-field-time model=model field=field placeholder=placeholder prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate}}
     {{else if isTextArea}}
       {{input-field-textarea model=model field=field placeholder=placeholder prefix=prefix suffix=suffix}}
     {{else}}

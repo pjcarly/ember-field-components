@@ -16,12 +16,46 @@ export default Ember.Component.extend(InputComponent, InputMomentFormat, {
     }
   }),
 
+
+
   didInsertElement: function() {
     var domElement = this.$('input');
     domElement.datetimepicker({
       format: this.get('momentFormat')
     });
+
+    if(!Ember.isBlank(this.get('minDate'))){
+      domElement.data('DateTimePicker').minDate(this.get('minDate'));
+    } else {
+      domElement.data('DateTimePicker').minDate(false);
+    }
+
+    if(!Ember.isBlank(this.get('maxDate'))){
+      domElement.data('DateTimePicker').maxDate(this.get('maxDate'));
+    } else {
+      domElement.data('DateTimePicker').maxDate(false);
+    }
   },
+
+  minDateObserver: Ember.observer('minDate', function(){
+    var domElement = this.$('input');
+
+    if(!Ember.isBlank(this.get('minDate'))){
+      domElement.data('DateTimePicker').minDate(this.get('minDate'));
+    } else {
+      domElement.data('DateTimePicker').minDate(false);
+    }
+  }),
+
+  maxDateObserver: Ember.observer('maxDate', function(){
+    var domElement = this.$('input');
+
+    if(!Ember.isBlank(this.get('maxDate'))){
+      domElement.data('DateTimePicker').maxDate(this.get('maxDate'));
+    } else {
+      domElement.data('DateTimePicker').maxDate(false);
+    }
+  }),
 
   actions: {
     toggleCalendar: function(){
