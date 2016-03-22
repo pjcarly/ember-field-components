@@ -1,7 +1,5 @@
-<div{{action 'click'}}>
-  {{#if hasBlock}}
-    {{yield}}
-  {{else}}
-    {{label}}
-  {{/if}}
-</div>
+{{#if hasBlock}}
+  {{yield}}
+{{else}}
+  {{label}}
+{{/if}}

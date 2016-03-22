@@ -5,9 +5,7 @@ export default Ember.Component.extend({
   classNames: ['btn', 'btn-default', 'command-button'],
   classNameBindings: ['active'],
   active: false,
-  actions: {
-    click: function() {
-      this.get('action')();
-    }
+  click: function(){
+    this.get('action')();
   }
 });
