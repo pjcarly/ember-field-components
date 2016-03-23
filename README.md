@@ -186,6 +186,7 @@ export default entity;
 * input-number
 * input-password
 * input-phone
+* input-search
 * input-select
 * input-switch
 * input-text
