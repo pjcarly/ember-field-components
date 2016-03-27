@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import ValidatorMixin from 'ember-cli-data-validation/mixins/validator';
+import ValidatorMixin from 'ember-attribute-validations/mixins/validator';
 import ModelRelationshipsRollbackMixin from '../mixins/model-relationships-rollback';
 import ModelCopyMixin from '../mixins/model-entity-copy';
 

@@ -39,11 +39,7 @@
 			{{/if}}
     {{/if}}
 
-    {{#each errors as |error|}}
-      <small class="help-block">
-        {{error.message}}
-      </small>
-    {{/each}}
+    {{field-messages model=model field=field}}
   </div>
 {{else}}
   {{#if isReadOnly}}

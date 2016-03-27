@@ -212,4 +212,4 @@ More here later.
 
 
 ## Validation
-Validation is done with a fork of ember-cli-data-validation, see github.com/pjcarly/ember-cli-data-validation
+Validation is done with ember-attribute-validations, see github.com/pjcarly/ember-attribute-validations

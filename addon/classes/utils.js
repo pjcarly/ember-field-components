@@ -31,7 +31,7 @@ export function appendWithZeroes(number, length) {
 export function getNewValue(value) {
   // todo: let this work to determine whether the value a input field wants to change to is allowed, and set it to the allowed value
   // used for numeric fields for example, if we click the decrement button, and it can only be a positive number, than it shouldnt go under 0
-  // import DecimalsValidator from '../../ember-cli-data-validation/validators/decimals';
+  // import DecimalsValidator from '../../ember-attribute-validations/validators/decimals';
 
   return value;
 }
