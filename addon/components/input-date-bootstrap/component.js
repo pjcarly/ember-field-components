@@ -19,7 +19,7 @@ export default Ember.Component.extend(InputComponent, InputMomentFormat, {
 
 
   didInsertElement: function() {
-    var domElement = this.$('input');
+    let domElement = this.$('input');
     domElement.datetimepicker({
       format: this.get('momentFormat')
     });
@@ -38,7 +38,8 @@ export default Ember.Component.extend(InputComponent, InputMomentFormat, {
   },
 
   minDateObserver: Ember.observer('minDate', function(){
-    var domElement = this.$('input');
+    let domElement = this.$('input');
+    this.sendAction('valueChanged', this.get('minDate'));
 
     if(!Ember.isBlank(this.get('minDate'))){
       domElement.data('DateTimePicker').minDate(this.get('minDate'));
@@ -48,7 +49,8 @@ export default Ember.Component.extend(InputComponent, InputMomentFormat, {
   }),
 
   maxDateObserver: Ember.observer('maxDate', function(){
-    var domElement = this.$('input');
+    let domElement = this.$('input');
+    this.sendAction('valueChanged', this.get('maxDate'));
 
     if(!Ember.isBlank(this.get('maxDate'))){
       domElement.data('DateTimePicker').maxDate(this.get('maxDate'));
