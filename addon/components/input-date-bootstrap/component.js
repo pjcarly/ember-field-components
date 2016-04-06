@@ -16,8 +16,6 @@ export default Ember.Component.extend(InputComponent, InputMomentFormat, {
     }
   }),
 
-
-
   didInsertElement: function() {
     let domElement = this.$('input');
     domElement.datetimepicker({
