@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import { isNumeric } from 'ember-attribute-validations/utils';
 
 export function setType(type, options) {
   var defaultOptions = {};
@@ -24,8 +25,8 @@ export function setType(type, options) {
       Ember.assert('Decimals cannot be larger than precision', (precision > decimals));
       Ember.assert('No number precision defined', !Ember.isEmpty(precision));
       Ember.assert('No number decimals defined', !Ember.isEmpty(decimals));
-      Ember.assert('Number precision not numeric', !isNaN(precision));
-      Ember.assert('Number decimals not numeric', !isNaN(decimals));
+      Ember.assert('Number precision not numeric', isNumeric(precision));
+      Ember.assert('Number decimals not numeric', isNumeric(decimals));
 
       defaultValidations = {
         number: true,
@@ -40,7 +41,8 @@ export function setType(type, options) {
       break;
     case 'email':
       defaultValidations = {
-        email: true
+        email: true,
+        max: 255
       };
       break;
     case 'string':
