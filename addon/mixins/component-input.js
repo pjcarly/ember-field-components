@@ -1,23 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-  init: function(){
-    this._super(...arguments);
-
-    // let classes = this.get('class');
-    // if(Ember.isBlank(classes)){
-    //   this.classNameBindings = [];
-    // } else {
-    //   this.classNameBindings = classes.split(' ');
-    // }
-  },
   classNameBindings: ['defaultClassName', 'type', 'isInputGroup:input-group'],
   defaultClassName: 'input',
   tagName: 'span',
   hasInputButton: false,
-  type: null,
-  prefix: null,
-  suffix: null,
+
+  inputStyleClass: Ember.computed('styleClass', function(){
+    let styleClass = this.get('styleClass');
+    return Ember.isBlank(styleClass) ? 'form-control' : 'form-control ' + styleClass;
+  }),
   hasPrefix: Ember.computed('prefix', function(){
     return !Ember.isBlank(this.get('prefix'));
   }),

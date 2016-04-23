@@ -1,7 +1,7 @@
 {{#if isButtonGroup}}
-  {{input-button-group selectOptions=selectOptions value=value valueChanged='valueChanged'}}
+  {{input-button-group selectOptions=selectOptions value=value valueChanged='valueChanged' styleClass=styleClass}}
 {{else if isSelectSearch}}
-  {{input-select-search selectOptions=selectOptions value=value valueChanged='valueChanged'}}
+  {{input-select-search selectOptions=selectOptions value=value valueChanged='valueChanged' styleClass=styleClass}}
 {{else}}
-  {{input-select selectOptions=selectOptions value=value valueChanged='valueChanged'}}
+  {{input-select selectOptions=selectOptions value=value valueChanged='valueChanged' styleClass=styleClass}}
 {{/if}}

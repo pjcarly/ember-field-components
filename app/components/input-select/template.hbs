@@ -1,4 +1,4 @@
-<select {{action 'valueChanged' on='change'}} class="form-control">
+<select {{action 'valueChanged' on='change'}} class={{inputStyleClass}}>
   {{#if emptyValue}}
     {{option-none selected=true}}
   {{/if}}
