@@ -2,7 +2,7 @@ import Ember from 'ember';
 import FieldTypeComponent from '../mixins/component-field-type';
 
 export default Ember.Mixin.create(FieldTypeComponent, {
-  tagName: 'span',
+  tagName: '',
   field: null,
   model: null,
   link: null,

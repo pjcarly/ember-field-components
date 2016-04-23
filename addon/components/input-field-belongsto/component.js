@@ -3,6 +3,7 @@ import ModelUtils from '../../classes/model-utils';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
+  tagName: '',
 
   selectOptions: Ember.computed('columns', function(){
     let store = this.get('store');

@@ -3,24 +3,15 @@ import FieldTypeComponent from '../mixins/component-field-type';
 import ModelUtils from '../classes/model-utils';
 
 export default Ember.Mixin.create(FieldTypeComponent, {
-  model: null,
-  field: null,
   inline: false,
-  link: null,
-  label: null,
+  classNameBindings: ['isBlock:form-group'],
 
-  init: function(){
-    this._super(...arguments);
+  tagName: Ember.computed('isBlock', function(){
+    let isBlock = this.get('isBlock');
+    return (isBlock ? 'div' : 'span');
+  }),
 
-    let classes = this.get('class');
-    if(Ember.isBlank(classes)){
-      this.classNameBindings = [];
-    } else {
-      this.classNameBindings = classes.split(' ');
-    }
-  },
-
-  isNotInline: Ember.computed('inline', function() {
+  isBlock: Ember.computed('inline', function() {
     return !this.get('inline');
   }),
 

@@ -3,10 +3,10 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
   classNameBindings: ['defaultClassName', 'type', 'isButtonGroup:input-group'],
   defaultClassName: 'output',
-  tagName: 'div',
   type: null,
   prefix: null,
   suffix: null,
+
   hasPrefix: Ember.computed('prefix', 'hasValue', function(){
     return !Ember.isBlank(this.get('prefix')) && this.get('hasValue');
   }),
