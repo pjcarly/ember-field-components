@@ -6,8 +6,8 @@ export default Ember.Helper.helper(function([value, format]) {
   }
 
   if (Ember.isBlank(format)) {
-    return moment.unix(value).format();
+    return moment(value).format();
   } else {
-    return moment.unix(value).format(format);
+    return moment(value).format(format);
   }
 });

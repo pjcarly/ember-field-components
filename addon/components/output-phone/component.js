@@ -3,5 +3,5 @@ import OutputComponent from '../../mixins/component-output';
 
 export default Ember.Component.extend(OutputComponent, {
   type: 'phone',
-  hasOutputButton: true
+  hideButtons: false
 });

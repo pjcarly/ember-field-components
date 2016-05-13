@@ -6,10 +6,11 @@ export default Ember.Mixin.create(FieldTypeComponent, {
   inline: false,
   classNameBindings: ['isBlock:form-group'],
 
-  tagName: Ember.computed('isBlock', function(){
+  init(){
+    this._super(...arguments);
     let isBlock = this.get('isBlock');
-    return (isBlock ? 'div' : 'span');
-  }),
+    this.set('tagName', (isBlock ? 'div' : 'span'));
+  },
 
   isBlock: Ember.computed('inline', function() {
     return !this.get('inline');

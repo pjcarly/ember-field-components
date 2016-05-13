@@ -3,5 +3,5 @@ import OutputComponent from '../../mixins/component-output';
 
 export default Ember.Component.extend(OutputComponent, {
   type: 'email',
-  hasOutputButton: true
+  hideButtons: false
 });

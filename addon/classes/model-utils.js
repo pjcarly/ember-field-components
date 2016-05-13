@@ -1,5 +1,9 @@
 import Ember from 'ember';
 
+export function getModelName(model){
+  return model.constructor.modelName;
+}
+
 export function getModelType(modelTypeName, store){
   return store.modelFor(modelTypeName);
 }
@@ -11,6 +15,27 @@ export function getParentModelTypeName(model, field){
     let relationship = relationships.get(field);
     let modelTypeName = relationship.type;
     return modelTypeName;
+  }
+}
+
+export function getChildModelTypeName(model, field){
+  let relationships = Ember.get(model.constructor, 'relationshipsByName');
+
+  if (relationships.has(field) && relationships.get(field).kind === 'hasMany') {
+    let relationship = relationships.get(field);
+    let modelTypeName = relationship.type;
+    return modelTypeName;
+  }
+}
+
+export function getRelationshipInverse(model, field){
+  let relationships = Ember.get(model.constructor, 'relationshipsByName');
+
+  if (relationships.has(field)) {
+    let relationship = relationships.get(field);
+    Ember.assert(`No explicit inverse relationship defined for ${field} on ${getModelName(model)}`, !Ember.isBlank(relationship.options.inverse));
+
+    return relationship.options.inverse;
   }
 }
 

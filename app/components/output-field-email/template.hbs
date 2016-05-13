@@ -1,8 +1,1 @@
-{{#output-text}}
-  {{value}}
-  {{#unless isBlankOrInline}}
-    <a class="btn btn-output" href="mailto:{{value}}">
-      <i class="zmdi zmdi-email"></i>
-    </a>
-  {{/unless}}
-{{/output-text}}
+{{output-email value=value hideButtons=isBlankOrInline}}

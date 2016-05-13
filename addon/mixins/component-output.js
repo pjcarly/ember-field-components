@@ -6,6 +6,7 @@ export default Ember.Mixin.create({
   type: null,
   prefix: null,
   suffix: null,
+  hideButtons: false, // used for url, email and phone
 
   hasPrefix: Ember.computed('prefix', 'hasValue', function(){
     return !Ember.isBlank(this.get('prefix')) && this.get('hasValue');
@@ -16,7 +17,7 @@ export default Ember.Mixin.create({
   hasValue: Ember.computed('value', function(){
     return !Ember.isBlank(this.get('value'));
   }),
-  isButtonGroup: Ember.computed('hasValue', 'hasOutputButton', function(){
-    return this.get('hasOutputButton') && this.get('hasValue');
+  isButtonGroup: Ember.computed('hasValue', 'hideButtons', function(){
+    return this.get('hasValue') && !this.get('hideButtons');
   })
 });
