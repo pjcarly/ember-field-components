@@ -53,8 +53,6 @@ export function getNameColumn(modelType){
     } else {
       return 'name';
     }
-  } else {
-    return null;
   }
 }
 

@@ -2,8 +2,8 @@
   ...
 {{else}}
   {{#if link}}
-    {{#link-to linkToType parentModel}}{{parentModel.name}}{{/link-to}}
+    {{#link-to linkToType parentModel}}{{get-name parentModel parentModelType}}{{/link-to}}
   {{else}}
-    {{parentModel.name}}
+    {{get-name parentModel parentModelType}}
   {{/if}}
 {{/if}}
