@@ -5,7 +5,10 @@ import InputMomentFormat from '../../mixins/component-input-moment-format';
 export default Ember.Component.extend(InputComponent, InputMomentFormat, {
   type: 'time-bootstrap',
   fieldSettings: Ember.inject.service(),
-  isInputGroup: true,
+  showButton: true,
+  isInputGroup: Ember.computed('showButton', 'hasPrefix', 'hasSuffix', function(){
+    return this.get('showButton') || this.get('hasPrefix') || this.get('hasSuffix');
+  }),
 
   momentFormat: Ember.computed('format', 'fieldSettings.timeFormat', function(){
     let format = this.get('format');

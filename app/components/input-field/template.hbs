@@ -28,11 +28,11 @@
   {{else if isBelongsTo}}
     {{input-field-belongsto model=model field=field placeholder=placeholder styleClass=styleClass prefix=prefix suffix=suffix}}
   {{else if isDate}}
-    {{input-field-date model=model field=field placeholder=placeholder styleClass=styleClass prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate}}
+    {{input-field-date model=model field=field placeholder=placeholder styleClass=styleClass prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate showButton=showButton}}
   {{else if isDateTime}}
-    {{input-field-datetime model=model field=field placeholder=placeholder styleClass=styleClass prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate}}
+    {{input-field-datetime model=model field=field placeholder=placeholder styleClass=styleClass prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate showButton=showButton}}
   {{else if isTime}}
-    {{input-field-time model=model field=field placeholder=placeholder styleClass=styleClass prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate}}
+    {{input-field-time model=model field=field placeholder=placeholder styleClass=styleClass prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate showButton=showButton}}
   {{else if isTextArea}}
     {{input-field-textarea model=model field=field placeholder=placeholder styleClass=styleClass prefix=prefix suffix=suffix}}
 	{{else}}

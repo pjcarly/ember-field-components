@@ -5,8 +5,10 @@
 {{#if hasSuffix}}
   <span class="input-group-addon">{{suffix}}</span>
 {{/if}}
-<span class="input-group-btn">
-  <button type="button" class="btn btn-default" {{action 'toggleCalendar'}}>
-    <span class="glyphicon glyphicon-time"></span>
-  </button>
-</span>
+{{#if showButton}}
+  <span class="input-group-btn">
+    <button type="button" class="btn btn-default" {{action 'toggleCalendar'}}>
+      <span class="glyphicon glyphicon-calendar"></span>
+    </button>
+  </span>
+{{/if}}
