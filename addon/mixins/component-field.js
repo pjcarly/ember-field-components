@@ -4,7 +4,7 @@ import ModelUtils from '../classes/model-utils';
 
 export default Ember.Mixin.create(FieldTypeComponent, {
   inline: false,
-  classNameBindings: ['isBlock:form-group'],
+  classNameBindings: ['isBlock:form-group', 'componentClassName'],
 
   init(){
     this._super(...arguments);
@@ -14,6 +14,13 @@ export default Ember.Mixin.create(FieldTypeComponent, {
 
   isBlock: Ember.computed('inline', function() {
     return !this.get('inline');
+  }),
+
+  componentClassName: Ember.computed('componentName', 'fieldType', function(){
+    let componentName = this.get('componentName');
+    let fieldType = this.get('fieldType');
+
+    return `${fieldType}-field ${componentName}`;
   }),
 
   labelComputed: Ember.computed('label', 'modelType', 'field', function() {

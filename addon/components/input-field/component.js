@@ -2,8 +2,11 @@ import Ember from 'ember';
 import FieldComponent from '../../mixins/component-field';
 
 export default Ember.Component.extend(FieldComponent, {
+  fieldType: 'input',
   classNameBindings: ['isRequired:required', 'hasError:has-error', 'isReadOnly:read-only'],
-
+  inputId: Ember.computed(function(){
+    return Ember.guidFor(this) + '-lbl';
+  }),
   isRequired: Ember.computed('fieldAttributes', 'relationshipAttributes', function() {
     var fieldAttributes = this.get('fieldAttributes');
 

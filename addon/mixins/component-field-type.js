@@ -4,51 +4,19 @@ export default Ember.Mixin.create({
   model: null,
   field: null,
 
+  componentName: Ember.computed('fieldType', 'type', 'isText', function(){
+    let type = this.get('type');
+    let fieldType = this.get('fieldType'); //input or output
+    if(this.get('isText')){
+      type = 'text';
+    }
+    let component = `${fieldType}-field-${type}`;
+    return component.toLowerCase();
+  }),
+
   isText: Ember.computed('type', 'field', function() {
     let type = this.get('type');
     return type === 'string' || type === 'computed' || this.get('field') === 'id';
-  }),
-  isBoolean: Ember.computed('type', function() {
-    return this.get('type') === 'boolean';
-  }),
-  isNumber: Ember.computed('type', function() {
-    return this.get('type') === 'number';
-  }),
-  isPrice: Ember.computed('type', function() {
-    return this.get('type') === 'price';
-  }),
-  isSelect: Ember.computed('type', function() {
-    return this.get('type') === 'select';
-  }),
-  isLink: Ember.computed('type', function() {
-    return this.get('type') === 'link';
-  }),
-  isPercentage: Ember.computed('type', function() {
-    return this.get('type') === 'percentage';
-  }),
-  isPhone: Ember.computed('type', function() {
-    return this.get('type') === 'phone';
-  }),
-  isEmail: Ember.computed('type', function() {
-    return this.get('type') === 'email';
-  }),
-  isBelongsTo: Ember.computed('type', function() {
-    if (this.get('link') === null) {
-      this.set('link', true);
-    }
-    return this.get('type') === 'belongsTo';
-  }),
-  isDate: Ember.computed('type', function() {
-    return this.get('type') === 'date';
-  }),
-  isDateTime: Ember.computed('type', function() {
-    return this.get('type') === 'datetime';
-  }),
-  isTime: Ember.computed('type', function() {
-    return this.get('type') === 'time';
-  }),
-  isTextArea: Ember.computed('type', function() {
-    return this.get('type') === 'textarea';
   }),
   isNotBlankType: Ember.computed('type', function() {
     return !Ember.isBlank(this.get('type'));
