@@ -1,11 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-  classNameBindings: ['defaultClassName', 'type', 'isButtonGroup:input-group'],
+  classNameBindings: ['defaultClassName', 'type'],
   defaultClassName: 'output',
-  type: null,
-  prefix: null,
-  suffix: null,
+  tagName: 'span',
   hideButtons: false, // used for url, email and phone
 
   hasPrefix: Ember.computed('prefix', 'hasValue', function(){
