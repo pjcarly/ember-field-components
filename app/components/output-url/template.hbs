@@ -2,16 +2,16 @@
  {{prefix}}
 {{/if}}
 
-{{value}}
+<span class="value">
+  {{value}}
+</span>
 
 {{#if hasSuffix}}
   {{suffix}}
 {{/if}}
 
 {{#if isButtonGroup}}
-  <span class="input-group-btn">
-    <a class="btn btn-default" href="{{if displayHttp 'http://'}}{{value}}" target="_blank">
-      <span class="glyphicon glyphicon-globe"></span>
-    </a>
-  </span>
+  <a class="btn btn-default" href="{{if displayHttp 'http://'}}{{value}}" target="_blank">
+    <span class="glyphicon glyphicon-new-window"></span>
+  </a>
 {{/if}}

@@ -52,8 +52,7 @@ export function setType(type, options) {
       break;
     case 'link':
       defaultValidations = {
-        url: true,
-        max: 2048
+        url: true
       };
       break;
   }

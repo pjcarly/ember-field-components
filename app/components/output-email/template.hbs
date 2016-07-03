@@ -2,16 +2,16 @@
  {{prefix}}
 {{/if}}
 
-{{value}}
+<span class="value">
+  {{value}}
+</span>
 
 {{#if hasSuffix}}
   {{suffix}}
 {{/if}}
 
 {{#if isButtonGroup}}
-  <span class="input-group-btn">
-    <a class="btn btn-default" href="mailto:{{value}}">
-      <span class="glyphicon glyphicon-envelope"></span>
-    </a>
-  </span>
+  <a class="btn btn-default" href="mailto:{{value}}">
+    <span class="glyphicon glyphicon-envelope"></span>
+  </a>
 {{/if}}
