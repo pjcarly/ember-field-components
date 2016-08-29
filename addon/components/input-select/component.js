@@ -8,6 +8,12 @@ export default Ember.Component.extend(InputComponent, {
   emptyValue: Ember.computed('value', function(){
     return Ember.isBlank(this.get('value'));
   }),
+  computedValue: Ember.computed('value', function(){
+    let value = this.get('value');
+    if(!Ember.isBlank(value)){
+      return this.get('value').toString();
+    }
+  }),
   actions: {
     valueChanged: function() {
       let value = this.$('select').val();
