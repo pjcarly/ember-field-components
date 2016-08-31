@@ -7,7 +7,7 @@ export default Ember.Mixin.create({
   componentName: Ember.computed('fieldType', 'type', 'isText', function(){
     let type = this.get('type');
     let fieldType = this.get('fieldType'); //input or output
-    if(this.get('isText')){
+    if(this.get('isText') || Ember.isBlank(type)){
       type = 'text';
     }
     let component = `${fieldType}-field-${type}`;
