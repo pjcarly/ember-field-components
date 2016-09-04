@@ -11,3 +11,7 @@ export function replaceAll(str, find, replace) {
 function escapeRegExp(str) {
     return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
+
+export function wildcardMatch(str, rule) {
+    return new RegExp("^" + rule.split("*").join(".*") + "$").test(str);
+}
