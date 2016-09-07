@@ -1,7 +1,5 @@
 {{#if isBlock}}
-  <label class={{componentName}} for={{inputId}}>
-    {{labelComputed}}
-  </label>
+  {{field-label labelClass=componentName for=inputId label=labelComputed}}
 {{/if}}
 
 {{#if isReadOnly}}
