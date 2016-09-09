@@ -1,5 +1,5 @@
 <div class="btn-group" role="group">
   {{#each selectOptions as |selectOption|}}
-    {{command-button action=(action 'valueChanged' selectOption.value) active=(is-equal selectOption.value value) label=selectOption.label}}
+    {{command-button action=(action 'valueChanged' selectOption.value) active=(eq selectOption.value value) label=selectOption.label}}
   {{/each}}
 </div>

@@ -1,13 +1,3 @@
-import Ember from 'ember';
+import Helper from 'ember-field-components/helpers/moment-format';
 
-export default Ember.Helper.helper(function([value, format]) {
-  if (Ember.isBlank(value)) {
-    return null;
-  }
-
-  if (Ember.isBlank(format)) {
-    return moment(value).format();
-  } else {
-    return moment(value).format(format);
-  }
-});
+export default Helper;

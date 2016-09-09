@@ -2,7 +2,7 @@
   {{#each selectOptions as |selectOption|}}
     <div class="radio">
       <label class="active">
-        <input type="radio" value="{{selectOption.value}}" {{action 'valueChanged' selectOption.value}} checked="{{is-equal selectOption.value value}}">
+        <input type="radio" value={{selectOption.value}} {{action 'valueChanged' selectOption.value}} checked={{eq selectOption.value value}}>
         {{selectOption.label}}
       </label>
     </div>
