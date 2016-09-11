@@ -37,5 +37,10 @@ export default Ember.Component.extend(FieldComponent, {
     }
 
     return false;
+  }),
+  hasError: Ember.computed('model.errors.[]', function() {
+    var errors = this.get('model.errors');
+
+    return errors.has(this.get('field'));
   })
 });
