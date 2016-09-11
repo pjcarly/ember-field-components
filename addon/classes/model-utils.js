@@ -73,7 +73,7 @@ export function getPlural(modelType) {
     if (modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('plural')) {
       return modelType.settings.plural;
     } else {
-      return Ember.Inflector.inflector.pluralize(modelType.modelName.capitalize());
+      return Ember.Inflector.inflector.pluralize(Ember.String.capitalize(modelType.modelName));
     }
   } else {
     return null;
@@ -84,7 +84,7 @@ export function getLabel(modelType, field){
   if (modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('labels') && modelType.settings.labels[field]) {
     return modelType.settings.labels[field];
   } else {
-    return field.capitalize();
+    return Ember.String.capitalize(field);
   }
 }
 

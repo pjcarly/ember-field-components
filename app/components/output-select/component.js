@@ -10,7 +10,12 @@ export default OutputText.extend({
             let selectOptions = this.get('selectOptions');
             Ember.assert('No selectOptions passed', !Ember.isEmpty(selectOptions));
 
-            let selectedoption = selectOptions.findBy('value', value);
+            let selectedoption;
+            selectOptions.forEach((option) => {
+              if(option.value === value){
+                selectedoption = option;
+              }
+            });
 
             if (!Ember.isBlank(selectedoption)) {
                 if (selectedoption.hasOwnProperty('label')) {
