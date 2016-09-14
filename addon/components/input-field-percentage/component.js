@@ -1,4 +1,4 @@
-import InputFieldNumber from '../components/input-field-number';
+import InputFieldNumber from '../../components/input-field-number/component';
 
 export default InputFieldNumber.extend({
   suffix: '%'
