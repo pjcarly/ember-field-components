@@ -56,6 +56,16 @@ export function getNameColumn(modelType){
   }
 }
 
+export function getDefaultIncludes(modelType){
+  if(!Ember.isBlank(modelType)){
+    if(modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('defaultIncludes')){
+      return modelType.settings.defaultIncludes;
+    } else {
+      return [];
+    }
+  }
+}
+
 export function getDefaultListViewColumns(modelType) {
   if(!Ember.isBlank(modelType)){
     if(modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('listViews')){
