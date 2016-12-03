@@ -3,7 +3,7 @@ import FieldComponent from '../../mixins/component-field';
 
 export default Ember.Component.extend(FieldComponent, {
   fieldType: 'input',
-  classNameBindings: ['isRequired:required', 'hasError:has-error', 'isReadOnly:read-only'],
+  classNameBindings: ['isRequired:required', 'hasError:has-error', 'isReadOnly:read-only', 'hasFocus:has-focus'],
   inputId: Ember.computed(function(){
     return Ember.guidFor(this) + '-lbl';
   }),
@@ -29,6 +29,12 @@ export default Ember.Component.extend(FieldComponent, {
 
     return false; // No information found, lets just assume not required
   }),
+  focusIn(){
+    this.set('hasFocus', true);
+  },
+  focusOut(){
+    this.set('hasFocus', false);
+  },
   isReadOnly: Ember.computed('fieldAttributes', function() {
     var fieldAttributes = this.get('fieldAttributes');
 

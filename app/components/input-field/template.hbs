@@ -1,11 +1,12 @@
-{{#if isBlock}}
-  {{field-label labelClass="control-label" for=inputId label=labelComputed}}
-{{/if}}
+<div class="fg-line{{if hasFocus ' fg-toggled'}}">
+  {{#if isReadOnly}}
+    {{output-field model=model field=field inline=true link=false}}
+  {{else}}
+    {{component componentName model=model field=field placeholder=placeholder styleClass=styleClass prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate showButton=showButton inputId=inputId}}
+  {{/if}}
 
-{{#if isReadOnly}}
-  {{output-field model=model field=field inline=true link=false}}
-{{else}}
-  {{component componentName model=model field=field placeholder=placeholder styleClass=styleClass prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate showButton=showButton inputId=inputId}}
-{{/if}}
-
+  {{#if isBlock}}
+    {{field-label labelClass="fg-label" for=inputId label=labelComputed}}
+  {{/if}}
+</div>
 {{field-messages model=model field=field}}
