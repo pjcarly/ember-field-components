@@ -1,6 +1,8 @@
 <select {{action 'valueChanged' on='change'}} class={{inputStyleClass}} id={{inputId}}>
   {{#if emptyValue}}
     {{option-none selected=true}}
+  {{else if showEmptyValue}}
+    {{option-none}}
   {{/if}}
   {{#each selectOptions as |selectOption|}}
     {{option-selected selectOption computedValue}}

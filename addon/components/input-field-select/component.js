@@ -3,21 +3,24 @@ import FieldInputComponent from '../../mixins/component-field-input-super';
 import { hasWidget } from '../../classes/model-utils';
 
 export default Ember.Component.extend(FieldInputComponent, {
+  init(){
+    this._super(...arguments);
+  },
   selectOptions: Ember.computed('fieldOptions', 'value', function() {
-    var fieldOptions = this.get('fieldOptions');
-
-    if (!Ember.isBlank(fieldOptions.defaultValue) && Ember.isBlank(this.get('value'))) {
-      this.set('value', fieldOptions.defaultValue);
-    }
-
+    const fieldOptions = this.get('fieldOptions');
     return fieldOptions.selectOptions;
   }),
+  showEmptyValue: Ember.computed('fieldOptions', function(){
+    const fieldOptions = this.get('fieldOptions');
+    const isRequired = fieldOptions.validation.required;
+    return Ember.isBlank(this.get('value')) || !fieldOptions.validation.required;
+  }),
   isButtonGroup: Ember.computed(function() {
-    let fieldAttributeOptions = this.get('fieldAttributeOptions');
+    const fieldAttributeOptions = this.get('fieldAttributeOptions');
     return hasWidget(fieldAttributeOptions, 'button-group');
   }),
   isSelectSearch: Ember.computed(function() {
-    let fieldAttributeOptions = this.get('fieldAttributeOptions');
+    const fieldAttributeOptions = this.get('fieldAttributeOptions');
     return hasWidget(fieldAttributeOptions, 'select-search');
   }),
   actions: {

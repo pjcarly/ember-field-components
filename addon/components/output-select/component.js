@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import OutputText from '../components/output-text';
+import OutputText from '../output-text/component';
 
 export default OutputText.extend({
   type: 'select',

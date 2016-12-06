@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'option',
-  attributeBindings: ['disabled', 'selected'],
-  disabled: true,
+  attributeBindings: ['value', 'selected'],
+  value: '',
   selected: false
 });
