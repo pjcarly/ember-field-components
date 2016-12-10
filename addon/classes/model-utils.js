@@ -4,6 +4,10 @@ export function getModelName(model){
   return model.constructor.modelName;
 }
 
+export function getParentRoute(model){
+  return model.constructor.parentRoute;
+}
+
 export function getModelType(modelTypeName, store){
   return store.modelFor(modelTypeName);
 }
