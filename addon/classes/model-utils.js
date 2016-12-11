@@ -50,16 +50,6 @@ export function getParentModelType(model, field, store){
   }
 }
 
-export function getNameColumn(modelType){
-  if(!Ember.isBlank(modelType)){
-    if(modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('nameColumn')){
-      return modelType.settings.nameColumn;
-    } else {
-      return 'name';
-    }
-  }
-}
-
 export function getDefaultIncludes(modelType){
   if(!Ember.isBlank(modelType)){
     if(modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('defaultIncludes')){
