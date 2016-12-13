@@ -4,6 +4,18 @@ export function getModelName(model){
   return model.constructor.modelName;
 }
 
+export function modelTypeIsCacheable(modelType){
+  return modelType.settings.hasOwnProperty('cacheable') && modelType.settings.cacheable;
+}
+
+export function modelTypeWasLoaded(modelType){
+  modelType.settings.loadedFromCache = true;
+}
+
+export function modelTypeHasBeenLoadedFromCache(modelType){
+  return modelType.settings.hasOwnProperty('loadedFromCache') && modelType.settings.loadedFromCache;
+}
+
 export function getParentRoute(model){
   return model.constructor.parentRoute;
 }
