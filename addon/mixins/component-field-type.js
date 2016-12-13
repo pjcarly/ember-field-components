@@ -1,9 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-  model: null,
-  field: null,
-
   componentName: Ember.computed('fieldType', 'type', 'isText', function(){
     let type = this.get('type');
     let fieldType = this.get('fieldType'); //input or output

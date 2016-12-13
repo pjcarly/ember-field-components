@@ -4,7 +4,6 @@ export default Ember.Mixin.create({
   classNameBindings: ['defaultClassName', 'type'],
   defaultClassName: 'output',
   tagName: 'span',
-  hideButtons: false, // used for url, email and phone
 
   hasPrefix: Ember.computed('prefix', 'hasValue', function(){
     return !Ember.isBlank(this.get('prefix')) && this.get('hasValue');

@@ -3,7 +3,6 @@ import FieldTypeComponent from '../mixins/component-field-type';
 import ModelUtils from '../classes/model-utils';
 
 export default Ember.Mixin.create(FieldTypeComponent, {
-  inline: false,
   classNameBindings: ['isBlock:form-group', 'componentClassName'],
 
   init(){

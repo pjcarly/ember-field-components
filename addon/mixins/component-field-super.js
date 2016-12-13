@@ -3,10 +3,6 @@ import FieldTypeComponent from '../mixins/component-field-type';
 
 export default Ember.Mixin.create(FieldTypeComponent, {
   tagName: '',
-  field: null,
-  model: null,
-  link: null,
-  inline: false,
 
   isBlankOrInline: Ember.computed('inline', function() {
     let field = this.get('field');

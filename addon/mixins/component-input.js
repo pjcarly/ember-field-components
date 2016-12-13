@@ -4,7 +4,6 @@ export default Ember.Mixin.create({
   classNameBindings: ['defaultClassName', 'type', 'isInputGroup:input-group'],
   defaultClassName: 'input',
   tagName: 'span',
-  hasInputButton: false,
 
   inputStyleClass: Ember.computed('styleClass', function(){
     let styleClass = this.get('styleClass');

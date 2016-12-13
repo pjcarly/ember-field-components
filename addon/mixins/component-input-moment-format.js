@@ -2,8 +2,6 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-  momentFormat: null,
-
   computedValue: Ember.computed('value', {
     get: function() {
       var value = this.get('value');
