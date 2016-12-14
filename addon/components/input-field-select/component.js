@@ -10,10 +10,8 @@ export default Ember.Component.extend(FieldInputComponent, {
     const fieldOptions = this.get('fieldOptions');
     return fieldOptions.selectOptions;
   }),
-  showEmptyValue: Ember.computed('fieldOptions', function(){
-    const fieldOptions = this.get('fieldOptions');
-    const isRequired = fieldOptions.validation.required;
-    return Ember.isBlank(this.get('value')) || !fieldOptions.validation.required;
+  isRequired: Ember.computed('fieldOptions', function(){
+    return !this.get('fieldOptions').validation.required
   }),
   isButtonGroup: Ember.computed(function() {
     const fieldAttributeOptions = this.get('fieldAttributeOptions');

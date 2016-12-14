@@ -49,6 +49,13 @@ export default Ember.Mixin.create({
       return relationship;
     }
   }),
+  relationshipAttributeOptions: Ember.computed('relationshipAttributes', function() {
+    let relationshipAttributes = this.get('relationshipAttributes');
+
+    if (!Ember.isBlank(relationshipAttributes) && relationshipAttributes.hasOwnProperty('options')) {
+      return relationshipAttributes.options;
+    }
+  }),
   type: Ember.computed('model', 'field', function() {
     let model = this.get('model');
     let protoKey = model.constructor.proto()[this.get('field')];
