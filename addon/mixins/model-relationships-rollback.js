@@ -24,7 +24,6 @@ export default Ember.Mixin.create({
   didUpdate: function() {
     this.setOldRelationships();
   },
-
   rollbackRelationships: function() {
     const oldRelationships = this.get('_oldRelationships');
     this.eachRelationship(function(name, descriptor) {
@@ -45,7 +44,6 @@ export default Ember.Mixin.create({
 
     this.setOldRelationships();
   },
-
   hasDirtyRelationships(){
     const oldRelationships = this.get('_oldRelationships');
     let isDirty = false;
