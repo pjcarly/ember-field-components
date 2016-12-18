@@ -5,7 +5,7 @@ export function getModelName(model){
 }
 
 export function modelTypeIsCacheable(modelType){
-  return modelType.settings.hasOwnProperty('cacheable') && modelType.settings.cacheable;
+  return modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('cacheable') && modelType.settings.cacheable;
 }
 
 export function modelTypeWasLoaded(modelType){
@@ -25,30 +25,42 @@ export function getModelType(modelTypeName, store){
 }
 
 export function getParentModelTypeName(model, field){
-  let relationships = Ember.get(model.constructor, 'relationshipsByName');
+  const relationships = Ember.get(model.constructor, 'relationshipsByName');
 
   if (relationships.has(field) && relationships.get(field).kind === 'belongsTo') {
-    let relationship = relationships.get(field);
-    let modelTypeName = relationship.type;
-    return modelTypeName;
+    const relationship = relationships.get(field);
+    Ember.assert(`Relationship ${field} for ${model.constructor} is a polymorphic relationship, use getParentModelTypeNames function instead`, !relationship.options.polymorphic);
+    return relationship.type;
+  }
+}
+
+export function getParentModelTypeNames(model, field, store){
+  const relationships = Ember.get(model.constructor, 'relationshipsByName');
+
+  if (relationships.has(field) && relationships.get(field).kind === 'belongsTo') {
+    const relationship = relationships.get(field);
+    Ember.assert(`Relationship ${field} for ${model.constructor} is not polymorphic relationship, use getParentModelTypeName function instead`, relationship.options.polymorphic);
+
+    const polymorphicModelType = store.modelFor(relationship.type);
+    return this.getAllowedPolymorphicModelTypeNames(polymorphicModelType);
   }
 }
 
 export function getChildModelTypeName(model, field){
-  let relationships = Ember.get(model.constructor, 'relationshipsByName');
+  const relationships = Ember.get(model.constructor, 'relationshipsByName');
 
   if (relationships.has(field) && relationships.get(field).kind === 'hasMany') {
-    let relationship = relationships.get(field);
-    let modelTypeName = relationship.type;
+    const relationship = relationships.get(field);
+
     return modelTypeName;
   }
 }
 
 export function getRelationshipInverse(model, field){
-  let relationships = Ember.get(model.constructor, 'relationshipsByName');
+  const relationships = Ember.get(model.constructor, 'relationshipsByName');
 
   if (relationships.has(field)) {
-    let relationship = relationships.get(field);
+    const relationship = relationships.get(field);
     Ember.assert(`No explicit inverse relationship defined for ${field} on ${getModelName(model)}`, !Ember.isBlank(relationship.options.inverse));
 
     return relationship.options.inverse;
@@ -56,7 +68,7 @@ export function getRelationshipInverse(model, field){
 }
 
 export function getParentModelType(model, field, store){
-  let modelTypeName = getParentModelTypeName(model, field);
+  const modelTypeName = getParentModelTypeName(model, field);
   if(!Ember.isBlank(modelTypeName)){
     return getModelType(modelTypeName, store);
   }
@@ -64,8 +76,18 @@ export function getParentModelType(model, field, store){
 
 export function getDefaultIncludes(modelType){
   if(!Ember.isBlank(modelType)){
-    if(modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('defaultIncludes')){
+    if(modelType.settings.defaultIncludes){
       return modelType.settings.defaultIncludes;
+    } else {
+      return [];
+    }
+  }
+}
+
+export function getAllowedPolymorphicModelTypeNames(modelType){
+  if(!Ember.isBlank(modelType)){
+    if(modelType.settings.allowedModelTypes){
+      return modelType.settings.allowedModelTypes;
     } else {
       return [];
     }
@@ -74,7 +96,7 @@ export function getDefaultIncludes(modelType){
 
 export function getDefaultListViewColumns(modelType) {
   if(!Ember.isBlank(modelType)){
-    if(modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('listViews')){
+    if(modelType.settings.listViews){
       return modelType.settings.listViews.default.columns;
     } else {
       return [];
@@ -86,7 +108,7 @@ export function getDefaultListViewColumns(modelType) {
 
 export function getPlural(modelType) {
   if(!Ember.isBlank(modelType)){
-    if (modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('plural')) {
+    if (modelType.settings.plural) {
       return modelType.settings.plural;
     } else {
       return Ember.Inflector.inflector.pluralize(Ember.String.capitalize(modelType.modelName));
@@ -97,7 +119,7 @@ export function getPlural(modelType) {
 }
 
 export function getLabel(modelType, field){
-  if (modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('labels') && modelType.settings.labels[field]) {
+  if (modelType.settings.labels && modelType.settings.labels[field]) {
     return modelType.settings.labels[field];
   } else {
     return Ember.String.capitalize(field);
