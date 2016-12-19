@@ -8,7 +8,9 @@ export default Ember.Mixin.create({
       this.eachRelationship(function(name, descriptor) {
         if (descriptor.kind === 'belongsTo') {
           const recordId = this.belongsTo(name).id();
-          oldRelationships[name] = recordId;
+          const inverseRecord = this.belongsTo(name).belongsToRelationship.inverseRecord;
+          const type = Ember.isBlank(inverseRecord) ? null : inverseRecord.modelName;
+          oldRelationships[name] = {id: recordId, type: type};
         }
       }, this);
 
@@ -28,10 +30,10 @@ export default Ember.Mixin.create({
     const oldRelationships = this.get('_oldRelationships');
     this.eachRelationship(function(name, descriptor) {
       if (descriptor.kind === 'belongsTo') {
-        const recordId = oldRelationships[name];
-        if(!Ember.isBlank(recordId)){
-          if(this.get('store').hasRecordForId(descriptor.type, recordId)) {
-            const oldRelationshipModel = this.get('store').peekRecord(descriptor.type, recordId);
+        const oldRelationship = oldRelationships[name];
+        if(!Ember.isBlank(oldRelationship.id)){
+          if(this.get('store').hasRecordForId(oldRelationship.type, oldRelationship.id)) {
+            const oldRelationshipModel = this.get('store').peekRecord(oldRelationship.type, oldRelationship.id);
             this.set(name, oldRelationshipModel);
           } else {
             Ember.assert(`Tried rolling back relationshp ${name} on ${this.get('name')}, and record with ID ${recordId} of type ${descriptor.type} was not found in the store`);
@@ -50,8 +52,9 @@ export default Ember.Mixin.create({
     this.eachRelationship(function(name, descriptor) {
       if (descriptor.kind === 'belongsTo') {
         const recordId = this.belongsTo(name).id();
-
-        if(oldRelationships[name] !== recordId){
+        const inverseRecord = this.belongsTo(name).belongsToRelationship.inverseRecord;
+        const type = Ember.isBlank(inverseRecord) ? null : inverseRecord.modelName;
+        if(oldRelationships[name].id !== recordId && oldRelationships[name].type !== type){
           isDirty = true;
           return;
         }

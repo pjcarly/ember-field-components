@@ -17,5 +17,12 @@ export default Ember.Mixin.create({
   }),
   isInputGroup: Ember.computed('hasPrefix', 'hasSuffix', 'hasInputButton', function(){
     return this.get('hasPrefix') || this.get('hasSuffix') || this.get('hasInputButton');
-  })
+  }),
+  actions: {
+    valueChanged(){
+      if(this.get('valueChanged')){
+        this.get('valueChanged')(...arguments);
+      }
+    }
+  }
 });

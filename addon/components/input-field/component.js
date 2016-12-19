@@ -48,5 +48,12 @@ export default Ember.Component.extend(FieldComponent, {
     var errors = this.get('model.errors');
 
     return errors.has(this.get('field'));
-  })
+  }),
+  actions: {
+    valueChanged(){
+      if(this.get('valueChanged')){
+        this.get('valueChanged')(...arguments);
+      }
+    }
+  }
 });
