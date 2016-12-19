@@ -51,8 +51,7 @@ export function getChildModelTypeName(model, field){
 
   if (relationships.has(field) && relationships.get(field).kind === 'hasMany') {
     const relationship = relationships.get(field);
-
-    return modelTypeName;
+    return relationship.type;
   }
 }
 
