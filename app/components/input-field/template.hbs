@@ -1,6 +1,6 @@
 <div class="fg-line{{if hasFocus ' fg-toggled'}}">
   {{#if isBlock}}
-    {{field-label labelClass="control-label fg-label" for=inputId label=labelComputed}}
+    {{field-label labelClass="control-label fg-label" for=inputId model=model field=field}}
   {{/if}}
 
   {{#if isReadOnly}}
