@@ -46,6 +46,10 @@ export default Ember.Mixin.create(FieldTypeComponent, {
   actions: {
     valueChanged: function(value) {
       this.get('model').set(this.get('field'), value);
+
+      if(this.get('valueChanged')){
+        this.get('valueChanged')(...arguments);
+      }
     }
   }
 });
