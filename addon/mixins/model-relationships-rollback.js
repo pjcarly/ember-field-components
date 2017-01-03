@@ -36,7 +36,7 @@ export default Ember.Mixin.create({
             const oldRelationshipModel = this.get('store').peekRecord(oldRelationship.type, oldRelationship.id);
             this.set(name, oldRelationshipModel);
           } else {
-            Ember.assert(`Tried rolling back relationshp ${name} on ${this.get('name')}, and record with ID ${recordId} of type ${descriptor.type} was not found in the store`);
+            Ember.assert(`Tried rolling back relationshp ${name} on ${this.get('name')}, and record with ID ${oldRelationship.id} of type ${descriptor.type} was not found in the store`);
           }
         } else {
           this.set(name, null);

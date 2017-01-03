@@ -24,6 +24,10 @@ export function getModelType(modelTypeName, store){
   return store.modelFor(modelTypeName);
 }
 
+export function hasRoute(modelType){
+  return !(modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('noRoute') && modelType.settings.noRoute);
+}
+
 export function getParentModelTypeName(model, field){
   const relationships = Ember.get(model.constructor, 'relationshipsByName');
 

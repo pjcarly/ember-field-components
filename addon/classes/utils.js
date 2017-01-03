@@ -1,12 +1,14 @@
 export function round(value, exp) {
-  if (typeof exp === 'undefined' || +exp === 0)
+  if (typeof exp === 'undefined' || +exp === 0){
     return Math.round(value);
+  }
 
   value = +value;
   exp = +exp;
 
-  if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0))
+  if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
     return NaN;
+  }
 
   // Shift
   value = value.toString().split('e');
@@ -26,11 +28,11 @@ export function replaceAll(str, find, replace) {
 }
 
 function escapeRegExp(str) {
-    return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+  return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
 
 export function wildcardMatch(str, rule) {
-    return new RegExp("^" + rule.split("*").join(".*") + "$").test(str);
+  return new RegExp("^" + rule.split("*").join(".*") + "$").test(str);
 }
 
 function pad(len, width, z) {
