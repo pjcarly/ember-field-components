@@ -1,11 +1,43 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
+  doRollback(){
+    // in case of parent-child bound relationships like invoice/invoice-line, we need to rollback the child models as well
+    // This can either be:
+    // - Unload parent and child from the store when both are new
+    // - Rollback the parent and the child when both existed before
+    // - Unload a new child bound to an existing parent
+    this.eachRelationship((name, descriptor) => {
+      if(descriptor.options.hasOwnProperty('rollback') && descriptor.options.rollback) {
+        let childModels = this.hasMany(name).value();
+        childModels.forEach((childModel) => {
+          childModel.doRollback();
+        });
+      }
+    });
+
+    if (this.get('isNew')) {
+      this.store.unloadRecord(this);
+    } else {
+      this.doRollbackAttributes();
+      this.doRollbackRelationships();
+    }
+  },
+  doRollbackAttributes(){
+    if (this.get('hasDirtyAttributes')) {
+      this.rollbackAttributes();
+    }
+  },
+  doRollbackRelationships(){
+    if(this.hasDirtyRelationships()){
+      this.rollbackRelationships();
+    }
+  },
   setOldRelationships: function() {
     let oldRelationships = {};
 
     Ember.run.schedule('actions', this, function() {
-      this.eachRelationship(function(name, descriptor) {
+      this.eachRelationship((name, descriptor) => {
         if (descriptor.kind === 'belongsTo') {
           const recordId = this.belongsTo(name).id();
           const inverseRecord = this.belongsTo(name).belongsToRelationship.inverseRecord;
@@ -28,7 +60,7 @@ export default Ember.Mixin.create({
   },
   rollbackRelationships: function() {
     const oldRelationships = this.get('_oldRelationships');
-    this.eachRelationship(function(name, descriptor) {
+    this.eachRelationship((name, descriptor) => {
       if (descriptor.kind === 'belongsTo') {
         const oldRelationship = oldRelationships[name];
         if(!Ember.isBlank(oldRelationship.id)){

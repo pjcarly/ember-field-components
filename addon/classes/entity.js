@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import ValidatorMixin from 'ember-attribute-validations/mixins/validator';
-import ModelRelationshipsRollbackMixin from '../mixins/model-relationships-rollback';
+import ModelRollbackMixin from '../mixins/model-rollback';
 import ModelCopyMixin from '../mixins/model-entity-copy';
 
-var Entity = DS.Model.extend(ValidatorMixin, ModelRelationshipsRollbackMixin, ModelCopyMixin, {
+export default DS.Model.extend(ValidatorMixin, ModelRollbackMixin, ModelCopyMixin, {
   isNew: Ember.computed('id', function() {
     return Ember.isBlank(this.get('id'));
   }),
@@ -12,5 +12,3 @@ var Entity = DS.Model.extend(ValidatorMixin, ModelRelationshipsRollbackMixin, Mo
     return !this.get('isNew');
   })
 });
-
-export default Entity;
