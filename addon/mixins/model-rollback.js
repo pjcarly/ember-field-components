@@ -10,9 +10,11 @@ export default Ember.Mixin.create({
     this.eachRelationship((name, descriptor) => {
       if(descriptor.options.hasOwnProperty('rollback') && descriptor.options.rollback) {
         let childModels = this.hasMany(name).value();
-        childModels.forEach((childModel) => {
-          childModel.doRollback();
-        });
+        if(!Ember.isBlank(childModels)){
+          childModels.forEach((childModel) => {
+            childModel.doRollback();
+          });
+        }
       }
     });
 
