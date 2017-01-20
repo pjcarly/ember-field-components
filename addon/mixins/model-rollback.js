@@ -11,7 +11,10 @@ export default Ember.Mixin.create({
       if(descriptor.options.hasOwnProperty('rollback') && descriptor.options.rollback) {
         let childModels = this.hasMany(name).value();
         if(!Ember.isBlank(childModels)){
-          childModels.forEach((childModel) => {
+          // Seriously no idea why the next statement needs toArray(), for some reason the enumerable returned above
+          // Sometimes gave a null value instead of a child while looping it
+          // by first casting it to array, and then looping it, everything worked fine, and all children were found
+          childModels.toArray().forEach((childModel) => {
             childModel.doRollback();
           });
         }
