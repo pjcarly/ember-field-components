@@ -73,7 +73,7 @@ export default Ember.Mixin.create({
             const oldRelationshipModel = this.get('store').peekRecord(oldRelationship.type, oldRelationship.id);
             this.set(name, oldRelationshipModel);
           } else {
-            Ember.assert(`Tried rolling back relationshp ${name} on ${this.get('name')}, and record with ID ${oldRelationship.id} of type ${descriptor.type} was not found in the store`);
+            Ember.assert(`Tried rolling back relationship ${name} on ${this.get('name')}, and record with ID ${oldRelationship.id} of type ${descriptor.type} was not found in the store`);
           }
         } else {
           this.set(name, null);
@@ -91,7 +91,8 @@ export default Ember.Mixin.create({
         const recordId = this.belongsTo(name).id();
         const inverseRecord = this.belongsTo(name).belongsToRelationship.inverseRecord;
         const type = Ember.isBlank(inverseRecord) ? null : inverseRecord.modelName;
-        if(oldRelationships[name].id !== recordId && oldRelationships[name].type !== type){
+
+        if(oldRelationships[name].id !== recordId || oldRelationships[name].type !== type){
           isDirty = true;
           return;
         }

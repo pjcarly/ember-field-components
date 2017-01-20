@@ -3,9 +3,6 @@ import FieldInputComponent from '../../mixins/component-field-input-super';
 import { hasWidget } from '../../classes/model-utils';
 
 export default Ember.Component.extend(FieldInputComponent, {
-  init(){
-    this._super(...arguments);
-  },
   selectOptions: Ember.computed('fieldOptions', 'value', function() {
     const fieldOptions = this.get('fieldOptions');
     return fieldOptions.selectOptions;
