@@ -19,11 +19,13 @@ export default Ember.Component.extend(FieldInputComponent, {
     return hasWidget(fieldAttributeOptions, 'select-search');
   }),
   actions: {
-    valueChanged: function(value) {
+    valueChanged(value) {
       if (!Ember.isBlank(value)) {
         this.set('value', value);
+        this.sendAction('valueChanged', value);
       } else {
         this.set('value', null);
+        this.sendAction('valueChanged', null);
       }
     }
   }

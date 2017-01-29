@@ -38,27 +38,31 @@ export default Ember.Component.extend(InputComponent, InputMomentFormat, {
     }
   },
 
-  minDateObserver: Ember.observer('minDate', function(){
-    let domElement = this.$('input');
-    this.sendAction('valueChanged', this.get('minDate'));
+  didUpdateAttrs(attrs){
+    this._super(...arguments);
 
-    if(!Ember.isBlank(this.get('minDate'))){
-      domElement.data('DateTimePicker').minDate(this.get('minDate'));
-    } else {
-      domElement.data('DateTimePicker').minDate(false);
+    // if minDate changed, we update the component
+    if(attrs.newAttrs.minDate.value !== attrs.oldAttrs.minDate.value) {
+      let domElement = this.$('input');
+
+      if(!Ember.isBlank(this.get('minDate'))){
+        domElement.data('DateTimePicker').minDate(this.get('minDate'));
+      } else {
+        domElement.data('DateTimePicker').minDate(false);
+      }
     }
-  }),
 
-  maxDateObserver: Ember.observer('maxDate', function(){
-    let domElement = this.$('input');
-    this.sendAction('valueChanged', this.get('maxDate'));
+    // same with maxDate
+    if(attrs.newAttrs.maxDate.value !== attrs.oldAttrs.maxDate.value) {
+      let domElement = this.$('input');
 
-    if(!Ember.isBlank(this.get('maxDate'))){
-      domElement.data('DateTimePicker').maxDate(this.get('maxDate'));
-    } else {
-      domElement.data('DateTimePicker').maxDate(false);
+      if(!Ember.isBlank(this.get('maxDate'))){
+        domElement.data('DateTimePicker').maxDate(this.get('maxDate'));
+      } else {
+        domElement.data('DateTimePicker').maxDate(false);
+      }
     }
-  }),
+  },
 
   actions: {
     toggleCalendar: function(){

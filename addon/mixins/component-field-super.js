@@ -35,10 +35,7 @@ export default Ember.Mixin.create(FieldTypeComponent, {
       return value;
     },
     set: function(key, value) {
-      Ember.run.once(this, function() {
-        this.get('model').set(this.get('field'), value);
-      });
-
+      this.get('model').set(this.get('field'), value);
       return value;
     }
   }),

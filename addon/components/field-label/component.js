@@ -4,7 +4,7 @@ import ModelUtils from 'ember-field-components/classes/model-utils';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   tagName: '',
-  labelComputed: Ember.computed('model', 'field', 'modelTypeName', function(){
+  labelComputed: Ember.computed('model', 'field', 'label', 'modelTypeName', function(){
     const label = this.get('label');
     if(Ember.isBlank(label)){
       const { model, field, modelType } = this.getProperties('model', 'field', 'modelType');
