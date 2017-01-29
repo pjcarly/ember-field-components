@@ -5,10 +5,11 @@ export default Ember.Component.extend(InputComponent, {
   type: 'select',
   hasPrefix: false,
   hasSuffix: false,
-  showNone: Ember.computed('value', 'required', function(){
+  showNone: Ember.computed('value', 'isRequired', function(){
     return Ember.isBlank(this.get('value')) || !this.get('isRequired');
   }),
-  noneDisabled: Ember.computed('value', 'required', function(){
+  noneDisabled: Ember.computed('value', 'isRequired', function(){
+    console.log(this.get('isRequired'));
     return Ember.isBlank(this.get('value')) && this.get('isRequired');
   }),
   noneSelected: Ember.computed('value', 'isRequired', function(){

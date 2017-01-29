@@ -8,7 +8,8 @@ export default Ember.Component.extend(FieldInputComponent, {
     return fieldOptions.selectOptions;
   }),
   isRequired: Ember.computed('fieldOptions', function(){
-    return !this.get('fieldOptions').validation.required;
+    const fieldOptions = this.get('fieldOptions');
+    return fieldOptions.hasOwnProperty('validation') && fieldOptions.validation.hasOwnProperty('required') && fieldOptions.validation.required;
   }),
   isButtonGroup: Ember.computed(function() {
     const fieldAttributeOptions = this.get('fieldAttributeOptions');
