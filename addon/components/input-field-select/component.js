@@ -19,6 +19,10 @@ export default Ember.Component.extend(FieldInputComponent, {
     const fieldAttributeOptions = this.get('fieldAttributeOptions');
     return hasWidget(fieldAttributeOptions, 'select-search');
   }),
+  none: Ember.computed(function(){
+    const fieldOptions = this.get('fieldOptions');
+    return fieldOptions.none;
+  }),
   actions: {
     valueChanged(value) {
       if (!Ember.isBlank(value)) {

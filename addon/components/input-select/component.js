@@ -9,11 +9,13 @@ export default Ember.Component.extend(InputComponent, {
     return Ember.isBlank(this.get('value')) || !this.get('isRequired');
   }),
   noneDisabled: Ember.computed('value', 'isRequired', function(){
-    console.log(this.get('isRequired'));
     return Ember.isBlank(this.get('value')) && this.get('isRequired');
   }),
   noneSelected: Ember.computed('value', 'isRequired', function(){
     return Ember.isBlank(this.get('value')) && this.get('isRequired');
+  }),
+  noneLabel: Ember.computed('none', function(){
+    return Ember.isBlank(this.get('none')) ? '-- None --' : this.get('none');
   }),
   computedValue: Ember.computed('value', function(){
     let value = this.get('value');
