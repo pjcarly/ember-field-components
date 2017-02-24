@@ -1,3 +1,17 @@
+/* global moment */
 import DS from 'ember-data';
 
-export default DS.DateTransform;
+// Converts centigrade in the JSON to fahrenheit in the app
+export default DS.Transform.extend({
+  deserialize: function(serialized) {
+
+    return moment(serialized).format();
+  },
+  serialize: function(deserialized) {
+    if (Ember.isBlank(deserialized)) {
+      return null;
+    }
+
+    return moment(deserialized).format('YYYY-MM-DD');
+  }
+});
