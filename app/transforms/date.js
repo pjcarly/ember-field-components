@@ -5,7 +5,7 @@ import DS from 'ember-data';
 export default DS.Transform.extend({
   deserialize: function(serialized) {
 
-    return moment(serialized).format();
+    return moment(serialized).toDate();
   },
   serialize: function(deserialized) {
     if (Ember.isBlank(deserialized)) {
