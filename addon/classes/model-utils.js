@@ -122,7 +122,7 @@ export function getPlural(modelType) {
 }
 
 export function getLabel(modelType, field){
-  if (modelType.settings.labels && modelType.settings.labels[field]) {
+  if (modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('labels') && modelType.settings.labels[field]) {
     return modelType.settings.labels[field];
   } else {
     return Ember.String.capitalize(field);
