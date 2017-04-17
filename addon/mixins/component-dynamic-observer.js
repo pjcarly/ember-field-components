@@ -14,7 +14,9 @@ export default Ember.Mixin.create({
     var model = this.get('model');
     var field = this.get('field');
 
-    model.removeObserver(field, this, this.valueObserver);
+    if(!Ember.isBlank(model)){
+      model.removeObserver(field, this, this.valueObserver);
+    }
   },
 
   valueObserver: function(){

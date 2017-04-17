@@ -97,10 +97,10 @@ export function getAllowedPolymorphicModelTypeNames(modelType){
   }
 }
 
-export function getDefaultListViewColumns(modelType) {
+export function getDefaultListView(modelType) {
   if(!Ember.isBlank(modelType)){
     if(modelType.settings.listViews){
-      return modelType.settings.listViews.default.columns;
+      return modelType.settings.listViews.default;
     } else {
       return [];
     }
