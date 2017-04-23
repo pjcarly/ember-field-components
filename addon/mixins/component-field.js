@@ -1,7 +1,9 @@
 import Ember from 'ember';
 import FieldTypeComponent from '../mixins/component-field-type';
 
-export default Ember.Mixin.create(FieldTypeComponent, {
+const { Mixin, computed } = Ember;
+
+export default Mixin.create(FieldTypeComponent, {
   classNameBindings: ['isBlock:form-group', 'componentClassName'],
 
   init(){
@@ -9,11 +11,11 @@ export default Ember.Mixin.create(FieldTypeComponent, {
     this.set('tagName', (this.get('isBlock') ? 'div' : 'span'));
   },
 
-  isBlock: Ember.computed('inline', function() {
+  isBlock: computed('inline', function() {
     return !this.get('inline');
   }),
 
-  componentClassName: Ember.computed('componentName', 'fieldType', function(){
+  componentClassName: computed('componentName', 'fieldType', function(){
     const { componentName, fieldType } = this.getProperties('componentName', 'fieldType');
 
     return `${fieldType}-field ${componentName}`;

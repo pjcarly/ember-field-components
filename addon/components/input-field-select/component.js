@@ -2,30 +2,32 @@ import Ember from 'ember';
 import FieldInputComponent from '../../mixins/component-field-input-super';
 import { hasWidget } from '../../classes/model-utils';
 
-export default Ember.Component.extend(FieldInputComponent, {
-  selectOptions: Ember.computed('fieldOptions', 'value', function() {
+const { Component, computed, isBlank } = Ember;
+
+export default Component.extend(FieldInputComponent, {
+  selectOptions: computed('fieldOptions', 'value', function() {
     const fieldOptions = this.get('fieldOptions');
     return fieldOptions.selectOptions;
   }),
-  isRequired: Ember.computed('fieldOptions', function(){
+  isRequired: computed('fieldOptions', function(){
     const fieldOptions = this.get('fieldOptions');
     return fieldOptions.hasOwnProperty('validation') && fieldOptions.validation.hasOwnProperty('required') && fieldOptions.validation.required;
   }),
-  isButtonGroup: Ember.computed(function() {
+  isButtonGroup: computed(function() {
     const fieldAttributeOptions = this.get('fieldAttributeOptions');
     return hasWidget(fieldAttributeOptions, 'button-group');
   }),
-  isSelectSearch: Ember.computed(function() {
+  isSelectSearch: computed(function() {
     const fieldAttributeOptions = this.get('fieldAttributeOptions');
     return hasWidget(fieldAttributeOptions, 'select-search');
   }),
-  none: Ember.computed(function(){
+  none: computed(function(){
     const fieldOptions = this.get('fieldOptions');
     return fieldOptions.none;
   }),
   actions: {
     valueChanged(value) {
-      if (!Ember.isBlank(value)) {
+      if (!isBlank(value)) {
         this.set('value', value);
         this.sendAction('valueChanged', value);
       } else {

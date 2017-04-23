@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
-export default Ember.Service.extend({
+const { Service } = Ember;
+
+export default Service.extend({
     dateFormat: 'DD/MM/YYYY',
     dateTimeFormat: 'DD/MM/YYYY HH:mm:ss',
     timeFormat: 'HH:mm:ss',

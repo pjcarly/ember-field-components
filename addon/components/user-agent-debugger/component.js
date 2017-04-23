@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
-  userAgent: Ember.computed(function(){
-    return Ember.$.ua;
+const { Component, computed, $ } = Ember;
+
+export default Component.extend({
+  userAgent: computed(function(){
+    return $.ua;
   })
 });

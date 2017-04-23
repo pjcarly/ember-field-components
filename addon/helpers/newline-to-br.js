@@ -1,10 +1,13 @@
 import Ember from 'ember';
 
-export default Ember.Helper.extend({
+const { Helper, isBlank } = Ember;
+const { SafeString } = Ember.Handlebars;
+
+export default Helper.extend({
   compute([value]) {
-    if (Ember.isBlank(value)) {
+    if (isBlank(value)) {
       return null;
     }
-    return new Ember.Handlebars.SafeString(value.replace(/\n/g, '<br>'));
+    return new SafeString(value.replace(/\n/g, '<br>'));
   }
 });

@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
-export default Ember.Mixin.create({
-  computedValue: Ember.computed('value', {
+const { Mixin, computed } = Ember;
+
+export default Mixin.create({
+  computedValue: computed('value', {
     get: function() {
       var value = this.get('value');
       return value;

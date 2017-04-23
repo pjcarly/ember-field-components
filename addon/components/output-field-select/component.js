@@ -1,12 +1,14 @@
 import Ember from 'ember';
 import FieldOutputComponent from '../../mixins/component-field-output-super';
 
-export default Ember.Component.extend(FieldOutputComponent, {
-  selectOptions: Ember.computed(function() {
+const { Component, computed } = Ember;
+
+export default Component.extend(FieldOutputComponent, {
+  selectOptions: computed(function() {
     const fieldOptions = this.get('fieldOptions');
     return fieldOptions.selectOptions;
   }),
-  none: Ember.computed(function(){
+  none: computed(function(){
     const fieldOptions = this.get('fieldOptions');
     return fieldOptions.none;
   })

@@ -1,13 +1,15 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+const { Component, computed } = Ember;
+
+export default Component.extend({
   model: null,
 
-  errors: Ember.computed('model.errors.[]', function() {
+  errors: computed('model.errors.[]', function() {
     const errors = this.get('model.errors');
     return errors.errorsFor('base');
   }),
-  hasError: Ember.computed('model.errors.[]', function() {
+  hasError: computed('model.errors.[]', function() {
     const errors = this.get('model.errors');
     return errors.has('base');
   })

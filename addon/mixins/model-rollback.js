@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
-export default Ember.Mixin.create({
+const { Mixin, computed, run, isBlank } = Ember;
+
+export default Mixin.create({
   doRollback(){
     // in case of parent-child bound relationships like invoice/invoice-line, we need to rollback the child models as well
     // This can either be:
@@ -10,7 +12,7 @@ export default Ember.Mixin.create({
     this.eachRelationship((name, descriptor) => {
       if(descriptor.options.hasOwnProperty('rollback') && descriptor.options.rollback) {
         let childModels = this.hasMany(name).value();
-        if(!Ember.isBlank(childModels)){
+        if(!isBlank(childModels)){
           // Seriously no idea why the next statement needs toArray(), for some reason the enumerable returned above
           // Sometimes gave a null value instead of a child while looping it
           // by first casting it to array, and then looping it, everything worked fine, and all children were found
@@ -41,12 +43,12 @@ export default Ember.Mixin.create({
   setOldRelationships: function() {
     let oldRelationships = {};
 
-    Ember.run.schedule('actions', this, function() {
+    run.schedule('actions', this, function() {
       this.eachRelationship((name, descriptor) => {
         if (descriptor.kind === 'belongsTo') {
           const recordId = this.belongsTo(name).id();
           const inverseRecord = this.belongsTo(name).belongsToRelationship.inverseRecord;
-          const type = Ember.isBlank(inverseRecord) ? null : inverseRecord.modelName;
+          const type = isBlank(inverseRecord) ? null : inverseRecord.modelName;
           oldRelationships[name] = {id: recordId, type: type};
         }
       }, this);
@@ -68,12 +70,12 @@ export default Ember.Mixin.create({
     this.eachRelationship((name, descriptor) => {
       if (descriptor.kind === 'belongsTo') {
         const oldRelationship = oldRelationships[name];
-        if(!Ember.isBlank(oldRelationship.id)){
+        if(!isBlank(oldRelationship.id)){
           if(this.get('store').hasRecordForId(oldRelationship.type, oldRelationship.id)) {
             const oldRelationshipModel = this.get('store').peekRecord(oldRelationship.type, oldRelationship.id);
             this.set(name, oldRelationshipModel);
           } else {
-            Ember.assert(`Tried rolling back relationship ${name} on ${this.get('name')}, and record with ID ${oldRelationship.id} of type ${descriptor.type} was not found in the store`);
+            assert(`Tried rolling back relationship ${name} on ${this.get('name')}, and record with ID ${oldRelationship.id} of type ${descriptor.type} was not found in the store`);
           }
         } else {
           this.set(name, null);
@@ -90,7 +92,7 @@ export default Ember.Mixin.create({
       if (descriptor.kind === 'belongsTo') {
         const recordId = this.belongsTo(name).id();
         const inverseRecord = this.belongsTo(name).belongsToRelationship.inverseRecord;
-        const type = Ember.isBlank(inverseRecord) ? null : inverseRecord.modelName;
+        const type = isBlank(inverseRecord) ? null : inverseRecord.modelName;
 
         if(oldRelationships[name].id !== recordId || oldRelationships[name].type !== type){
           isDirty = true;

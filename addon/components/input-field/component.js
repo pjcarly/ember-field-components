@@ -1,16 +1,18 @@
 import Ember from 'ember';
 import FieldComponent from '../../mixins/component-field';
 
-export default Ember.Component.extend(FieldComponent, {
+const { Component, computed, guidFor, isBlank } = Ember;
+
+export default Component.extend(FieldComponent, {
   fieldType: 'input',
   classNameBindings: ['isRequired:required', 'hasError:has-error', 'isReadOnly:read-only', 'hasFocus:has-focus'],
-  inputId: Ember.computed(function(){
-    return Ember.guidFor(this) + '-lbl';
+  inputId: computed(function(){
+    return guidFor(this) + '-lbl';
   }),
-  isRequired: Ember.computed('fieldAttributes', 'relationshipAttributes', function() {
+  isRequired: computed('fieldAttributes', 'relationshipAttributes', function() {
     var fieldAttributes = this.get('fieldAttributes');
 
-    if (!Ember.isNone(fieldAttributes)) {
+    if (!isBlank(fieldAttributes)) {
       // We found field attributes (meaning it is a proper field)
       if (fieldAttributes.hasOwnProperty('options') && fieldAttributes.options.hasOwnProperty('validation') && fieldAttributes.options.validation.hasOwnProperty('required')) {
         // lets now see if there is a validation hash available, with required indicator
@@ -20,7 +22,7 @@ export default Ember.Component.extend(FieldComponent, {
       // No field attributes, perhaps the field is a relationship
       var relationshipAttributes = this.get('relationshipAttributes');
 
-      if (!Ember.isNone(relationshipAttributes)) {
+      if (!isBlank(relationshipAttributes)) {
         if (relationshipAttributes.hasOwnProperty('options') && relationshipAttributes.options.hasOwnProperty('validation') && relationshipAttributes.options.validation.hasOwnProperty('required')) {
           return relationshipAttributes.options.validation.required;
         }
@@ -35,16 +37,16 @@ export default Ember.Component.extend(FieldComponent, {
   focusOut(){
     this.set('hasFocus', false);
   },
-  isReadOnly: Ember.computed('fieldAttributes', function() {
+  isReadOnly: computed('fieldAttributes', function() {
     var fieldAttributes = this.get('fieldAttributes');
 
-    if (!Ember.isNone(fieldAttributes) && fieldAttributes.hasOwnProperty('options') && fieldAttributes.options.hasOwnProperty('readOnly')) {
+    if (!isBlank(fieldAttributes) && fieldAttributes.hasOwnProperty('options') && fieldAttributes.options.hasOwnProperty('readOnly')) {
       return fieldAttributes.options.readOnly;
     }
 
     return false;
   }),
-  hasError: Ember.computed('model.errors.[]', function() {
+  hasError: computed('model.errors.[]', function() {
     var errors = this.get('model.errors');
 
     return errors.has(this.get('field'));

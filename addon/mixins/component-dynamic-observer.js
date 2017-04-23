@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
-export default Ember.Mixin.create({
+const { Mixin, isBlank } = Ember;
+
+export default Mixin.create({
   init: function() {
     this._super(...arguments);
     var model = this.get('model');
@@ -14,7 +16,7 @@ export default Ember.Mixin.create({
     var model = this.get('model');
     var field = this.get('field');
 
-    if(!Ember.isBlank(model)){
+    if(!isBlank(model)){
       model.removeObserver(field, this, this.valueObserver);
     }
   },

@@ -1,13 +1,15 @@
 /* global moment */
 import Ember from 'ember';
 
-export default Ember.Helper.extend({
+const { Helper, isBlank } = Ember;
+
+export default Helper.extend({
   compute([value, format]){
-    if (Ember.isBlank(value)) {
+    if (isBlank(value)) {
       return null;
     }
 
-    if (Ember.isBlank(format)) {
+    if (isBlank(format)) {
       return moment(value).format();
     } else {
       return moment(value).format(format);

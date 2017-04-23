@@ -1,10 +1,12 @@
 import Ember from 'ember';
 import FieldInputComponent from '../../mixins/component-field-input-super';
 
-export default Ember.Component.extend(FieldInputComponent, {
-  hasDecimals: Ember.computed('fieldAttributeOptions', function(){
+const { Component, computed, isBlank } = Ember;
+
+export default Component.extend(FieldInputComponent, {
+  hasDecimals: computed('fieldAttributeOptions', function(){
     let fieldAttributeOptions = this.get('fieldAttributeOptions');
 
-    return (!Ember.isBlank(fieldAttributeOptions) && fieldAttributeOptions.hasOwnProperty('decimals') && fieldAttributeOptions.decimals > 0);
+    return (!isBlank(fieldAttributeOptions) && fieldAttributeOptions.hasOwnProperty('decimals') && fieldAttributeOptions.decimals > 0);
   })
 });

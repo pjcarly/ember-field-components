@@ -1,12 +1,14 @@
 import Ember from 'ember';
 import InputComponent from '../../mixins/component-input';
 
-export default Ember.Component.extend(InputComponent, {
+const { Component, computed, isBlank } = Ember;
+
+export default Component.extend(InputComponent, {
   type: 'radio-button-list',
   hasPrefix: false,
   hasSuffix: false,
-  emptyValue: Ember.computed('value', function(){
-    return Ember.isBlank(this.get('value'));
+  emptyValue: computed('value', function(){
+    return isBlank(this.get('value'));
   }),
   actions: {
     valueChanged: function(value) {

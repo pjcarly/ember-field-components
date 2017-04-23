@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
-export default Ember.Mixin.create({
+const { Mixin } = Ember;
+
+export default Mixin.create({
   copy: function() {
     var model = this.constructor;
     var copy = this.get('store').createRecord(model.modelName || model.typeKey);

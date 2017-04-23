@@ -1,20 +1,22 @@
 import Ember from 'ember';
 
-export default Ember.Mixin.create({
+const { Mixin, computed, isBlank } = Ember;
+
+export default Mixin.create({
   classNameBindings: ['defaultClassName', 'type'],
   defaultClassName: 'output',
   tagName: 'span',
 
-  hasPrefix: Ember.computed('prefix', 'hasValue', function(){
-    return !Ember.isBlank(this.get('prefix')) && this.get('hasValue');
+  hasPrefix: computed('prefix', 'hasValue', function(){
+    return !isBlank(this.get('prefix')) && this.get('hasValue');
   }),
-  hasSuffix: Ember.computed('suffix', 'hasValue', function(){
-    return !Ember.isBlank(this.get('suffix')) && this.get('hasValue');
+  hasSuffix: computed('suffix', 'hasValue', function(){
+    return !isBlank(this.get('suffix')) && this.get('hasValue');
   }),
-  hasValue: Ember.computed('value', function(){
-    return !Ember.isBlank(this.get('value'));
+  hasValue: computed('value', function(){
+    return !isBlank(this.get('value'));
   }),
-  isButtonGroup: Ember.computed('hasValue', 'hideButtons', function(){
+  isButtonGroup: computed('hasValue', 'hideButtons', function(){
     return this.get('hasValue') && !this.get('hideButtons');
   })
 });

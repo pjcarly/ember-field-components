@@ -2,6 +2,9 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { isNumeric } from 'ember-attribute-validations/utils';
 
+const { assert, merge, isBlank, isEmpty } = Ember;
+const { attr } = DS;
+
 export function setType(type, options) {
   var defaultOptions = {};
   var defaultValidations = {};
@@ -13,7 +16,7 @@ export function setType(type, options) {
     case 'percent':
       var precision, decimals;
 
-      if (!Ember.isNone(options)) {
+      if (!isBlank(options)) {
         if (options.hasOwnProperty('precision')) {
           precision = parseInt(options.precision);
         }
@@ -22,11 +25,11 @@ export function setType(type, options) {
         }
       }
 
-      Ember.assert('Decimals cannot be larger than precision', (precision > decimals));
-      Ember.assert('No number precision defined', !Ember.isEmpty(precision));
-      Ember.assert('No number decimals defined', !Ember.isEmpty(decimals));
-      Ember.assert('Number precision not numeric', isNumeric(precision));
-      Ember.assert('Number decimals not numeric', isNumeric(decimals));
+      assert('Decimals cannot be larger than precision', (precision > decimals));
+      assert('No number precision defined', !isEmpty(precision));
+      assert('No number decimals defined', !isEmpty(decimals));
+      assert('Number precision not numeric', isNumeric(precision));
+      assert('Number decimals not numeric', isNumeric(decimals));
 
       defaultValidations = {
         number: true,
@@ -59,15 +62,15 @@ export function setType(type, options) {
 
 
   // Now we have our default validations and or options
-  defaultOptions = Ember.merge(defaultOptions, options);
-  if (!Ember.isBlank(defaultValidations)) {
-    if (!Ember.isBlank(options) && options.hasOwnProperty('validation')) {
-      defaultOptions.validation = Ember.merge(options.validation, defaultValidations);
+  defaultOptions = merge(defaultOptions, options);
+  if (!isBlank(defaultValidations)) {
+    if (!isBlank(options) && options.hasOwnProperty('validation')) {
+      defaultOptions.validation = merge(options.validation, defaultValidations);
     } else {
       defaultOptions.validation = defaultValidations;
     }
   }
 
   // And return the DS attribute with the options
-  return DS.attr(type, defaultOptions);
+  return attr(type, defaultOptions);
 }

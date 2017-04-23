@@ -1,19 +1,22 @@
 import Ember from 'ember';
 
-export default Ember.Helper.extend({
+const { Helper, isBlank } = Ember;
+const { htmlSafe } = Ember.String;
+
+export default Helper.extend({
   compute([selectoption, selectedvalue]){
     let label = this.getLabel(selectoption);
 
-    if (!Ember.isBlank(selectedvalue) && selectoption.value === selectedvalue) {
-      return Ember.String.htmlSafe('<option value="' + selectoption.value + '" selected="selected">' + label + '</option>');
+    if (!isBlank(selectedvalue) && selectoption.value === selectedvalue) {
+      return htmlSafe('<option value="' + selectoption.value + '" selected="selected">' + label + '</option>');
     } else {
-      return Ember.String.htmlSafe('<option value="' + selectoption.value + '">' + label + '</option>');
+      return htmlSafe('<option value="' + selectoption.value + '">' + label + '</option>');
     }
   },
   getLabel(selectoption){
     let label = selectoption.label;
 
-    if (Ember.isBlank(label)) {
+    if (isBlank(label)) {
       label = selectoption.value;
     }
 

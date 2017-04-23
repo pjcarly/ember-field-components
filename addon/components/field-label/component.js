@@ -1,15 +1,16 @@
 import Ember from 'ember';
 import ModelUtils from 'ember-field-components/classes/model-utils';
+const { Component, inject, computed, isBlank } = Ember;
 
-export default Ember.Component.extend({
-  store: Ember.inject.service(),
+export default Component.extend({
+  store: inject.service(),
   tagName: '',
-  labelComputed: Ember.computed('model', 'field', 'label', 'modelTypeName', function(){
+  labelComputed: computed('model', 'field', 'label', 'modelTypeName', function(){
     const label = this.get('label');
-    if(Ember.isBlank(label)){
+    if(isBlank(label)){
       const { model, field, modelType } = this.getProperties('model', 'field', 'modelType');
 
-      if(!Ember.isBlank(modelType)){
+      if(!isBlank(modelType)){
         return ModelUtils.getLabel(ModelUtils.getModelType(modelType, this.get('store')), field);
       } else {
         return ModelUtils.getLabel(model.constructor, field);

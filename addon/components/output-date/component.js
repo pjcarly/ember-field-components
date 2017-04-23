@@ -1,12 +1,14 @@
 import Ember from 'ember';
 import OutputComponent from '../../mixins/component-output';
 
-export default Ember.Component.extend(OutputComponent, {
+const { Component, computed, inject, isBlank } = Ember;
+
+export default Component.extend(OutputComponent, {
   type: 'date',
-  fieldSettings: Ember.inject.service(),
-  dateFormat: Ember.computed('format', 'fieldSettings.dateFormat', function(){
+  fieldSettings: inject.service(),
+  dateFormat: computed('format', 'fieldSettings.dateFormat', function(){
     let format = this.get('format');
-    if(Ember.isBlank(format)){
+    if(isBlank(format)){
       return this.get('fieldSettings.dateFormat');
     } else {
       return format;

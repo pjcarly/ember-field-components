@@ -1,11 +1,13 @@
 import Ember from 'ember';
 import InputComponent from '../../mixins/component-input';
 
-export default Ember.Component.extend(InputComponent, {
+const { Component, computed } = Ember;
+
+export default Component.extend(InputComponent, {
   type: 'switch',
   hasPrefix: false,
   hasSuffix: false,
-  isActive: Ember.computed(function() {
+  isActive: computed(function() {
     return this.get('value');
   }),
   actions: {

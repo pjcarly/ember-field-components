@@ -1,13 +1,16 @@
 /* global moment */
 import DS from 'ember-data';
 
+const { Transform } = DS;
+const { isBlank } = Ember;
+
 // Converts centigrade in the JSON to fahrenheit in the app
-export default DS.Transform.extend({
+export default Transform.extend({
   deserialize: function(serialized) {
     return moment(serialized).toDate();
   },
   serialize: function(deserialized) {
-    if (Ember.isBlank(deserialized)) {
+    if (isBlank(deserialized)) {
       return null;
     }
 

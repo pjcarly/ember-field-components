@@ -2,17 +2,19 @@ import Ember from 'ember';
 import InputComponent from '../../mixins/component-input';
 import InputMomentFormat from '../../mixins/component-input-moment-format';
 
-export default Ember.Component.extend(InputComponent, InputMomentFormat, {
+const { Component, computed, inject, isBlank } = Ember;
+
+export default Component.extend(InputComponent, InputMomentFormat, {
   type: 'time-bootstrap',
-  fieldSettings: Ember.inject.service(),
+  fieldSettings: inject.service(),
   showButton: true,
-  isInputGroup: Ember.computed('showButton', 'hasPrefix', 'hasSuffix', function(){
+  isInputGroup: computed('showButton', 'hasPrefix', 'hasSuffix', function(){
     return this.get('showButton') || this.get('hasPrefix') || this.get('hasSuffix');
   }),
 
-  momentFormat: Ember.computed('format', 'fieldSettings.timeFormat', function(){
+  momentFormat: computed('format', 'fieldSettings.timeFormat', function(){
     let format = this.get('format');
-    if(Ember.isBlank(format)){
+    if(isBlank(format)){
       return this.get('fieldSettings.timeFormat');
     } else {
       return format;

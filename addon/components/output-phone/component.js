@@ -1,7 +1,9 @@
 import Ember from 'ember';
 import OutputComponent from '../../mixins/component-output';
 
-export default Ember.Component.extend(OutputComponent, {
+const { Component, computed } = Ember;
+
+export default Component.extend(OutputComponent, {
   type: 'phone',
   hideButtons: false
 });

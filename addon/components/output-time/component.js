@@ -1,12 +1,14 @@
 import Ember from 'ember';
 import OutputComponent from '../../mixins/component-output';
 
-export default Ember.Component.extend(OutputComponent, {
+const { Component, computed, inject, isBlank } = Ember;
+
+export default Component.extend(OutputComponent, {
   type: 'time',
-  fieldSettings: Ember.inject.service(),
-  timeFormat: Ember.computed('format', 'fieldSettings.timeFormat', function(){
+  fieldSettings: inject.service(),
+  timeFormat: computed('format', 'fieldSettings.timeFormat', function(){
     let format = this.get('format');
-    if(Ember.isBlank(format)){
+    if(isBlank(format)){
       return this.get('fieldSettings.timeFormat');
     } else {
       return format;
