@@ -7,6 +7,10 @@ const { isBlank } = Ember;
 // Converts centigrade in the JSON to fahrenheit in the app
 export default Transform.extend({
   deserialize: function(serialized) {
+    if(isBlank(serialized)){
+      return null;
+    }
+
     return moment(serialized).toDate();
   },
   serialize: function(deserialized) {
