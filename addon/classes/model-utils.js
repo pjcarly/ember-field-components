@@ -100,10 +100,14 @@ export function getAllowedPolymorphicModelTypeNames(modelType){
   }
 }
 
-export function getDefaultListView(modelType) {
+export function getModelListView(modelType, name) {
   if(!isBlank(modelType)){
     if(modelType.settings.listViews){
-      return modelType.settings.listViews.default;
+      if(isBlank(name)){
+        return modelType.settings.listViews.default;
+      } else {
+        return modelType.settings.listViews[name];
+      }
     } else {
       return [];
     }
