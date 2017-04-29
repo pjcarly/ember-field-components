@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
-const { Helper, isBlank } = Ember;
-const { htmlSafe } = Ember.String;
+const { Helper, isBlank, String } = Ember;
+const { htmlSafe } = String;
 
 export default Helper.extend({
   compute([selectoption, selectedvalue]){

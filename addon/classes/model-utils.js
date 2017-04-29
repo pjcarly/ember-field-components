@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
-const { isBlank, get, assert, Inflector } = Ember;
-const { capitalize } = Ember.String;
+const { isBlank, get, assert, String } = Ember;
+const { capitalize } = String;
 
 export function getModelName(model){
   return model.constructor.modelName;
@@ -118,10 +118,11 @@ export function getModelListView(modelType, name) {
 
 export function getPlural(modelType) {
   if(!isBlank(modelType)){
-    if (modelType.settings.plural) {
+    if (modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('plural') && !isBlank(modelType.settings.plural)) {
       return modelType.settings.plural;
     } else {
-      return Inflector.inflector.pluralize(capitalize(modelType.modelName));
+      const inflector = new Ember.Inflector(Ember.Inflector.defaultRules);
+      return capitalize(inflector.pluralize(modelType.modelName));
     }
   } else {
     return null;

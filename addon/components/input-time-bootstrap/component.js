@@ -3,10 +3,11 @@ import InputComponent from '../../mixins/component-input';
 import InputMomentFormat from '../../mixins/component-input-moment-format';
 
 const { Component, computed, inject, isBlank } = Ember;
+const { service } = inject;
 
 export default Component.extend(InputComponent, InputMomentFormat, {
   type: 'time-bootstrap',
-  fieldSettings: inject.service(),
+  fieldSettings: service(),
   showButton: true,
   isInputGroup: computed('showButton', 'hasPrefix', 'hasSuffix', function(){
     return this.get('showButton') || this.get('hasPrefix') || this.get('hasSuffix');
