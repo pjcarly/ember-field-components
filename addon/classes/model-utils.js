@@ -19,10 +19,6 @@ export function modelTypeHasBeenLoadedFromCache(modelType){
   return modelType.settings.hasOwnProperty('loadedFromCache') && modelType.settings.loadedFromCache;
 }
 
-export function getParentRoute(model){
-  return model.constructor.parentRoute;
-}
-
 export function getModelType(modelTypeName, store){
   return store.modelFor(modelTypeName);
 }
