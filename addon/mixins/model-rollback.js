@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { Mixin, computed, run, isBlank } = Ember;
+const { Mixin, computed, run, isBlank, assert } = Ember;
 
 export default Mixin.create({
   doRollback(){
