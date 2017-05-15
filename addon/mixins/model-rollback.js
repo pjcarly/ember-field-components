@@ -43,7 +43,7 @@ export default Mixin.create({
   setOldRelationships: function() {
     let oldRelationships = {};
 
-    run.schedule('actions', this, function() {
+    //run.schedule('actions', this, function() {
       this.eachRelationship((name, descriptor) => {
         if (descriptor.kind === 'belongsTo') {
           const recordId = this.belongsTo(name).id();
@@ -54,7 +54,10 @@ export default Mixin.create({
       }, this);
 
       this.set('_oldRelationships', oldRelationships);
-    });
+    //});
+  },
+  ready: function() {
+    this.setOldRelationships();
   },
   didCreate: function() {
     this.setOldRelationships();
