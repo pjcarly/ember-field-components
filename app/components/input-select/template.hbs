@@ -1,4 +1,4 @@
-<select {{action 'valueChanged' on='change'}} class={{inputStyleClass}} id={{inputId}}>
+<select {{action 'valueChanged' on='change'}} class={{inputStyleClass}} id={{inputId}} disabled={{disabled}}>
   {{#if showNone}}
     {{option-none selected=noneSelected disabled=noneDisabled label=noneLabel}}
   {{/if}}
