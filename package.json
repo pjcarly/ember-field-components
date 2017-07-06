@@ -44,8 +44,9 @@
         "ember-field-components"
     ],
     "dependencies": {
-        "ember-cli-htmlbars": "^1.0.1",
-        "ember-cli-babel": "^5.1.5"
+        "ember-cli-babel": "^5.1.5",
+        "ember-cli-clipboard": "^0.7.0",
+        "ember-cli-htmlbars": "^1.0.1"
     },
     "ember-addon": {
         "configPath": "tests/dummy/config"
