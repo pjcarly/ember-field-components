@@ -5,7 +5,6 @@ const { Helper, isBlank } = Ember;
 
 export default Helper.extend({
   compute([value, days, format]){
-    console.log(days);
     if (isBlank(value)) {
       return null;
     }
