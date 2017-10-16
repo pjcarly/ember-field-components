@@ -11,7 +11,7 @@ export default Component.extend(FieldInputComponent, {
   }),
   isRequired: computed('fieldOptions', function(){
     const fieldOptions = this.get('fieldOptions');
-    return fieldOptions.hasOwnProperty('validation') && fieldOptions.validation.hasOwnProperty('required') && fieldOptions.validation.required;
+    return (fieldOptions.hasOwnProperty('validation') && fieldOptions.validation.hasOwnProperty('required') && fieldOptions.validation.required) || this.get('required');
   }),
   isButtonGroup: computed(function() {
     const fieldAttributeOptions = this.get('fieldAttributeOptions');
