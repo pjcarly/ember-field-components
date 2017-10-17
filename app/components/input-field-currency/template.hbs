@@ -1,0 +1,7 @@
+{{#if isButtonGroup}}
+  {{input-button-group selectOptions=selectOptions value=value valueChanged='valueChanged' styleClass=styleClass inputId=inputId}}
+{{else if isSelectSearch}}
+  {{input-select-search selectOptions=selectOptions value=value valueChanged='valueChanged' styleClass=styleClass inputId=inputId}}
+{{else}}
+  {{input-select selectOptions=selectOptions value=value isRequired=isRequired valueChanged='valueChanged' styleClass=styleClass none=none inputId=inputId}}
+{{/if}}

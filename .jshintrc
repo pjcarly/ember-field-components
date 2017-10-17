@@ -4,9 +4,7 @@
     "window",
     "-Promise",
     "moment",
-    "numeral",
-    "Decimal",
-    "Pen"
+    "Decimal"
   ],
   "browser": true,
   "boss": true,

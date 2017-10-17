@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import { isNumeric } from 'ember-attribute-validations/utils';
+import { lookup } from 'ember-dependency-lookup';
 
 const { assert, merge, isBlank, isEmpty } = Ember;
 const { attr } = DS;
@@ -41,6 +42,11 @@ export function setType(type, options) {
         defaultValidations.wholenumber = true;
         delete defaultValidations.decimals;
       }
+      break;
+    case 'currency':
+      const fieldSettings = lookup('service:field-settings');
+
+      defaultOptions['defaultValue'] = fieldSettings.get('defaultCurrency');
       break;
     case 'email':
       defaultValidations = {
