@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import OutputFieldNumber from '../../components/output-field-number/component';
 
 const { computed, isBlank, inject } = Ember;

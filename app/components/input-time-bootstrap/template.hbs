@@ -1,12 +1,12 @@
 {{#if hasPrefix}}
-  <span class="input-group-addon">{{prefix}}</span>
+  <span class="input-group-addon prefix">{{prefix}}</span>
 {{/if}}
 {{input type='text' value=computedValue class=inputStyleClass placeholder=placeholder id=inputId}}
 {{#if hasSuffix}}
-  <span class="input-group-addon">{{suffix}}</span>
+  <span class="input-group-addon suffix">{{suffix}}</span>
 {{/if}}
 {{#if showButton}}
-  <span class="input-group-btn">
+  <span class="input-group-btn suffix">
     <button type="button" class="btn btn-default" {{action 'toggleCalendar'}}>
       <span class="glyphicon glyphicon-calendar"></span>
     </button>
