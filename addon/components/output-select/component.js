@@ -1,17 +1,18 @@
 import Ember from 'ember';
 import OutputText from '../output-text/component';
 
-const { isEmpty, computed, isBlank, assert } = Ember;
+const { isEmpty } = Ember;
+const { computed } = Ember;
+const { isBlank } = Ember;
+const { assert } = Ember;
 
 export default OutputText.extend({
   type: 'select',
-  value: null,
-  selectOptions: [],
-
+  attributeBindings: ['selectedvalue:data-select-option'],
   selectedvalue: computed('value', 'selectOptions', function() {
     let value = this.get('value');
     if (!isBlank(value)) {
-      let selectOptions = this.get('selectOptions');
+      let selectOptions = isBlank(this.get('selectOptions')) ? [] : this.get('selectOptions');
       assert('No selectOptions passed', !isEmpty(selectOptions));
 
       let selectedoption = selectOptions.findBy('value', value);

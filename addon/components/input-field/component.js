@@ -1,7 +1,10 @@
 import Ember from 'ember';
 import FieldComponent from '../../mixins/component-field';
 
-const { Component, computed, guidFor, isBlank } = Ember;
+const { Component } = Ember;
+const { computed } = Ember;
+const { guidFor } = Ember;
+const { isBlank } = Ember;
 
 export default Component.extend(FieldComponent, {
   fieldType: 'input',
