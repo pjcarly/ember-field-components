@@ -1,6 +1,9 @@
 import Ember from 'ember';
 
-const { isBlank, get, assert, String } = Ember;
+const { isBlank } = Ember;
+const { get } = Ember;
+const { assert } = Ember;
+const { String } = Ember;
 const { capitalize } = String;
 
 export function getModelName(model){
@@ -135,4 +138,12 @@ export function getLabel(modelType, field){
 
 export function hasWidget(fieldAttributeOptions, widgetName) {
   return !isBlank(fieldAttributeOptions) && fieldAttributeOptions.hasOwnProperty('widget') && fieldAttributeOptions.widget === widgetName;
+}
+
+export function getWidgetOptions(fieldAttributeOptions) {
+  if(!isBlank(fieldAttributeOptions) && fieldAttributeOptions.hasOwnProperty('widgetOptions')){
+    return fieldAttributeOptions.widgetOptions;
+  } else {
+    return null;
+  }
 }
