@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
-const { Mixin, computed } = Ember;
+const { Mixin } = Ember;
+const { computed } = Ember;
 
 export default Mixin.create({
   computedValue: computed('value', {

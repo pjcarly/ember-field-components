@@ -1,7 +1,8 @@
 /* global moment */
 import Ember from 'ember';
 
-const { Helper, isBlank } = Ember;
+const { Helper } = Ember;
+const { isBlank } = Ember;
 
 export default Helper.extend({
   compute([value, days, format]){

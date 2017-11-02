@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
-const { Helper, isBlank, String } = Ember;
+const { Helper } = Ember;
+const { isBlank } = Ember;
+const { String } = Ember;
 const { htmlSafe } = String;
 
 export default Helper.extend({
