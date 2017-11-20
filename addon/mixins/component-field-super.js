@@ -16,14 +16,14 @@ export default Mixin.create(FieldTypeComponent, {
     return inline || isEmpty(value);
   }),
 
-  fieldOptions: computed('model', 'field', function() {
-    let model = this.get('model');
+  fieldOptions: computed('modelType', 'field', function() {
+    let modelType = this.get('modelType');
     let field = this.get('field');
 
-    let protoKey = model.constructor.proto()[field];
+    let protoKey = modelType.proto()[field];
     if (protoKey) {
       // in the meta we find information about the property
-      let meta = model.constructor.metaForProperty(field);
+      let meta = modelType.metaForProperty(field);
 
       if (meta.hasOwnProperty('options')) {
         return meta.options;
@@ -44,6 +44,7 @@ export default Mixin.create(FieldTypeComponent, {
 
   actions: {
     valueChanged: function(value) {
+      console.log(value);
       this.get('model').set(this.get('field'), value);
 
       if(this.get('valueChanged')){

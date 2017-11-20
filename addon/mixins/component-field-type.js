@@ -42,7 +42,7 @@ export default Mixin.create({
       return fieldAttributes.options;
     }
   }),
-  relationshipAttributes: computed('model', 'field', function() {
+  relationshipAttributes: computed('modelType', 'field', function() {
     let relationships = get(this.get('modelType'), 'relationshipsByName');
     let field = this.get('field');
 
@@ -58,12 +58,12 @@ export default Mixin.create({
       return relationshipAttributes.options;
     }
   }),
-  type: computed('model', 'field', function() {
-    let model = this.get('model');
-    let protoKey = model.constructor.proto()[this.get('field')];
+  type: computed('modelType', 'field', function() {
+    let modelType = this.get('modelType');
+    let protoKey = modelType.proto()[this.get('field')];
     if (protoKey) {
       // in the meta we find information about the property
-      let meta = model.constructor.metaForProperty(this.get('field'));
+      let meta = modelType.metaForProperty(this.get('field'));
 
       if (meta) {
         if (meta.isAttribute) {
