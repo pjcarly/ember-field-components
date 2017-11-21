@@ -44,7 +44,6 @@ export default Mixin.create(FieldTypeComponent, {
 
   actions: {
     valueChanged: function(value) {
-      console.log(value);
       this.get('model').set(this.get('field'), value);
 
       if(this.get('valueChanged')){
