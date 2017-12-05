@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
-const { Mixin, computed, run, isBlank, assert } = Ember;
+const { Mixin } = Ember;
+const { computed } = Ember;
+const { run } = Ember;
+const { isBlank } = Ember;
+const { debug } = Ember;
 
 export default Mixin.create({
   doRollback(){
@@ -47,8 +51,8 @@ export default Mixin.create({
       this.eachRelationship((name, descriptor) => {
         if (descriptor.kind === 'belongsTo') {
           const recordId = this.belongsTo(name).id();
-          const inverseRecord = this.belongsTo(name).belongsToRelationship.inverseRecord;
-          const type = isBlank(inverseRecord) ? null : inverseRecord.modelName;
+          const relationshipMeta = this.belongsTo(name).belongsToRelationship.relationshipMeta;
+          const type = isBlank(relationshipMeta) ? null : relationshipMeta.type;
           oldRelationships[name] = {id: recordId, type: type};
         }
       }, this);
@@ -73,12 +77,12 @@ export default Mixin.create({
     this.eachRelationship((name, descriptor) => {
       if (descriptor.kind === 'belongsTo') {
         const oldRelationship = oldRelationships[name];
-        if(!isBlank(oldRelationship.id)){
+        if(!isBlank(oldRelationship.id) && !isBlank(oldRelationship.type)){
           if(this.get('store').hasRecordForId(oldRelationship.type, oldRelationship.id)) {
             const oldRelationshipModel = this.get('store').peekRecord(oldRelationship.type, oldRelationship.id);
             this.set(name, oldRelationshipModel);
           } else {
-            assert(`Tried rolling back relationship ${name} on ${this.get('name')}, and record with ID ${oldRelationship.id} of type ${descriptor.type} was not found in the store`);
+            debug(`Tried rolling back relationship ${name} on ${this.get('name')}, and record with ID ${oldRelationship.id} of type ${descriptor.type} was not found in the store`);
           }
         } else {
           this.set(name, null);
