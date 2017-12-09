@@ -26,7 +26,7 @@ export default Component.extend(InputComponent, InputMomentFormat, {
     }
   }),
 
-  didInsertElement: function() {
+  didInsertElement() {
     let domElement = this.$('input');
     let widgetOptions = this.get('widgetOptions');
 
@@ -38,45 +38,51 @@ export default Component.extend(InputComponent, InputMomentFormat, {
       merge(options, widgetOptions);
     }
 
+    const minDate = this.get('minDate');
+    const maxDate = this.get('maxDate');
+
     domElement.datetimepicker(options);
 
-    if(!isBlank(this.get('minDate'))){
-      domElement.data('DateTimePicker').minDate(this.get('minDate'));
+    if(!isBlank(minDate)){
+      domElement.data('DateTimePicker').minDate(minDate);
     } else {
       domElement.data('DateTimePicker').minDate(false);
     }
 
-    if(!isBlank(this.get('maxDate'))){
-      domElement.data('DateTimePicker').maxDate(this.get('maxDate'));
+    if(!isBlank(maxDate)){
+      domElement.data('DateTimePicker').maxDate(maxDate);
     } else {
       domElement.data('DateTimePicker').maxDate(false);
     }
   },
 
-  didUpdateAttrs(attrs){
+  didUpdateAttrs(){
     this._super(...arguments);
 
     // if minDate changed, we update the component
-    if(attrs) {
-      if(attrs.newAttrs.minDate.value !== attrs.oldAttrs.minDate.value) {
-        let domElement = this.$('input');
+    const minDate = this.get('minDate');
+    const oldMinDate = this.get('_oldMinDate');
+    const maxDate = this.get('maxDate');
+    const oldMaxDate = this.get('_oldMaxDate');
 
-        if(!isBlank(this.get('minDate'))){
-          domElement.data('DateTimePicker').minDate(this.get('minDate'));
-        } else {
-          domElement.data('DateTimePicker').minDate(false);
-        }
+    if(minDate !== oldMinDate) {
+      let domElement = this.$('input');
+
+      if(!isBlank(minDate)){
+        domElement.data('DateTimePicker').minDate(minDate);
+      } else {
+        domElement.data('DateTimePicker').minDate(false);
       }
+    }
 
-      // same with maxDate
-      if(attrs.newAttrs.maxDate.value !== attrs.oldAttrs.maxDate.value) {
-        let domElement = this.$('input');
+    // same with maxDate
+    if(maxDate !== oldMaxDate) {
+      let domElement = this.$('input');
 
-        if(!isBlank(this.get('maxDate'))){
-          domElement.data('DateTimePicker').maxDate(this.get('maxDate'));
-        } else {
-          domElement.data('DateTimePicker').maxDate(false);
-        }
+      if(!isBlank(maxDate)){
+        domElement.data('DateTimePicker').maxDate(maxDate);
+      } else {
+        domElement.data('DateTimePicker').maxDate(false);
       }
     }
   },
