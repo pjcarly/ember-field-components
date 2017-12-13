@@ -129,7 +129,7 @@ export function getPlural(modelType) {
 }
 
 export function getLabel(modelType, field){
-  if (modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('labels') && modelType.settings.labels[field]) {
+  if (!isBlank(modelType) && modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('labels') && modelType.settings.labels[field]) {
     return modelType.settings.labels[field];
   } else {
     return capitalize(field);
