@@ -3,7 +3,7 @@
     {{field-label labelClass="control-label fg-label" for=inputId model=model field=field label=label}}
   {{/if}}
 
-  {{if hasBlock}}
+  {{#if hasBlock}}
     {{yield}}
   {{else if isReadOnly}}
     {{output-field model=model field=field inline=true link=false}}
