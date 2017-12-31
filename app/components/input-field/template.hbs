@@ -4,7 +4,7 @@
   {{/if}}
 
   {{#if hasBlock}}
-    {{yield}}
+    {{yield inputId}}
   {{else if isReadOnly}}
     {{output-field model=model field=field inline=true link=false}}
   {{else}}
