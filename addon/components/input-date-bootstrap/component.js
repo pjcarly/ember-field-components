@@ -31,7 +31,11 @@ export default Component.extend(InputComponent, InputMomentFormat, {
     let widgetOptions = this.get('widgetOptions');
 
     let options = {
-      format: this.get('momentFormat')
+      format: this.get('momentFormat'),
+      icons: {
+        previous: 'fa fa-chevron-left',
+        next: 'fa fa-chevron-right'
+      }
     }
 
     if(!isBlank(widgetOptions)){

@@ -1,5 +1,7 @@
 <div class="btn-group" role="group">
   {{#each selectOptions as |selectOption|}}
-    {{command-button action=(action 'valueChanged' selectOption.value) active=(eq selectOption.value value) label=selectOption.label}}
+    <button {{action 'valueChanged' selectOption.value}} class="btn{{if (eq selectOption.value value) ' active'}}{{if options.btnClass (concat ' ' options.btnClass) ' btn-default'}}">
+      {{selectOption.label}}
+    </button>
   {{/each}}
 </div>

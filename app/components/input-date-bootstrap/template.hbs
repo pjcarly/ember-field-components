@@ -7,8 +7,8 @@
 {{/if}}
 {{#if showButton}}
   <span class="input-group-btn">
-    <button type="button" class="btn btn-default" {{action 'toggleCalendar'}}>
-      <span class="glyphicon glyphicon-calendar"></span>
+    <button type="button" class="btn{{if options.btnClass (concat ' ' options.btnClass) ' btn-default'}}" {{action 'toggleCalendar'}}>
+      <i class="fa fa-calendar" aria-hidden="true"></i>
     </button>
   </span>
 {{/if}}
