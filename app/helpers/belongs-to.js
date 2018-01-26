@@ -1,7 +1,3 @@
-import Ember from 'ember';
+import Helper from 'ember-field-components/helpers/belongs-to';
 
-const { helper } = Ember.Helper;
-
-export default helper(function([model, field]) {
-  return model.belongsTo(field).value();
-});
+export default Helper;

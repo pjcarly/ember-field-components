@@ -1,7 +1,3 @@
-import Ember from 'ember';
+import Helper from 'ember-field-components/helpers/has-many';
 
-const { helper } = Ember.Helper;
-
-export default helper(function([model, field]) {
-  return model.hasMany(field).value();
-});
+export default Helper;
