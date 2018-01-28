@@ -37,7 +37,7 @@ export default Mixin.create(FieldTypeComponent, {
       return value;
     },
     set: function(key, value) {
-      this.setValue(value);
+      return this.setValue(value);
     }
   }),
 
