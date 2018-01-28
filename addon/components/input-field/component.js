@@ -17,9 +17,16 @@ export default Component.extend(FieldComponent, {
 
     if (!isBlank(fieldAttributes)) {
       // We found field attributes (meaning it is a proper field)
-      if (fieldAttributes.hasOwnProperty('options') && fieldAttributes.options.hasOwnProperty('validation') && fieldAttributes.options.validation.hasOwnProperty('required')) {
-        // lets now see if there is a validation hash available, with required indicator
-        return fieldAttributes.options.validation.required;
+      if (fieldAttributes.hasOwnProperty('options') && fieldAttributes.options.hasOwnProperty('validation')){
+
+        if(fieldAttributes.options.validation.hasOwnProperty('required')) {
+          // lets now see if there is a validation hash available, with required indicator
+          return fieldAttributes.options.validation.required;
+        }
+        if(fieldAttributes.options.validation.hasOwnProperty('requiredAddress')) {
+          // lets now see if there is a validation hash available, with requiredAddress indicator
+          return fieldAttributes.options.validation.requiredAddress;
+        }
       }
     } else {
       // No field attributes, perhaps the field is a relationship

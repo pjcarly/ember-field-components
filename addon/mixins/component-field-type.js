@@ -67,7 +67,13 @@ export default Mixin.create({
 
       if (meta) {
         if (meta.isAttribute) {
-          return meta.type;
+          let returnValue = meta.type;
+          // support for ember-data-model-fragments
+          if(!isBlank(returnValue)){
+            returnValue = returnValue.replace('-mf-fragment$', '');
+          }
+
+          return returnValue;
         } else if (meta.isRelationship) {
           return meta.kind;
         } else { // computed property

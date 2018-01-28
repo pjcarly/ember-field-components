@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import { fragment } from 'ember-data-model-fragments/attributes';
 import { isNumeric } from 'ember-attribute-validations/utils';
 import { lookup } from 'ember-dependency-lookup';
 
@@ -7,8 +8,9 @@ const { assert, merge, isBlank, isEmpty } = Ember;
 const { attr } = DS;
 
 export function setType(type, options) {
-  var defaultOptions = {};
-  var defaultValidations = {};
+  let defaultOptions = {};
+  let defaultValidations = {};
+
 
   // Depending on the type, lets set default values
   switch (type) {
@@ -63,6 +65,12 @@ export function setType(type, options) {
       defaultValidations = {
         url: true
       };
+      break;
+    case 'address':
+      options = isBlank(options) ? {} : options;
+      options.validation = options.hasOwnProperty('validation') ? options.validation : {};
+      options.validation.validAddress = true;
+      return fragment('address', options); // TODO fix dependency with ember-mist-components
       break;
   }
 
