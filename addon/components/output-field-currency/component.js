@@ -10,14 +10,14 @@ export default Component.extend(FieldOutputComponent, {
     let selectOptions = [];
 
     const availableCurrencies = this.get('fieldSettings.availableCurrencies');
-    for(const currency of availableCurrencies) {
-      selectOption = {
+    availableCurrencies.forEach((currency) => {
+      const selectOption = {
         'value': currency,
         'label': currency
       };
 
       selectOptions.push(selectOption);
-    }
+    });
 
     return selectOptions;
   }),

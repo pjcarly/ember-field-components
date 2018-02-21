@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import FieldTypeComponent from '../mixins/component-field-type';
 
-const { Mixin, computed, isEmpty, isBlank } = Ember;
+const { Mixin, computed, isEmpty } = Ember;
 
 export default Mixin.create(FieldTypeComponent, {
   tagName: '',
@@ -48,7 +48,7 @@ export default Mixin.create(FieldTypeComponent, {
 
   actions: {
     valueChanged: function(value) {
-      value = this.setValue(value);
+      this.setValue(value);
 
       if(this.get('valueChanged')){
         this.get('valueChanged')(...arguments);

@@ -1,4 +1,3 @@
-/* global numeral */
 import Ember from 'ember';
 
 const { Helper } = Ember;

@@ -17,7 +17,7 @@ export function setType(type, options) {
     case 'number':
     case 'price':
     case 'percent':
-      var precision, decimals;
+      let precision, decimals;
 
       if (!isBlank(options)) {
         if (options.hasOwnProperty('precision')) {
@@ -71,7 +71,6 @@ export function setType(type, options) {
       options.validation = options.hasOwnProperty('validation') ? options.validation : {};
       options.validation.validAddress = true;
       return fragment('address', options); // TODO fix dependency with ember-mist-components
-      break;
   }
 
 

@@ -8,7 +8,7 @@ export default Component.extend(InputComponent, {
   hasPrefix: false,
   hasSuffix: false,
   showNone: computed('value', 'isRequired', function(){
-    return isBlank(this.get('value')) || !this.get('isRequired');
+    return isBlank(this.get('value')) || !this.get('isRequired');
   }),
   noneDisabled: computed('value', 'isRequired', function(){
     return isBlank(this.get('value')) && this.get('isRequired');

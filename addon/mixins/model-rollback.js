@@ -1,8 +1,6 @@
 import Ember from 'ember';
 
 const { Mixin } = Ember;
-const { computed } = Ember;
-const { run } = Ember;
 const { isBlank } = Ember;
 const { debug } = Ember;
 
