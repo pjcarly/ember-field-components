@@ -38,6 +38,8 @@ export default Component.extend(InputComponent, InputMomentFormat, {
       }
     }
 
+    // options.debug = true;
+
     if(!isBlank(widgetOptions)){
       merge(options, widgetOptions);
     }
