@@ -60,26 +60,23 @@ export default Mixin.create({
   }),
   type: computed('modelType', 'field', function() {
     let modelType = this.get('modelType');
-    let protoKey = modelType.proto()[this.get('field')];
-    if (protoKey) {
-      // in the meta we find information about the property
-      let meta = modelType.metaForProperty(this.get('field'));
+    // in the meta we find information about the property
+    let meta = modelType.metaForProperty(this.get('field'));
 
-      if (meta) {
-        if (meta.isAttribute) {
-          let returnValue = meta.type;
-          // support for ember-data-model-fragments
-          if(!isBlank(returnValue)){
-            returnValue = returnValue.replace('-mf-fragment$', '');
-          }
-
-          return returnValue;
-        } else if (meta.isRelationship) {
-          return meta.kind;
-        } else { // computed property
-          assert('Computed properties you want to use in a input or output component, should have the meta information defined via .meta', meta.hasOwnProperty('type'));
-          return meta.type;
+    if (meta) {
+      if (meta.isAttribute) {
+        let returnValue = meta.type;
+        // support for ember-data-model-fragments
+        if(!isBlank(returnValue)){
+          returnValue = returnValue.replace('-mf-fragment$', '');
         }
+
+        return returnValue;
+      } else if (meta.isRelationship) {
+        return meta.kind;
+      } else { // computed property
+        assert('Computed properties you want to use in a input or output component, should have the meta information defined via .meta', meta.hasOwnProperty('type'));
+        return meta.type;
       }
     }
 
