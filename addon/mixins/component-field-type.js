@@ -59,10 +59,15 @@ export default Mixin.create({
     }
   }),
   type: computed('modelType', 'field', function() {
-    let modelType = this.get('modelType');
-    // in the meta we find information about the property
-    let meta = modelType.metaForProperty(this.get('field'));
+    const modelType = this.get('modelType');
+    const proto = modelType.proto();
 
+    if(!(this.get('field') in proto)){
+      return;
+    }
+
+    // in the meta we find information about the property
+    const meta = modelType.metaForProperty(this.get('field'));
     if (meta) {
       if (meta.isAttribute) {
         let returnValue = meta.type;
