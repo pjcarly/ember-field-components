@@ -20,14 +20,17 @@ export default Mixin.create(FieldTypeComponent, {
     let modelType = this.get('modelType');
     let field = this.get('field');
 
-    let protoKey = modelType.proto()[field];
-    if (protoKey) {
-      // in the meta we find information about the property
-      let meta = modelType.metaForProperty(field);
+    const proto = modelType.proto();
 
-      if (meta.hasOwnProperty('options')) {
-        return meta.options;
-      }
+    if(!(field in proto)){
+      return;
+    }
+
+    // in the meta we find information about the property
+    let meta = modelType.metaForProperty(field);
+
+    if (meta.hasOwnProperty('options')) {
+      return meta.options;
     }
   }),
 
