@@ -2,7 +2,7 @@
   {{prefix}}
 {{/if}}
 
-<span class={{if value 'value' 'value empty'}}>
+<span class={{if (or value (eq value 0)) 'value' 'value empty'}}>
   {{number-format value fieldSettings.locale numberOptions}}
 </span>
 
