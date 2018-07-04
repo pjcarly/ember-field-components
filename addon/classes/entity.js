@@ -13,5 +13,8 @@ export default Model.extend(ValidatorMixin, ModelRollbackMixin, ModelCopyMixin, 
   }),
   isExisting: computed('isNew', function() {
     return !this.get('isNew');
+  }),
+  hasErrors: computed('errors.[]', function(){
+    return this.get('errors.length') > 0;
   })
 });
