@@ -16,7 +16,7 @@ export function setType(type, options) {
   switch (type) {
     case 'number':
     case 'price':
-    case 'percent':
+    case 'percent': {
       let precision, decimals;
 
       if (!isBlank(options)) {
@@ -45,11 +45,13 @@ export function setType(type, options) {
         delete defaultValidations.decimals;
       }
       break;
-    case 'currency':
+    }
+    case 'currency': {
       const fieldSettings = lookup('service:field-settings');
 
       defaultOptions['defaultValue'] = fieldSettings.get('defaultCurrency');
       break;
+    }
     case 'email':
       defaultValidations = {
         email: true,
