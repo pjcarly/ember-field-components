@@ -40,15 +40,16 @@ export function getParentModelTypeName(model, field){
   }
 }
 
-export function getParentModelTypeNames(model, field, store){
+export function getParentModelTypeNames(model, field){
   const relationships = get(model.constructor, 'relationshipsByName');
 
   if (relationships.has(field) && relationships.get(field).kind === 'belongsTo') {
     const relationship = relationships.get(field);
-    assert(`Relationship ${field} for ${model.constructor} is not polymorphic relationship, use getParentModelTypeName function instead`, relationship.options.polymorphic);
+    assert(`Relationship ${field} for ${getModelName(model)} is not polymorphic relationship, use getParentModelTypeName function instead`, relationship.options.polymorphic);
+    assert(`Relationship ${field} for ${getModelName(model)} should have the key allowedModelTypes defined which should return an array with string values`, !isBlank(relationship.options.allowedModelTypes));
 
-    const polymorphicModelType = store.modelFor(relationship.type);
-    return this.getAllowedPolymorphicModelTypeNames(polymorphicModelType);
+    const allowedModelTypeNames = relationship.options.allowedModelTypes;
+    return allowedModelTypeNames;
   }
 }
 
@@ -83,16 +84,6 @@ export function getDefaultIncludes(modelType){
   if(!isBlank(modelType)){
     if(modelType.settings.defaultIncludes){
       return modelType.settings.defaultIncludes;
-    } else {
-      return [];
-    }
-  }
-}
-
-export function getAllowedPolymorphicModelTypeNames(modelType){
-  if(!isBlank(modelType)){
-    if(modelType.settings.allowedModelTypes){
-      return modelType.settings.allowedModelTypes;
     } else {
       return [];
     }
