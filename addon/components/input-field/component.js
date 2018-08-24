@@ -39,7 +39,7 @@ export default Component.extend(FieldComponent, {
       }
     }
 
-    return this.get('required'); // No information found, we return a potential attribute, default it is false.
+    return this.get('required'); // No information found, we return a potential attribute, defaults to false.
   }),
   focusIn(){
     this.set('hasFocus', true);

@@ -9,10 +9,6 @@ export default Component.extend(FieldInputComponent, {
     const fieldOptions = this.get('fieldOptions');
     return fieldOptions.selectOptions;
   }),
-  isRequired: computed('fieldOptions', function(){
-    const fieldOptions = this.get('fieldOptions');
-    return (fieldOptions.hasOwnProperty('validation') && fieldOptions.validation.hasOwnProperty('required') && fieldOptions.validation.required) || this.get('required');
-  }),
   isButtonGroup: computed(function() {
     const fieldAttributeOptions = this.get('fieldAttributeOptions');
     return hasWidget(fieldAttributeOptions, 'button-group');
