@@ -1,8 +1,10 @@
 import Ember from 'ember';
 import FieldOutputComponent from '../../mixins/component-field-output-super';
 
-const { Component, computed, inject } = Ember;
-const { service } = inject;
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+
+import { inject as service } from '@ember/service';
 
 export default Component.extend(FieldOutputComponent, {
   fieldSettings: service(),

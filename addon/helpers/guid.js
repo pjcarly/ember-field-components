@@ -1,7 +1,6 @@
-import Ember from 'ember';
-const { guidFor } = Ember;
-const { Helper } = Ember;
-const { isBlank } = Ember;
+import Helper from '@ember/component/helper';
+import { guidFor } from '@ember/object/internals';
+import { isBlank } from '@ember/utils';
 
 export default Helper.extend({
   compute([value]){

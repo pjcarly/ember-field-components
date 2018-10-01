@@ -1,10 +1,7 @@
-import Ember from 'ember';
-
-const { Helper } = Ember;
-const { isBlank } = Ember;
-const { String } = Ember;
-const { htmlSafe } = String;
-const { isArray } = Array;
+import Helper from '@ember/component/helper';
+import { isBlank } from '@ember/utils';
+import { htmlSafe } from '@ember/template';
+import { isArray } from '@ember/array';
 
 export default Helper.extend({
   compute([selectoption, selectedvalue]){

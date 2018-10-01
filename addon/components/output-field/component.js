@@ -1,11 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import FieldComponent from '../../mixins/component-field';
 import { getModelName } from 'ember-field-components/classes/model-utils';
-
-const { Component } = Ember;
-const { computed } = Ember;
-const { String } = Ember;
-const { dasherize } = String;
+import { computed } from '@ember/object';
+import { dasherize } from '@ember/string';
 
 export default Component.extend(FieldComponent, {
   fieldType: 'output',

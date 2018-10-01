@@ -1,10 +1,12 @@
-import Ember from 'ember';
 import DS from 'ember-data';
 import { fragment } from 'ember-data-model-fragments/attributes';
 import { isNumeric } from 'ember-attribute-validations/utils';
 import { lookup } from 'ember-dependency-lookup';
+import { assert } from '@ember/debug';
+import { merge } from '@ember/polyfills';
+import { isBlank } from '@ember/utils';
+import { isEmpty } from '@ember/utils';
 
-const { assert, merge, isBlank, isEmpty } = Ember;
 const { attr } = DS;
 
 export function setType(type, options) {

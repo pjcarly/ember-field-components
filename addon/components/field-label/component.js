@@ -1,8 +1,11 @@
 import Ember from 'ember';
 import { getLabel, getModelType } from 'ember-field-components/classes/model-utils';
 
-const { Component, inject, computed, isBlank } = Ember;
-const { service } = inject;
+import Component from '@ember/component';
+
+import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   store: service(),

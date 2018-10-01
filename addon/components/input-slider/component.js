@@ -1,9 +1,9 @@
 import Ember from 'ember';
 
-const { Component } = Ember;
-const { computed } = Ember;
-const { guidFor } = Ember;
-const { isBlank } = Ember;
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { guidFor } from '@ember/object/internals';
+import { isBlank } from '@ember/utils';
 
 export default Component.extend({
   type: 'slider',

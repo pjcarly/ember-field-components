@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 import FieldTypeComponent from '../mixins/component-field-type';
-
-const { Mixin, computed } = Ember;
+import { computed } from '@ember/object';
 
 export default Mixin.create(FieldTypeComponent, {
   classNameBindings: ['isBlock:form-group', 'componentClassName'],

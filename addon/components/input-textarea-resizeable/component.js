@@ -3,7 +3,8 @@ import Ember from 'ember';
 import InputComponent from '../../mixins/component-input';
 import ComputedValue from '../../mixins/component-computed-value';
 
-const { Component, $ } = Ember;
+import Component from '@ember/component';
+import $ from 'jquery';
 
 export default Component.extend(InputComponent, ComputedValue, {
   type: 'textarea',

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import OutputComponent from '../../mixins/component-output';
 
-const { Component } = Ember;
+import Component from '@ember/component';
 
 export default Component.extend(OutputComponent, {
   type: 'phone'

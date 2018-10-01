@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 import FieldTypeComponent from '../mixins/component-field-type';
-
-const { Mixin, computed, isEmpty } = Ember;
+import { computed } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 
 export default Mixin.create(FieldTypeComponent, {
   tagName: '',

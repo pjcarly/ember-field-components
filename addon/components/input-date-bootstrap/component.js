@@ -2,12 +2,12 @@ import Ember from 'ember';
 import InputComponent from '../../mixins/component-input';
 import InputMomentFormat from '../../mixins/component-input-moment-format';
 
-const { Component } = Ember;
-const { inject } = Ember;
-const { merge } = Ember;
-const { computed } = Ember;
-const { isBlank } = Ember;
-const { service } = inject;
+import Component from '@ember/component';
+
+import { merge } from '@ember/polyfills';
+import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
+import { inject as service } from '@ember/service';
 
 export default Component.extend(InputComponent, InputMomentFormat, {
   type: 'date-bootstrap',

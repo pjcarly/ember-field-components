@@ -2,8 +2,11 @@ import Ember from 'ember';
 import FieldInputComponent from '../../mixins/component-field-input-super';
 import { hasWidget } from '../../classes/model-utils';
 
-const { Component, computed, isBlank, inject } = Ember;
-const { service } = inject;
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
+
+import { inject as service } from '@ember/service';
 
 export default Component.extend(FieldInputComponent, {
   fieldSettings: service(),

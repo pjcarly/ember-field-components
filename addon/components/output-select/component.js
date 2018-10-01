@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import OutputText from '../output-text/component';
 
-const { isEmpty } = Ember;
-const { computed } = Ember;
-const { isBlank } = Ember;
-const { assert } = Ember;
+import { isEmpty } from '@ember/utils';
+import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
+import { assert } from '@ember/debug';
 
 export default OutputText.extend({
   type: 'select',

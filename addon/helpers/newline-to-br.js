@@ -1,9 +1,6 @@
-import Ember from 'ember';
-
-const { Helper } = Ember;
-const { isBlank } = Ember;
-const { String } = Ember;
-const { htmlSafe } = String;
+import Helper from '@ember/component/helper';
+import { isBlank } from '@ember/utils';
+import { htmlSafe } from '@ember/template';
 
 export default Helper.extend({
   compute([value]) {

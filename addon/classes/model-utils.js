@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
-const { isBlank } = Ember;
-const { get } = Ember;
-const { assert } = Ember;
-const { String } = Ember;
-const { capitalize } = String;
+import { pluralize } from 'ember-inflector';
+import { isBlank } from '@ember/utils';
+import { get } from '@ember/object';
+import { assert } from '@ember/debug';
+import { capitalize } from '@ember/string';
 
 export function getModelName(model){
   return model.constructor.modelName;
@@ -111,8 +111,7 @@ export function getPlural(modelType) {
     if (modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('plural') && !isBlank(modelType.settings.plural)) {
       return modelType.settings.plural;
     } else {
-      const inflector = new Ember.Inflector(Ember.Inflector.defaultRules);
-      return capitalize(inflector.pluralize(modelType.modelName));
+      return capitalize(pluralize(modelType.modelName));
     }
   } else {
     return null;

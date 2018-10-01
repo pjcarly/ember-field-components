@@ -3,7 +3,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 const { Transform } = DS;
-const { isBlank } = Ember;
+import { isBlank } from '@ember/utils';
 
 // Converts centigrade in the JSON to fahrenheit in the app
 export default Transform.extend({

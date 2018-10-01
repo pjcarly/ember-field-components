@@ -4,7 +4,8 @@ import ValidatorMixin from 'ember-attribute-validations/mixins/validator';
 import ModelRollbackMixin from '../mixins/model-rollback';
 import ModelCopyMixin from '../mixins/model-entity-copy';
 
-const { computed, isBlank } = Ember;
+import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
 const { Model } = DS;
 
 export default Model.extend(ValidatorMixin, ModelRollbackMixin, ModelCopyMixin, {

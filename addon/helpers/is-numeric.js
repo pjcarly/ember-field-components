@@ -1,6 +1,5 @@
-import Ember from 'ember';
+import Helper from '@ember/component/helper';
 import { isNumeric } from 'ember-attribute-validations/utils';
-const { Helper } = Ember;
 
 export default Helper.extend({
   compute([value]){

@@ -1,8 +1,10 @@
 import Ember from 'ember';
 import OutputFieldNumber from '../../components/output-field-number/component';
 
-const { computed, isBlank, inject } = Ember;
-const { service } = inject;
+import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
+
+import { inject as service } from '@ember/service';
 
 export default OutputFieldNumber.extend({
   fieldSettings: service(),

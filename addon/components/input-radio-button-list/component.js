@@ -1,7 +1,9 @@
 import Ember from 'ember';
 import InputComponent from '../../mixins/component-input';
 
-const { Component, computed, isBlank } = Ember;
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
 
 export default Component.extend(InputComponent, {
   type: 'radio-button-list',

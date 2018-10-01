@@ -1,7 +1,6 @@
-import Ember from 'ember';
-const { isArray } = Array;
-const { Helper } = Ember;
-const { isBlank } = Ember;
+import Helper from '@ember/component/helper';
+import { isArray } from '@ember/array';
+import { isBlank } from '@ember/utils';
 
 export default Helper.extend({
   compute([array, value]){

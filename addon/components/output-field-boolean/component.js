@@ -2,7 +2,8 @@ import Ember from 'ember';
 import FieldOutputComponent from '../../mixins/component-field-output-super';
 import { hasWidget } from '../../classes/model-utils';
 
-const { Component, computed } = Ember;
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
 export default Component.extend(FieldOutputComponent, {
   isSwitch: computed(function() {

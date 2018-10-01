@@ -2581,6 +2581,13 @@ ember-inflector@^2.0.0:
   dependencies:
     ember-cli-babel "^6.0.0"
 
+ember-inflector@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ember-inflector/-/ember-inflector-3.0.0.tgz#7e1ee8aaa0fa773ba0905d8b7c0786354d890ee1"
+  integrity sha512-tLWfYolZAkLnkTvvBkjizy4Wmj8yI8wqHZFK+leh0iScHiC3r1Yh5C4qO+OMGiBTMLwfTy+YqVoE/Nu3hGNkcA==
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-qunit@^3.3.2:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-3.4.1.tgz#204a2d39a5d44d494c56bf17cf3fd12f06210359"

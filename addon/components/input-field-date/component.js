@@ -2,8 +2,8 @@ import Ember from 'ember';
 import FieldInputComponent from '../../mixins/component-field-input-super';
 import { hasWidget, getWidgetOptions } from '../../classes/model-utils';
 
-const { Component } = Ember;
-const { computed } = Ember;
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
 export default Component.extend(FieldInputComponent, {
   isBootstrap: computed(function(){

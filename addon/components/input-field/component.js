@@ -1,10 +1,8 @@
-import Ember from 'ember';
 import FieldComponent from '../../mixins/component-field';
-
-const { Component } = Ember;
-const { computed } = Ember;
-const { guidFor } = Ember;
-const { isBlank } = Ember;
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { guidFor } from '@ember/object/internals';
+import { isBlank } from '@ember/utils';
 
 export default Component.extend(FieldComponent, {
   fieldType: 'input',

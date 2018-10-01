@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import FieldOutputComponent from '../../mixins/component-field-output-super';
 
-const { Component, computed } = Ember;
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
 export default Component.extend(FieldOutputComponent, {
   selectOptions: computed(function() {

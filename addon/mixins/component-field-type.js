@@ -1,6 +1,8 @@
-import Ember from 'ember';
-
-const { Mixin, computed, isBlank, get, assert } = Ember;
+import Mixin from '@ember/object/mixin';
+import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
+import { get } from '@ember/object';
+import { assert } from '@ember/debug';
 
 export default Mixin.create({
   componentName: computed('fieldType', 'type', 'isText', function(){

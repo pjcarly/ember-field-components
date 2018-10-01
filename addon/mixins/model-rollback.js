@@ -1,8 +1,6 @@
-import Ember from 'ember';
-
-const { Mixin } = Ember;
-const { isBlank } = Ember;
-const { debug } = Ember;
+import Mixin from '@ember/object/mixin';
+import { isBlank } from '@ember/utils';
+import { debug } from '@ember/debug';
 
 export default Mixin.create({
   doRollback(){
