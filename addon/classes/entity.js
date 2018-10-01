@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import DS from 'ember-data';
 import ValidatorMixin from 'ember-attribute-validations/mixins/validator';
 import ModelRollbackMixin from '../mixins/model-rollback';

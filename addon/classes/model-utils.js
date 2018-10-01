@@ -1,5 +1,3 @@
-import Ember from 'ember';
-
 import { pluralize } from 'ember-inflector';
 import { isBlank } from '@ember/utils';
 import { get } from '@ember/object';

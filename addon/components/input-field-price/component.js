@@ -1,9 +1,6 @@
-import Ember from 'ember';
 import InputFieldNumber from '../../components/input-field-number/component';
-
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
-
 import { inject as service } from '@ember/service';
 
 export default InputFieldNumber.extend({

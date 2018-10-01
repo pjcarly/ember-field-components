@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import FieldOutputComponent from '../../mixins/component-field-output-super';
 import { hasWidget } from '../../classes/model-utils';
-
-import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend(FieldOutputComponent, {

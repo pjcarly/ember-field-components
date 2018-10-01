@@ -1,8 +1,5 @@
-import Ember from 'ember';
-import OutputComponent from '../../mixins/component-output';
-
 import Component from '@ember/component';
-
+import OutputComponent from '../../mixins/component-output';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 

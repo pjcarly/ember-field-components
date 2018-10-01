@@ -1,7 +1,5 @@
-import Ember from 'ember';
-import FieldInputComponent from '../../mixins/component-field-input-super';
-
 import Component from '@ember/component';
+import FieldInputComponent from '../../mixins/component-field-input-super';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 

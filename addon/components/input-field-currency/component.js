@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import FieldInputComponent from '../../mixins/component-field-input-super';
 import { hasWidget } from '../../classes/model-utils';
-
-import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 

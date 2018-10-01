@@ -1,6 +1,4 @@
-import Ember from 'ember';
 import OutputText from '../output-text/component';
-
 import { isEmpty } from '@ember/utils';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';

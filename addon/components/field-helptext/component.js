@@ -1,8 +1,5 @@
-import Ember from 'ember';
-import { getHelptext, getModelType } from 'ember-field-components/classes/model-utils';
-
 import Component from '@ember/component';
-
+import { getHelptext, getModelType } from 'ember-field-components/classes/model-utils';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';

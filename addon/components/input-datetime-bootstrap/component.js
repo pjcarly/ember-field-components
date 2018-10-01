@@ -1,9 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import InputComponent from '../../mixins/component-input';
 import InputMomentFormat from '../../mixins/component-input-moment-format';
-
-import Component from '@ember/component';
-
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';

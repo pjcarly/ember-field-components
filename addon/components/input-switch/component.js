@@ -1,7 +1,5 @@
-import Ember from 'ember';
-import InputComponent from '../../mixins/component-input';
-
 import Component from '@ember/component';
+import InputComponent from '../../mixins/component-input';
 import { computed } from '@ember/object';
 
 export default Component.extend(InputComponent, {
