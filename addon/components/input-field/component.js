@@ -1,17 +1,16 @@
-import FieldComponent from '../../mixins/component-field';
-import Component from '@ember/component';
+import OutputField from '../output-field/component';
 import { computed } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 import { isBlank } from '@ember/utils';
 
-export default Component.extend(FieldComponent, {
+export default OutputField.extend({
   fieldType: 'input',
   classNameBindings: ['isRequired:required', 'hasError:has-error', 'isReadOnly:read-only', 'hasFocus:has-focus'],
   inputId: computed(function(){
     return guidFor(this) + '-lbl';
   }),
   isRequired: computed('fieldAttributes', 'relationshipAttributes', function() {
-    var fieldAttributes = this.get('fieldAttributes');
+    const fieldAttributes = this.get('fieldAttributes');
 
     if (!isBlank(fieldAttributes)) {
       // We found field attributes (meaning it is a proper field)
@@ -28,7 +27,7 @@ export default Component.extend(FieldComponent, {
       }
     } else {
       // No field attributes, perhaps the field is a relationship
-      var relationshipAttributes = this.get('relationshipAttributes');
+      const relationshipAttributes = this.get('relationshipAttributes');
 
       if (!isBlank(relationshipAttributes)) {
         if (relationshipAttributes.hasOwnProperty('options') && relationshipAttributes.options.hasOwnProperty('validation') && relationshipAttributes.options.validation.hasOwnProperty('required')) {
@@ -46,7 +45,7 @@ export default Component.extend(FieldComponent, {
     this.set('hasFocus', false);
   },
   isReadOnly: computed('fieldAttributes', function() {
-    var fieldAttributes = this.get('fieldAttributes');
+    const fieldAttributes = this.get('fieldAttributes');
 
     if (!isBlank(fieldAttributes) && fieldAttributes.hasOwnProperty('options') && fieldAttributes.options.hasOwnProperty('readOnly')) {
       return fieldAttributes.options.readOnly;

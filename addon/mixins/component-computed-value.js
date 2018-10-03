@@ -14,7 +14,13 @@ export default Mixin.create({
         value = preSetHook(value);
       }
       this.set('value', value);
-      this.sendAction('valueChanged', value);
+
+      const valueChanged = this.get('valueChanged');
+
+      if(!isBlank(valueChanged)){
+        valueChanged(value);
+      }
+
       return value;
     }
   })

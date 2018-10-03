@@ -8,8 +8,11 @@ export default Component.extend({
   columns: [],
 
   actions: {
-    click: function() {
-      this.sendAction('objectSelected', this.get('object'));
+    click() {
+      const objectSelected = this.get('objectSelected');
+      if(objectSelected){
+        objectSelected(this.get('object'));
+      }
     }
   }
 });

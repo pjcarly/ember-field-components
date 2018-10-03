@@ -13,7 +13,7 @@ export default Component.extend(InputComponent, {
   actions: {
     valueChanged: function(value) {
       this.set('value', value);
-      this.sendAction('valueChanged', value);
+      this.notifyAction(value);
     }
   }
 });

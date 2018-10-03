@@ -20,9 +20,9 @@ export default Component.extend(InputComponent, {
     }
   },
   actions: {
-    valueChanged: function() {
+    valueChanged() {
       let value = this.$('select').val();
-      this.sendAction('valueChanged', value);
+      this.notifyAction(value);
     }
   }
 });

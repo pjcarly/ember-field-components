@@ -1,5 +1,5 @@
 {{#if isBootstrap}}
-  {{input-time-bootstrap value=value valueChanged='valueChanged' placeholder=placeholder prefix=prefix suffix=suffix styleClass=styleClass showButton=showButton inputId=inputId}}
+  {{input-time-bootstrap value=value valueChanged=(action 'valueChanged') placeholder=placeholder prefix=prefix suffix=suffix styleClass=styleClass showButton=showButton inputId=inputId}}
 {{else}}
-  {{input-time value=value valueChanged='valueChanged' placeholder=placeholder prefix=prefix suffix=suffix styleClass=styleClass inputId=inputId}}
+  {{input-time value=value valueChanged=(action 'valueChanged') placeholder=placeholder prefix=prefix suffix=suffix styleClass=styleClass inputId=inputId}}
 {{/if}}

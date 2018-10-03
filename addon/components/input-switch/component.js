@@ -10,9 +10,9 @@ export default Component.extend(InputComponent, {
     return this.get('value');
   }),
   actions: {
-    valueChanged: function() {
+    valueChanged() {
       this.set('value', !this.get('value'));
-      this.sendAction('valueChanged', this.get('value'));
+      this.notifyAction(this.get('value'));
     }
   }
 });

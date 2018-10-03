@@ -3,53 +3,54 @@ import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { get } from '@ember/object';
 import { assert } from '@ember/debug';
+import { getModelName, getModelType } from 'ember-field-components/classes/model-utils';
+import { inject as service } from '@ember/service';
 
 export default Mixin.create({
+  store: service(),
   componentName: computed('fieldType', 'type', 'isText', function(){
     let type = this.get('type');
-    let fieldType = this.get('fieldType'); //input or output
+    const fieldType = this.get('fieldType'); //input or output
     if(this.get('isText') || isBlank(type)){
       type = 'text';
     }
     let component = `${fieldType}-field-${type}`;
     return component.toLowerCase();
   }),
-
   isText: computed('type', 'field', function() {
-    let type = this.get('type');
+    const type = this.get('type');
     return type === 'string' || type === 'computed' || this.get('field') === 'id';
   }),
-  isNotBlankType: computed('type', function() {
-    return !isBlank(this.get('type'));
-  }),
   modelType: computed('model', function() {
-    return this.get('model').constructor;
+    const model = this.get('model');
+    return getModelType(getModelName(model), this.get('store'));
   }),
   modelAttributes: computed('modelType', function() {
-    return get(this.get('modelType'), 'attributes');
+    const modelType = this.get('modelType');
+    return get(modelType, 'attributes');
   }),
   fieldAttributes: computed('modelAttributes', 'field', function() {
-    let attributes = this.get('modelAttributes');
-    let field = this.get('field');
+    const attributes = this.get('modelAttributes');
+    const field = this.get('field');
 
     if (!isBlank(attributes) && attributes.has(field)) {
-      let fieldAttributes = attributes.get(field);
+      const fieldAttributes = attributes.get(field);
       return fieldAttributes;
     }
   }),
   fieldAttributeOptions: computed('fieldAttributes', function() {
-    let fieldAttributes = this.get('fieldAttributes');
+    const fieldAttributes = this.get('fieldAttributes');
 
     if (!isBlank(fieldAttributes) && fieldAttributes.hasOwnProperty('options')) {
       return fieldAttributes.options;
     }
   }),
   relationshipAttributes: computed('modelType', 'field', function() {
-    let relationships = get(this.get('modelType'), 'relationshipsByName');
-    let field = this.get('field');
+    const relationships = get(this.get('modelType'), 'relationshipsByName');
+    const field = this.get('field');
 
     if (!isBlank(relationships) && relationships.has(field)) {
-      let relationship = relationships.get(field);
+      const relationship = get(relationships.get(field), 'meta');
       return relationship;
     }
   }),

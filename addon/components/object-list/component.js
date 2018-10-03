@@ -6,11 +6,17 @@ export default Component.extend({
   noresults: 'No Results',
 
   actions: {
-    objectSelected: function(object) {
-      this.sendAction('objectSelected', object);
+    objectSelected(object) {
+      const objectSelected = this.get('objectSelected');
+      if(objectSelected){
+        objectSelected(object);
+      }
     },
-    new: function() {
-      this.sendAction('newModel');
+    new() {
+      const newModel = this.get('newModel');
+      if(newModel){
+        newModel();
+      }
     }
   }
 });

@@ -20,11 +20,16 @@ export default Mixin.create({
   isInputGroup: computed('hasPrefix', 'hasSuffix', 'hasInputButton', function(){
     return this.get('hasPrefix') || this.get('hasSuffix') || this.get('hasInputButton');
   }),
+  notifyAction(){
+    console.log(...arguments);
+    const valueChanged = this.get('valueChanged');
+    if(!isBlank(valueChanged)){
+      valueChanged(...arguments);
+    }
+  },
   actions: {
     valueChanged(){
-      if(this.get('valueChanged')){
-        this.get('valueChanged')(...arguments);
-      }
+      this.notifyAction(...arguments);
     }
   }
 });

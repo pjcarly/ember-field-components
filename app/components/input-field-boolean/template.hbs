@@ -1,5 +1,5 @@
 {{#if isSwitch}}
-  {{input-switch value=value valueChanged='valueChanged' styleClass=styleClass inputId=inputId}}
+  {{input-switch value=value valueChanged=(action 'valueChanged') styleClass=styleClass inputId=inputId}}
 {{else}}
-  {{input-checkbox value=value valueChanged='valueChanged' styleClass=styleClass inputId=inputId}}
+  {{input-checkbox value=value valueChanged=(action 'valueChanged') styleClass=styleClass inputId=inputId}}
 {{/if}}

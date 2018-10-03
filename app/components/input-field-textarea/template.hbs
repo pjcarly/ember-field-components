@@ -1,5 +1,5 @@
 {{#if isResizeable}}
-  {{input-textarea-resizeable value=value valueChanged='valueChanged' placeholder=placeholder styleClass=styleClass inputId=inputId}}
+  {{input-textarea-resizeable value=value valueChanged=(action 'valueChanged') placeholder=placeholder styleClass=styleClass inputId=inputId}}
 {{else}}
-  {{input-textarea value=value valueChanged='valueChanged' placeholder=placeholder styleClass=styleClass inputId=inputId}}
+  {{input-textarea value=value valueChanged=(action 'valueChanged') placeholder=placeholder styleClass=styleClass inputId=inputId}}
 {{/if}}

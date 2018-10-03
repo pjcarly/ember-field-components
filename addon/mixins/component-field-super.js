@@ -2,6 +2,7 @@ import Mixin from '@ember/object/mixin';
 import FieldTypeComponent from '../mixins/component-field-type';
 import { computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
+import { isBlank } from '@ember/utils';
 
 export default Mixin.create(FieldTypeComponent, {
   tagName: '',
@@ -49,13 +50,17 @@ export default Mixin.create(FieldTypeComponent, {
     return value;
   },
 
-  actions: {
-    valueChanged: function(value) {
-      this.setValue(value);
+  notifyAction(){
+    const valueChanged = this.get('valueChanged');
+    if(!isBlank(valueChanged)){
+      valueChanged(...arguments);
+    }
+  },
 
-      if(this.get('valueChanged')){
-        this.get('valueChanged')(...arguments);
-      }
+  actions: {
+    valueChanged(value){
+      this.setValue(value);
+      this.notifyAction(...arguments);
     }
   }
 });

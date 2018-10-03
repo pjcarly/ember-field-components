@@ -13,7 +13,6 @@ export function setType(type, options) {
   let defaultOptions = {};
   let defaultValidations = {};
 
-
   // Depending on the type, lets set default values
   switch (type) {
     case 'number':

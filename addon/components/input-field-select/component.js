@@ -25,10 +25,10 @@ export default Component.extend(FieldInputComponent, {
     valueChanged(value) {
       if (!isBlank(value)) {
         this.set('value', value);
-        this.sendAction('valueChanged', value);
+        this.notifyAction(value);
       } else {
         this.set('value', null);
-        this.sendAction('valueChanged', null);
+        this.notifyAction(null);
       }
     }
   }

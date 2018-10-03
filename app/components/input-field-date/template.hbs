@@ -1,5 +1,5 @@
 {{#if isBootstrap}}
-  {{input-date-bootstrap value=value valueChanged='valueChanged' placeholder=placeholder prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate styleClass=styleClass showButton=showButton inputId=inputId widgetOptions=widgetOptions}}
+  {{input-date-bootstrap value=value valueChanged=(action 'valueChanged') placeholder=placeholder prefix=prefix suffix=suffix minDate=minDate maxDate=maxDate styleClass=styleClass showButton=showButton inputId=inputId widgetOptions=widgetOptions}}
 {{else}}
-  {{input-date value=value valueChanged='valueChanged' placeholder=placeholder prefix=prefix suffix=suffix styleClass=styleClass inputId=inputId}}
+  {{input-date value=value valueChanged=(action 'valueChanged') placeholder=placeholder prefix=prefix suffix=suffix styleClass=styleClass inputId=inputId}}
 {{/if}}
