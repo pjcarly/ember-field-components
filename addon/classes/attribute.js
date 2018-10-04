@@ -1,13 +1,10 @@
-import DS from 'ember-data';
+import attr from 'ember-data/attr';
 import { fragment } from 'ember-data-model-fragments/attributes';
 import { isNumeric } from 'ember-attribute-validations/utils';
 import { lookup } from 'ember-dependency-lookup';
 import { assert } from '@ember/debug';
 import { merge } from '@ember/polyfills';
-import { isBlank } from '@ember/utils';
-import { isEmpty } from '@ember/utils';
-
-const { attr } = DS;
+import { isBlank, isEmpty } from '@ember/utils';
 
 export function setType(type, options) {
   let defaultOptions = {};

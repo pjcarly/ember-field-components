@@ -1,3 +1,3 @@
-import DS from 'ember-data';
+import NumberTransform from 'ember-data/transforms/number';
 
-export default DS.NumberTransform;
+export default NumberTransform;

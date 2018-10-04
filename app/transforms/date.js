@@ -1,7 +1,5 @@
 /* global moment */
-import DS from 'ember-data';
-
-const { Transform } = DS;
+import Transform from 'ember-data/transform';
 import { isBlank } from '@ember/utils';
 
 // Converts centigrade in the JSON to fahrenheit in the app

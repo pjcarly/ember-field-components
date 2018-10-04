@@ -21,7 +21,6 @@ export default Mixin.create({
     return this.get('hasPrefix') || this.get('hasSuffix') || this.get('hasInputButton');
   }),
   notifyAction(){
-    console.log(...arguments);
     const valueChanged = this.get('valueChanged');
     if(!isBlank(valueChanged)){
       valueChanged(...arguments);
