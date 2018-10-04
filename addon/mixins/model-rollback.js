@@ -11,7 +11,7 @@ export default Mixin.create({
     // - Unload a new child bound to an existing parent
     this.eachRelationship((name, descriptor) => {
       if(descriptor.options.hasOwnProperty('rollback') && descriptor.options.rollback) {
-        let childModels = this.hasMany(name).value();
+        let childModels = this.get(name);
         if(!isBlank(childModels)){
           // Seriously no idea why the next statement needs toArray(), for some reason the enumerable returned above
           // Sometimes gave a null value instead of a child while looping it
@@ -43,18 +43,16 @@ export default Mixin.create({
   setOldRelationships: function() {
     let oldRelationships = {};
 
-    //run.schedule('actions', this, function() {
-      this.eachRelationship((name, descriptor) => {
-        if (descriptor.kind === 'belongsTo') {
-          const recordId = this.belongsTo(name).id();
-          const relationshipMeta = this.belongsTo(name).belongsToRelationship.relationshipMeta;
-          const type = isBlank(relationshipMeta) ? null : relationshipMeta.type;
-          oldRelationships[name] = {id: recordId, type: type};
-        }
-      }, this);
+    this.eachRelationship((name, descriptor) => {
+      if (descriptor.kind === 'belongsTo') {
+        const recordId = this.belongsTo(name).id();
+        const relationshipMeta = this.belongsTo(name).belongsToRelationship.relationshipMeta;
+        const type = isBlank(relationshipMeta) ? null : relationshipMeta.type;
+        oldRelationships[name] = {id: recordId, type: type};
+      }
+    }, this);
 
-      this.set('_oldRelationships', oldRelationships);
-    //});
+    this.set('_oldRelationships', oldRelationships);
   },
   ready: function() {
     this.setOldRelationships();

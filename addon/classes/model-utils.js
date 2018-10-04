@@ -8,24 +8,8 @@ export function getModelName(model){
   return model.constructor.modelName;
 }
 
-export function modelTypeIsCacheable(modelType){
-  return modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('cacheable') && modelType.settings.cacheable;
-}
-
-export function modelTypeWasLoaded(modelType){
-  modelType.settings.loadedFromCache = true;
-}
-
-export function modelTypeHasBeenLoadedFromCache(modelType){
-  return modelType.settings.hasOwnProperty('loadedFromCache') && modelType.settings.loadedFromCache;
-}
-
 export function getModelType(modelTypeName, store){
   return store.modelFor(modelTypeName);
-}
-
-export function hasRoute(modelType){
-  return !(modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('noRoute') && modelType.settings.noRoute);
 }
 
 export function getParentModelTypeName(model, field){
