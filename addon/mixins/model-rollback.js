@@ -46,8 +46,9 @@ export default Mixin.create({
     this.eachRelationship((name, descriptor) => {
       if (descriptor.kind === 'belongsTo') {
         const recordId = this.belongsTo(name).id();
-        const relationshipMeta = this.belongsTo(name).belongsToRelationship.relationshipMeta;
-        const type = isBlank(relationshipMeta) ? null : relationshipMeta.type;
+        // TODO: This is Ember-Data private API. watch out
+        const inverseInternalModel = this.belongsTo(name).belongsToRelationship.inverseInternalModel;
+        const type = isBlank(inverseInternalModel) ? null : inverseInternalModel.modelName;
         oldRelationships[name] = {id: recordId, type: type};
       }
     }, this);

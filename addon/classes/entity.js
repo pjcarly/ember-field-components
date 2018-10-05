@@ -6,6 +6,7 @@ import LoadableModel from 'ember-data-storefront/mixins/loadable-model';
 import { getModelName } from 'ember-field-components/classes/model-utils';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
+import { getOwner } from '@ember/application';
 
 export default Model.extend(ValidatorMixin, ModelRollbackMixin, ModelCopyMixin, LoadableModel, {
   hasRoute: computed(function(){
