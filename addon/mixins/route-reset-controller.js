@@ -5,6 +5,6 @@ export default Mixin.create({
     this._super(...arguments);
 
     let model = controller.get('model');
-    model.doRollback();
+    model.rollback();
   }
 });

@@ -1,14 +1,10 @@
 import Mixin from '@ember/object/mixin';
 import { isBlank } from '@ember/utils';
-import { debug } from '@ember/debug';
 
 export default Mixin.create({
-  doRollback(){
-    // in case of parent-child bound relationships like invoice/invoice-line, we need to rollback the child models as well
-    // This can either be:
-    // - Unload parent and child from the store when both are new
-    // - Rollback the parent and the child when both existed before
-    // - Unload a new child bound to an existing parent
+  rollback(){
+    // We override the rollback method provided by the ember-data-change-tracker
+    // Where we rollback child records which have the rollback option in the relationship meta
     this.eachRelationship((name, descriptor) => {
       if(descriptor.options.hasOwnProperty('rollback') && descriptor.options.rollback) {
         let childModels = this.get(name);
@@ -17,91 +13,13 @@ export default Mixin.create({
           // Sometimes gave a null value instead of a child while looping it
           // by first casting it to array, and then looping it, everything worked fine, and all children were found
           childModels.toArray().forEach((childModel) => {
-            childModel.doRollback();
+            childModel.rollback();
           });
         }
       }
     });
 
-    if (this.get('isNew')) {
-      this.store.unloadRecord(this);
-    } else {
-      this.doRollbackAttributes();
-      this.doRollbackRelationships();
-    }
-  },
-  doRollbackAttributes(){
-    if (this.get('hasDirtyAttributes')) {
-      this.rollbackAttributes();
-    }
-  },
-  doRollbackRelationships(){
-    if(this.hasDirtyRelationships()){
-      this.rollbackRelationships();
-    }
-  },
-  setOldRelationships() {
-    let oldRelationships = {};
-
-    this.eachRelationship((name, descriptor) => {
-      if (descriptor.kind === 'belongsTo') {
-        const recordId = this.belongsTo(name).id();
-        // TODO: This is Ember-Data private API. watch out
-        const inverseInternalModel = this.belongsTo(name).belongsToRelationship.inverseInternalModel;
-        const type = isBlank(inverseInternalModel) ? null : inverseInternalModel.modelName;
-        oldRelationships[name] = {id: recordId, type: type};
-      }
-    }, this);
-
-    this.set('_oldRelationships', oldRelationships);
-  },
-  ready() {
-    this.setOldRelationships();
-  },
-  didCreate() {
-    this.setOldRelationships();
-  },
-  didLoad() {
-    this.setOldRelationships();
-  },
-  didUpdate() {
-    this.setOldRelationships();
-  },
-  rollbackRelationships() {
-    const oldRelationships = this.get('_oldRelationships');
-    this.eachRelationship((name, descriptor) => {
-      if (descriptor.kind === 'belongsTo') {
-        const oldRelationship = oldRelationships[name];
-        if(!isBlank(oldRelationship.id) && !isBlank(oldRelationship.type)){
-          if(this.get('store').hasRecordForId(oldRelationship.type, oldRelationship.id)) {
-            const oldRelationshipModel = this.get('store').peekRecord(oldRelationship.type, oldRelationship.id);
-            this.set(name, oldRelationshipModel);
-          } else {
-            debug(`Tried rolling back relationship ${name} on ${this.get('name')} (${this.get('id')}), and record with ID ${oldRelationship.id} of type ${descriptor.type} was not found in the store`);
-          }
-        } else {
-          this.set(name, null);
-        }
-      }
-    }, this);
-
-    this.setOldRelationships();
-  },
-  hasDirtyRelationships(){
-    const oldRelationships = this.get('_oldRelationships');
-    let isDirty = false;
-    this.eachRelationship((name, descriptor) => {
-      if (descriptor.kind === 'belongsTo') {
-        const recordId = this.belongsTo(name).id();
-        const inverseRecord = this.belongsTo(name).belongsToRelationship.inverseRecord;
-        const type = isBlank(inverseRecord) ? null : inverseRecord.modelName;
-
-        if(oldRelationships[name].id !== recordId || oldRelationships[name].type !== type){
-          isDirty = true;
-          return;
-        }
-      }
-    });
-    return isDirty;
+    // Now we call the super, which does the rollback on the current model
+    this._super(...arguments);
   }
 });

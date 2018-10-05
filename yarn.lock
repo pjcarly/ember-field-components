@@ -3041,6 +3041,13 @@ ember-compatibility-helpers@^1.0.0:
     ember-cli-version-checker "^2.1.1"
     semver "^5.4.1"
 
+ember-data-change-tracker@^0.7.7:
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/ember-data-change-tracker/-/ember-data-change-tracker-0.7.7.tgz#b95193ef7d928e3d1ed585ef22ee5cca8abad58a"
+  integrity sha512-S8ynP4Hptlgr+LZ1/p8LKDZTwNuFVYSbFrm4AH7p6Xmmnp89hbgs9RqZrTdu+C9pgPQYNUr1DKWoQrDEBNijGg==
+  dependencies:
+    ember-cli-babel "^6.12.0"
+
 ember-data-storefront@^0.14.1:
   version "0.14.1"
   resolved "https://registry.yarnpkg.com/ember-data-storefront/-/ember-data-storefront-0.14.1.tgz#442e231c82f1eba437b5fa4c35f0605603e58be1"
