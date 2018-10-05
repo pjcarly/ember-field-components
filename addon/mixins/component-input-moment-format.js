@@ -22,8 +22,9 @@ export default Mixin.create({
       }
 
       if(this.get('valueChanged')){
-        this.get('valueChanged')(value);
+        this.get('valueChanged')(this.get('value'));
       }
+
       return value;
     }
   })

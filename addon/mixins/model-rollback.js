@@ -40,7 +40,7 @@ export default Mixin.create({
       this.rollbackRelationships();
     }
   },
-  setOldRelationships: function() {
+  setOldRelationships() {
     let oldRelationships = {};
 
     this.eachRelationship((name, descriptor) => {
@@ -55,19 +55,19 @@ export default Mixin.create({
 
     this.set('_oldRelationships', oldRelationships);
   },
-  ready: function() {
+  ready() {
     this.setOldRelationships();
   },
-  didCreate: function() {
+  didCreate() {
     this.setOldRelationships();
   },
-  didLoad: function() {
+  didLoad() {
     this.setOldRelationships();
   },
-  didUpdate: function() {
+  didUpdate() {
     this.setOldRelationships();
   },
-  rollbackRelationships: function() {
+  rollbackRelationships() {
     const oldRelationships = this.get('_oldRelationships');
     this.eachRelationship((name, descriptor) => {
       if (descriptor.kind === 'belongsTo') {
@@ -77,7 +77,7 @@ export default Mixin.create({
             const oldRelationshipModel = this.get('store').peekRecord(oldRelationship.type, oldRelationship.id);
             this.set(name, oldRelationshipModel);
           } else {
-            debug(`Tried rolling back relationship ${name} on ${this.get('name')}, and record with ID ${oldRelationship.id} of type ${descriptor.type} was not found in the store`);
+            debug(`Tried rolling back relationship ${name} on ${this.get('name')} (${this.get('id')}), and record with ID ${oldRelationship.id} of type ${descriptor.type} was not found in the store`);
           }
         } else {
           this.set(name, null);
@@ -90,7 +90,7 @@ export default Mixin.create({
   hasDirtyRelationships(){
     const oldRelationships = this.get('_oldRelationships');
     let isDirty = false;
-    this.eachRelationship(function(name, descriptor) {
+    this.eachRelationship((name, descriptor) => {
       if (descriptor.kind === 'belongsTo') {
         const recordId = this.belongsTo(name).id();
         const inverseRecord = this.belongsTo(name).belongsToRelationship.inverseRecord;
@@ -101,7 +101,7 @@ export default Mixin.create({
           return;
         }
       }
-    }, this);
+    });
     return isDirty;
   }
 });

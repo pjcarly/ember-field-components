@@ -92,7 +92,7 @@ export default Component.extend(InputComponent, InputMomentFormat, {
 
   actions: {
     toggleCalendar: function(){
-      this.$('input').data("DateTimePicker").toggle();
+      this.$('input').data('DateTimePicker').toggle();
     }
   }
 });

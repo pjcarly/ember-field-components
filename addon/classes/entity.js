@@ -9,9 +9,8 @@ import { isBlank } from '@ember/utils';
 import { getOwner } from '@ember/application';
 
 export default Model.extend(ValidatorMixin, ModelRollbackMixin, ModelCopyMixin, LoadableModel, {
-  hasRoute: computed(function(){
-    // This property will check if a route exists for this model type based on the name of the model type
-    return !isBlank(getOwner(this).lookup(`route:${getModelName(this)}`));
+  hasViewRoute: computed(function(){
+    return this.hasRoute('view');
   }),
   isNew: computed('id', function() {
     return isBlank(this.get('id'));
@@ -21,5 +20,9 @@ export default Model.extend(ValidatorMixin, ModelRollbackMixin, ModelCopyMixin, 
   }),
   hasErrors: computed('errors.[]', function(){
     return this.get('errors.length') > 0;
-  })
+  }),
+  hasRoute(routeName){
+    // This property will check if a route exists for this model type based on the name of the model type
+    return !isBlank(getOwner(this).lookup(`route:${getModelName(this)}.${routeName}`));
+  }
 });
