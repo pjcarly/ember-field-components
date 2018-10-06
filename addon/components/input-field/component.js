@@ -54,8 +54,7 @@ export default OutputField.extend({
     return false;
   }),
   hasError: computed('model.errors.[]', function() {
-    var errors = this.get('model.errors');
-
+    const errors = this.get('model.errors');
     return errors.has(this.get('field'));
   }),
   actions: {

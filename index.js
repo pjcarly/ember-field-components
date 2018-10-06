@@ -5,10 +5,10 @@ var Funnel = require('broccoli-funnel');
 
 module.exports = {
     name: 'ember-field-components',
-    isDevelopingAddon: function () {
+    isDevelopingAddon() {
         return true;
     },
-    included: function (app) {
+    included(app) {
         this._super.included(app);
 
         app.import(app.bowerDirectory + '/moment/moment.js');
@@ -19,11 +19,11 @@ module.exports = {
         app.import(app.bowerDirectory + '/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js');
         app.import(app.bowerDirectory + '/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css');
     },
-    treeForTemplates: function () {
+    treeForTemplates() {
         return new Funnel(this.project.root + '/node_modules/'+this.name+'/app', {
             include: ['**/*.hbs'],
 
-            getDestinationPath: function (relativePath) {
+            getDestinationPath(relativePath) {
                 if (relativePath.indexOf('/template.hbs') !== -1) {
                     // Remove ".template" from the path, eg: pods/posts/template.hbs => templates/posts.hbs
                     return relativePath.substr(0, relativePath.lastIndexOf('/')) + '.hbs';

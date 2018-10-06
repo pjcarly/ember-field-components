@@ -1,9 +1,9 @@
 module.exports = {
   // Fix: https://github.com/ember-cli/ember-cli/pull/3846/files
-  normalizeEntityName: function (entityName) {
+  normalizeEntityName(entityName) {
     return entityName;
   },
-  afterInstall: function () {
+  afterInstall() {
     var addBowerPackageToProject = this.addBowerPackageToProject.bind(this);
 
     // return this.addPackagesToProject([

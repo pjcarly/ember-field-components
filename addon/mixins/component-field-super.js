@@ -36,11 +36,11 @@ export default Mixin.create(FieldTypeComponent, {
   }),
 
   value: computed('model', 'field', {
-    get: function() {
+    get() {
       let value = this.get('model').get(this.get('field'));
       return value;
     },
-    set: function(key, value) {
+    set(key, value) {
       return this.setValue(value);
     }
   }),

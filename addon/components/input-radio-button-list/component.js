@@ -11,7 +11,7 @@ export default Component.extend(InputComponent, {
     return isBlank(this.get('value'));
   }),
   actions: {
-    valueChanged: function(value) {
+    valueChanged(value) {
       this.set('value', value);
       this.notifyAction(value);
     }

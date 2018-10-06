@@ -4,14 +4,14 @@ import { isBlank } from '@ember/utils';
 
 // Converts centigrade in the JSON to fahrenheit in the app
 export default Transform.extend({
-  deserialize: function(serialized) {
+  deserialize(serialized) {
     if(isBlank(serialized)){
       return null;
     }
 
     return moment(serialized).toDate();
   },
-  serialize: function(deserialized) {
+  serialize(deserialized) {
     if (isBlank(deserialized)) {
       return null;
     }

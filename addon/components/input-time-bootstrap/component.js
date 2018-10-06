@@ -22,7 +22,7 @@ export default Component.extend(InputComponent, InputMomentFormat, {
     }
   }),
 
-  didInsertElement: function() {
+  didInsertElement() {
     var domElement = this.$('input');
     domElement.datetimepicker({
       format: this.get('momentFormat')
@@ -30,7 +30,7 @@ export default Component.extend(InputComponent, InputMomentFormat, {
   },
 
   actions: {
-    toggleCalendar: function(){
+    toggleCalendar(){
       this.$('input').data("DateTimePicker").toggle();
     }
   }

@@ -4,11 +4,11 @@ import { isBlank } from '@ember/utils';
 
 export default Mixin.create({
   computedValue: computed('value', {
-    get: function() {
+    get() {
       var value = this.get('value');
       return value;
     },
-    set: function(key, value) {
+    set(key, value) {
       const preSetHook = this.get('preSetHook');
       if(!isBlank(preSetHook)){
         value = preSetHook(value);

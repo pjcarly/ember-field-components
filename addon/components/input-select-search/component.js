@@ -8,7 +8,7 @@ export default Component.extend(InputComponent, {
   emptyValue: computed('value', function(){
     return isBlank(this.get('value'));
   }),
-  didInsertElement: function() {
+  didInsertElement() {
     var domElement = this.$('select');
     domElement.selectpicker();
   },
