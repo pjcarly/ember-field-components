@@ -8,14 +8,13 @@ Use setType from classes/attribute.js to create your attrtibute types on your mo
 For example:
 
 ```javascript
-import Ember from 'ember';
-import DS from 'ember-data';
-import Attribute from 'ember-field-components/classes/attribute';
+import Model from 'ember-data/model';
+import { setType } from 'ember-field-components/classes/attribute';
 
-export default DS.Model.extend({
-  firstName: Attribute.setType('string'),
-  lastName: Attribute.setType('string'),
-  email: Attribute.setType('email')
+export default Model.extend({
+  firstName: setType('string'),
+  lastName: setType('string'),
+  email: setType('email')
 }
 ```
 
@@ -70,12 +69,11 @@ Attributes with type `select` require you to define select options, possible val
 This is how you define selectOptions:
 
 ```javascript
-import Ember from 'ember';
-import DS from 'ember-data';
-import Attribute from 'ember-field-components/classes/attribute';
+import Model from 'ember-data/model';
+import { setType } from 'ember-field-components/classes/attribute';
 
-export default DS.Model.extend({
-  status: Attribute.setType('select', {
+export default Model.extend({
+  status: setType('select', {
     selectOptions: [{
       'value': 'draft',
       'label': 'Draft'
@@ -100,12 +98,11 @@ These attribute types require you to define the precision and amount of decimals
 
 For example:
 ```javascript
-import Ember from 'ember';
-import DS from 'ember-data';
-import Attribute from 'ember-field-components/classes/attribute';
+import Model from 'ember-data/model';
+import { setType } from 'ember-field-components/classes/attribute';
 
-export default DS.Model.extend({
-  totalPrice: Attribute.setType('price', {
+export default Model.extend({
+  totalPrice: setType('price', {
     precision: 18,
     decimals: 3
   })
@@ -150,12 +147,11 @@ Standard we use the [capitalized](http://emberjs.com/api/classes/Ember.String.ht
 For example:
 
 ```javascript
-import Ember from 'ember';
-import DS from 'ember-data';
-import Attribute from 'ember-field-components/classes/attribute';
+import Model from 'ember-data/model';
+import { setType } from 'ember-field-components/classes/attribute';
 
-let entity = DS.Model.extend({
-  totalPrice: Attribute.setType('price', {
+let entity = Model.extend({
+  totalPrice: setType('price', {
     precision: 18,
     decimals: 3
   })
