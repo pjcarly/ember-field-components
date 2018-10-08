@@ -208,4 +208,4 @@ More here later.
 
 
 ## Validation
-Validation is done with ember-attribute-validations, see github.com/pjcarly/ember-attribute-validations
+Validation is done with ember-attribute-validations, see https://gitlab.com/getflights/ember-attribute-validations
