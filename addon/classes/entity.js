@@ -3,7 +3,6 @@ import ValidatorMixin from 'ember-attribute-validations/mixins/validator';
 import ModelRollbackMixin from '../mixins/model-rollback';
 import ModelCopyMixin from '../mixins/model-entity-copy';
 import LoadableModel from 'ember-data-storefront/mixins/loadable-model';
-import { get } from '@ember/object';
 import { getModelName } from 'ember-field-components/classes/model-utils';
 import { computed } from '@ember/object';
 import { or } from '@ember/object/computed';
