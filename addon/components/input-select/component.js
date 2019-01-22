@@ -2,9 +2,11 @@ import Component from '@ember/component';
 import InputComponent from '../../mixins/component-input';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
+import { inject as service } from '@ember/service';
 
 export default Component.extend(InputComponent, {
   type: 'select',
+  intl: service(),
   hasPrefix: false,
   hasSuffix: false,
   showNone: computed('value', 'isRequired', function(){
@@ -16,8 +18,8 @@ export default Component.extend(InputComponent, {
   noneSelected: computed('value', 'isRequired', function(){
     return isBlank(this.get('value')) && this.get('isRequired');
   }),
-  noneLabel: computed('none', function(){
-    return isBlank(this.get('none')) ? '-- None --' : this.get('none');
+  noneLabel: computed('none', 'intl.locale', function(){
+    return isBlank(this.get('none')) ? this.get('intl').t('label.select_none') : this.get('none');
   }),
   computedValue: computed('value', function(){
     let value = this.get('value');
