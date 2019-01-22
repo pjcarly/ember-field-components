@@ -1,21 +1,27 @@
 import Component from '@ember/component';
-import { getLabel, getModelType } from 'ember-field-components/classes/model-utils';
+import { getModelName } from 'ember-field-components/classes/model-utils';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
+import { capitalize } from '@ember/string';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
   store: service(),
+  intl: service(),
   tagName: '',
-  labelComputed: computed('model', 'field', 'label', 'modelTypeName', function(){
+  labelComputed: computed('model', 'field', 'label', 'modelType', 'intl.locale', function(){
     const label = this.get('label');
-    if(isBlank(label)){
-      const { model, field, modelType } = this.getProperties('model', 'field', 'modelType');
 
-      if(!isBlank(modelType)){
-        return getLabel(getModelType(modelType, this.get('store')), field);
+    if(isBlank(label)){
+      const { model, field, intl } = this.getProperties('model', 'field', 'intl');
+      const modelType = isBlank(this.get('modelType')) ? getModelName(model) : this.get('modelType');
+
+      if(intl.exists(`ember-field-components.${modelType}.fields.${field}`)) {
+        return intl.t(`ember-field-components.${modelType}.fields.${field}`);
+      } else if(intl.exists(`ember-field-components.global.fields.${field}`)) {
+        return intl.t(`ember-field-components.global.fields.${field}`);
       } else {
-        return getLabel(model.constructor, field);
+        return capitalize(field);
       }
     }
     else {
