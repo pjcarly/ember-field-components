@@ -88,26 +88,6 @@ export function getModelListView(modelType, name) {
   }
 }
 
-export function getPlural(modelType) {
-  if(!isBlank(modelType)){
-    if (modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('plural') && !isBlank(modelType.settings.plural)) {
-      return modelType.settings.plural;
-    } else {
-      return capitalize(pluralize(modelType.modelName));
-    }
-  } else {
-    return null;
-  }
-}
-
-export function getLabel(modelType, field){
-  if (!isBlank(modelType) && modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('labels') && modelType.settings.labels[field]) {
-    return modelType.settings.labels[field];
-  } else {
-    return capitalize(field);
-  }
-}
-
 export function hasWidget(fieldAttributeOptions, widgetName) {
   return !isBlank(fieldAttributeOptions) && fieldAttributeOptions.hasOwnProperty('widget') && fieldAttributeOptions.widget === widgetName;
 }

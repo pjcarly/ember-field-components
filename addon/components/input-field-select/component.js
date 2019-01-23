@@ -13,6 +13,10 @@ export default Component.extend(FieldInputComponent, {
     const fieldOptions = this.get('fieldOptions');
     const selectOptions = [];
 
+    if(!fieldOptions.hasOwnProperty('selectOptions')){
+      return;
+    }
+
     fieldOptions.selectOptions.forEach((fieldSelectOption) => {
       const selectOption = {};
       selectOption.value = fieldSelectOption.value;
