@@ -6,7 +6,6 @@ import { capitalize } from '@ember/string';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-  store: service(),
   intl: service(),
   tagName: '',
   labelComputed: computed('model', 'field', 'label', 'modelType', 'intl.locale', function(){

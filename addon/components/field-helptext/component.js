@@ -1,21 +1,22 @@
 import Component from '@ember/component';
-import { getHelptext, getModelType } from 'ember-field-components/classes/model-utils';
+import { getModelName } from 'ember-field-components/classes/model-utils';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-  store: service(),
+  intl: service(),
   tagName: '',
-  helptextComputed: computed('model', 'field', 'label', 'modelTypeName', function(){
+  helptextComputed: computed('model', 'field', 'label', 'modelType', 'intl.locale', function(){
     const helptext = this.get('helptext');
     if(isBlank(helptext)){
-      const { model, field, modelType } = this.getProperties('model', 'field', 'modelType');
+      const { model, field, intl } = this.getProperties('model', 'field', 'intl');
+      const modelType = isBlank(this.get('modelType')) ? getModelName(model) : this.get('modelType');
 
-      if(!isBlank(modelType)){
-        return getHelptext(getModelType(modelType, this.get('store')), field);
-      } else {
-        return getHelptext(model.constructor, field);
+      if(intl.exists(`ember-field-components.${modelType}.helptexts.${field}`)) {
+        return intl.t(`ember-field-components.${modelType}.helptexts.${field}`);
+      } else if(intl.exists(`ember-field-components.global.helptexts.${field}`)) {
+        return intl.t(`ember-field-components.global.helptexts.${field}`);
       }
     }
     else {

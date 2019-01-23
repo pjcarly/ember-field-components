@@ -108,12 +108,6 @@ export function getLabel(modelType, field){
   }
 }
 
-export function getHelptext(modelType, field){
-  if (!isBlank(modelType) && modelType.hasOwnProperty('settings') && modelType.settings.hasOwnProperty('helptexts') && modelType.settings.helptexts[field]) {
-    return modelType.settings.helptexts[field];
-  }
-}
-
 export function hasWidget(fieldAttributeOptions, widgetName) {
   return !isBlank(fieldAttributeOptions) && fieldAttributeOptions.hasOwnProperty('widget') && fieldAttributeOptions.widget === widgetName;
 }
