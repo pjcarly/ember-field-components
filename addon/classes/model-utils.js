@@ -1,8 +1,6 @@
-import { pluralize } from 'ember-inflector';
 import { isBlank } from '@ember/utils';
 import { get } from '@ember/object';
 import { assert } from '@ember/debug';
-import { capitalize } from '@ember/string';
 
 export function getModelName(model){
   return model.constructor.modelName;
