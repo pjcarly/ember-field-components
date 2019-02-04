@@ -36,10 +36,7 @@ export default Model.extend(ValidatorMixin, ModelRollbackMixin, ModelCopyMixin, 
 
     let returnValue = false;
     for(const relationshipName in attrs) {
-      returnValue = this.get(relationshipName).toArray().some((relatedModel) => {
-        returnValue = relatedModel.get('isDirtyOrDeleted');
-        return returnValue;
-      });
+      returnValue = this.hasDirtyEmbeddedRelationship(relationshipName);
 
       if(returnValue){
         break;
@@ -47,6 +44,11 @@ export default Model.extend(ValidatorMixin, ModelRollbackMixin, ModelCopyMixin, 
     }
 
     return returnValue;
+  },
+  hasDirtyEmbeddedRelationship(relationshipName){
+    return this.get(relationshipName).toArray().some((relatedModel) => {
+      return relatedModel.get('isDirtyOrDeleted');
+    });
   },
   hasRoute(routeName){
     // This property will check if a route exists for this model type based on the name of the model type
