@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import InputComponent from '../../mixins/component-input';
 import InputMomentFormat from '../../mixins/component-input-moment-format';
-import { merge } from '@ember/polyfills';
+import { assign } from '@ember/polyfills';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
@@ -38,7 +38,7 @@ export default Component.extend(InputComponent, InputMomentFormat, {
     // options.debug = true;
 
     if(!isBlank(widgetOptions)){
-      merge(options, widgetOptions);
+      assign(options, widgetOptions);
     }
 
     const minDate = this.get('minDate');
