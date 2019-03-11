@@ -11,12 +11,13 @@ export default class LabelComponent extends Component {
   @service fieldInformation !: FieldInformation;
 
   tagName = '';
+
   label : string = '';
   modelName : string = '';
   field !: string;
   model !: Model;
 
-  @computed('model', 'field', 'label', 'modelType', 'intl.locale')
+  @computed('model', 'field', 'label', 'modelName', 'intl.locale')
   get labelComputed() {
     if(!isBlank(this.label)) {
       return this.label;
