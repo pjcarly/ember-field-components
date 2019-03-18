@@ -1,7 +1,7 @@
 import Helper from '@ember/component/helper';
 import { getOwner } from '@ember/application';
 
-export default Helper.extend({
+export default class ComponentExistsHelper extends Helper {
   compute([name]){
     const owner = getOwner(this);
     const lookup = owner.lookup('component-lookup:main');
@@ -12,4 +12,4 @@ export default Helper.extend({
 
     return !!(lookup.componentFor(name, owner) || lookup.layoutFor(name, owner));
   }
-});
+};
