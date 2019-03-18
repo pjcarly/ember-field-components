@@ -1,8 +1,0 @@
-<select class="selectpicker {{inputStyleClass}}" {{action 'valueChanged' on='change'}} tabindex="-1" data-live-search="true" id={{inputId}}>
-  {{#if emptyValue}}
-    {{option-none selected=true}}
-  {{/if}}
-  {{#each selectOptions as |selectOption|}}
-    {{option-selected selectOption value}}
-  {{/each}}
-</select>

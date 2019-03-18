@@ -1,4 +1,4 @@
-import BaseInputDate from 'ember-gf-components/base/BaseInputDate';
+import BaseInputDate from '../../base/BaseInputDate';
 
 export default class InputDateComponent extends BaseInputDate {
   type = 'date';
