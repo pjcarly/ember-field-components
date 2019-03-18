@@ -4,12 +4,12 @@ import Model from 'ember-data/model';
 import { computed } from '@ember-decorators/object';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember-decorators/service';
+import { tagName } from '@ember-decorators/component';
 
+@tagName('')
 export default class FieldHelptextComponent extends Component {
   @service intl !: any;
   @service fieldInformation !: FieldInformation;
-
-  tagName = '';
 
   model !: Model;
   field !: string;
