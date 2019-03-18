@@ -12,6 +12,16 @@ export default class InputField extends BaseField {
    */
   inputId !: string;
 
+  /**
+   * The CSS class you want to give to the input element in the DOM
+   */
+  inputClass : string = '';
+
+  /**
+   * The CSS class you want to give to the wrapper element of the input-field component
+   */
+  class: string = '';
+
   init() {
     super.init();
 
@@ -39,6 +49,30 @@ export default class InputField extends BaseField {
     return `${guidFor(this)}-input`;
   }
 
+  @computed('class', 'componentName', 'isRequired', 'hasError')
+  get computedClass() : string {
+    let styleClass = `input-field ${this.componentName}`;
+
+    if(this.class) {
+      styleClass += ` ${this.class}`;
+    }
+
+    if(this.isRequired) {
+      styleClass += ` is-required`;
+    }
+
+    if(this.hasError) {
+      styleClass += ` has-error`;
+    }
+
+    return styleClass;
+  }
+
+
+
+  /**
+   * The name of the subcomponent that will be injected as the input-field. This is dependent on the type of field
+   */
   @computed('type')
   get componentName() : string {
     let type = this.type;

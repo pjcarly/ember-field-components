@@ -2,7 +2,7 @@
   {{!-- <OutputField /> --}}
   READONLY
 {{else}}
-  <div class="input-field {{this.componentName}}{{if isRequired ' is-required'}}{{if hasError ' has-error'}}">
+  <div class={{computedClass}}>
     <FieldLabel @model={{@model}} @field={{@field}} @class={{@labelClass}} @label={{@label}} @for={{this.calculatedInputId}} />
 
     {{#if hasBlock}}

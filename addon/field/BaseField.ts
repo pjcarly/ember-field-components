@@ -93,7 +93,7 @@ export default class BaseField extends Component {
     return this.fieldInformation.getFieldIsRequired(this.fieldOptions);
   }
 
-  @computed('model.errors.[]')
+  @computed('model.errors.[]', 'field')
   get hasError() {
     const errors = this.model.get('errors');
     return errors.has(this.field);

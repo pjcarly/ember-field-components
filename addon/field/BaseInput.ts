@@ -5,9 +5,20 @@ import { tagName } from '@ember-decorators/component';
 
 @tagName('')
 export default class BaseInput extends Component {
-  type : string = 'text';
+  /**
+   * The type of Input Component. This will be added to the classes later
+   */
+  type !: string;
+
+  /**
+   * The Value of the input component
+   */
   value !: any;
-  inputClass : string = '';
+
+  /**
+   * The custom class you want to give to the component
+   */
+  class : string = '';
   placeholder : string = '';
   inputId : string = '';
 
@@ -25,8 +36,8 @@ export default class BaseInput extends Component {
   get computedClass() : string {
     let styleClass = `input ${this.type}`;
 
-    if(!isBlank(this.inputClass)){
-      styleClass += ` ${this.inputClass}`;
+    if(!isBlank(this.class)){
+      styleClass += ` ${this.class}`;
     }
 
     return styleClass;
