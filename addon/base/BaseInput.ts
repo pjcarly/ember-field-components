@@ -4,7 +4,7 @@ import { computed } from '@ember-decorators/object';
 import { tagName } from '@ember-decorators/component';
 
 @tagName('')
-export default class BaseInput extends Component {
+export default abstract class BaseInput extends Component {
   /**
    * The type of Input Component. This will be added to the classes later
    */

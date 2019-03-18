@@ -8,7 +8,7 @@ import { assert } from '@ember/debug';
 import { isBlank } from '@ember/utils';
 import { FieldOptionsInterface } from 'ember-gf-components/services/field-information';
 
-export default class BaseField extends Component {
+export default abstract class BaseField extends Component {
   @service store!: Store;
   @service fieldInformation !: FieldInformation;
 

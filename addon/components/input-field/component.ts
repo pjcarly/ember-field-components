@@ -1,4 +1,4 @@
-import BaseField from "../../field/BaseField";
+import BaseField from "../../base/BaseField";
 import { defineProperty, computed as classicComputed } from '@ember/object';
 import { computed, action } from '@ember-decorators/object';
 import { guidFor } from '@ember/object/internals';
