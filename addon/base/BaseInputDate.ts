@@ -1,5 +1,5 @@
-/** global moment */
 import BaseInput from './BaseInput';
+import moment from 'moment';
 import { isBlank } from '@ember/utils';
 import { computed } from '@ember-decorators/object';
 import { tagName } from '@ember-decorators/component';
@@ -19,7 +19,7 @@ export default abstract class BaseInputDate extends BaseInput {
   }
   set computedValue(value : any) {
     if (!isBlank(value)) {
-      value = moment(value, this.momentFormat).toDate();
+      value = moment(value, this.format).toDate();
     }
 
     value = this.preSetHook(value);

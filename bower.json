@@ -2,7 +2,6 @@
   "name": "ember-field-components",
   "dependencies": {
     "eonasdan-bootstrap-datetimepicker": "^4.17.37",
-    "moment": "^2.11.2",
     "autosize": "^3.0.20"
   }
 }
