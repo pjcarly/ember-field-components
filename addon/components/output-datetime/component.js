@@ -6,11 +6,11 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend(OutputComponent, {
   type: 'datetime',
-  fieldSettings: service(),
-  dateTimeFormat: computed('format', 'fieldSettings.dateTimeFormat', function(){
+  fieldInformation: service(),
+  dateTimeFormat: computed('format', 'fieldInformation.dateTimeFormat', function(){
     let format = this.get('format');
     if(isBlank(format)){
-      return this.get('fieldSettings.dateTimeFormat');
+      return this.get('fieldInformation.dateTimeFormat');
     } else {
       return format;
     }

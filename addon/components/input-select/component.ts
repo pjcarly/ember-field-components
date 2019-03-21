@@ -1,5 +1,5 @@
 import BaseInput from '../../base/BaseInput';
-import SelectOption from 'ember-gf-components/interfaces/SelectOption';
+import SelectOption from 'ember-field-components/interfaces/SelectOption';
 import { computed } from '@ember-decorators/object';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember-decorators/service';
@@ -12,19 +12,19 @@ export default class InputSelectComponent extends BaseInput {
   noneLabel : string = '';
   selectOptions: Array<SelectOption> = [];
 
-  @computed('value', 'required')
+  @computed('computedValue', 'required')
   get showNone() {
-    return isBlank(this.value) || this.required === false;
+    return isBlank(this.computedValue) || this.required === false;
   }
 
-  @computed('value', 'required')
+  @computed('computedValue', 'required')
   get noneDisabled() {
-    return isBlank(this.value) && this.required;
+    return isBlank(this.computedValue) && this.required;
   }
 
-  @computed('value', 'required')
+  @computed('computedValue', 'required')
   get noneSelected() {
-    return isBlank(this.value) && this.required;
+    return isBlank(this.computedValue) && this.required;
   }
 
   @computed('noneLabel', 'intl.local')

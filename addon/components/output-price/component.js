@@ -5,15 +5,15 @@ import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
 
 export default Component.extend(OutputComponent, {
-  fieldSettings: service(),
+  fieldInformation: service(),
   type: 'number',
-  numberOptions: computed('fieldSettings.currencyDisplay', 'fieldSettings.defaultCurrency', 'currency', 'precision', function(){
-    const currency = isBlank(this.get('currency')) ? this.get('fieldSettings.defaultCurrency') : this.get('currency');
+  numberOptions: computed('fieldInformation.currencyDisplay', 'fieldInformation.defaultCurrency', 'currency', 'precision', function(){
+    const currency = isBlank(this.get('currency')) ? this.get('fieldInformation.defaultCurrency') : this.get('currency');
 
     let options = {
       style: 'currency',
       currency: currency,
-      currencyDisplay: this.get('fieldSettings.currencyDisplay')
+      currencyDisplay: this.get('fieldInformation.currencyDisplay')
     };
 
     if(this.get('precision')) {

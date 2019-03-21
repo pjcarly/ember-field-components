@@ -3,7 +3,7 @@ import moment from 'moment';
 import { isBlank } from '@ember/utils';
 
 export default class MomentFormatHelper extends Helper {
-  compute([value, format]){
+  compute([value, format]: [Date, string]){
     if (isBlank(value)) {
       return null;
     }

@@ -8,16 +8,16 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend(InputComponent, InputMomentFormat, {
   type: 'date-bootstrap',
-  fieldSettings: service(),
+  fieldInformation: service(),
   showButton: true,
   isInputGroup: computed('showButton', 'hasPrefix', 'hasSuffix', function(){
     return this.get('showButton') || this.get('hasPrefix') || this.get('hasSuffix');
   }),
 
-  momentFormat: computed('format', 'fieldSettings.dateFormat', function(){
+  momentFormat: computed('format', 'fieldInformation.dateFormat', function(){
     let format = this.get('format');
     if(isBlank(format)){
-      return this.get('fieldSettings.dateFormat');
+      return this.get('fieldInformation.dateFormat');
     } else {
       return format;
     }

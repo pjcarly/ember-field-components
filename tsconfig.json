@@ -27,16 +27,16 @@
         "tests/dummy/app/*",
         "app/*"
       ],
-      "ember-gf-components": [
+      "ember-field-components": [
         "addon"
       ],
-      "ember-gf-components/*": [
+      "ember-field-components/*": [
         "addon/*"
       ],
-      "ember-gf-components/test-support": [
+      "ember-field-components/test-support": [
         "addon-test-support"
       ],
-      "ember-gf-components/test-support/*": [
+      "ember-field-components/test-support/*": [
         "addon-test-support/*"
       ],
       "*": [

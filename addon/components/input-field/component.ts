@@ -34,6 +34,7 @@ export default class InputField extends BaseField {
         return this.model.get(this.field);
       },
       set(_, value){
+        console.log(value);
         this.model.set(this.field, value);
         this.notifyExternalAction(value);
         return value;

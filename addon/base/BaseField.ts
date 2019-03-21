@@ -1,18 +1,18 @@
 import Component from '@ember/component';
 import Store from 'ember-data/store';
-import Model from 'ember-data/store';
+import Model from 'ember-data/model';
 import FieldInformation from 'ember-field-components/services/field-information';
 import { inject as service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 import { assert } from '@ember/debug';
 import { isBlank } from '@ember/utils';
-import { FieldOptionsInterface } from 'ember-gf-components/services/field-information';
+import { FieldOptionsInterface } from 'ember-field-components/services/field-information';
+import { tagName } from '@ember-decorators/component';
 
+@tagName('')
 export default abstract class BaseField extends Component {
   @service store!: Store;
   @service fieldInformation !: FieldInformation;
-
-  tagName = '';
 
   /**
    * The model you want to render a field for
@@ -46,7 +46,7 @@ export default abstract class BaseField extends Component {
    * Returns the model class looked up from the ember-data store.
    */
   @computed('modelName')
-  get modelClass() {
+  get modelClass() : any {
     return this.fieldInformation.getModelClass(this.modelName);
   }
 
@@ -84,18 +84,25 @@ export default abstract class BaseField extends Component {
   }
 
   @computed('fieldOptions')
-  get isReadOnly() {
+  get isReadOnly() : boolean {
     return this.fieldInformation.getFieldIsReadOnly(this.fieldOptions);
   }
 
   @computed('fieldOptions')
-  get isRequired() {
+  get isRequired() : boolean {
     return this.fieldInformation.getFieldIsRequired(this.fieldOptions);
   }
 
   @computed('model.errors.[]', 'field')
-  get hasError() {
+  get hasError() : boolean {
     const errors = this.model.get('errors');
     return errors.has(this.field);
+  }
+
+  @computed('fieldOptions')
+  get widgetName() : string | undefined {
+    const fieldOptions = this.fieldOptions;
+
+    return fieldOptions.hasOwnProperty('widget') ? fieldOptions.widget : undefined;
   }
 }

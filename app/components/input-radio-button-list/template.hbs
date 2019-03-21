@@ -1,10 +1,10 @@
-{{#if false}}
-  {{#each selectOptions as |selectOption|}}
-    <div class="radio">
-      <label class="active">
-        <input type="radio" value={{selectOption.value}} {{action 'valueChanged' selectOption.value}} checked={{eq selectOption.value value}}>
-        {{selectOption.label}}
-      </label>
-    </div>
-  {{/each}}
+{{#if showNone}}
+  <input type="radio" id={{this.inputId}} name={{this.inputIdComputed}} value={{selectOption.value}} checked={{not this.computedValue}} />
+  <label for={{this.inputId}}>{{noneLabelComputed}}</label>
 {{/if}}
+{{#each @selectOptions as |selectOption index|}}
+  {{#let (if (or showNone index) (concat this.inputId index) this.inputId) as |inputId|}}
+    <input type="radio" id={{inputId}} name={{this.inputIdComputed}} value={{selectOption.value}} checked={{eq selectOption.value this.computedValue}} onchange={{action (mut this.computedValue) selectOption.value}} />
+    <label for={{inputId}}>{{selectoption-label selectOption}}</label>
+  {{/let}}
+{{/each}}

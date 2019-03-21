@@ -3,7 +3,7 @@ import moment from 'moment';
 import { isBlank } from '@ember/utils';
 
 export default class MomentDateBeforeTodayHelper extends Helper {
-  compute([value]){
+  compute([value]: [Date|null]){
     if (isBlank(value)) {
       return false;
     }

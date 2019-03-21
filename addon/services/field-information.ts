@@ -5,10 +5,14 @@ import { inject as service } from '@ember-decorators/service';
 import { isBlank } from '@ember/utils';
 import { get } from '@ember/object';
 import { assert } from '@ember/debug';
+import SelectOption from 'ember-field-components/interfaces/SelectOption';
 
 export interface FieldOptionsInterface {
   readOnly: boolean;
   validation: FieldValidationInterface;
+  widget: string;
+  selectOptions: SelectOption[];
+  noneLabel: string;
 }
 
 export interface FieldValidationInterface {
@@ -19,7 +23,7 @@ export interface FieldValidationInterface {
   max: number;
 }
 
-export default class FieldSettingsService extends Service {
+export default class FieldInformationService extends Service {
   @service store !: Store;
 
   dateFormat : string = 'YYYY-MM-DD';
@@ -28,7 +32,7 @@ export default class FieldSettingsService extends Service {
   locale : string = 'nl-BE';
   currencyDisplay : string = 'symbol';
   defaultCurrency : string = 'EUR';
-  availableCurrencies : Array<string> = ['EUR', 'USD', 'GBP'];
+  availableCurrencies : string[] = ['EUR', 'USD', 'GBP'];
 
   /**
    * Returns the dasherized name of the model class

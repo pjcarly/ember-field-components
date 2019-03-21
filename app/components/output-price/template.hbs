@@ -3,7 +3,7 @@
 {{/if}}
 
 <span class={{if (or value (eq value 0)) 'value' 'value empty'}}>
-  {{number-format value fieldSettings.locale numberOptions}}
+  {{number-format value fieldInformation.locale numberOptions}}
 </span>
 
 {{#if hasSuffix}}

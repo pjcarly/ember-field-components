@@ -1,8 +1,8 @@
 <select onchange={{action (mut this.computedValue) value='target.value'}} class={{this.computedClass}} id={{@inputId}} disabled={{@disabled}}>
   {{#if this.showNone}}
-    {{option-none selected=this.noneSelected disabled=this.noneDisabled label=this.noneLabelComputed}}
+    <option selected={{not this.computedValue}} disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}</option>
   {{/if}}
   {{#each @selectOptions as |selectOption|}}
-    {{option-selected selectOption this.computedValue}}
+    <option value={{selectOption.value}} selected={{eq selectOption.value this.computedValue}}>{{selectoption-label selectOption}}</option>
   {{/each}}
 </select>

@@ -7,11 +7,11 @@ import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
 
 export default Component.extend(FieldInputComponent, {
-  fieldSettings: service(),
-  selectOptions: computed('fieldSettings.availableCurrencies', 'value', function() {
+  fieldInformation: service(),
+  selectOptions: computed('fieldInformation.availableCurrencies', 'value', function() {
     let selectOptions = [];
 
-    const availableCurrencies = this.get('fieldSettings.availableCurrencies');
+    const availableCurrencies = this.get('fieldInformation.availableCurrencies');
     availableCurrencies.forEach((currency) => {
       const selectOption = {
         'value': currency,

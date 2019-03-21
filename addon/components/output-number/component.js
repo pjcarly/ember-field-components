@@ -4,9 +4,9 @@ import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Component.extend(OutputComponent, {
-  fieldSettings: service(),
+  fieldInformation: service(),
   type: 'number',
-  format: computed('fieldSettings.numberFormat', function(){
-    return this.get('fieldSettings.numberFormat');
+  format: computed('fieldInformation.numberFormat', function(){
+    return this.get('fieldInformation.numberFormat');
   })
 });

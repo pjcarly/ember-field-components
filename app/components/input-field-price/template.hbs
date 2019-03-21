@@ -1,1 +1,1 @@
-{{input-number value=value valueChanged=(action 'valueChanged') placeholder=placeholder prefix=prefix suffix=currency styleClass=styleClass inputId=inputId}}
+<InputNumber @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @prefix={{@prefix}} @suffix={{this.currency}} @class={{@inputClass}} @inputId={{@inputId}} />

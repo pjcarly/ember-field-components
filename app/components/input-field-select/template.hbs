@@ -1,7 +1,9 @@
-{{#if isButtonGroup}}
-  {{input-button-group selectOptions=selectOptions value=value valueChanged=(action 'valueChanged') styleClass=styleClass inputId=inputId}}
-{{else if isSelectSearch}}
-  {{input-select-search selectOptions=selectOptions value=value valueChanged=(action 'valueChanged') styleClass=styleClass inputId=inputId}}
+{{this.widgetName}}
+
+{{#if (eq this.widgetName 'button-group')}}
+  {{input-button-group selectOptions=selectOptions value=value valueChanged=(action 'valueChanged') styleClass=styleClass noneLabel=noneLabel inputId=inputId required=required}}
+{{else if (eq this.widgetName 'radio-buttons')}}
+  <InputRadioButtonList @selectOptions={{this.selectOptions}} @value={{this.value}} @valueChanged={{action (mut this.value)}} @class={{@inputClass}} @inputId={{this.inputId}} @noneLabel={{this.noneLabel}} @required={{this.isRequired}} />
 {{else}}
-  {{input-select selectOptions=selectOptions value=value required=required valueChanged=(action 'valueChanged') styleClass=styleClass noneLabel=noneLabel inputId=inputId}}
+  <InputSelect @selectOptions={{this.selectOptions}} @value={{this.value}} @valueChanged={{action (mut this.value)}} @class={{@inputClass}} @inputId={{this.inputId}} @noneLabel={{this.noneLabel}} @required={{this.isRequired}} />
 {{/if}}

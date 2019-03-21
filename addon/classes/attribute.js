@@ -45,9 +45,9 @@ export function setType(type, options) {
       break;
     }
     case 'currency': {
-      const fieldSettings = lookup('service:field-settings');
+      const fieldInformation = lookup('service:field-information');
 
-      defaultOptions['defaultValue'] = fieldSettings.get('defaultCurrency');
+      defaultOptions['defaultValue'] = fieldInformation.get('defaultCurrency');
       break;
     }
     case 'email':

@@ -36,18 +36,19 @@ export default abstract class BaseInput extends Component {
   get computedClass() : string {
     let styleClass = `input ${this.type}`;
 
-    if(!isBlank(this.class)){
+    if(!isBlank(this.class)) {
       styleClass += ` ${this.class}`;
     }
 
     return styleClass;
   }
 
-  preSetHook(value: any){
+  preSetHook(value: any) {
     return value;
   }
 
-  valueChanged(value: any){
+  valueChanged(value: any) {
+    console.log(value);
     return value;
   }
 }

@@ -1,1 +1,1 @@
-{{input-email value=value valueChanged=(action 'valueChanged') placeholder=placeholder prefix=prefix suffix=suffix styleClass=styleClass inputId=inputId}}
+<InputEmail @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @prefix={{@prefix}} @suffix={{@suffix}} @class={{@inputClass}} @inputId={{@inputId}} />
