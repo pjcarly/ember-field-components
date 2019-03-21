@@ -33,7 +33,7 @@ export default class InputField extends BaseField {
       get(){
         return this.model.get(this.field);
       },
-      set(key, value){
+      set(_, value){
         this.model.set(this.field, value);
         this.notifyExternalAction(value);
         return value;
@@ -88,7 +88,7 @@ export default class InputField extends BaseField {
    * Provide your own function and get notified of new values
    * @param value The new value of the field
    */
-  valueChanged(value: any) {}
+  valueChanged(_: any) {}
 
   /**
    * This function gives you the ability to perform modifications on the value before it is set on the model. Pass your own function and return the value

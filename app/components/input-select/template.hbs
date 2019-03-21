@@ -1,8 +1,8 @@
-<select {{action 'valueChanged' on='change'}} class={{inputStyleClass}} id={{inputId}} disabled={{disabled}}>
-  {{#if showNone}}
-    {{option-none selected=noneSelected disabled=noneDisabled label=noneLabel}}
+<select onchange={{action (mut this.computedValue) value='target.value'}} class={{this.computedClass}} id={{@inputId}} disabled={{@disabled}}>
+  {{#if this.showNone}}
+    {{option-none selected=this.noneSelected disabled=this.noneDisabled label=this.noneLabelComputed}}
   {{/if}}
-  {{#each selectOptions as |selectOption|}}
-    {{option-selected selectOption computedValue}}
+  {{#each @selectOptions as |selectOption|}}
+    {{option-selected selectOption this.computedValue}}
   {{/each}}
 </select>
