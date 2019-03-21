@@ -1,9 +1,10 @@
 import Helper from '@ember/component/helper';
+import SelectOption from 'ember-gf-components/interfaces/SelectOption';
 import { isBlank } from '@ember/utils';
 import { htmlSafe } from '@ember/template';
 import { isArray } from '@ember/array';
 
-export default Helper.extend({
+export default class OptionSelectedHelper extends Helper {
   compute([selectoption, selectedvalue]){
     let label = this.getLabel(selectoption);
 
@@ -12,8 +13,9 @@ export default Helper.extend({
     }
 
     return htmlSafe('<option value="' + selectoption.value + '">' + label + '</option>');
-  },
-  getLabel(selectoption){
+  }
+
+  getLabel(selectoption: SelectOption){
     let label = selectoption.label;
 
     if (isBlank(label)) {
@@ -22,4 +24,4 @@ export default Helper.extend({
 
     return label;
   }
-});
+}

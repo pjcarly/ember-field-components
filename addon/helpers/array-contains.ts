@@ -2,7 +2,7 @@ import Helper from '@ember/component/helper';
 import { isArray } from '@ember/array';
 import { isBlank } from '@ember/utils';
 
-export default Helper.extend({
+export default class ArrayContainsHelper extends Helper {
   compute([array, value]){
     if (isBlank(value) || !isArray(array)) {
       return false;
@@ -10,4 +10,4 @@ export default Helper.extend({
 
     return array.indexOf(value) !== -1;
   }
-});
+}

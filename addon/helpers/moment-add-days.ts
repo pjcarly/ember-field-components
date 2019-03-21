@@ -2,7 +2,7 @@ import Helper from '@ember/component/helper';
 import moment from 'moment';
 import { isBlank } from '@ember/utils';
 
-export default Helper.extend({
+export default class MomentAddDaysHelper extends Helper {
   compute([value, days, format]){
     if (isBlank(value)) {
       return null;
@@ -14,4 +14,4 @@ export default Helper.extend({
       return moment(value).add(days, 'days').format(format);
     }
   }
-});
+}

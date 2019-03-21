@@ -1,7 +1,7 @@
 import Helper from '@ember/component/helper';
 import { isBlank } from '@ember/utils';
 
-export default Helper.extend({
+export default class NumberFormatHelper extends Helper {
   compute([value, locale, options]){
     if (isBlank(value)) {
       return null;
@@ -13,4 +13,4 @@ export default Helper.extend({
 
     return new Intl.NumberFormat(locale, options).format(value)
   }
-});
+}

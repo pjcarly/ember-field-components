@@ -2,7 +2,7 @@ import Helper from '@ember/component/helper';
 import moment from 'moment';
 import { isBlank } from '@ember/utils';
 
-export default Helper.extend({
+export default class MomentDateBeforeTodayHelper extends Helper {
   compute([value]){
     if (isBlank(value)) {
       return false;
@@ -11,4 +11,4 @@ export default Helper.extend({
     const today = moment();
     return moment(value).isBefore(today);
   }
-});
+}

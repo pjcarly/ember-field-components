@@ -2,7 +2,7 @@ import Helper from '@ember/component/helper';
 import moment from 'moment';
 import { isBlank } from '@ember/utils';
 
-export default Helper.extend({
+export default class MomentFormatLocalHelper extends Helper {
   compute([value, format]){
     if (isBlank(value)) {
       return null;
@@ -13,4 +13,4 @@ export default Helper.extend({
 
     return formattedValues;
   }
-});
+}

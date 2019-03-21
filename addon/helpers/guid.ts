@@ -2,7 +2,7 @@ import Helper from '@ember/component/helper';
 import { guidFor } from '@ember/object/internals';
 import { isBlank } from '@ember/utils';
 
-export default Helper.extend({
+export default class GuidHelper extends Helper {
   compute([value]){
     if (isBlank(value)) {
       return null;
@@ -10,4 +10,4 @@ export default Helper.extend({
 
     return guidFor(value);
   }
-});
+}
