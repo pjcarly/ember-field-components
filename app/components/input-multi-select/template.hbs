@@ -1,4 +1,4 @@
-<select onchange={{action (mut this.computedValue) value='target.value'}} class={{this.computedClass}} id={{@inputId}} disabled={{@disabled}} multiple>
+<select onchange={{action 'setValue'}} class={{this.computedClass}} id={{@inputId}} disabled={{@disabled}} multiple>
   {{#if this.showNone}}
     {{option-none selected=this.noneSelected disabled=this.noneDisabled label=this.noneLabelComputed}}
   {{/if}}
