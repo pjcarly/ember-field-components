@@ -6,7 +6,7 @@ import { isArray } from '@ember/array';
 
 export default class OptionSelectedHelper extends Helper {
   compute([selectoption, selectedvalue]){
-    let label = this.getLabel(selectoption);
+    const label = this.getLabel(selectoption);
 
     if(!isBlank(selectedvalue) && ((!isArray(selectedvalue) && selectoption.value === selectedvalue) || (isArray(selectedvalue) && selectedvalue.indexOf(selectoption.value) !== -1))){
       return htmlSafe('<option value="' + selectoption.value + '" selected="selected">' + label + '</option>');
