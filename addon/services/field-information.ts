@@ -1,11 +1,12 @@
 import Service from '@ember/service';
 import Store from 'ember-data/store';
 import Model from 'ember-data/model';
+import SelectOption from 'ember-field-components/interfaces/SelectOption';
 import { inject as service } from '@ember-decorators/service';
 import { isBlank } from '@ember/utils';
 import { get } from '@ember/object';
 import { assert } from '@ember/debug';
-import SelectOption from 'ember-field-components/interfaces/SelectOption';
+import { capitalize } from "@ember/string";
 
 export interface FieldOptionsInterface {
   readOnly: boolean;
@@ -25,6 +26,7 @@ export interface FieldValidationInterface {
 
 export default class FieldInformationService extends Service {
   @service store !: Store;
+  @service intl !: any;
 
   dateFormat : string = 'YYYY-MM-DD';
   dateTimeFormat : string = 'YYYY-MM-DD HH:mm:ss';
@@ -33,6 +35,22 @@ export default class FieldInformationService extends Service {
   currencyDisplay : string = 'symbol';
   defaultCurrency : string = 'EUR';
   availableCurrencies : string[] = ['EUR', 'USD', 'GBP'];
+
+  /**
+   * You can lookup a translated selectOptionLabel through this function
+   * @param modelName Name of the model where the field exists
+   * @param field Name of the field
+   * @param value The value of the SelectOption
+   */
+  getTranslatedSelectOptionLabel(modelName : string, field : string, value : string) : string {
+    if(this.intl.exists(`ember-field-components.${modelName}.select.${field}.${value}`)) {
+      return this.intl.t(`ember-field-components.${modelName}.select.${field}.${value}`);
+    } else if(this.intl.exists(`ember-field-components.global.select.${field}.${value}`)) {
+      return this.intl.t(`ember-field-components.global.select.${field}.${value}`);
+    } else {
+      return capitalize(value);
+    }
+  }
 
   /**
    * Returns the dasherized name of the model class

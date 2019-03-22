@@ -10,7 +10,7 @@ export default class InputSelectComponent extends BaseInput {
   type = 'select';
   required : boolean = false;
   noneLabel : string = '';
-  selectOptions: Array<SelectOption> = [];
+  selectOptions: SelectOption[] = [];
 
   @computed('computedValue', 'required')
   get showNone() {

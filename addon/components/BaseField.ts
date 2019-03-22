@@ -35,6 +35,16 @@ export default abstract class BaseField extends Component {
   labelClass: string = 'control-label';
 
   /**
+   * The CSS class you want to give to the wrapper element of the input-field component
+   */
+  class: string = '';
+
+  /**
+   * A hash containing possible options depending on the implementation
+   */
+  options: any = {};
+
+  /**
    * Returns the dasherized name of the model class
    */
   @computed('model')

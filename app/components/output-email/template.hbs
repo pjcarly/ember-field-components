@@ -1,17 +1,14 @@
-{{#if hasPrefix}}
- {{prefix}}
+{{#if @prefix}}
+  {{@prefix}}
 {{/if}}
-
-<span class={{if value 'value' 'value empty'}}>
-  {{value}}
+<span class={{if @value 'value' 'value empty'}}>
+  {{@value}}
 </span>
-
-{{#if hasSuffix}}
-  {{suffix}}
+{{#if @suffix}}
+  {{@suffix}}
 {{/if}}
-
-{{#if isButtonGroup}}
-  <a class="btn btn-default" href="mailto:{{value}}">
-    <span class="glyphicon glyphicon-envelope"></span>
+{{#if @value}}
+  <a class="btn btn-default email-button" href="mailto:{{value}}">
+    ✉️
   </a>
 {{/if}}

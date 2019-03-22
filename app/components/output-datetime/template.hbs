@@ -1,3 +1,9 @@
-<span class={{if value 'value' 'value empty'}}>
-  {{moment-format value dateTimeFormat}}
+{{#if @prefix}}
+  {{@prefix}}
+{{/if}}
+<span class={{if @value 'value' 'value empty'}}>
+  {{moment-format @value this.momentFormat}}
 </span>
+{{#if @suffix}}
+  {{@suffix}}
+{{/if}}

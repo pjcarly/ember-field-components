@@ -1,11 +1,9 @@
-{{#if hasPrefix}}
+{{#if (and prefix (or value (eq value 0)))}}
   {{prefix}}
 {{/if}}
-
 <span class={{if (or value (eq value 0)) 'value' 'value empty'}}>
   {{value}}
 </span>
-
-{{#if hasSuffix}}
+{{#if (and suffix (or value (eq value 0)))}}
   {{suffix}}
 {{/if}}

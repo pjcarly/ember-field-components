@@ -1,5 +1,11 @@
-{{#if value}}
-  <span class="glyphicon glyphicon-ok"></span>
+{{#if @prefix}}
+  {{@prefix}}
+{{/if}}
+{{#if @value}}
+  <span class="checked">☑</span>
 {{else}}
-  <span class="glyphicon glyphicon-unchecked"></span>
+  <span class="unchecked">☐</span>
+{{/if}}
+{{#if @suffix}}
+  {{@suffix}}
 {{/if}}

@@ -33,7 +33,7 @@ export default abstract class BaseInput extends Component {
   }
 
 
-  @computed('type', 'inputClass')
+  @computed('type', 'class')
   get computedClass() : string {
     let styleClass = `input ${this.type}`;
 
@@ -49,7 +49,6 @@ export default abstract class BaseInput extends Component {
   }
 
   valueChanged(value: any) {
-    console.log(value);
     return value;
   }
 }

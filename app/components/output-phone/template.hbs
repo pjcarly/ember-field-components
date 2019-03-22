@@ -1,17 +1,14 @@
-{{#if hasPrefix}}
- {{prefix}}
+{{#if @prefix}}
+  {{@prefix}}
 {{/if}}
-
-<span class={{if value 'value' 'value empty'}}>
-  {{value}}
+<span class={{if @value 'value' 'value empty'}}>
+  {{@value}}
 </span>
-
-{{#if hasSuffix}}
-  {{suffix}}
+{{#if @suffix}}
+  {{@suffix}}
 {{/if}}
-
-{{#if isButtonGroup}}
-  <a class="btn btn-default" href="tel:{{value}}">
-    <span class="glyphicon glyphicon-earphone"></span>
+{{#if @value}}
+  <a class="btn btn-default phone-button" href="tel:{{value}}">
+    📞
   </a>
 {{/if}}

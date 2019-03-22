@@ -1,9 +1,9 @@
-{{#if hasPrefix}}
- {{prefix}}
+{{#if @prefix}}
+  {{@prefix}}
 {{/if}}
-<span class={{if value 'value' 'value empty'}}>
-  {{value}}
+<span class={{if @value 'value' 'value empty'}}>
+  {{@value}}
 </span>
-{{#if hasSuffix}}
-  {{suffix}}
+{{#if @suffix}}
+  {{@suffix}}
 {{/if}}

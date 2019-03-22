@@ -5,7 +5,7 @@ import { guidFor } from '@ember/object/internals';
 import { tagName } from '@ember-decorators/component';
 
 @tagName('')
-export default class InputField extends BaseField {
+export default class InputFieldComponent extends BaseField {
   /**
    * Returns a unique dom id that can be used to identify the input element.
    * This is also bound to the label and put on the label "for" attribute
@@ -16,16 +16,6 @@ export default class InputField extends BaseField {
    * The CSS class you want to give to the input element in the DOM
    */
   inputClass : string = '';
-
-  /**
-   * The CSS class you want to give to the wrapper element of the input-field component
-   */
-  class: string = '';
-
-  /**
-   * A hash containing possible options depending on the implementation
-   */
-  options: any = {};
 
   init() {
     super.init();
@@ -39,7 +29,6 @@ export default class InputField extends BaseField {
         return this.model.get(this.field);
       },
       set(_, value){
-        console.log(value);
         this.model.set(this.field, value);
         this.notifyExternalAction(value);
         return value;
