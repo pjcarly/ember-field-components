@@ -1,9 +1,7 @@
-{{this.widgetName}}
-
 {{#if (eq this.widgetName 'button-group')}}
-  {{input-button-group selectOptions=selectOptions value=value valueChanged=(action 'valueChanged') styleClass=styleClass noneLabel=noneLabel inputId=inputId required=required}}
+  <InputButtonGroup @selectOptions={{this.selectOptions}} @value={{this.value}} @valueChanged={{action (mut this.value)}} @class={{@inputClass}} @inputId={{this.inputId}} @noneLabel={{this.noneLabel}} @required={{this.isRequired}} @options={{this.inputOptions}} />
 {{else if (eq this.widgetName 'radio-buttons')}}
-  <InputRadioButtonList @selectOptions={{this.selectOptions}} @value={{this.value}} @valueChanged={{action (mut this.value)}} @class={{@inputClass}} @inputId={{this.inputId}} @noneLabel={{this.noneLabel}} @required={{this.isRequired}} />
+  <InputRadioButtonList @selectOptions={{this.selectOptions}} @value={{this.value}} @valueChanged={{action (mut this.value)}} @class={{@inputClass}} @inputId={{this.inputId}} @noneLabel={{this.noneLabel}} @required={{this.isRequired}} @options={{this.inputOptions}} />
 {{else}}
-  <InputSelect @selectOptions={{this.selectOptions}} @value={{this.value}} @valueChanged={{action (mut this.value)}} @class={{@inputClass}} @inputId={{this.inputId}} @noneLabel={{this.noneLabel}} @required={{this.isRequired}} />
+  <InputSelect @selectOptions={{this.selectOptions}} @value={{this.value}} @valueChanged={{action (mut this.value)}} @class={{@inputClass}} @inputId={{this.inputId}} @noneLabel={{this.noneLabel}} @required={{this.isRequired}} @options={{this.inputOptions}} />
 {{/if}}

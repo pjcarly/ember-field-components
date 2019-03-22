@@ -1,4 +1,2 @@
-<div class="form-control toggle-switch">
-  <input type="checkbox" hidden="hidden" checked={{value}} onchange={{action 'valueChanged'}} id={{inputId}}/>
-  <label class="ts-helper" {{action 'valueChanged'}} ></label>
-</div>
+{{input type='checkbox' hidden="hidden" checked=this.computedValue class=this.computedClass id=@inputId}}
+<label {{action 'toggleSwitch'}}>Switch</label>

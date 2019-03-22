@@ -22,6 +22,11 @@ export default class InputField extends BaseField {
    */
   class: string = '';
 
+  /**
+   * A hash containing possible options depending on the implementation
+   */
+  options: any = {};
+
   init() {
     super.init();
 
@@ -83,6 +88,15 @@ export default class InputField extends BaseField {
     }
 
     return `input-field-${type}`;
+  }
+
+
+  /**
+   * These are options that will get bassed down to the input component
+   */
+  @computed('options.inputOptions')
+  get inputOptions() : any {
+    return this.options ? this.options.inputOptions : undefined;
   }
 
   /**

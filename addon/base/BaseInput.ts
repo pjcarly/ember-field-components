@@ -21,6 +21,7 @@ export default abstract class BaseInput extends Component {
   class : string = '';
   placeholder : string = '';
   inputId : string = '';
+  options: any = {};
 
   @computed('value')
   get computedValue() : any {
