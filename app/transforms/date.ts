@@ -2,20 +2,20 @@ import Transform from 'ember-data/transform';
 import moment from 'moment';
 import { isBlank } from '@ember/utils';
 
-// Converts centigrade in the JSON to fahrenheit in the app
-export default Transform.extend({
-  deserialize(serialized) {
+export default class DateTransform extends Transform {
+  deserialize(serialized: any) {
     if(isBlank(serialized)){
       return null;
     }
 
     return moment(serialized).toDate();
-  },
-  serialize(deserialized) {
+  }
+
+  serialize(deserialized: any) {
     if (isBlank(deserialized)) {
       return null;
     }
 
     return moment(deserialized).format('YYYY-MM-DD');
   }
-});
+}

@@ -1,4 +1,4 @@
-import BaseInputDate from '../../base/BaseInputDate';
+import BaseInputDate from '../BaseInputDate';
 
 export default class InputTimeComponent extends BaseInputDate {
   type = 'time';

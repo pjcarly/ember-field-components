@@ -1,4 +1,4 @@
-import BaseInput from '../../base/BaseInput';
+import BaseInput from '../BaseInput';
 import SelectOption from 'ember-field-components/interfaces/SelectOption';
 import { computed } from '@ember-decorators/object';
 import { isBlank } from '@ember/utils';

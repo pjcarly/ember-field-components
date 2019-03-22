@@ -1,4 +1,4 @@
-import BaseInput from '../../base/BaseInput';
+import BaseInput from '../BaseInput';
 import { action } from '@ember-decorators/object';
 
 export default class InputTextComponent extends BaseInput {
