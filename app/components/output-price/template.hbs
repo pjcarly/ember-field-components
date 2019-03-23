@@ -1,9 +1,9 @@
-{{#if hasPrefix}}
+{{#if prefix}}
   {{prefix}}
 {{/if}}
 <span class={{if (or value (eq value 0)) 'value' 'value empty'}}>
   {{number-format value fieldInformation.locale numberOptions}}
 </span>
-{{#if hasSuffix}}
+{{#if suffix}}
   {{suffix}}
 {{/if}}
