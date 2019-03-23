@@ -1,2 +1,8 @@
-{{input type='checkbox' hidden="hidden" checked=this.computedValue class=this.computedClass id=@inputId}}
-<label {{action 'toggleSwitch'}}>Switch</label>
+<div class="input-switch toggle-switch" {{action 'toggleSwitch'}}>
+  {{#if value}}
+    <input type="checkbox" hidden="hidden" checked="checked" />
+    <span class="ts-helper"></span>
+  {{else}}
+    <span class="ts-helper"></span>
+  {{/if}}
+</div>
