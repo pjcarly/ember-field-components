@@ -70,6 +70,22 @@ export default class FieldInformationService extends Service {
   }
 
   /**
+   * Returns an array of default includes defined on the provided modelclass
+   * @param modelName The name of the model you want the default includes for
+   */
+  getDefaultIncludes(modelName: string) : string[] {
+    const modelClass = this.getModelClass(modelName);
+
+    if(!isBlank(modelClass)){
+      if(modelClass.settings.defaultIncludes){
+        return modelClass.settings.defaultIncludes;
+      }
+    }
+
+    return [];
+  }
+
+  /**
    * Returns the fieldOptions that were defined in the attribute definition, this function returns the object that was defined in the modelclass definition.
    * @param modelName The dasherized string name of your model
    */
