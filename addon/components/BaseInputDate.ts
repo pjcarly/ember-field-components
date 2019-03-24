@@ -14,15 +14,20 @@ export default abstract class BaseInputDate extends BaseInput {
   @computed('value')
   get computedValue() : any {
     if (!isBlank(this.value) && (this.value instanceof Date)) {
-      return moment(this.value).format(this.format);
+      return moment(this.value).format(this.momentFormat);
     }
   }
   set computedValue(value : any) {
     if (!isBlank(value)) {
-      value = moment(value, this.format).toDate();
+      value = moment(value, this.momentFormat).toDate();
     }
 
     value = this.preSetHook(value);
     this.valueChanged(value);
+  }
+
+  @computed('format')
+  get momentFormat() : string {
+    return this.format;
   }
 }
