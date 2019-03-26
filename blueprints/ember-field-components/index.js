@@ -12,12 +12,6 @@ module.exports = {
     //   { name: 'eonasdan-bootstrap-datetimepicker', target: '^4.17.37' },
     // ]);
 
-    return addBowerPackageToProject('bootstrap-select', '^1.9.4')
-            .then(function () {
-              return addBowerPackageToProject('moment', '^2.11.2');
-            })
-            .then(function () {
-              return addBowerPackageToProject('eonasdan-bootstrap-datetimepicker', '^4.17.37');
-            });
+    return addBowerPackageToProject('eonasdan-bootstrap-datetimepicker', '^4.17.37');
   }
 };

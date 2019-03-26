@@ -1,5 +1,5 @@
-/* global moment */
 import Mixin from '@ember/object/mixin';
+import moment from 'moment';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 

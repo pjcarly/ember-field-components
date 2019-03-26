@@ -1,5 +1,5 @@
-/* global moment */
 import Helper from '@ember/component/helper';
+import moment from 'moment';
 import { isBlank } from '@ember/utils';
 
 export default Helper.extend({
