@@ -37,6 +37,33 @@ export default class FieldInformationService extends Service {
   availableCurrencies : string[] = ['EUR', 'USD', 'GBP'];
 
   /**
+   * Looks up the translations for the plural of a modelname, in case nothing was found, the modelName will be returned again
+   * @param modelName THe model name you want the translated plural form of
+   */
+  getTranslatedPlural(modelName: string) : string {
+    if(this.intl.exists(`ember-field-components.${modelName}.plural`)) {
+      return this.intl.t(`ember-field-components.${modelName}.plural`);
+    }
+
+    return modelName;
+  }
+
+  /**
+   * Returns the translated value of a field label. If nothing is found, the field will be capitalized
+   * @param modelName The name of the model
+   * @param field The field
+   */
+  getTranslatedFieldlabel(modelName : string, field : string) : string {
+    if(this.intl.exists(`ember-field-components.${modelName}.fields.${field}`)) {
+      return this.intl.t(`ember-field-components.${modelName}.fields.${field}`);
+    } else if(this.intl.exists(`ember-field-components.global.fields.${field}`)) {
+      return this.intl.t(`ember-field-components.global.fields.${field}`);
+    } else {
+      return capitalize(field);
+    }
+  }
+
+  /**
    * You can lookup a translated selectOptionLabel through this function
    * @param modelName Name of the model where the field exists
    * @param field Name of the field
