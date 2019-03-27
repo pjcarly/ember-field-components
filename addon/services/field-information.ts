@@ -36,6 +36,42 @@ export default class FieldInformationService extends Service {
   defaultCurrency : string = 'EUR';
   availableCurrencies : string[] = ['EUR', 'USD', 'GBP'];
 
+
+  /**
+   * Returns the inverse relationshipname for the passed modelname and relationshipname
+   * @param modelName The name of the model where the relationship is defined
+   * @param relationshipName The relationship you want to lookup the inverse relationshpname for
+   */
+  getInverseRelationshipName(modelName: string, relationshipName : string) : string | undefined {
+    const parent = this.getModelClass(modelName);
+    const relationships = parent.relationshipsByName;
+
+    if (relationships.has(relationshipName)) {
+      const relationship = relationships.get(relationshipName);
+      assert(`No explicit inverse relationship defined for ${relationshipName} on ${modelName}`, !isBlank(relationship.options.inverse));
+
+      return relationship.options.inverse;
+    }
+
+    return;
+  }
+
+  /**
+   * Looks up a hasMany relationship, and returns the modelname for the relationship
+   * @param modelName the name of the model where the hasmany is defined
+   * @param relationshipName the name of the relationship
+   */
+  getHasManyModelName(modelName: string, relationshipName: string) : string | undefined {
+    const parent = this.getModelClass(modelName);
+    const relationships = parent.relationshipsByName;
+
+    if(relationships.has(relationshipName) && relationships.get(relationshipName).kind === 'hasMany') {
+      return relationships.get(relationshipName).type;
+    }
+
+    return;
+  }
+
   /**
    * Looks up the translations for the plural of a modelname, in case nothing was found, the modelName will be returned again
    * @param modelName THe model name you want the translated plural form of
@@ -83,7 +119,7 @@ export default class FieldInformationService extends Service {
    * Returns the dasherized name of the model class
    * @param model The model you want the dasherized name for
    */
-  getModelName(model: Model){
+  getModelName(model: Model) : any {
     assert('No model provided for getModelName', !isBlank(model));
     return model.constructor.modelName;
   }
@@ -92,8 +128,16 @@ export default class FieldInformationService extends Service {
    * Returns the model class looked up from the ember-data store.
    * @param modelName The dasherized string name of your model
    */
-  getModelClass(modelName: string) {
+  getModelClass(modelName: string) : any {
     return this.store.modelFor(modelName);
+  }
+
+  /**
+   * Returns the model class for the passed model
+   * @param model The model you want the modelclass for
+   */
+  getModelClassForModel(model: Model) : any {
+    return this.getModelClass(this.getModelName(model));
   }
 
   /**
