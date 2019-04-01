@@ -48,7 +48,8 @@ export default abstract class BaseInput extends Component {
     return value;
   }
 
-  valueChanged(value: any) {
-    return value;
-  }
+  /**
+   * The action that can be passed into the component to get notified of changes
+   */
+  valueChanged(_: any) {}
 }

@@ -31,6 +31,11 @@ export default class InputFieldComponent extends BaseField {
       set(_, value){
         this.model.set(this.field, value);
         this.notifyExternalAction(value);
+
+        // And finally clear potential Errors
+        // let errors = model.get('errors');
+        // errors.remove(field);
+
         return value;
       }
     }));
@@ -76,7 +81,7 @@ export default class InputFieldComponent extends BaseField {
       type = 'text';
     }
 
-    return `input-field-${type}`;
+    return `input-field-${type}`.toLowerCase();
   }
 
 

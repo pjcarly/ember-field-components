@@ -1,5 +1,7 @@
 <div class={{computedClass}}>
-  <FieldLabel @model={{@model}} @field={{@field}} @class={{@labelClass}} @label={{@label}} />
+  {{#if (not this.inline)}}
+    <FieldLabel @model={{@model}} @field={{@field}} @class={{@labelClass}} @label={{@label}} />
+  {{/if}}
 
   {{#if hasBlock}}
     {{!-- You can provide your own component for output. By using the component as a block component. The label, and errors will be displayed --}}

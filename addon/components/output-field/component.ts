@@ -52,7 +52,7 @@ export default class OutputFieldComponent extends BaseField {
       type = 'text';
     }
 
-    return `output-field-${type}`;
+    return `output-field-${type}`.toLowerCase();
   }
 
   /**

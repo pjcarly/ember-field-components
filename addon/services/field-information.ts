@@ -14,6 +14,8 @@ export interface FieldOptionsInterface {
   widget: string;
   selectOptions: SelectOption[];
   noneLabel: string;
+  polymorphic: boolean; // Indicator that the belongsto relationship is polymorphic
+  filters: any[]; // Conditions that can be applied to a belongsto relationship for example
 }
 
 export interface FieldValidationInterface {
@@ -71,6 +73,48 @@ export default class FieldInformationService extends Service {
 
     return;
   }
+
+
+  /**
+   * Looks up the belongsto relationship and returns the modelname for the relationship. This is only for non-polymorphic relationships
+   * @param modelName the name of the model where the relationship exists
+   * @param relationshipName the name of the relationship on the model
+   */
+  getBelongsToModelName(modelName: string, relationshipName: string) : string | undefined {
+    const parent = this.getModelClass(modelName);
+    const relationships = parent.relationshipsByName;
+
+    if (relationships.has(relationshipName) && relationships.get(relationshipName).kind === 'belongsTo') {
+      const relationship = relationships.get(relationshipName);
+      assert(`Relationship ${relationshipName} for ${modelName} is a polymorphic relationship, use getBelongsToModelNames function instead`, !relationship.options.polymorphic);
+
+      return relationship.type;
+    }
+
+    return;
+  }
+
+  /**
+   * Looks up the belongsto relationship and returns the modelname for the relationship. This is only for polymorphic relationships
+   * @param modelName the name of the model where the polymorphic relationship exists
+   * @param relationshipName the name of the polymorphic relationship on the model
+   */
+  getBelongsToModelNames(modelName: string, relationshipName: string) : string[] {
+    const parent = this.getModelClass(modelName);
+    const relationships = parent.relationshipsByName;
+
+    if (relationships.has(relationshipName) && relationships.get(relationshipName).kind === 'belongsTo') {
+      const relationship = relationships.get(relationshipName);
+      assert(`Relationship ${relationshipName} for ${modelName} is not a polymorphic relationship, use getBelongsToModelName function instead`, relationship.options.polymorphic);
+      assert(`Relationship ${relationshipName} for ${modelName} should have the key allowedModelNames defined which should return an array with string values`, !isBlank(relationship.options.allowedModelNames));
+
+      const allowedModelNameNames = relationship.options.allowedModelNames;
+      return allowedModelNameNames;
+    }
+
+    return [];
+  }
+
 
   /**
    * Looks up the translations for the plural of a modelname, in case nothing was found, the modelName will be returned again
@@ -181,6 +225,47 @@ export default class FieldInformationService extends Service {
     assert(`Field options for field ${field} on model ${modelName} not found, it is not defined as an attribute or relationship`, !isBlank(fieldMeta));
 
     return fieldMeta.options;
+  }
+
+  /**
+   * This function returns the type of a field, nested lookups are possible. As well as support for ember-data-model-fragments
+   * @param modelName THe name of the model where the field exists
+   * @param field The name of the field
+   */
+  getFieldType(modelName: string, field: string) : string | undefined {
+    const modelClass = this.getModelClass(modelName);
+
+    const splittedField = field.split('.');
+    const meta = modelClass.metaForProperty(splittedField[0]);
+    if (!meta) {
+      assert(`No field type found for field ${field} on ${modelName}, attribute or relationship not defined on model?`);
+      return;
+    } else if (meta.isAttribute) {
+      let returnValue = meta.type;
+      if(!isBlank(returnValue) && returnValue.includes('-mf-fragment$')) { // Ember data model fragments
+        // We first get the name of the fragment
+        const modelFragmentName = returnValue.replace('-mf-fragment$', '');
+
+        // And because we splitted our field by the . earlier, we know that each path is a seperate key in the array
+        // We simply remove the first, field, and do a recursive look for the remainders, with the model fragment as modelName
+        // Even if that modelfragment has another modelfragment as attribute it should work just fine
+        splittedField.shift();
+        returnValue = this.getFieldType(modelFragmentName, splittedField.join('.'));
+      }
+
+      return returnValue;
+    } else if (meta.isRelationship) {
+      return meta.kind;
+    } else { // computed property
+
+      assert('Computed properties should have their type defined in the computedMeta key of the settings hash',
+        modelClass.settings.hasOwnProperty('computedMeta') &&
+        modelClass.settings.computedMeta.hasOwnProperty(field) &&
+        modelClass.settings.computedMeta[field].hasOwnProperty('type')
+      );
+
+      return modelClass.settings.computedMeta[field].type;
+    }
   }
 
   /**

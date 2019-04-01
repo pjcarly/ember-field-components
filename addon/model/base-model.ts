@@ -3,13 +3,16 @@ import ValidatorMixin from 'ember-attribute-validations/mixins/validator';
 import ModelRollbackMixin from '../mixins/model-rollback';
 import ModelCopyMixin from '../mixins/model-entity-copy';
 import LoadableModel from 'ember-data-storefront/mixins/loadable-model';
-import { getModelName } from 'ember-field-components/classes/model-utils';
 import { computed } from '@ember-decorators/object';
 import { or } from '@ember-decorators/object/computed';
 import { isBlank } from '@ember/utils';
 import { getOwner } from '@ember/application';
+import { inject as service } from '@ember-decorators/service';
+import FieldInformationService from 'ember-field-components/services/field-information';
 
 export default abstract class BaseModel extends Model.extend(ValidatorMixin, ModelRollbackMixin, ModelCopyMixin, LoadableModel) {
+  @service fieldInformation !: FieldInformationService;
+
   @computed
   get hasViewRoute() {
     return this.hasRoute('view');
@@ -62,7 +65,7 @@ export default abstract class BaseModel extends Model.extend(ValidatorMixin, Mod
    */
   hasDirtyEmbeddedRelationships() : boolean {
     // This functhasDirtyEmbeddedRelationshipsion checks whether the embedded relationships (which are being saved in 1 call with the main model) are dirty or deleted.
-    const modelName = getModelName(this);
+    const modelName = this.fieldInformation.getModelName(this);
     const serializer = this.store.serializerFor(modelName);
     const attrs = serializer.attrs;
 
@@ -99,6 +102,6 @@ export default abstract class BaseModel extends Model.extend(ValidatorMixin, Mod
    */
   hasRoute(routeName: string) : boolean {
     // This property will check if a route exists for this model type based on the name of the model type
-    return !isBlank(getOwner(this).lookup(`route:${getModelName(this)}.${routeName}`));
+    return !isBlank(getOwner(this).lookup(`route:${this.fieldInformation.getModelName(this)}.${routeName}`));
   }
 }

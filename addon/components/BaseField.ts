@@ -4,8 +4,6 @@ import Model from 'ember-data/model';
 import FieldInformation from 'ember-field-components/services/field-information';
 import { inject as service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
-import { assert } from '@ember/debug';
-import { isBlank } from '@ember/utils';
 import { FieldOptionsInterface } from 'ember-field-components/services/field-information';
 import { tagName } from '@ember-decorators/component';
 
@@ -63,29 +61,9 @@ export default abstract class BaseField extends Component {
   /**
    * The type of Field is returned. This is the attribute type provided in the modelclass definition
    */
-  @computed('modelType', 'field')
+  @computed('modelName', 'field')
   get type() : string | undefined {
-    // in the meta we find information about the property
-    const meta = this.modelClass.metaForProperty(this.field);
-    if (meta) {
-      if (meta.isAttribute) {
-        let returnValue = meta.type;
-        if(!isBlank(returnValue)){
-          // support for ember-data-model-fragments
-          returnValue = returnValue.replace('-mf-fragment$', '');
-        }
-
-        return returnValue;
-      } else if (meta.isRelationship) {
-        return meta.kind;
-      } else { // computed property
-        assert('Computed properties you want to use in a input or output component, should have the meta information defined via .meta', meta.hasOwnProperty('type'));
-        return meta.type;
-      }
-    }
-
-    assert('No field type found, attribute or relationshipo not defined on model?');
-    return;
+    return this.fieldInformation.getFieldType(this.modelName, this.field);;
   }
 
   @computed('modelName', 'field')
