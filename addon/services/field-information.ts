@@ -234,9 +234,9 @@ export default class FieldInformationService extends Service {
    */
   getFieldType(modelName: string, field: string) : string | undefined {
     const modelClass = this.getModelClass(modelName);
-
     const splittedField = field.split('.');
     const meta = modelClass.metaForProperty(splittedField[0]);
+
     if (!meta) {
       assert(`No field type found for field ${field} on ${modelName}, attribute or relationship not defined on model?`);
       return;
@@ -250,7 +250,12 @@ export default class FieldInformationService extends Service {
         // We simply remove the first, field, and do a recursive look for the remainders, with the model fragment as modelName
         // Even if that modelfragment has another modelfragment as attribute it should work just fine
         splittedField.shift();
-        returnValue = this.getFieldType(modelFragmentName, splittedField.join('.'));
+
+        if(splittedField.length > 1) {
+          returnValue = this.getFieldType(modelFragmentName, splittedField.join('.'));
+        } else {
+          returnValue = modelFragmentName;
+        }
       }
 
       return returnValue;
