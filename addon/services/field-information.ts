@@ -14,8 +14,6 @@ export interface FieldOptionsInterface {
   widget: string;
   selectOptions: SelectOption[];
   noneLabel: string;
-  polymorphic: boolean; // Indicator that the belongsto relationship is polymorphic
-  filters: any[]; // Conditions that can be applied to a belongsto relationship for example
 }
 
 export interface FieldValidationInterface {
@@ -263,7 +261,7 @@ export default class FieldInformationService extends Service {
       return meta.kind;
     } else { // computed property
 
-      assert('Computed properties should have their type defined in the computedMeta key of the settings hash',
+      assert(`Computed properties should have their type defined in the computedMeta key of the settings hash. ${modelName} - ${field}`,
         modelClass.settings.hasOwnProperty('computedMeta') &&
         modelClass.settings.computedMeta.hasOwnProperty(field) &&
         modelClass.settings.computedMeta[field].hasOwnProperty('type')
