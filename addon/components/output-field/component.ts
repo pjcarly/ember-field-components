@@ -1,6 +1,7 @@
 import BaseField from '../BaseField';
 import { defineProperty, computed as classicComputed } from '@ember/object';
 import { computed } from '@ember-decorators/object';
+import { dasherize } from '@ember/string';
 
 // export default Component.extend(FieldComponent, {
 //   fieldType: 'output',
@@ -32,13 +33,17 @@ export default class OutputFieldComponent extends BaseField {
 
   @computed('class', 'componentName')
   get computedClass() : string {
-    let styleClass = `output-field ${this.componentName}`;
+    const classes : string[] = [];
+
+    classes.push('output-field');
+    classes.push(this.componentName);
+    classes.push(`${dasherize(this.modelName)}-${dasherize(this.field)}`);
 
     if(this.class) {
-      styleClass += ` ${this.class}`;
+      classes.push(this.class);
     }
 
-    return styleClass;
+    return classes.join(' ');
   }
 
   /**

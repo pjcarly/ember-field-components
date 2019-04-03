@@ -1,2 +1,3 @@
-label:
-  select_none: '-- None --'
+ember-field-components:
+  label:
+    select_none: '-- None --'

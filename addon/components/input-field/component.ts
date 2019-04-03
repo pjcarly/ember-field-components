@@ -3,6 +3,7 @@ import { defineProperty, computed as classicComputed } from '@ember/object';
 import { computed, action } from '@ember-decorators/object';
 import { guidFor } from '@ember/object/internals';
 import { tagName } from '@ember-decorators/component';
+import { dasherize } from '@ember/string';
 
 @tagName('')
 export default class InputFieldComponent extends BaseField {
@@ -51,21 +52,25 @@ export default class InputFieldComponent extends BaseField {
 
   @computed('class', 'componentName', 'isRequired', 'hasError')
   get computedClass() : string {
-    let styleClass = `input-field ${this.componentName}`;
+    const classes : string[] = [];
+
+    classes.push('input-field');
+    classes.push(this.componentName);
+    classes.push(`${dasherize(this.modelName)}-${dasherize(this.field)}`);
 
     if(this.class) {
-      styleClass += ` ${this.class}`;
+      classes.push(this.class);
     }
 
     if(this.isRequired) {
-      styleClass += ` is-required`;
+      classes.push('is-required');
     }
 
     if(this.hasError) {
-      styleClass += ` has-error`;
+      classes.push('has-error');
     }
 
-    return styleClass;
+    return classes.join(' ');
   }
 
 

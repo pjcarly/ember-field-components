@@ -13,22 +13,22 @@ export default class InputSelectComponent extends BaseInput {
   selectOptions: SelectOption[] = [];
 
   @computed('computedValue', 'required')
-  get showNone() {
+  get showNone() : boolean {
     return isBlank(this.computedValue) || this.required === false;
   }
 
   @computed('computedValue', 'required')
-  get noneDisabled() {
+  get noneDisabled() : boolean {
     return isBlank(this.computedValue) && this.required;
   }
 
   @computed('computedValue', 'required')
-  get noneSelected() {
+  get noneSelected() : boolean {
     return isBlank(this.computedValue) && this.required;
   }
 
   @computed('noneLabel', 'intl.local')
-  get noneLabelComputed() {
-    return isBlank(this.noneLabel) ? this.intl.t('label.select_none') : this.noneLabel;
+  get noneLabelComputed() : string {
+    return isBlank(this.noneLabel) ? this.intl.t('ember-field-components.label.select_none') : this.noneLabel;
   }
 }
