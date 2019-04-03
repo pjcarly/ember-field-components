@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { isBlank } from '@ember/utils';
 import { computed } from '@ember-decorators/object';
 import { tagName } from '@ember-decorators/component';
 
@@ -23,12 +22,14 @@ export default abstract class BaseOutput extends Component {
 
   @computed('type', 'class')
   get computedClass() : string {
-    let styleClass = `output ${this.type}`;
+    const classes = [];
+    classes.push('output');
+    classes.push(this.type);
 
-    if(!isBlank(this.class)) {
-      styleClass += ` ${this.class}`;
+    if(this.class) {
+      classes.push(this.class);
     }
 
-    return styleClass;
+    return classes.join(' ');
   }
 }

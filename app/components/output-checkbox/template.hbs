@@ -1,11 +1,17 @@
-{{#if @prefix}}
-  {{@prefix}}
-{{/if}}
-{{#if @value}}
-  <span class="checked">☑</span>
-{{else}}
-  <span class="unchecked">☐</span>
-{{/if}}
-{{#if @suffix}}
-  {{@suffix}}
-{{/if}}
+<span class={{this.computedClass}}>
+  {{#if @prefix}}
+    <span class="prefix">
+      {{@prefix}}
+    </span>
+  {{/if}}
+  {{#if @value}}
+    <span class="checked">☑</span>
+  {{else}}
+    <span class="unchecked">☐</span>
+  {{/if}}
+  {{#if @suffix}}
+    <span class="suffix">
+      {{@suffix}}
+    </span>
+  {{/if}}
+</span>

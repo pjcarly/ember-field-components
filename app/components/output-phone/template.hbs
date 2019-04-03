@@ -1,14 +1,20 @@
-{{#if @prefix}}
-  {{@prefix}}
-{{/if}}
-<span class={{if @value 'value' 'value empty'}}>
-  {{@value}}
+<span class={{this.computedClass}}>
+  {{#if @prefix}}
+    <span class="prefix">
+      {{@prefix}}
+    </span>
+  {{/if}}
+  <span class={{if @value 'value' 'value empty'}}>
+    {{@value}}
+  </span>
+  {{#if @suffix}}
+    <span class="suffix">
+      {{@suffix}}
+    </span>
+  {{/if}}
+  {{#if @value}}
+    <a class="btn btn-default phone-button" href="tel:{{value}}">
+      📞
+    </a>
+  {{/if}}
 </span>
-{{#if @suffix}}
-  {{@suffix}}
-{{/if}}
-{{#if @value}}
-  <a class="btn btn-default phone-button" href="tel:{{value}}">
-    📞
-  </a>
-{{/if}}

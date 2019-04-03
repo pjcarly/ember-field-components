@@ -1,3 +1,15 @@
-<span class={{if selectedLabels 'value' 'value empty'}}>
-  {{selectedLabels}}
+<span class={{this.computedClass}}>
+  {{#if @prefix}}
+    <span class="prefix">
+      {{@prefix}}
+    </span>
+  {{/if}}
+  <span class={{if this.selectedLabels 'value' 'value empty'}}>
+    {{this.selectedLabels}}
+  </span>
+  {{#if @suffix}}
+    <span class="suffix">
+      {{@suffix}}
+    </span>
+  {{/if}}
 </span>
