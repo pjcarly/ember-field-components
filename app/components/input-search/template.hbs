@@ -1,7 +1,9 @@
-{{#if prefix}}
-  <span class="input-group-addon prefix">{{@prefix}}</span>
-{{/if}}
-{{input type='search' value=this.computedValue class=this.computedClass placeholder=@placeholder id=@inputId}}
-{{#if suffix}}
-  <span class="input-group-addon suffix">{{@suffix}}</span>
-{{/if}}
+<span class={{this.computedClass}}>
+  {{#if prefix}}
+    <span class="input-group-addon prefix">{{@prefix}}</span>
+  {{/if}}
+  {{input type='search' value=this.computedValue class='form-control' placeholder=@placeholder id=@inputId}}
+  {{#if suffix}}
+    <span class="input-group-addon suffix">{{@suffix}}</span>
+  {{/if}}
+</span>

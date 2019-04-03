@@ -22,6 +22,13 @@ export default abstract class BaseInput extends Component {
   placeholder : string = '';
   inputId : string = '';
   options: any = {};
+  prefix : string = '';
+  suffix : string = '';
+
+  /**
+   * A pass in attribute that can be set to force an input element as an input-group
+   */
+  inputGroup : boolean = false;
 
   @computed('value')
   get computedValue() : any {
@@ -32,16 +39,21 @@ export default abstract class BaseInput extends Component {
     this.valueChanged(value);
   }
 
-
   @computed('type', 'class')
   get computedClass() : string {
-    let styleClass = `input ${this.type}`;
+    const classes : string[] = [];
+    classes.push('input');
+    classes.push(this.type);
 
-    if(!isBlank(this.class)) {
-      styleClass += ` ${this.class}`;
+    if(this.class) {
+      classes.push(this.class);
     }
 
-    return styleClass;
+    if(!isBlank(this.prefix) || !isBlank(this.suffix) || this.inputGroup) {
+      classes.push('input-group');
+    }
+
+    return classes.join(' ');
   }
 
   preSetHook(value: any) {

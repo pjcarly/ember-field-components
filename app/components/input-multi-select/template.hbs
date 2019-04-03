@@ -1,8 +1,18 @@
-<select onchange={{action 'setValue'}} class={{this.computedClass}} id={{@inputId}} disabled={{@disabled}} multiple>
-  {{#if this.showNone}}
-    <option selected={{not this.computedValue}} disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}</option>
+<span class={{this.computedClass}}>
+  {{#if prefix}}
+    <span class="input-group-addon prefix">{{@prefix}}</span>
   {{/if}}
-  {{#each @selectOptions as |selectOption|}}
-    <option value={{selectOption.value}} selected={{array-contains this.computedValue selectOption.value}}>{{selectoption-label selectOption}}</option>
-  {{/each}}
-</select>
+
+  <select onchange={{action 'setValue'}} class='form-control' id={{@inputId}} disabled={{@disabled}} multiple>
+    {{#if this.showNone}}
+      <option selected={{not this.computedValue}} disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}</option>
+    {{/if}}
+    {{#each @selectOptions as |selectOption|}}
+      <option value={{selectOption.value}} selected={{array-contains this.computedValue selectOption.value}}>{{selectoption-label selectOption}}</option>
+    {{/each}}
+  </select>
+
+  {{#if suffix}}
+    <span class="input-group-addon suffix">{{@suffix}}</span>
+  {{/if}}
+</span>

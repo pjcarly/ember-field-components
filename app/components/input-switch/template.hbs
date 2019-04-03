@@ -1,8 +1,8 @@
-<div class="input-switch toggle-switch" {{action 'toggleSwitch'}}>
+<span class="{{this.computedClass}} toggle-switch form-control" {{action 'toggleSwitch'}}>
   {{#if value}}
     <input type="checkbox" hidden="hidden" checked="checked" />
     <span class="ts-helper"></span>
   {{else}}
     <span class="ts-helper"></span>
   {{/if}}
-</div>
+</span>
