@@ -12,9 +12,9 @@
       {{@suffix}}
     </span>
   {{/if}}
-  {{#if @value}}
+  {{#if (and @value this.showButton)}}
     <a class="btn btn-default email-button" href="mailto:{{value}}">
-      ✉️
+      <IconEmail />
     </a>
   {{/if}}
 </span>

@@ -8,44 +8,51 @@
     @inline={{@inline}} />
 {{else}}
   <div class={{computedClass}}>
-    {{#if (not this.inline)}}
-      <FieldLabel
-        @model={{@model}}
-        @field={{@field}}
-        @class={{@labelClass}}
-        @label={{@label}}
-        @for={{this.calculatedInputId}} />
-    {{/if}}
+    {{#if this.modelComputed}}
+      {{#if (not this.inline)}}
+        <FieldLabel
+          @model={{@model}}
+          @field={{@field}}
+          @class={{@labelClass}}
+          @label={{@label}}
+          @for={{this.calculatedInputId}} />
+      {{/if}}
 
-    {{#if hasBlock}}
-      {{!-- You can provide your own component for input. By using the component as a block component. The label, and errors will be displayed --}}
-      {{yield this.calculatedInputId}}
-    {{else if (component-exists this.componentName)}}
-      {{component this.componentName
-        model=@model
-        field=@field
-        placeholder=@placeholder
-        inputClass=@inputClass
-        prefix=@prefix
-        suffix=@suffix
-        inputId=this.calculatedInputId
-        options=@options
-        preSetHook=this.preSetHook
-        valueChanged=(action 'notifyExternalAction')}}
+      {{#if hasBlock}}
+        {{!-- You can provide your own component for input. By using the component as a block component. The label, and errors will be displayed --}}
+        {{yield this.calculatedInputId}}
+      {{else if (component-exists this.componentName)}}
+        {{component this.componentName
+          model=this.modelComputed
+          field=this.fieldComputed
+          placeholder=@placeholder
+          inputClass=@inputClass
+          prefix=@prefix
+          suffix=@suffix
+          inputId=this.calculatedInputId
+          options=@options
+          inline=this.inline
+          preSetHook=this.preSetHook
+          valueChanged=(action 'notifyExternalAction')}}
+      {{else}}
+        Component {{this.componentName}} does not exist
+      {{/if}}
+
+      {{#if (not this.inline)}}
+        <FieldHelptext
+          @model={{@model}}
+          @field={{@field}}
+          @class={{@helptextClass}}
+          @helptext={{@helptext}}
+          @for={{this.calculatedInputId}} />
+      {{/if}}
+      <FieldMessages
+        @model={{@model}}
+        @field={{@field}} />
     {{else}}
-      Component {{this.componentName}} does not exist
+      <span class="output">
+        <span class="value empty"></span>
+      </span>
     {{/if}}
-
-    {{#if (not this.inline)}}
-      <FieldHelptext
-        @model={{@model}}
-        @field={{@field}}
-        @class={{@helptextClass}}
-        @helptext={{@helptext}}
-        @for={{this.calculatedInputId}} />
-    {{/if}}
-    <FieldMessages
-      @model={{@model}}
-      @field={{@field}} />
   </div>
 {{/if}}

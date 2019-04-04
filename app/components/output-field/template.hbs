@@ -1,17 +1,30 @@
 <div class={{computedClass}}>
-  {{#if (not this.inline)}}
-    <FieldLabel @model={{@model}} @field={{@field}} @class={{@labelClass}} @label={{@label}} />
-  {{/if}}
+  {{#if modelComputed}}
+    {{#if (not this.inline)}}
+      <FieldLabel @model={{@model}} @field={{@field}} @class={{@labelClass}} @label={{@label}} />
+    {{/if}}
 
-  {{#if hasBlock}}
-    {{!-- You can provide your own component for output. By using the component as a block component. The label, and errors will be displayed --}}
-    {{yield}}
-  {{else if (component-exists this.componentName)}}
-    {{component this.componentName model=@model field=@field outputClass=@outputClass prefix=@prefix suffix=@suffix options=@options}}
+    {{#if hasBlock}}
+      {{!-- You can provide your own component for output. By using the component as a block component. The label, and errors will be displayed --}}
+      {{yield}}
+    {{else if (component-exists this.componentName)}}
+      {{component this.componentName
+        model=this.modelComputed
+        field=this.fieldComputed
+        outputClass=@outputClass
+        inline=this.inline
+        prefix=@prefix
+        suffix=@suffix
+        options=@options}}
+    {{else}}
+      Component {{this.componentName}} does not exist
+    {{/if}}
+
+    {{!-- <FieldHelptext @model={{@model}} @field={{@field}} @class={{@helptextClass}} @helptext={{@helptext}} @for={{this.calculatedInputId}} />
+    <FieldMessages @model={{@model}} @field={{@field}} /> --}}
   {{else}}
-    Component {{this.componentName}} does not exist
+    <span class="output">
+      <span class="value empty"></span>
+    </span>
   {{/if}}
-
-  {{!-- <FieldHelptext @model={{@model}} @field={{@field}} @class={{@helptextClass}} @helptext={{@helptext}} @for={{this.calculatedInputId}} />
-  <FieldMessages @model={{@model}} @field={{@field}} /> --}}
 </div>

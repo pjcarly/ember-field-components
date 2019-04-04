@@ -18,6 +18,11 @@ export default abstract class BaseOutput extends Component {
    * The custom class you want to give to the component
    */
   class : string = '';
+
+  /**
+   * Some output components display helper buttons (like mailto for email) you can hide those buttons by settings this bool
+   */
+  showButton : boolean = true;
   options: any = {};
 
   @computed('type', 'class')

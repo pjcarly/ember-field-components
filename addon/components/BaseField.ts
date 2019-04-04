@@ -46,16 +46,43 @@ export default abstract class BaseField extends Component {
    * Returns the dasherized name of the model class
    */
   @computed('model')
-  get modelName() : string {
-    return this.fieldInformation.getModelName(this.model);
+  get modelName() : string | undefined {
+    return this.modelComputed ? this.fieldInformation.getModelName(this.modelComputed) : undefined;
   }
 
   /**
    * Returns the model class looked up from the ember-data store.
    */
   @computed('modelName')
-  get modelClass() : any {
-    return this.fieldInformation.getModelClass(this.modelName);
+  get modelClass() : any | undefined {
+    return this.modelName ? this.fieldInformation.getModelClass(this.modelName) : undefined;
+  }
+
+  /**
+   * When a nested field is porvided we use the nested model, and the nested field
+   */
+  @computed('model', 'field')
+  get modelComputed() : Model /* | ModelFragment */ {
+    const splittedField = this.field.split('.');
+    let model = this.model;
+
+    if(splittedField.length > 1) { // nested value
+      splittedField.pop(); // remove the last field path
+      model = model.get(splittedField.join('.'));
+    }
+
+    return model;
+  }
+
+  @computed('field')
+  get fieldComputed() : string {
+    const splittedField = this.field.split('.');
+
+    if(splittedField.length > 1) {
+      return splittedField.pop();
+    } else {
+      return this.field;
+    }
   }
 
   /**
@@ -63,34 +90,34 @@ export default abstract class BaseField extends Component {
    */
   @computed('modelName', 'field')
   get type() : string | undefined {
-    return this.fieldInformation.getFieldType(this.modelName, this.field);;
+    return this.modelName ? this.fieldInformation.getFieldType(this.modelName, this.fieldComputed) : undefined;
   }
 
   @computed('modelName', 'field')
-  get fieldOptions() : FieldOptionsInterface {
-    return this.fieldInformation.getFieldOptions(this.modelName, this.field);
+  get fieldOptions() : FieldOptionsInterface | undefined {
+    return this.modelName ? this.fieldInformation.getFieldOptions(this.modelName, this.fieldComputed) : undefined;
   }
 
   @computed('fieldOptions')
   get isReadOnly() : boolean {
-    return this.fieldInformation.getFieldIsReadOnly(this.fieldOptions);
+    return this.fieldOptions ? this.fieldInformation.getFieldIsReadOnly(this.fieldOptions) : false;
   }
 
   @computed('fieldOptions')
   get isRequired() : boolean {
-    return this.fieldInformation.getFieldIsRequired(this.fieldOptions);
+    return this.fieldOptions ? this.fieldInformation.getFieldIsRequired(this.fieldOptions) : false;
   }
 
   @computed('model.errors.[]', 'field')
   get hasError() : boolean {
-    const errors = this.model.get('errors');
-    return errors.has(this.field);
+    const errors = this.modelComputed.get('errors');
+    return errors.has(this.fieldComputed);
   }
 
   @computed('fieldOptions')
   get widgetName() : string | undefined {
     const fieldOptions = this.fieldOptions;
 
-    return fieldOptions.hasOwnProperty('widget') ? fieldOptions.widget : undefined;
+    return fieldOptions && fieldOptions.hasOwnProperty('widget') ? fieldOptions.widget : undefined;
   }
 }

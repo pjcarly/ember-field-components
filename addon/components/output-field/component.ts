@@ -37,7 +37,13 @@ export default class OutputFieldComponent extends BaseField {
 
     classes.push('output-field');
     classes.push(this.componentName);
-    classes.push(`${dasherize(this.modelName)}-${dasherize(this.field)}`);
+    if(this.modelName) {
+      classes.push(`${dasherize(this.modelName)}-${dasherize(this.field)}`);
+    }
+
+    if(this.inline) {
+      classes.push('inline');
+    }
 
     if(this.class) {
       classes.push(this.class);

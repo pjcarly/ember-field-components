@@ -5,9 +5,13 @@
     </span>
   {{/if}}
   {{#if @value}}
-    <span class="checked">☑</span>
+    <span class="value checked">
+      <IconCheckboxChecked />
+    </span>
   {{else}}
-    <span class="unchecked">☐</span>
+    <span class="value unchecked">
+      <IconCheckboxUnchecked />
+    </span>
   {{/if}}
   {{#if @suffix}}
     <span class="suffix">
