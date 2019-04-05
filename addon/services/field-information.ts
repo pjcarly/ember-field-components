@@ -72,8 +72,6 @@ export default class FieldInformationService extends Service {
     return;
   }
 
-<<<<<<< HEAD
-=======
 
   /**
    * Looks up the belongsto relationship and returns the modelname for the relationship. This is only for non-polymorphic relationships
@@ -116,7 +114,6 @@ export default class FieldInformationService extends Service {
   }
 
 
->>>>>>> typescript-refactor
   /**
    * Looks up the translations for the plural of a modelname, in case nothing was found, the modelName will be returned again
    * @param modelName THe model name you want the translated plural form of
@@ -164,11 +161,7 @@ export default class FieldInformationService extends Service {
    * Returns the dasherized name of the model class
    * @param model The model you want the dasherized name for
    */
-<<<<<<< HEAD
-  getModelName(model: Model) : any {
-=======
   getModelName(model: Model) : string {
->>>>>>> typescript-refactor
     assert('No model provided for getModelName', !isBlank(model));
     return model.constructor.modelName;
   }
@@ -196,13 +189,8 @@ export default class FieldInformationService extends Service {
   getDefaultIncludes(modelName: string) : string[] {
     const modelClass = this.getModelClass(modelName);
 
-<<<<<<< HEAD
-    if(!isBlank(modelClass)){
-      if(modelClass.settings.defaultIncludes){
-=======
     if(!isBlank(modelClass)) {
       if(modelClass.settings.defaultIncludes) {
->>>>>>> typescript-refactor
         return modelClass.settings.defaultIncludes;
       }
     }
@@ -238,8 +226,6 @@ export default class FieldInformationService extends Service {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * This function returns the type of a field, nested lookups are possible. As well as support for ember-data-model-fragments
    * @param modelName THe name of the model where the field exists
    * @param field The name of the field
@@ -286,7 +272,6 @@ export default class FieldInformationService extends Service {
   }
 
   /**
->>>>>>> typescript-refactor
    * Checks if a field on a model is read only
    * @param FieldOptionsInterface The field meta information. You can get this via getFieldOptions
    */

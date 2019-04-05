@@ -1,12 +1,6 @@
 'use strict';
 
 module.exports = {
-<<<<<<< HEAD
-  name: 'ember-field-components',
-  isDevelopingAddon() {
-    return true;
-  }
-=======
   name: require('./package').name,
   isDevelopingAddon() {
     return true;
@@ -22,5 +16,4 @@ module.exports = {
   //   app.import('node_modules/bootstrap-slider/dist/bootstrap-slider.js');
   //   app.import('node_modules/bootstrap-slider/dist/css/bootstrap-slider.css');
   // }
->>>>>>> typescript-refactor
 };

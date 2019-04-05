@@ -45,13 +45,7 @@
     "ember-intl": "^3.5.2",
     "ember-load-initializers": "^1.1.0",
     "ember-resolver": "^5.0.1",
-<<<<<<< HEAD
-    "ember-source": "~3.8.0",
-    "loader.js": "^4.7.0",
-    "typescript": "^3.3.3333"
-=======
     "ember-source": "~3.8.0"
->>>>>>> typescript-refactor
   },
   "keywords": [
     "ember-addon",
@@ -60,10 +54,7 @@
   "dependencies": {
     "@ember-decorators/babel-transforms": "^3.1.0",
     "@ember/jquery": "~0.5.2",
-<<<<<<< HEAD
-=======
     "autosize": "^4.0.2",
->>>>>>> typescript-refactor
     "ember-ajax": "^4.0.2",
     "ember-cli-babel": "^7.1.2",
     "ember-cli-htmlbars": "^3.0.0",
