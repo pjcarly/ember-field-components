@@ -1,6 +1,6 @@
-<div class="btn-group" role="group">
+<div class={{this.classComputed}} role="group">
   {{#each selectOptions as |selectOption|}}
-    <button {{action 'valueChanged' selectOption.value}} class="btn{{if (eq selectOption.value value) ' active'}}{{if options.btnClass (concat ' ' options.btnClass) ' btn-default'}}">
+    <button {{action (mut this.computedValue) selectOption.value}} class="{{buttonClassComputed}}{{if (eq selectOption.value value) ' active'}}">
       {{selectoption-label selectOption}}
     </button>
   {{/each}}

@@ -1,5 +1,9 @@
-{{#each errors as |error|}}
-  <small class="help-block">
-    {{error.message}}
-  </small>
-{{/each}}
+{{#if errors}}
+  <div class="field-messages">
+    {{#each errors as |error|}}
+      <small class="help-block">
+        {{error.message}}
+      </small>
+    {{/each}}
+  </div>
+{{/if}}

@@ -1,5 +1,5 @@
-{{#if isSwitch}}
-  {{output-switch value=value}}
+{{#if (eq this.widgetName 'switch')}}
+  <OutputSwitch @value={{this.value}} @prefix={{@prefix}} @suffix={{@suffix}} @class={{@outputClass}} @options={{this.outputOptions}} />
 {{else}}
-  {{output-checkbox value=value}}
+  <OutputCheckbox @value={{this.value}} @prefix={{@prefix}} @suffix={{@suffix}} @class={{@outputClass}} @options={{this.outputOptions}} />
 {{/if}}

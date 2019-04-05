@@ -1,17 +1,20 @@
-{{#if hasPrefix}}
- {{prefix}}
-{{/if}}
-
-<span class={{if value 'value' 'value empty'}}>
-  {{value}}
+<span class={{this.computedClass}}>
+  {{#if @prefix}}
+    <span class="prefix">
+      {{@prefix}}
+    </span>
+  {{/if}}
+  <span class={{if @value 'value' 'value empty'}}>
+    {{@value}}
+  </span>
+  {{#if @suffix}}
+    <span class="suffix">
+      {{@suffix}}
+    </span>
+  {{/if}}
+  {{#if (and @value this.showButton)}}
+    <a class="btn btn-default email-button" href="mailto:{{value}}">
+      <IconEmail />
+    </a>
+  {{/if}}
 </span>
-
-{{#if hasSuffix}}
-  {{suffix}}
-{{/if}}
-
-{{#if isButtonGroup}}
-  <a class="btn btn-default" href="mailto:{{value}}">
-    <span class="glyphicon glyphicon-envelope"></span>
-  </a>
-{{/if}}

@@ -1,8 +1,20 @@
-<div class="output-switch toggle-switch">
-  {{#if value}}
-    <input type="checkbox" hidden="hidden" checked="checked" />
-    <span class="ts-helper"></span>
-  {{else}}
-    <span class="ts-helper"></span>
+<span class={{this.computedClass}}>
+  {{#if @prefix}}
+    <span class="prefix">
+      {{@prefix}}
+    </span>
   {{/if}}
-</div>
+  <span class="toggle-switch value">
+    {{#if @value}}
+      <input type="checkbox" hidden="hidden" checked="checked" />
+      <span class="ts-helper"></span>
+    {{else}}
+      <span class="ts-helper"></span>
+    {{/if}}
+  </span>
+  {{#if @suffix}}
+    <span class="suffix">
+      {{@suffix}}
+    </span>
+  {{/if}}
+</span>

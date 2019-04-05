@@ -1,15 +1,28 @@
 import Model from 'ember-data/model';
 import ValidatorMixin from 'ember-attribute-validations/mixins/validator';
+<<<<<<< HEAD
 import ModelRollbackMixin from '../mixins/model-rollback';
 import ModelCopyMixin from '../mixins/model-entity-copy';
 import LoadableModel from 'ember-data-storefront/mixins/loadable-model';
 import { getModelName } from 'ember-field-components/classes/model-utils';
+=======
+import LoadableModel from 'ember-data-storefront/mixins/loadable-model';
+>>>>>>> typescript-refactor
 import { computed } from '@ember-decorators/object';
 import { or } from '@ember-decorators/object/computed';
 import { isBlank } from '@ember/utils';
 import { getOwner } from '@ember/application';
+<<<<<<< HEAD
 
 export default abstract class BaseModel extends Model.extend(ValidatorMixin, ModelRollbackMixin, ModelCopyMixin, LoadableModel) {
+=======
+import { inject as service } from '@ember-decorators/service';
+import FieldInformationService from 'ember-field-components/services/field-information';
+
+export default abstract class BaseModel extends Model.extend(ValidatorMixin, LoadableModel) {
+  @service fieldInformation !: FieldInformationService;
+
+>>>>>>> typescript-refactor
   @computed
   get hasViewRoute() {
     return this.hasRoute('view');
@@ -34,15 +47,74 @@ export default abstract class BaseModel extends Model.extend(ValidatorMixin, Mod
   isDirtyOrDeleted !: boolean;
 
   /**
+<<<<<<< HEAD
+=======
+   * Rollbacks all dirty attributes, and possible child models that are dirty
+   */
+  rollback() {
+    // We override the rollback method provided by the ember-data-change-tracker
+    // Where we rollback child records which have the rollback option in the relationship meta
+    this.eachRelationship((name: string, descriptor : any) => {
+      if(descriptor.options.hasOwnProperty('rollback') && descriptor.options.rollback) {
+        const childModels = this.get(name);
+        if(!isBlank(childModels)) {
+          // Seriously no idea why the next statement needs toArray(), for some reason the enumerable returned above
+          // Sometimes gave a null value instead of a child while looping it
+          // by first casting it to array, and then looping it, everything worked fine, and all children were found
+          childModels.toArray().forEach((childModel : BaseModel) => {
+            childModel.rollback();
+          });
+        }
+      }
+    });
+
+    // Now we call the super, which does the rollback on the current model
+    super.rollback();
+  }
+
+  /**
+   * This method makes a copy of the current model, sets all the fields and belongsto relationships the same and returns the copy. The existing model is unchanged
+   */
+  copy() : BaseModel {
+    const modelName = this.fieldInformation.getModelName(this);
+    const copy = this.store.createRecord(modelName);
+
+    this.eachAttribute((attributeName : string) => {
+      const attributeValue = this.get(attributeName);
+
+      copy.set(attributeName, attributeValue);
+    });
+
+    this.eachRelationship((relationshipName: string, meta: any) => {
+      const relationship = this.get(relationshipName);
+
+      if (meta.kind === 'belongsTo') {
+        copy.set(relationshipName, relationship);
+      }
+    });
+
+    return copy;
+  }
+
+  /**
+>>>>>>> typescript-refactor
    * Checks whether any dirty embedded relationships exist on this model
    */
   hasDirtyEmbeddedRelationships() : boolean {
     // This functhasDirtyEmbeddedRelationshipsion checks whether the embedded relationships (which are being saved in 1 call with the main model) are dirty or deleted.
+<<<<<<< HEAD
     const modelName = getModelName(this);
     const serializer = this.store.serializerFor(modelName);
     const attrs = serializer.attrs;
 
     if(isBlank(attrs)){
+=======
+    const modelName = this.fieldInformation.getModelName(this);
+    const serializer = this.store.serializerFor(modelName);
+    const attrs = serializer.attrs;
+
+    if(isBlank(attrs)) {
+>>>>>>> typescript-refactor
       return false;
     }
 
@@ -50,7 +122,11 @@ export default abstract class BaseModel extends Model.extend(ValidatorMixin, Mod
     for(const relationshipName in attrs) {
       returnValue = this.hasDirtyEmbeddedRelationship(relationshipName);
 
+<<<<<<< HEAD
       if(returnValue){
+=======
+      if(returnValue) {
+>>>>>>> typescript-refactor
         break;
       }
     }
@@ -75,6 +151,10 @@ export default abstract class BaseModel extends Model.extend(ValidatorMixin, Mod
    */
   hasRoute(routeName: string) : boolean {
     // This property will check if a route exists for this model type based on the name of the model type
+<<<<<<< HEAD
     return !isBlank(getOwner(this).lookup(`route:${getModelName(this)}.${routeName}`));
+=======
+    return !isBlank(getOwner(this).lookup(`route:${this.fieldInformation.getModelName(this)}.${routeName}`));
+>>>>>>> typescript-refactor
   }
 }

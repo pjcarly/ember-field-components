@@ -1,7 +1,9 @@
-{{#if hasPrefix}}
-  <span class="input-group-addon prefix">{{prefix}}</span>
-{{/if}}
-{{input type='tel' value=computedValue class=inputStyleClass placeholder=placeholder id=inputId}}
-{{#if hasSuffix}}
-  <span class="input-group-addon suffix">{{suffix}}</span>
-{{/if}}
+<span class={{this.computedClass}}>
+  {{#if prefix}}
+    <span class="input-group-addon prefix">{{@prefix}}</span>
+  {{/if}}
+  {{input type='tel' value=this.computedValue class='form-control' placeholder=@placeholder id=@inputId}}
+  {{#if suffix}}
+    <span class="input-group-addon suffix">{{@suffix}}</span>
+  {{/if}}
+</span>

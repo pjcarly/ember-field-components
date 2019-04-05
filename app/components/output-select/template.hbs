@@ -1,3 +1,15 @@
-<span class={{if selectedvalue 'value' 'value empty'}}>
-  {{selectedvalue}}
+<span class={{this.computedClass}}>
+  {{#if @prefix}}
+    <span class="prefix">
+      {{@prefix}}
+    </span>
+  {{/if}}
+  <span data-select-option={{value}} class={{if @value 'value' 'value empty'}}>
+    {{this.selectedLabel}}
+  </span>
+  {{#if @suffix}}
+    <span class="suffix">
+      {{@suffix}}
+    </span>
+  {{/if}}
 </span>

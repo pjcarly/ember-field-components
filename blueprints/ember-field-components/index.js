@@ -4,6 +4,7 @@ module.exports = {
     return entityName;
   },
   afterInstall() {
+<<<<<<< HEAD
     var addBowerPackageToProject = this.addBowerPackageToProject.bind(this);
 
     // return this.addPackagesToProject([
@@ -13,5 +14,13 @@ module.exports = {
     // ]);
 
     return addBowerPackageToProject('eonasdan-bootstrap-datetimepicker', '^4.17.37');
+=======
+    return this.addPackagesToProject([
+      { name: 'autosize', target: '^4.0.2' },
+      { name: 'bootstrap', target: '^4.3.1' },
+      { name: 'eonasdan-bootstrap-datetimepicker', target: '^4.17.47' },
+      { name: 'bootstrap-slider', target: '^10.6.1' }
+    ]);
+>>>>>>> typescript-refactor
   }
 };

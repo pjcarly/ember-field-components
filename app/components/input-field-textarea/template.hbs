@@ -1,5 +1,5 @@
-{{#if isResizeable}}
-  {{input-textarea-resizeable value=value valueChanged=(action 'valueChanged') placeholder=placeholder styleClass=styleClass inputId=inputId}}
+{{#if (eq widgetName 'resizeable')}}
+  <InputTextareaResizeable @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @class={{@inputClass}} @inputId={{@inputId}} @options={{this.inputOptions}}/>
 {{else}}
-  {{input-textarea value=value valueChanged=(action 'valueChanged') placeholder=placeholder styleClass=styleClass inputId=inputId}}
+  <InputTextarea @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @class={{@inputClass}} @inputId={{@inputId}} @options={{this.inputOptions}}/>
 {{/if}}

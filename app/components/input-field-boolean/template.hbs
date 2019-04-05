@@ -1,5 +1,5 @@
-{{#if isSwitch}}
-  {{input-switch value=value valueChanged=(action 'valueChanged') styleClass=styleClass inputId=inputId}}
+{{#if (eq this.widgetName 'switch')}}
+  <InputSwitch @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @prefix={{@prefix}} @suffix={{@suffix}} @class={{@inputClass}} @inputId={{@inputId}} @options={{this.inputOptions}} />
 {{else}}
-  {{input-checkbox value=value valueChanged=(action 'valueChanged') styleClass=styleClass inputId=inputId}}
+  <InputCheckbox @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @prefix={{@prefix}} @suffix={{@suffix}} @class={{@inputClass}} @inputId={{@inputId}} @options={{this.inputOptions}} />
 {{/if}}

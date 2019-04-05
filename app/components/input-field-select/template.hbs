@@ -1,7 +1,31 @@
-{{#if isButtonGroup}}
-  {{input-button-group selectOptions=selectOptions value=value valueChanged=(action 'valueChanged') styleClass=styleClass inputId=inputId}}
-{{else if isSelectSearch}}
-  {{input-select-search selectOptions=selectOptions value=value valueChanged=(action 'valueChanged') styleClass=styleClass inputId=inputId}}
+{{#if (eq this.widgetName 'button-group')}}
+  <InputButtonGroup
+    @selectOptions={{this.selectOptions}}
+    @value={{this.value}}
+    @valueChanged={{action (mut this.value)}}
+    @class={{@inputClass}}
+    @inputId={{this.inputId}}
+    @noneLabel={{this.noneLabel}}
+    @required={{this.isRequired}}
+    @options={{this.inputOptions}} />
+{{else if (eq this.widgetName 'radio-buttons')}}
+  <InputRadioButtonList
+    @selectOptions={{this.selectOptions}}
+    @value={{this.value}}
+    @valueChanged={{action (mut this.value)}}
+    @class={{@inputClass}}
+    @inputId={{this.inputId}}
+    @noneLabel={{this.noneLabel}}
+    @required={{this.isRequired}}
+    @options={{this.inputOptions}} />
 {{else}}
-  {{input-select selectOptions=selectOptions value=value isRequired=required valueChanged=(action 'valueChanged') styleClass=styleClass none=none inputId=inputId}}
+  <InputSelect
+    @selectOptions={{this.selectOptions}}
+    @value={{this.value}}
+    @valueChanged={{action (mut this.value)}}
+    @class={{@inputClass}}
+    @inputId={{this.inputId}}
+    @noneLabel={{this.noneLabel}}
+    @required={{this.isRequired}}
+    @options={{this.inputOptions}} />
 {{/if}}

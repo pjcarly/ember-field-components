@@ -1,7 +1,7 @@
 import { isBlank } from '@ember/utils';
 
 export function round(value, exp) {
-  if (typeof exp === 'undefined' || +exp === 0){
+  if (typeof exp === 'undefined' || +exp === 0) {
     return Math.round(value);
   }
 
@@ -29,8 +29,8 @@ export function replaceAll(str, find, replace) {
   return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 }
 
-export function removeSpecialChars(str){
-  if(!isBlank(str)){
+export function removeSpecialChars(str) {
+  if(!isBlank(str)) {
     return str.replace(/[^\w\s]/gi, '');
   }
 }

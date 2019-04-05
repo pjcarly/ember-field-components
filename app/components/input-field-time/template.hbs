@@ -1,5 +1,5 @@
-{{#if isBootstrap}}
-  {{input-time-bootstrap value=value valueChanged=(action 'valueChanged') placeholder=placeholder prefix=prefix suffix=suffix styleClass=styleClass showButton=showButton inputId=inputId}}
+{{#if (eq this.widgetName 'bootstrap')}}
+  <InputTimeBootstrap @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @prefix={{@prefix}} @suffix={{@suffix}} @class={{@inputClass}} @inputId={{@inputId}} @options={{this.inputOptions}} />
 {{else}}
-  {{input-time value=value valueChanged=(action 'valueChanged') placeholder=placeholder prefix=prefix suffix=suffix styleClass=styleClass inputId=inputId}}
+  <InputTime @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @prefix={{@prefix}} @suffix={{@suffix}} @class={{@inputClass}} @inputId={{@inputId}} @options={{this.inputOptions}} />
 {{/if}}

@@ -1,8 +1,18 @@
-<select {{action 'valueChanged' on='change'}} class={{inputStyleClass}} id={{inputId}} disabled={{disabled}}>
-  {{#if showNone}}
-    {{option-none selected=noneSelected disabled=noneDisabled label=noneLabel}}
+<span class={{this.computedClass}}>
+  {{#if prefix}}
+    <span class="input-group-addon prefix">{{@prefix}}</span>
   {{/if}}
-  {{#each selectOptions as |selectOption|}}
-    {{option-selected selectOption computedValue}}
-  {{/each}}
-</select>
+
+  <select onchange={{action (mut this.computedValue) value='target.value'}} class="form-control" id={{@inputId}} disabled={{@disabled}}>
+    {{#if this.showNone}}
+      <option selected={{not this.computedValue}} value="" disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}</option>
+    {{/if}}
+    {{#each @selectOptions as |selectOption|}}
+      <option value={{selectOption.value}} selected={{eq selectOption.value this.computedValue}}>{{selectoption-label selectOption}}</option>
+    {{/each}}
+  </select>
+
+  {{#if suffix}}
+    <span class="input-group-addon suffix">{{@suffix}}</span>
+  {{/if}}
+</span>
