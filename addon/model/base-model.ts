@@ -1,7 +1,5 @@
 import Model from 'ember-data/model';
 import ValidatorMixin from 'ember-attribute-validations/mixins/validator';
-import ModelRollbackMixin from '../mixins/model-rollback';
-import ModelCopyMixin from '../mixins/model-entity-copy';
 import LoadableModel from 'ember-data-storefront/mixins/loadable-model';
 import { computed } from '@ember-decorators/object';
 import { or } from '@ember-decorators/object/computed';
@@ -10,7 +8,7 @@ import { getOwner } from '@ember/application';
 import { inject as service } from '@ember-decorators/service';
 import FieldInformationService from 'ember-field-components/services/field-information';
 
-export default abstract class BaseModel extends Model.extend(ValidatorMixin, ModelRollbackMixin, ModelCopyMixin, LoadableModel) {
+export default abstract class BaseModel extends Model.extend(ValidatorMixin, LoadableModel) {
   @service fieldInformation !: FieldInformationService;
 
   @computed
@@ -39,13 +37,13 @@ export default abstract class BaseModel extends Model.extend(ValidatorMixin, Mod
   /**
    * Rollbacks all dirty attributes, and possible child models that are dirty
    */
-  rollback(){
+  rollback() {
     // We override the rollback method provided by the ember-data-change-tracker
     // Where we rollback child records which have the rollback option in the relationship meta
     this.eachRelationship((name: string, descriptor : any) => {
       if(descriptor.options.hasOwnProperty('rollback') && descriptor.options.rollback) {
         const childModels = this.get(name);
-        if(!isBlank(childModels)){
+        if(!isBlank(childModels)) {
           // Seriously no idea why the next statement needs toArray(), for some reason the enumerable returned above
           // Sometimes gave a null value instead of a child while looping it
           // by first casting it to array, and then looping it, everything worked fine, and all children were found
@@ -61,6 +59,30 @@ export default abstract class BaseModel extends Model.extend(ValidatorMixin, Mod
   }
 
   /**
+   * This method makes a copy of the current model, sets all the fields and belongsto relationships the same and returns the copy. The existing model is unchanged
+   */
+  copy() : BaseModel {
+    const modelName = this.fieldInformation.getModelName(this);
+    const copy = this.store.createRecord(modelName);
+
+    this.eachAttribute((attributeName : string) => {
+      const attributeValue = this.get(attributeName);
+
+      copy.set(attributeName, attributeValue);
+    });
+
+    this.eachRelationship((relationshipName: string, meta: any) => {
+      const relationship = this.get(relationshipName);
+
+      if (meta.kind === 'belongsTo') {
+        copy.set(relationshipName, relationship);
+      }
+    });
+
+    return copy;
+  }
+
+  /**
    * Checks whether any dirty embedded relationships exist on this model
    */
   hasDirtyEmbeddedRelationships() : boolean {
@@ -69,7 +91,7 @@ export default abstract class BaseModel extends Model.extend(ValidatorMixin, Mod
     const serializer = this.store.serializerFor(modelName);
     const attrs = serializer.attrs;
 
-    if(isBlank(attrs)){
+    if(isBlank(attrs)) {
       return false;
     }
 
@@ -77,7 +99,7 @@ export default abstract class BaseModel extends Model.extend(ValidatorMixin, Mod
     for(const relationshipName in attrs) {
       returnValue = this.hasDirtyEmbeddedRelationship(relationshipName);
 
-      if(returnValue){
+      if(returnValue) {
         break;
       }
     }

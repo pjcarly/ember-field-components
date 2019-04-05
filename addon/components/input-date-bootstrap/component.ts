@@ -29,7 +29,7 @@ export default class InputDateBootstrapComponent extends InputDateComponent {
 
   @computed('format', 'fieldInformation.dateFormat')
   get momentFormat() : string {
-    if(isBlank(this.format)){
+    if(isBlank(this.format)) {
       return this.fieldInformation.dateFormat;
     } else {
       return this.format;
@@ -45,7 +45,7 @@ export default class InputDateBootstrapComponent extends InputDateComponent {
     }
   }
 
-  didInsertElement(){
+  didInsertElement() {
     super.didInsertElement();
 
     const domElement = $(`#${this.inputIdComputed}`);
@@ -82,7 +82,7 @@ export default class InputDateBootstrapComponent extends InputDateComponent {
   }
 
   @action
-  toggleCalendar(){
+  toggleCalendar() {
     const domElement = $(`#${this.inputIdComputed}`);
     domElement.data('DateTimePicker').toggle();
   }

@@ -2,7 +2,7 @@ import Helper from '@ember/component/helper';
 import { isString } from 'ember-attribute-validations/utils';
 
 export default class IsStringHelper extends Helper {
-  compute([value]: [any]){
+  compute([value]: [any]) {
     return isString(value);
   }
 }

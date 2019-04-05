@@ -15,7 +15,7 @@ export default class InputSliderComponent extends BaseInput {
 
   slider: JQuery | undefined;
 
-  didInsertElement(){
+  didInsertElement() {
     super.didInsertElement();
 
     const domElement = $(`#${this.inputIdComputed}`);
@@ -68,7 +68,7 @@ export default class InputSliderComponent extends BaseInput {
     return this.options && this.options.tooltip ? this.options.tooltip : 'show';
   }
 
-  sliderChanged({value}: any){
+  sliderChanged({value}: any) {
     this.computedValue = value;
   }
 }

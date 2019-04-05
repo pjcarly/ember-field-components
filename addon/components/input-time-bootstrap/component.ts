@@ -8,7 +8,7 @@ export default class InputDatetimeBootstrapComponent extends InputDateBootstrapC
 
   @computed('format', 'fieldInformation.timeFormat')
   get momentFormat() : string {
-    if(isBlank(this.format)){
+    if(isBlank(this.format)) {
       return this.fieldInformation.timeFormat;
     } else {
       return this.format;

@@ -4,7 +4,7 @@ import { isBlank } from '@ember/utils';
 
 export default class DateTransform extends Transform {
   deserialize(serialized: any) {
-    if(isBlank(serialized)){
+    if(isBlank(serialized)) {
       return null;
     }
 

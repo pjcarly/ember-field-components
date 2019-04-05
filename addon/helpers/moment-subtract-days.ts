@@ -3,7 +3,7 @@ import moment from 'moment';
 import { isBlank } from '@ember/utils';
 
 export default class MomentSubtractDaysHelper extends Helper {
-  compute([value, days, format]: [Date, number, string]){
+  compute([value, days, format]: [Date, number, string]) {
     if (isBlank(value)) {
       return null;
     }

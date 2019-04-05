@@ -2,7 +2,7 @@ import Helper from '@ember/component/helper';
 import { isBlank } from '@ember/utils';
 
 export default class NumberFormatHelper extends Helper {
-  compute([value, locale, options]: [number, string, any]){
+  compute([value, locale, options]: [number, string, any]) {
     if (isBlank(value)) {
       return null;
     }

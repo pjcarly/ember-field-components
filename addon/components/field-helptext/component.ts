@@ -19,7 +19,7 @@ export default class FieldHelptextComponent extends Component {
 
   @computed('model', 'field', 'helptext', 'modelName', 'intl.locale')
   get helptextComputed() {
-    if(!isBlank(this.helptext)){
+    if(!isBlank(this.helptext)) {
       return this.helptext;
     }
 

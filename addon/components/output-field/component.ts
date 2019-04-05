@@ -6,7 +6,7 @@ import { dasherize } from '@ember/string';
 // export default Component.extend(FieldComponent, {
 //   fieldType: 'output',
 //   classNameBindings: ['inline', 'fieldClasses'],
-//   fieldClasses: computed('model', 'field', function(){
+//   fieldClasses: computed('model', 'field', function() {
 //     return getModelName(this.get('model')) + '-' + dasherize(this.get('field'));
 //   }),
 // });
@@ -25,7 +25,7 @@ export default class OutputFieldComponent extends BaseField {
     // by using defineProperty, we can set the computed property on Init of this component, with the correct dependent keys.
 
     defineProperty(this, 'value', classicComputed('model', `model.${this.field}`, {
-      get(){
+      get() {
         return this.model.get(this.field);
       }
     }));

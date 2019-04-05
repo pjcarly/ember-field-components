@@ -3,7 +3,7 @@ import { guidFor } from '@ember/object/internals';
 import { isBlank } from '@ember/utils';
 
 export default class GuidHelper extends Helper {
-  compute([value] : [any]){
+  compute([value] : [any]) {
     if (isBlank(value)) {
       return null;
     }

@@ -189,8 +189,8 @@ export default class FieldInformationService extends Service {
   getDefaultIncludes(modelName: string) : string[] {
     const modelClass = this.getModelClass(modelName);
 
-    if(!isBlank(modelClass)){
-      if(modelClass.settings.defaultIncludes){
+    if(!isBlank(modelClass)) {
+      if(modelClass.settings.defaultIncludes) {
         return modelClass.settings.defaultIncludes;
       }
     }

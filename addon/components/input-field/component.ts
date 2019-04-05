@@ -26,10 +26,10 @@ export default class InputFieldComponent extends BaseField {
     // by using defineProperty, we can set the computed property on Init of this component, with the correct dependent keys.
 
     defineProperty(this, 'value', classicComputed('model', `model.${this.field}`, {
-      get(){
+      get() {
         return this.model.get(this.field);
       },
-      set(_, value){
+      set(_, value) {
         this.model.set(this.field, value);
         this.notifyExternalAction(value);
 

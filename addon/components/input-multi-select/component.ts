@@ -14,11 +14,11 @@ export default class InputMultiSelectComponent extends InputSelectComponent {
   }
 
   @action
-  setValue(){
+  setValue() {
     const element : HTMLSelectElement | null = <HTMLSelectElement> document.getElementById(this.inputIdComputed);
     const values : string[] = [];
 
-    if(!element){
+    if(!element) {
       this.computedValue = values;
       return;
     }
