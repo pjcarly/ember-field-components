@@ -1,9 +1,9 @@
 <span class={{this.computedClass}}>
-  {{#if prefix}}
+  {{#if @prefix}}
     <span class="input-group-addon prefix">{{@prefix}}</span>
   {{/if}}
-  {{input type='checkbox' checked=this.computedValue class='form-control' id=@inputId}}
-  {{#if suffix}}
+  {{input type="checkbox" checked=this.computedValue class="form-control" id=@inputId}}
+  {{#if @suffix}}
     <span class="input-group-addon suffix">{{@suffix}}</span>
   {{/if}}
 </span>
