@@ -9,7 +9,9 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:testall"
+    "test": "ember try:testall",
+    "prepublishOnly": "ember ts:precompile",
+    "postpublish": "ember ts:clean"
   },
   "repository": "",
   "engines": {
@@ -26,6 +28,7 @@
     "@types/ember__test-helpers": "^0.7.8",
     "@types/qunit": "^2.5.4",
     "@types/rsvp": "^4.0.2",
+    "babel-eslint": "^8.0.0",
     "broccoli-asset-rev": "^2.7.0",
     "ember-attribute-validations": "git+ssh://git@gitlab.com:getflights/ember-attribute-validations.git",
     "ember-cli": "^3.8.1",
@@ -66,7 +69,7 @@
     "ember-data": "^3.8.0",
     "ember-data-change-tracker": "^0.8.0",
     "ember-data-storefront": "^0.14.2",
-    "ember-decorators": "^5.1.4",
+    "ember-decorators": "5.2.0",
     "ember-truth-helpers": "^2.1.0"
   },
   "ember-addon": {
