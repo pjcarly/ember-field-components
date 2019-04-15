@@ -11,7 +11,7 @@ export default class OutputMultiSelectComponent extends OutputSelectComponent {
 
     if(isArray(selectedValues)) {
       for(const selectedValue of selectedValues) {
-        const selectedOption = this.selectOptions.findBy('value', selectedValue);
+        const selectedOption = this.selectOptionComputed.findBy('value', selectedValue);
 
         if(!isBlank(selectedOption)) {
           selectedLabels.push(selectedOption.label);
