@@ -1,36 +1,30 @@
 import BaseOutput from "../BaseOutput";
 import { computed } from '@ember-decorators/object';
-import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember-decorators/service';
-
-interface CurrencyOptions {
-  style : string;
-  currency : string;
-  currencyDisplay : string;
-  minimumFractionDigits ?: number;
-}
+import FieldInformationService from "dummy/services/field-information";
 
 export default class OutputTextComponent extends BaseOutput {
-  @service fieldInformation !: any;
+  @service fieldInformation !: FieldInformationService;
 
   type = 'price';
   currency !: string;
   precision !: number;
 
-  @computed('fieldInformation.currencyDisplay', 'fieldInformation.defaultCurrency', 'currency', 'precision')
-  get numberOptions() : CurrencyOptions {
-    const currency = isBlank(this.currency) ? this.fieldInformation.defaultCurrency : this.currency;
+  @computed('fieldInformation.defaultCurrency', 'currency')
+  get currencyComputed() : string {
+    if(this.currency) {
+      return this.currency;
+    } else {
+      return this.fieldInformation.defaultCurrency;
+    }
+  }
 
-    const options : CurrencyOptions = {
-      style: 'currency',
-      currency: currency,
-      currencyDisplay: this.fieldInformation.currencyDisplay
+  @computed('options.minimumDigits')
+  get minimumDigits() : number | undefined {
+    if(this.options.minimumDigits) {
+      return this.options.minimumDigits;
     }
 
-    if(this.precision) {
-      options['minimumFractionDigits'] = this.precision;
-    }
-
-    return options;
+    return;
   }
 }

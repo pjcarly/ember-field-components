@@ -5,7 +5,11 @@
     </span>
   {{/if}}
   <span class={{if (or value (eq value 0)) 'value' 'value empty'}}>
-    {{number-format value fieldInformation.locale numberOptions}}
+    {{format-number value
+        style='currency'
+        currency=this.currencyComputed
+        currencyDisplay=this.fieldInformation.currencyDisplay
+        minimumFractionDigits=precision}}
   </span>
   {{#if @suffix}}
     <span class="suffix">

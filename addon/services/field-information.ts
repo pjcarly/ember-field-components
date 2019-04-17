@@ -31,7 +31,7 @@ export default class FieldInformationService extends Service {
   dateFormat : string = 'YYYY-MM-DD';
   dateTimeFormat : string = 'YYYY-MM-DD HH:mm:ss';
   timeFormat : string = 'HH:mm:ss';
-  locale : string = 'nl-BE';
+  locale : string = 'en-001';
   currencyDisplay : string = 'symbol';
   defaultCurrency : string = 'EUR';
   availableCurrencies : string[] = ['EUR', 'USD', 'GBP'];
