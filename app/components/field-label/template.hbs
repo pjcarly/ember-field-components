@@ -1,3 +1,7 @@
-<label class={{@class}} for={{@for}}>
+{{#if this.inline}}
   {{this.labelComputed}}
-</label>
+{{else}}
+  <label class={{@class}} for={{@for}}>
+    {{this.labelComputed}}
+  </label>
+{{/if}}

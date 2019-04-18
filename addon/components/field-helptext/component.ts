@@ -24,11 +24,6 @@ export default class FieldHelptextComponent extends Component {
     }
 
     const modelName = isBlank(this.modelName) ? this.fieldInformation.getModelName(this.model) : this.modelName;
-
-    if(this.intl.exists(`ember-field-components.${modelName}.helptexts.${this.field}`)) {
-      return this.intl.t(`ember-field-components.${modelName}.helptexts.${this.field}`);
-    } else if(this.intl.exists(`ember-field-components.global.helptexts.${this.field}`)) {
-      return this.intl.t(`ember-field-components.global.helptexts.${this.field}`);
-    }
+    return this.fieldInformation.getTranslatedFieldHelptext(modelName, this.field);
   }
 }

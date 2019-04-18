@@ -142,6 +142,21 @@ export default class FieldInformationService extends Service {
   }
 
   /**
+   * Returns the translated value of a field helptext. If nothing is found, the field will be capitalized
+   * @param modelName The name of the model
+   * @param field The field
+   */
+  getTranslatedFieldHelptext(modelName : string, field : string) : string | undefined {
+    if(this.intl.exists(`ember-field-components.${modelName}.helptexts.${field}`)) {
+      return this.intl.t(`ember-field-components.${modelName}.helptexts.${field}`);
+    } else if(this.intl.exists(`ember-field-components.global.helptexts.${field}`)) {
+      return this.intl.t(`ember-field-components.global.helptexts.${field}`);
+    }
+
+    return;
+  }
+
+  /**
    * You can lookup a translated selectOptionLabel through this function
    * @param modelName Name of the model where the field exists
    * @param field Name of the field
