@@ -4,13 +4,17 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <span class={{if (or value (eq value 0)) 'value' 'value empty'}}>
-    {{format-number value
-        style='currency'
-        currency=this.currencyComputed
-        currencyDisplay=this.fieldInformation.currencyDisplay
-        minimumFractionDigits=precision}}
-  </span>
+  {{#if (or value (eq value 0))}}
+    <span class= 'value'>
+        {{format-number value
+            style='currency'
+            currency=this.currencyComputed
+            currencyDisplay=this.fieldInformation.currencyDisplay
+            minimumFractionDigits=precision}}
+    </span>
+  {{else}}
+    <span class="value empty"></span>
+  {{/if}}
   {{#if @suffix}}
     <span class="suffix">
       {{@suffix}}
