@@ -28,6 +28,11 @@ export default abstract class BaseField extends Component {
   inline : boolean = false;
 
   /**
+   * This flag marks the field as required, and renders a is-required class
+   */
+  required : boolean = false;
+
+  /**
    * The class you want to give the label accompanying the field
    */
   labelClass: string = 'control-label';
@@ -103,9 +108,9 @@ export default abstract class BaseField extends Component {
     return this.fieldOptions ? this.fieldInformation.getFieldIsReadOnly(this.fieldOptions) : false;
   }
 
-  @computed('fieldOptions')
+  @computed('fieldOptions', 'required')
   get isRequired() : boolean {
-    return this.fieldOptions ? this.fieldInformation.getFieldIsRequired(this.fieldOptions) : false;
+    return this.required || (this.fieldOptions ? this.fieldInformation.getFieldIsRequired(this.fieldOptions) : false);
   }
 
   @computed('model.errors.[]', 'field')
