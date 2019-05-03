@@ -51,8 +51,8 @@ export default abstract class BaseField extends Component {
    * Returns the dasherized name of the model class
    */
   @computed('model')
-  get modelName() : string {
-    return this.fieldInformation.getModelName(this.modelComputed);
+  get modelName() : string | undefined {
+    return this.modelComputed ? this.fieldInformation.getModelName(this.modelComputed) : undefined;
   }
 
   /**
