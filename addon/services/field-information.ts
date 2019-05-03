@@ -13,7 +13,6 @@ export interface FieldOptionsInterface {
   validation: FieldValidationInterface;
   widget: string;
   selectOptions: SelectOption[];
-  noneLabel: string;
 }
 
 export interface FieldValidationInterface {
@@ -169,6 +168,21 @@ export default class FieldInformationService extends Service {
       return this.intl.t(`ember-field-components.global.select.${field}.${value}`);
     } else {
       return capitalize(value);
+    }
+  }
+
+  /**
+   * You can lookup the none label translation for a specific field
+   * @param modelName Name of the model where the field exists
+   * @param field Name of the field
+   */
+  getTranslatedSelectNoneLabel(modelName : string, field : string) : string {
+    if(this.intl.exists(`ember-field-components.${modelName}.selectNone.${field}`)) {
+      return this.intl.t(`ember-field-components.${modelName}.selectNone.${field}`);
+    } else if(this.intl.exists(`ember-field-components.global.selectNone.${field}`)) {
+      return this.intl.t(`ember-field-components.global.selectNone.${field}`);
+    } else {
+      return this.intl.t(`ember-field-components.label.select_none`);
     }
   }
 

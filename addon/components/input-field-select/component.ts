@@ -13,7 +13,7 @@ export default class InputFieldSelectComponent extends InputField {
     const fieldOptions = this.fieldOptions;
     const selectOptions : SelectOption[] = [];
 
-    if(!fieldOptions.hasOwnProperty('selectOptions') || !isArray(fieldOptions.selectOptions)) {
+    if(!fieldOptions || !fieldOptions.hasOwnProperty('selectOptions') || !isArray(fieldOptions.selectOptions)) {
       return selectOptions;
     }
 
@@ -30,7 +30,7 @@ export default class InputFieldSelectComponent extends InputField {
   }
 
   @computed('fieldOptions')
-  get noneLabel() {
-    return this.fieldOptions.noneLabel;
+  get noneLabel() : string {
+    return this.fieldInformation.getTranslatedSelectNoneLabel(this.modelName, this.field);
   }
 }

@@ -1,5 +1,5 @@
 <span class={{this.computedClass}}>
-  {{#if prefix}}
+  {{#if @prefix}}
     <span class="input-group-addon prefix">{{@prefix}}</span>
   {{/if}}
 
@@ -12,7 +12,7 @@
     {{/each}}
   </select>
 
-  {{#if suffix}}
+  {{#if @suffix}}
     <span class="input-group-addon suffix">{{@suffix}}</span>
   {{/if}}
 </span>
