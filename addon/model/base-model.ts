@@ -83,6 +83,15 @@ export default abstract class BaseModel extends Model.extend(ValidatorMixin, Loa
   }
 
   /**
+   * Clears all the attribute values on this model
+   */
+  clearAttributes() {
+    this.eachAttribute((attributeName : string) => {
+      this.set(attributeName, null);
+    });
+  }
+
+  /**
    * Checks whether any dirty embedded relationships exist on this model
    */
   hasDirtyEmbeddedRelationships() : boolean {
