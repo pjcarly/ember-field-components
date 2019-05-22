@@ -88,6 +88,19 @@ export default abstract class BaseModel extends Model.extend(ValidatorMixin, Loa
   clearAttributes() {
     this.eachAttribute((attributeName : string) => {
       this.set(attributeName, null);
+      this.errors.remove(attributeName);
+    });
+  }
+
+  /**
+   * Clears all the belongsto relationship values
+   */
+  clearRelationships() {
+    this.eachRelationship((relationshipName: string, descriptor : any) => {
+      if(descriptor.kind === 'belongsTo') {
+        this.set(relationshipName, null);
+        this.errors.remove(relationshipName);
+      }
     });
   }
 
