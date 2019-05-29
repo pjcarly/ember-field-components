@@ -4,7 +4,7 @@ import { computed } from "@ember-decorators/object";
 
 export default class InputFieldCurrencyComponent extends InputFieldSelectComponent {
   @computed('fieldInformation.availableCurrencies')
-  get selectOptions() : SelectOption[] {
+  get selectOptionsComputed() : SelectOption[] {
     const selectOptions : SelectOption[] = [];
 
     for(const availableCurrency of this.fieldInformation.availableCurrencies) {

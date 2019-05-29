@@ -13,6 +13,8 @@ export interface FieldOptionsInterface {
   validation: FieldValidationInterface;
   widget: string;
   selectOptions: SelectOption[];
+  selectOptionDependencies: Map<string, string[]>|undefined;
+  dependentField: string;
 }
 
 export interface FieldValidationInterface {

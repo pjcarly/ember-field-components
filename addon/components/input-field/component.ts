@@ -18,6 +18,11 @@ export default class InputFieldComponent extends BaseField {
    */
   inputClass : string = '';
 
+  /**
+   * Will be defined as a classic computed property in the init() hook
+   */
+  value ?: any;
+
   init() {
     super.init();
 
