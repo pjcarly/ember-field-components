@@ -31,4 +31,18 @@ export default class InputSelectComponent extends BaseInput {
   get noneLabelComputed() : string {
     return isBlank(this.noneLabel) ? this.intl.t('ember-field-components.label.select_none') : this.noneLabel;
   }
+
+  @computed('selectOptions.[]')
+  get selectOptionsContainsValue() : boolean {
+    let returnValue = false;
+
+    for(const selectOption of this.selectOptions) {
+      if(selectOption.value === this.value) {
+        returnValue = true;
+        break;
+      }
+    }
+
+    return returnValue;
+  }
 }
