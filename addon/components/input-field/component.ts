@@ -36,7 +36,7 @@ export default class InputFieldComponent extends BaseField {
       },
       set(_, value) {
         this.model.set(this.field, value);
-        this.notifyExternalAction(value);
+        this.notifyExternalAction(value, this.value);
 
         // And finally clear potential Errors
         // let errors = model.get('errors');
@@ -114,7 +114,7 @@ export default class InputFieldComponent extends BaseField {
    * Provide your own function and get notified of new values
    * @param value The new value of the field
    */
-  valueChanged(_: any) {}
+  valueChanged(_: any, _2:any) {}
 
   /**
    * This function gives you the ability to perform modifications on the value before it is set on the model. Pass your own function and return the value
@@ -129,7 +129,7 @@ export default class InputFieldComponent extends BaseField {
    * @param value The new value
    */
   @action
-  notifyExternalAction(value : any) {
-    this.valueChanged(value);
+  notifyExternalAction(value : any, oldValue: any) {
+    this.valueChanged(value, oldValue);
   }
 }
