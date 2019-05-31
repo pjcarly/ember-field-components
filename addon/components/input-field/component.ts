@@ -85,8 +85,6 @@ export default class InputFieldComponent extends BaseField {
     return classes.join(' ');
   }
 
-
-
   /**
    * The name of the subcomponent that will be injected as the input-field. This is dependent on the type of field
    */
@@ -113,6 +111,7 @@ export default class InputFieldComponent extends BaseField {
   /**
    * Provide your own function and get notified of new values
    * @param value The new value of the field
+   * @param oldValue The old value of the field
    */
   valueChanged(_: any, _2:any) {}
 
