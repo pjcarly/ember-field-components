@@ -1,21 +1,23 @@
 import attr from 'ember-data/attr';
+// @ts-ignore
 import { fragment } from 'ember-data-model-fragments/attributes';
 import { isNumeric } from 'ember-attribute-validations/utils';
+// @ts-ignore
 import { lookup } from 'ember-dependency-lookup';
 import { assert } from '@ember/debug';
 import { assign } from '@ember/polyfills';
 import { isBlank, isEmpty } from '@ember/utils';
 
-export function setType(type, options) {
-  let defaultOptions = {};
-  let defaultValidations = {};
+export function setType(type: string, options: any) {
+  let defaultOptions : any = {};
+  let defaultValidations : any = {};
 
   // Depending on the type, lets set default values
   switch (type) {
     case 'number':
     case 'price':
     case 'percent': {
-      let precision, decimals;
+      let precision !: number, decimals !: number;
 
       if (!isBlank(options)) {
         if (options.hasOwnProperty('precision')) {
@@ -85,5 +87,6 @@ export function setType(type, options) {
   }
 
   // And return the DS attribute with the options
+  // @ts-ignore
   return attr(type, defaultOptions);
 }

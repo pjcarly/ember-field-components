@@ -39,6 +39,12 @@
       "ember-field-components/test-support/*": [
         "addon-test-support/*"
       ],
+      "ember-attribute-validations": [
+        "node_modules/ember-attribute-validations/addon"
+      ],
+      "ember-attribute-validations/*": [
+        "node_modules/ember-attribute-validations/addon/*"
+      ],
       "*": [
         "types/*"
       ]
@@ -51,6 +57,8 @@
     "tests/**/*",
     "types/**/*",
     "test-support/**/*",
-    "addon-test-support/**/*"
+    "addon-test-support/**/*",
+    "node_modules/ember-attribute-validations/app",
+    "node_modules/ember-attribute-validations/addon"
   ]
 }

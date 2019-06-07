@@ -3,14 +3,6 @@ import { defineProperty, computed as classicComputed } from '@ember/object';
 import { computed } from '@ember-decorators/object';
 import { dasherize } from '@ember/string';
 
-// export default Component.extend(FieldComponent, {
-//   fieldType: 'output',
-//   classNameBindings: ['inline', 'fieldClasses'],
-//   fieldClasses: computed('model', 'field', function() {
-//     return getModelName(this.get('model')) + '-' + dasherize(this.get('field'));
-//   }),
-// });
-
 export default class OutputFieldComponent extends BaseField {
   /**
    * The CSS class you want to give to the output element in the DOM
