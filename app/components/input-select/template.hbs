@@ -3,12 +3,15 @@
     <span class="input-group-addon prefix">{{@prefix}}</span>
   {{/if}}
 
-  <select onchange={{action (mut this.computedValue) value='target.value'}} class="form-control" id={{@inputId}} disabled={{@disabled}}>
+  <select onchange={{action (mut this.computedValue) value='target.value'}} class="form-control" id={{@inputId}}
+    disabled={{@disabled}}>
     {{#if this.showNone}}
-      <option selected={{not this.computedValue}} value="" disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}</option>
+      <option selected={{not this.computedValue}} value="" disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}
+      </option>
     {{/if}}
     {{#each @selectOptions as |selectOption|}}
-      <option value={{selectOption.value}} selected={{eq selectOption.value this.computedValue}}>{{selectoption-label selectOption}}</option>
+      <option value={{selectOption.value}} selected={{deq selectOption.value this.computedValue}}>
+        {{selectoption-label selectOption}}</option>
     {{/each}}
     {{#if (and @value (not this.selectOptionsContainsValue))}}
       <option value={{@value}} selected={{true}}>{{@value}}</option>
