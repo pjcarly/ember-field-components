@@ -78,6 +78,7 @@ export default abstract class BaseField extends Component {
     if (splittedField.length > 1) {
       // nested value
       splittedField.pop(); // remove the last field path
+      // @ts-ignore
       model = model.get(splittedField.join("."));
     }
 
@@ -89,6 +90,7 @@ export default abstract class BaseField extends Component {
     const splittedField = this.field.split(".");
 
     if (splittedField.length > 1) {
+      // @ts-ignore
       return splittedField.pop();
     } else {
       return this.field;

@@ -13,7 +13,7 @@ export default class OutputSelectComponent extends BaseOutput {
   selectOptions!: SelectOption[];
 
   @computed("selectOptions")
-  get selectOptionComputed(): MutableArray {
+  get selectOptionComputed(): MutableArray<SelectOption> {
     return A(this.selectOptions);
   }
 
@@ -25,7 +25,7 @@ export default class OutputSelectComponent extends BaseOutput {
         this.value
       );
 
-      if (!isBlank(selectedOption)) {
+      if (selectedOption) {
         return selectedOption.label;
       }
     }

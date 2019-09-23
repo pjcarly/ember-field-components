@@ -1,73 +1,57 @@
 <h2>Company</h2>
-{{#each this.company.errors as |error|}}
-  <p style="color: red;"><strong>({{error.attribute}})</strong> {{error.message}}</p>
-{{/each}}
+<ModelMessages @model={{this.company}} @displayAll={{true}} />
 
 <div>
-  <label for="name">Name</label>
-  {{input id="name" value=this.company.name}}
-  <small>Required</small>
+  <InputField @model={{this.company}} @field="name" />
+  <OutputField @model={{this.company}} @field="name" />
 </div>
 <div>
-  <label for="vatNumber">VAT Number</label>
-  {{input id="vatNumber" value=this.company.vatNumber}}
-  <small>Max: 10</small>
+  <InputField @model={{this.company}} @field="vatNumber" />
+  <OutputField @model={{this.company}} @field="vatNumber" />
 </div>
 <div>
-  <label for="rating">Rating</label>
-  {{input id="rating" value=this.company.rating}}
-  <small>Range: 0-5</small>
+  <InputField @model={{this.company}} @field="rating" />
+  <OutputField @model={{this.company}} @field="rating" />
 </div>
 <div>
-  <label for="score">Score</label>
-  {{input id="score" value=this.company.score}}
-  <small>Precision: 2, Decimals: 1</small>
+  <InputField @model={{this.company}} @field="score" />
+  <OutputField @model={{this.company}} @field="score" />
 </div>
 <div>
-  <label for="debit">Debit</label>
-  {{input id="debit" value=this.company.debit}}
-  <small>Positive, Number</small>
+  <InputField @model={{this.company}} @field="debit" />
+  <OutputField @model={{this.company}} @field="debit" />
 </div>
 <div>
-  <label for="credit">Credit</label>
-  {{input id="credit" value=this.company.credit}}
-  <small>Negative, Number</small>
+  <InputField @model={{this.company}} @field="credit" />
+  <OutputField @model={{this.company}} @field="credit" />
 </div>
 
 <h2>Contact</h2>
-{{#each this.contact.errors as |error|}}
-  <p style="color: red;"><strong>({{error.attribute}})</strong> {{error.message}}</p>
-{{/each}}
+<ModelMessages @model={{this.contact}} @displayAll={{true}} />
 
 <div>
-  <label for="salutation">Salutation</label>
-  {{input id="salutation" value=this.contact.salutation}}
-  <small>In "MR, MS"</small>
+  <InputField @model={{this.contact}} @field="salutation" />
+  <OutputField @model={{this.contact}} @field="salutation" />
 </div>
 <div>
-  <label for="firstName">First Name</label>
-  {{input id="firstName" value=this.contact.firstName}}
-  <small>Required, Range 2-20</small>
+  <InputField @model={{this.contact}} @field="firstName" />
+  <OutputField @model={{this.contact}} @field="firstName" />
 </div>
 <div>
-  <label for="lastName">Last Name</label>
-  {{input id="lastName" value=this.contact.lastName}}
-  <small>Required</small>
+  <InputField @model={{this.contact}} @field="lastName" />
+  <OutputField @model={{this.contact}} @field="lastName" />
 </div>
 <div>
-  <label for="email">Email</label>
-  {{input id="email" value=this.contact.email}}
-  <small>email</small>
+  <InputField @model={{this.contact}} @field="email" />
+  <OutputField @model={{this.contact}} @field="email" />
 </div>
 <div>
-  <label for="age">Age</label>
-  {{input id="age" value=this.contact.age}}
-  <small>Wholenumber, min: 0, max: 150</small>
+  <InputField @model={{this.contact}} @field="age" />
+  <OutputField @model={{this.contact}} @field="age" />
 </div>
 <div>
-  <label for="birthdate">Birthdate</label>
-  {{input id="birthdate" value=this.contact.birthdate}}
-  <small>Date, After "2000-01-01", Before "today"</small>
+  <InputField @model={{this.contact}} @field="birthdate" />
+  <OutputField @model={{this.contact}} @field="birthdate" />
 </div>
 
 <button onclick={{action 'save'}}>Save</button>

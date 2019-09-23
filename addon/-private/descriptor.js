@@ -1,17 +1,6 @@
-import { HAS_NATIVE_COMPUTED_GETTERS, HAS_DESCRIPTOR_TRAP, gte } from 'ember-compatibility-helpers';
+import Ember from 'ember';
+import { HAS_NATIVE_COMPUTED_GETTERS, gte } from 'ember-compatibility-helpers';
 import { assert } from '@ember/debug';
-
-const DESCRIPTOR = '__DESCRIPTOR__';
-
-function isCPGetter(getter) {
-    // Hack for descriptor traps, we want to be able to tell if the function
-    // is a descriptor trap before we call it at all
-    return getter !== null && typeof getter === 'function' && getter.toString().indexOf('CPGETTER_FUNCTION') !== -1;
-}
-
-function isDescriptorTrap(possibleDesc) {
-    throw new Error('Cannot call `isDescriptorTrap` in production');
-}
 
 export function isComputedDescriptor(possibleDesc) {
     return possibleDesc !== null && (typeof possibleDesc === 'object' || typeof possibleDesc === 'function') && possibleDesc.isDescriptor;
@@ -34,7 +23,7 @@ export function computedDescriptorFor(obj, keyName) {
             }
         }
     } else if (Object.hasOwnProperty.call(obj, keyName)) {
-        let { value: possibleDesc, get: possibleCPGetter } = Object.getOwnPropertyDescriptor(obj, keyName);
+        let { value: possibleDesc } = Object.getOwnPropertyDescriptor(obj, keyName);
 
         return isComputedDescriptor(possibleDesc) ? possibleDesc : undefined;
     }

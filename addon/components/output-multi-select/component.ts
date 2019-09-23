@@ -17,6 +17,7 @@ export default class OutputMultiSelectComponent extends OutputSelectComponent {
         );
 
         if (!isBlank(selectedOption)) {
+          //@ts-ignore
           selectedLabels.push(selectedOption.label);
         }
       }

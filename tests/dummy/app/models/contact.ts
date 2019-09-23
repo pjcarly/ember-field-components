@@ -15,8 +15,11 @@ export default class ContactModel extends Model {
   @field("string", { validation: { required: true } })
   lastName!: string;
 
-  @field("string", { validation: { email: true } })
+  @field("email")
   email?: string;
+
+  @field("phone")
+  phone?: string;
 
   @field("number", {
     precision: 2,

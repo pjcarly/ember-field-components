@@ -1,11 +1,11 @@
-import Service from '@ember/service';
-import Store from 'ember-data/store';
-import Model from 'ember-data/model';
-import SelectOption from 'ember-field-components/interfaces/SelectOption';
-import { inject as service } from '@ember/service';
-import { isBlank } from '@ember/utils';
-import { get } from '@ember/object';
-import { assert } from '@ember/debug';
+import Service from "@ember/service";
+import Store from "ember-data/store";
+import Model from "ember-data/model";
+import SelectOption from "ember-field-components/interfaces/SelectOption";
+import { inject as service } from "@ember/service";
+import { isBlank } from "@ember/utils";
+import { get } from "@ember/object";
+import { assert } from "@ember/debug";
 import { capitalize } from "@ember/string";
 
 export interface FieldOptionsInterface {
@@ -13,7 +13,7 @@ export interface FieldOptionsInterface {
   validation: FieldValidationInterface;
   widget: string;
   selectOptions: SelectOption[];
-  selectOptionDependencies: Map<string, string[]>|undefined;
+  selectOptionDependencies: Map<string, string[]> | undefined;
   dependentField: string;
 }
 
@@ -26,30 +26,35 @@ export interface FieldValidationInterface {
 }
 
 export default class FieldInformationService extends Service {
-  @service store !: Store;
-  @service intl !: any;
+  @service store!: Store;
+  @service intl!: any;
 
-  dateFormat : string = 'YYYY-MM-DD';
-  dateTimeFormat : string = 'YYYY-MM-DD HH:mm:ss';
-  timeFormat : string = 'HH:mm:ss';
-  locale : string = 'en-001';
-  currencyDisplay : string = 'symbol';
-  defaultCurrency : string = 'EUR';
-  availableCurrencies : string[] = ['EUR', 'USD', 'GBP'];
-
+  dateFormat: string = "YYYY-MM-DD";
+  dateTimeFormat: string = "YYYY-MM-DD HH:mm:ss";
+  timeFormat: string = "HH:mm:ss";
+  locale: string = "en-001";
+  currencyDisplay: string = "symbol";
+  defaultCurrency: string = "EUR";
+  availableCurrencies: string[] = ["EUR", "USD", "GBP"];
 
   /**
    * Returns the inverse relationshipname for the passed modelname and relationshipname
    * @param modelName The name of the model where the relationship is defined
    * @param relationshipName The relationship you want to lookup the inverse relationshpname for
    */
-  getInverseRelationshipName(modelName: string, relationshipName : string) : string | undefined {
+  getInverseRelationshipName(
+    modelName: string,
+    relationshipName: string
+  ): string | undefined {
     const parent = this.getModelClass(modelName);
     const relationships = parent.relationshipsByName;
 
     if (relationships.has(relationshipName)) {
       const relationship = relationships.get(relationshipName);
-      assert(`No explicit inverse relationship defined for ${relationshipName} on ${modelName}`, !isBlank(relationship.options.inverse));
+      assert(
+        `No explicit inverse relationship defined for ${relationshipName} on ${modelName}`,
+        !isBlank(relationship.options.inverse)
+      );
 
       return relationship.options.inverse;
     }
@@ -62,30 +67,44 @@ export default class FieldInformationService extends Service {
    * @param modelName the name of the model where the hasmany is defined
    * @param relationshipName the name of the relationship
    */
-  getHasManyModelName(modelName: string, relationshipName: string) : string | undefined {
+  getHasManyModelName(
+    modelName: string,
+    relationshipName: string
+  ): string | undefined {
     const parent = this.getModelClass(modelName);
     const relationships = parent.relationshipsByName;
 
-    if(relationships.has(relationshipName) && relationships.get(relationshipName).kind === 'hasMany') {
+    if (
+      relationships.has(relationshipName) &&
+      relationships.get(relationshipName).kind === "hasMany"
+    ) {
       return relationships.get(relationshipName).type;
     }
 
     return;
   }
 
-
   /**
    * Looks up the belongsto relationship and returns the modelname for the relationship. This is only for non-polymorphic relationships
    * @param modelName the name of the model where the relationship exists
    * @param relationshipName the name of the relationship on the model
    */
-  getBelongsToModelName(modelName: string, relationshipName: string) : string | undefined {
+  getBelongsToModelName(
+    modelName: string,
+    relationshipName: string
+  ): string | undefined {
     const parent = this.getModelClass(modelName);
     const relationships = parent.relationshipsByName;
 
-    if (relationships.has(relationshipName) && relationships.get(relationshipName).kind === 'belongsTo') {
+    if (
+      relationships.has(relationshipName) &&
+      relationships.get(relationshipName).kind === "belongsTo"
+    ) {
       const relationship = relationships.get(relationshipName);
-      assert(`Relationship ${relationshipName} for ${modelName} is a polymorphic relationship, use getBelongsToModelNames function instead`, !relationship.options.polymorphic);
+      assert(
+        `Relationship ${relationshipName} for ${modelName} is a polymorphic relationship, use getBelongsToModelNames function instead`,
+        !relationship.options.polymorphic
+      );
 
       return relationship.type;
     }
@@ -98,14 +117,26 @@ export default class FieldInformationService extends Service {
    * @param modelName the name of the model where the polymorphic relationship exists
    * @param relationshipName the name of the polymorphic relationship on the model
    */
-  getBelongsToModelNames(modelName: string, relationshipName: string) : string[] {
+  getBelongsToModelNames(
+    modelName: string,
+    relationshipName: string
+  ): string[] {
     const parent = this.getModelClass(modelName);
     const relationships = parent.relationshipsByName;
 
-    if (relationships.has(relationshipName) && relationships.get(relationshipName).kind === 'belongsTo') {
+    if (
+      relationships.has(relationshipName) &&
+      relationships.get(relationshipName).kind === "belongsTo"
+    ) {
       const relationship = relationships.get(relationshipName);
-      assert(`Relationship ${relationshipName} for ${modelName} is not a polymorphic relationship, use getBelongsToModelName function instead`, relationship.options.polymorphic);
-      assert(`Relationship ${relationshipName} for ${modelName} should have the key allowedModelNames defined which should return an array with string values`, !isBlank(relationship.options.allowedModelNames));
+      assert(
+        `Relationship ${relationshipName} for ${modelName} is not a polymorphic relationship, use getBelongsToModelName function instead`,
+        relationship.options.polymorphic
+      );
+      assert(
+        `Relationship ${relationshipName} for ${modelName} should have the key allowedModelNames defined which should return an array with string values`,
+        !isBlank(relationship.options.allowedModelNames)
+      );
 
       const allowedModelNameNames = relationship.options.allowedModelNames;
       return allowedModelNameNames;
@@ -114,13 +145,12 @@ export default class FieldInformationService extends Service {
     return [];
   }
 
-
   /**
    * Looks up the translations for the plural of a modelname, in case nothing was found, the modelName will be returned again
    * @param modelName THe model name you want the translated plural form of
    */
-  getTranslatedPlural(modelName: string) : string {
-    if(this.intl.exists(`ember-field-components.${modelName}.plural`)) {
+  getTranslatedPlural(modelName: string): string {
+    if (this.intl.exists(`ember-field-components.${modelName}.plural`)) {
       return this.intl.t(`ember-field-components.${modelName}.plural`);
     }
 
@@ -132,10 +162,14 @@ export default class FieldInformationService extends Service {
    * @param modelName The name of the model
    * @param field The field
    */
-  getTranslatedFieldlabel(modelName : string, field : string) : string {
-    if(this.intl.exists(`ember-field-components.${modelName}.fields.${field}`)) {
+  getTranslatedFieldlabel(modelName: string, field: string): string {
+    if (
+      this.intl.exists(`ember-field-components.${modelName}.fields.${field}`)
+    ) {
       return this.intl.t(`ember-field-components.${modelName}.fields.${field}`);
-    } else if(this.intl.exists(`ember-field-components.global.fields.${field}`)) {
+    } else if (
+      this.intl.exists(`ember-field-components.global.fields.${field}`)
+    ) {
       return this.intl.t(`ember-field-components.global.fields.${field}`);
     } else {
       return capitalize(field);
@@ -147,10 +181,19 @@ export default class FieldInformationService extends Service {
    * @param modelName The name of the model
    * @param field The field
    */
-  getTranslatedFieldHelptext(modelName : string, field : string) : string | undefined {
-    if(this.intl.exists(`ember-field-components.${modelName}.helptexts.${field}`)) {
-      return this.intl.t(`ember-field-components.${modelName}.helptexts.${field}`);
-    } else if(this.intl.exists(`ember-field-components.global.helptexts.${field}`)) {
+  getTranslatedFieldHelptext(
+    modelName: string,
+    field: string
+  ): string | undefined {
+    if (
+      this.intl.exists(`ember-field-components.${modelName}.helptexts.${field}`)
+    ) {
+      return this.intl.t(
+        `ember-field-components.${modelName}.helptexts.${field}`
+      );
+    } else if (
+      this.intl.exists(`ember-field-components.global.helptexts.${field}`)
+    ) {
       return this.intl.t(`ember-field-components.global.helptexts.${field}`);
     }
 
@@ -163,11 +206,25 @@ export default class FieldInformationService extends Service {
    * @param field Name of the field
    * @param value The value of the SelectOption
    */
-  getTranslatedSelectOptionLabel(modelName : string, field : string, value : string) : string {
-    if(this.intl.exists(`ember-field-components.${modelName}.select.${field}.${value}`)) {
-      return this.intl.t(`ember-field-components.${modelName}.select.${field}.${value}`);
-    } else if(this.intl.exists(`ember-field-components.global.select.${field}.${value}`)) {
-      return this.intl.t(`ember-field-components.global.select.${field}.${value}`);
+  getTranslatedSelectOptionLabel(
+    modelName: string,
+    field: string,
+    value: string
+  ): string {
+    if (
+      this.intl.exists(
+        `ember-field-components.${modelName}.select.${field}.${value}`
+      )
+    ) {
+      return this.intl.t(
+        `ember-field-components.${modelName}.select.${field}.${value}`
+      );
+    } else if (
+      this.intl.exists(`ember-field-components.global.select.${field}.${value}`)
+    ) {
+      return this.intl.t(
+        `ember-field-components.global.select.${field}.${value}`
+      );
     } else {
       return capitalize(value);
     }
@@ -178,10 +235,18 @@ export default class FieldInformationService extends Service {
    * @param modelName Name of the model where the field exists
    * @param field Name of the field
    */
-  getTranslatedSelectNoneLabel(modelName : string, field : string) : string {
-    if(this.intl.exists(`ember-field-components.${modelName}.selectNone.${field}`)) {
-      return this.intl.t(`ember-field-components.${modelName}.selectNone.${field}`);
-    } else if(this.intl.exists(`ember-field-components.global.selectNone.${field}`)) {
+  getTranslatedSelectNoneLabel(modelName: string, field: string): string {
+    if (
+      this.intl.exists(
+        `ember-field-components.${modelName}.selectNone.${field}`
+      )
+    ) {
+      return this.intl.t(
+        `ember-field-components.${modelName}.selectNone.${field}`
+      );
+    } else if (
+      this.intl.exists(`ember-field-components.global.selectNone.${field}`)
+    ) {
       return this.intl.t(`ember-field-components.global.selectNone.${field}`);
     } else {
       return this.intl.t(`ember-field-components.label.select_none`);
@@ -192,8 +257,9 @@ export default class FieldInformationService extends Service {
    * Returns the dasherized name of the model class
    * @param model The model you want the dasherized name for
    */
-  getModelName(model: Model) : string {
-    assert('No model provided for getModelName', !isBlank(model));
+  getModelName(model: Model): string {
+    assert("No model provided for getModelName", !isBlank(model));
+    // @ts-ignore
     return model.constructor.modelName;
   }
 
@@ -201,7 +267,7 @@ export default class FieldInformationService extends Service {
    * Returns the model class looked up from the ember-data store.
    * @param modelName The dasherized string name of your model
    */
-  getModelClass(modelName: string) : any {
+  getModelClass(modelName: string): any {
     return this.store.modelFor(modelName);
   }
 
@@ -209,7 +275,7 @@ export default class FieldInformationService extends Service {
    * Returns the model class for the passed model
    * @param model The model you want the modelclass for
    */
-  getModelClassForModel(model: Model) : any {
+  getModelClassForModel(model: Model): any {
     return this.getModelClass(this.getModelName(model));
   }
 
@@ -217,11 +283,11 @@ export default class FieldInformationService extends Service {
    * Returns an array of default includes defined on the provided modelclass
    * @param modelName The name of the model you want the default includes for
    */
-  getDefaultIncludes(modelName: string) : string[] {
+  getDefaultIncludes(modelName: string): string[] {
     const modelClass = this.getModelClass(modelName);
 
-    if(!isBlank(modelClass)) {
-      if(modelClass.settings.defaultIncludes) {
+    if (!isBlank(modelClass)) {
+      if (modelClass.settings.defaultIncludes) {
         return modelClass.settings.defaultIncludes;
       }
     }
@@ -233,25 +299,27 @@ export default class FieldInformationService extends Service {
    * Returns the fieldOptions that were defined in the attribute definition, this function returns the object that was defined in the modelclass definition.
    * @param modelName The dasherized string name of your model
    */
-  getFieldOptions(modelName: string, field: string) : FieldOptionsInterface {
+  getFieldOptions(modelName: string, field: string): FieldOptionsInterface {
     const modelClass = this.getModelClass(modelName);
 
     // First we need to find out if the field is an Attribute or a Relationship
     let fieldMeta;
 
-    const modelAttributes = get(modelClass, 'attributes');
-    const modelRelationships = get(modelClass, 'relationshipsByName');
+    const modelAttributes = get(modelClass, "attributes");
+    const modelRelationships = get(modelClass, "relationshipsByName");
 
-    if(modelAttributes.has(field)) {
+    if (modelAttributes.has(field)) {
       // The field is an attribute
       fieldMeta = modelAttributes.get(field);
-    }
-    else if(modelRelationships.has(field)) {
+    } else if (modelRelationships.has(field)) {
       // The field is a relationship
-      fieldMeta = get(modelRelationships.get(field), 'meta');
+      fieldMeta = get(modelRelationships.get(field), "meta");
     }
 
-    assert(`Field options for field ${field} on model ${modelName} not found, it is not defined as an attribute or relationship`, !isBlank(fieldMeta));
+    assert(
+      `Field options for field ${field} on model ${modelName} not found, it is not defined as an attribute or relationship`,
+      !isBlank(fieldMeta)
+    );
 
     return fieldMeta.options;
   }
@@ -261,27 +329,33 @@ export default class FieldInformationService extends Service {
    * @param modelName THe name of the model where the field exists
    * @param field The name of the field
    */
-  getFieldType(modelName: string, field: string) : string | undefined {
+  getFieldType(modelName: string, field: string): string | undefined {
     const modelClass = this.getModelClass(modelName);
-    const splittedField = field.split('.');
+    const splittedField = field.split(".");
     const meta = modelClass.metaForProperty(splittedField[0]);
 
     if (!meta) {
-      assert(`No field type found for field ${field} on ${modelName}, attribute or relationship not defined on model?`);
+      assert(
+        `No field type found for field ${field} on ${modelName}, attribute or relationship not defined on model?`
+      );
       return;
     } else if (meta.isAttribute) {
       let returnValue = meta.type;
-      if(!isBlank(returnValue) && returnValue.includes('-mf-fragment$')) { // Ember data model fragments
+      if (!isBlank(returnValue) && returnValue.includes("-mf-fragment$")) {
+        // Ember data model fragments
         // We first get the name of the fragment
-        const modelFragmentName = returnValue.replace('-mf-fragment$', '');
+        const modelFragmentName = returnValue.replace("-mf-fragment$", "");
 
         // And because we splitted our field by the . earlier, we know that each path is a seperate key in the array
         // We simply remove the first, field, and do a recursive look for the remainders, with the model fragment as modelName
         // Even if that modelfragment has another modelfragment as attribute it should work just fine
         splittedField.shift();
 
-        if(splittedField.length > 1) {
-          returnValue = this.getFieldType(modelFragmentName, splittedField.join('.'));
+        if (splittedField.length > 1) {
+          returnValue = this.getFieldType(
+            modelFragmentName,
+            splittedField.join(".")
+          );
         } else {
           returnValue = modelFragmentName;
         }
@@ -290,12 +364,14 @@ export default class FieldInformationService extends Service {
       return returnValue;
     } else if (meta.isRelationship) {
       return meta.kind;
-    } else { // computed property
+    } else {
+      // computed property
 
-      assert(`Computed properties should have their type defined in the computedMeta key of the settings hash. ${modelName} - ${field}`,
-        modelClass.settings.hasOwnProperty('computedMeta') &&
-        modelClass.settings.computedMeta.hasOwnProperty(field) &&
-        modelClass.settings.computedMeta[field].hasOwnProperty('type')
+      assert(
+        `Computed properties should have their type defined in the computedMeta key of the settings hash. ${modelName} - ${field}`,
+        modelClass.settings.hasOwnProperty("computedMeta") &&
+          modelClass.settings.computedMeta.hasOwnProperty(field) &&
+          modelClass.settings.computedMeta[field].hasOwnProperty("type")
       );
 
       return modelClass.settings.computedMeta[field].type;
@@ -306,15 +382,18 @@ export default class FieldInformationService extends Service {
    * Checks if a field on a model is read only
    * @param FieldOptionsInterface The field meta information. You can get this via getFieldOptions
    */
-  getFieldIsReadOnly(options: FieldOptionsInterface) : boolean {
-    return options.hasOwnProperty('readOnly') && options.readOnly === true;
+  getFieldIsReadOnly(options: FieldOptionsInterface): boolean {
+    return options.hasOwnProperty("readOnly") && options.readOnly === true;
   }
 
   /**
    * Checks if a field is required
    * @param options
    */
-  getFieldIsRequired(options: FieldOptionsInterface) : boolean {
-    return options.hasOwnProperty('validation') && options.validation.required === true;
+  getFieldIsRequired(options: FieldOptionsInterface): boolean {
+    return (
+      options.hasOwnProperty("validation") &&
+      options.validation.required === true
+    );
   }
 }

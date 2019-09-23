@@ -13,6 +13,10 @@ export default class OutputFieldSelectComponent extends OutputFieldComponent {
     const fieldOptions = this.fieldOptions;
     const selectOptions: SelectOption[] = [];
 
+    if (!fieldOptions) {
+      return selectOptions;
+    }
+
     if (
       !fieldOptions.hasOwnProperty("selectOptions") ||
       !isArray(fieldOptions.selectOptions)
@@ -26,6 +30,7 @@ export default class OutputFieldSelectComponent extends OutputFieldComponent {
       };
 
       selectOption.label = this.fieldInformation.getTranslatedSelectOptionLabel(
+        // @ts-ignore
         this.modelName,
         this.field,
         fieldSelectOption.value

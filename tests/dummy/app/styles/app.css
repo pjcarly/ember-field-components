@@ -1,0 +1,17 @@
+.is-required label:after {
+    content: "*";
+    color: red;
+}
+
+.field-messages .help-block {
+    display: block;
+    color: red;
+}
+
+.alert-danger {
+    display: block;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: lightgoldenrodyellow;
+    color: red;
+}

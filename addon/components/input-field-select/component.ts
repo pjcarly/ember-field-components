@@ -4,11 +4,7 @@ import FieldInformationService from "ember-field-components/services/field-infor
 import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
 import { isArray } from "@ember/array";
-import {
-  defineProperty,
-  computed as classicComputed,
-  observer
-} from "@ember/object";
+import { defineProperty, computed as classicComputed } from "@ember/object";
 
 export default class InputFieldSelectComponent extends InputField {
   @service fieldInformation!: FieldInformationService;
@@ -108,6 +104,7 @@ export default class InputFieldSelectComponent extends InputField {
       };
 
       selectOption.label = this.fieldInformation.getTranslatedSelectOptionLabel(
+        // @ts-ignore
         this.modelName,
         this.field,
         fieldSelectOption.value
@@ -146,6 +143,7 @@ export default class InputFieldSelectComponent extends InputField {
   @computed("fieldOptions")
   get noneLabel(): string {
     return this.fieldInformation.getTranslatedSelectNoneLabel(
+      // @ts-ignore
       this.modelName,
       this.field
     );

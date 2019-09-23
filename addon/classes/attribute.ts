@@ -9,7 +9,6 @@ import { assign } from "@ember/polyfills";
 import { isBlank, isEmpty } from "@ember/utils";
 
 export function setType(type: string, options: any) {
-  console.log(this);
   let defaultOptions: any = {};
   let defaultValidations: any = {};
 

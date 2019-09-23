@@ -43,6 +43,7 @@ if (gte('3.10.0')) {
         }
     }
 
+    // eslint-disable-next-line
     computedDecorator = function(fn, params, name, importDesc) {
         let computed = params === undefined ? fn() : fn(...params);
 
@@ -83,8 +84,11 @@ if (gte('3.10.0')) {
         return decorator;
     };
 } else {
+    // eslint-disable-next-line
     const DECORATOR_COMPUTED_FN = new WeakMap();
+    // eslint-disable-next-line
     const DECORATOR_PARAMS = new WeakMap();
+    // eslint-disable-next-line
     const DECORATOR_MODIFIERS = new WeakMap();
 
     // eslint-disable-next-line no-inner-declarations
@@ -178,6 +182,7 @@ if (gte('3.10.0')) {
         }
     }
 
+    // eslint-disable-next-line
     computedDecorator = function(fn, params, name, importDesc) {
         let dec = decorator(desc => {
 
@@ -230,7 +235,6 @@ if (gte('3.10.0')) {
 
 export function computedDecoratorWithParams(fn, name, desc) {
     return function(...params) {
-        console.log(params);
         if (isFieldDescriptor(params)) {
             return Function.apply.call(computedDecorator(fn, undefined, name, desc), undefined, params);
         } else {

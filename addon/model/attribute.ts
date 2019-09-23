@@ -5,5 +5,6 @@ import { computedDecoratorWithParams } from "ember-field-components/-private/com
  * Field decorator for use with native classes
  */
 export let field = computedDecoratorWithParams((_: any, params: any) =>
+  // @ts-ignore
   setType.apply(this, [_, params])
 );
