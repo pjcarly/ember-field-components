@@ -1,6 +1,6 @@
 import BaseField from '../BaseField';
 import { defineProperty, computed as classicComputed } from '@ember/object';
-import { computed, action } from '@ember-decorators/object';
+import { computed, action } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 import { tagName } from '@ember-decorators/component';
 import { dasherize } from '@ember/string';

@@ -1,6 +1,6 @@
 import BaseField from '../BaseField';
 import { defineProperty, computed as classicComputed } from '@ember/object';
-import { computed } from '@ember-decorators/object';
+import { computed } from '@ember/object';
 import { dasherize } from '@ember/string';
 
 export default class OutputFieldComponent extends BaseField {

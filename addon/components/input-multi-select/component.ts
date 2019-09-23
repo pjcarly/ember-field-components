@@ -1,5 +1,5 @@
 import InputSelectComponent from '../input-select/component';
-import { computed, action } from '@ember-decorators/object';
+import { computed, action } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { guidFor } from '@ember/object/internals';
 

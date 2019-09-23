@@ -1,5 +1,5 @@
 import BaseInput from '../BaseInput';
-import { computed } from '@ember-decorators/object';
+import { computed } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 import { isBlank } from '@ember/utils';
 

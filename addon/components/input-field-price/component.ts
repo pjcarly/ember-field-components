@@ -1,5 +1,5 @@
 import InputField from '../input-field/component';
-import { computed } from '@ember-decorators/object';
+import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 
 export default class InputFieldPercentComponent extends InputField {

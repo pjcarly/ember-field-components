@@ -1,8 +1,8 @@
 import BaseInput from "../BaseInput";
 import SelectOption from "ember-field-components/interfaces/SelectOption";
-import { computed } from "@ember-decorators/object";
+import { computed } from "@ember/object";
 import { isBlank } from "@ember/utils";
-import { inject as service } from "@ember-decorators/service";
+import { inject as service } from "@ember/service";
 
 export default class InputSelectComponent extends BaseInput {
   @service intl!: any;
