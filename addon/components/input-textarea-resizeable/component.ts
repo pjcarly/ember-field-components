@@ -1,7 +1,7 @@
 /* globals autosize */
 import BaseInput from '../BaseInput';
 import { guidFor } from '@ember/object/internals';
-import { computed } from '@ember-decorators/object';
+import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 
 declare function autosize(element: HTMLElement | null) : any;

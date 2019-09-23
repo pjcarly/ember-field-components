@@ -1,0 +1,57 @@
+<h2>Company</h2>
+<ModelMessages @model={{this.company}} @displayAll={{true}} />
+
+<div>
+  <InputField @model={{this.company}} @field="name" />
+  <OutputField @model={{this.company}} @field="name" />
+</div>
+<div>
+  <InputField @model={{this.company}} @field="vatNumber" />
+  <OutputField @model={{this.company}} @field="vatNumber" />
+</div>
+<div>
+  <InputField @model={{this.company}} @field="rating" />
+  <OutputField @model={{this.company}} @field="rating" />
+</div>
+<div>
+  <InputField @model={{this.company}} @field="score" />
+  <OutputField @model={{this.company}} @field="score" />
+</div>
+<div>
+  <InputField @model={{this.company}} @field="debit" />
+  <OutputField @model={{this.company}} @field="debit" />
+</div>
+<div>
+  <InputField @model={{this.company}} @field="credit" />
+  <OutputField @model={{this.company}} @field="credit" />
+</div>
+
+<h2>Contact</h2>
+<ModelMessages @model={{this.contact}} @displayAll={{true}} />
+
+<div>
+  <InputField @model={{this.contact}} @field="salutation" />
+  <OutputField @model={{this.contact}} @field="salutation" />
+</div>
+<div>
+  <InputField @model={{this.contact}} @field="firstName" />
+  <OutputField @model={{this.contact}} @field="firstName" />
+</div>
+<div>
+  <InputField @model={{this.contact}} @field="lastName" />
+  <OutputField @model={{this.contact}} @field="lastName" />
+</div>
+<div>
+  <InputField @model={{this.contact}} @field="email" />
+  <OutputField @model={{this.contact}} @field="email" />
+</div>
+<div>
+  <InputField @model={{this.contact}} @field="age" />
+  <OutputField @model={{this.contact}} @field="age" />
+</div>
+<div>
+  <InputField @model={{this.contact}} @field="birthdate" />
+  <OutputField @model={{this.contact}} @field="birthdate" />
+</div>
+
+<button onclick={{action 'save'}}>Save</button>

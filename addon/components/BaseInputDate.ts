@@ -1,7 +1,7 @@
 import BaseInput from "./BaseInput";
 import moment from "moment";
 import { isBlank } from "@ember/utils";
-import { computed } from "@ember-decorators/object";
+import { computed } from "@ember/object";
 import { tagName } from "@ember-decorators/component";
 
 @tagName("")
