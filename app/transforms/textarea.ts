@@ -1,1 +1,1 @@
-export { default } from "./email";
+export { default } from "ember-field-components/transforms/textarea";
