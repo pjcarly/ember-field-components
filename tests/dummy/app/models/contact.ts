@@ -1,6 +1,8 @@
 import Model from "ember-data/model";
 import { validationModel } from "ember-attribute-validations/decorators/validation-model";
 import { field } from "ember-field-components/model/attribute";
+import { belongsTo } from "ember-data/relationships";
+import CompanyModel from "./company";
 
 @validationModel
 export default class ContactModel extends Model {
@@ -42,6 +44,9 @@ export default class ContactModel extends Model {
     }
   })
   birthdate?: Date;
+
+  @belongsTo("company")
+  company?: CompanyModel;
 }
 
 declare module "ember-data/types/registries/model" {

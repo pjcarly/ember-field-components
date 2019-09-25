@@ -1,13 +1,16 @@
-import Ember from 'ember';
-import { defineProperty } from '@ember/object';
-import { HAS_NATIVE_COMPUTED_GETTERS, gte } from 'ember-compatibility-helpers';
+import Ember from "ember";
+import { defineProperty } from "@ember/object";
+import { HAS_NATIVE_COMPUTED_GETTERS, gte } from "ember-compatibility-helpers";
 
-import { decorator } from './decorator';
-import { computedDescriptorFor, isComputedDescriptor } from './descriptor';
-import { isFieldDescriptor, isStage2FieldDescriptor } from './class-field-descriptor';
+import { decorator } from "./decorator";
+import { computedDescriptorFor, isComputedDescriptor } from "./descriptor";
+import {
+    isFieldDescriptor,
+    isStage2FieldDescriptor
+} from "./class-field-descriptor";
 
-import { assert } from '@ember/debug';
-import ComputedProperty from '@ember/object/computed';
+import { assert } from "@ember/debug";
+import ComputedProperty from "@ember/object/computed";
 
 /**
  * A macro that receives a decorator function which returns a ComputedProperty,
@@ -20,7 +23,7 @@ import ComputedProperty from '@ember/object/computed';
  */
 export let computedDecorator;
 
-if (gte('3.10.0')) {
+if (gte("3.10.0")) {
     class ComputedDecoratorImpl extends Function {
         readOnly() {
             this.__computed.readOnly(...arguments);
@@ -48,9 +51,7 @@ if (gte('3.10.0')) {
         let computed = params === undefined ? fn() : fn(...params);
 
         let decorator = (...args) => {
-
             if (isStage2FieldDescriptor(args)) {
-
                 let desc = args[0];
 
                 desc.finisher = target => {
@@ -71,14 +72,21 @@ if (gte('3.10.0')) {
             } else {
                 let [prototype, key, propertyDesc] = args;
 
-                return computed(prototype, key, propertyDesc, Ember.meta(prototype), true);
+                return computed(
+                    prototype,
+                    key,
+                    propertyDesc,
+                    Ember.meta(prototype),
+                    true
+                );
             }
         };
 
         decorator.__computed = computed;
         Object.setPrototypeOf(decorator, ComputedDecoratorImpl.prototype);
 
-        let setClassicDecorator = Ember._setClassicDecorator || Ember._setComputedDecorator;
+        let setClassicDecorator =
+            Ember._setClassicDecorator || Ember._setComputedDecorator;
         setClassicDecorator(decorator);
 
         return decorator;
@@ -123,9 +131,9 @@ if (gte('3.10.0')) {
                 this._computedDesc = buildComputedDesc(this, { key });
             }
 
-            if (this._computedDesc.__IS_POLYFILLED_COMPUTED || gte('3.6.0')) {
+            if (this._computedDesc.__IS_POLYFILLED_COMPUTED || gte("3.6.0")) {
                 this._computedDesc.setup(obj, key, meta);
-            } else if (gte('3.1.0')) {
+            } else if (gte("3.1.0")) {
                 let meta = Ember.meta(obj);
 
                 Object.defineProperty(obj, key, {
@@ -133,7 +141,7 @@ if (gte('3.10.0')) {
                     enumerable: true,
                     get() {
                         return this._computedDesc.get(key);
-                    },
+                    }
                 });
 
                 meta.writeDescriptors(key, this._computedDesc);
@@ -142,7 +150,7 @@ if (gte('3.10.0')) {
                     configurable: true,
                     writable: true,
                     enumerable: true,
-                    value: this._computedDesc,
+                    value: this._computedDesc
                 });
             }
         }
@@ -167,17 +175,17 @@ if (gte('3.10.0')) {
         }
 
         readOnly() {
-            this._addModifier('readOnly');
+            this._addModifier("readOnly");
             return this;
         }
 
         volatile() {
-            this._addModifier('volatile');
+            this._addModifier("volatile");
             return this;
         }
 
         property(...keys) {
-            this._addModifier(['property', keys]);
+            this._addModifier(["property", keys]);
             return this;
         }
     }
@@ -185,10 +193,9 @@ if (gte('3.10.0')) {
     // eslint-disable-next-line
     computedDecorator = function(fn, params, name, importDesc) {
         let dec = decorator(desc => {
-
             // All computeds are methods
-            desc.kind = 'method';
-            desc.placement = 'prototype';
+            desc.kind = "method";
+            desc.placement = "prototype";
 
             desc.finisher = function initializeComputedProperty(target) {
                 let { prototype } = target;
@@ -208,7 +215,7 @@ if (gte('3.10.0')) {
                         configurable: true,
                         writable: true,
                         enumerable: true,
-                        value: undefined,
+                        value: undefined
                     });
                 }
 
@@ -236,7 +243,11 @@ if (gte('3.10.0')) {
 export function computedDecoratorWithParams(fn, name, desc) {
     return function(...params) {
         if (isFieldDescriptor(params)) {
-            return Function.apply.call(computedDecorator(fn, undefined, name, desc), undefined, params);
+            return Function.apply.call(
+                computedDecorator(fn, undefined, name, desc),
+                undefined,
+                params
+            );
         } else {
             return computedDecorator(fn, params, name, desc);
         }

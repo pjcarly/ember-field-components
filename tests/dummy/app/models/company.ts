@@ -1,6 +1,8 @@
 import Model from "ember-data/model";
 import { validationModel } from "ember-attribute-validations/decorators/validation-model";
 import { field } from "ember-field-components/model/attribute";
+import MutableArray from "@ember/array/mutable";
+import { hasMany } from "ember-data/relationships";
 
 @validationModel
 export default class CompanyModel extends Model {
@@ -33,6 +35,9 @@ export default class CompanyModel extends Model {
     validation: { positive: true, number: true }
   })
   debit?: number;
+
+  @hasMany("contact")
+  contacts!: MutableArray<CompanyModel>;
 }
 
 declare module "ember-data/types/registries/model" {
