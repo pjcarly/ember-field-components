@@ -10,8 +10,15 @@
       </option>
     {{/if}}
     {{#each @selectOptions as |selectOption|}}
-      <option value={{selectOption.value}} selected={{deq selectOption.value this.computedValue}}>
-        {{selectoption-label selectOption}}</option>
+      {{#if selectOption.selectOptions}} {{!-- Opt-Group --}}
+        <optgroup label={{selectOption.label}}>
+          {{#each selectOption.selectOptions as |groupedSelectOption|}}
+            <option value={{groupedSelectOption.value}} selected={{deq groupedSelectOption.value this.computedValue}}>{{selectoption-label groupedSelectOption}}</option>
+          {{/each}}
+        </optgroup>
+      {{else}}
+        <option value={{selectOption.value}} selected={{deq selectOption.value this.computedValue}}>{{selectoption-label selectOption}}</option>
+      {{/if}}
     {{/each}}
     {{#if (and @value (not this.selectOptionsContainsValue))}}
       <option value={{@value}} selected={{true}}>{{@value}}</option>
