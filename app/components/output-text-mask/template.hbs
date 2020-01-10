@@ -1,0 +1,15 @@
+<span class={{this.computedClass}}>
+  {{#if @prefix}}
+    <span class="prefix">
+      {{@prefix}}
+    </span>
+  {{/if}}
+  <span class={{if @value 'value' 'value empty'}}>
+    {{this.maskedValue}}
+  </span>
+  {{#if @suffix}}
+    <span class="suffix">
+      {{@suffix}}
+    </span>
+  {{/if}}
+</span>

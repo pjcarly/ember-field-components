@@ -1,6 +1,17 @@
-<OutputText
-  @value={{this.value}}
-  @prefix={{@prefix}}
-  @suffix={{@suffix}}
-  @class={{@outputClass}}
-  @options={{this.outputOptions}} />
+{{#if (eq this.widgetName 'mask')}}
+  <OutputTextMask
+    @value={{this.value}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @class={{@outputClass}}
+    @mask={{this.mask}}
+    @regex={{this.regex}}
+    @options={{this.outputOptions}} />
+{{else}}
+  <OutputText
+    @value={{this.value}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @class={{@outputClass}}
+    @options={{this.outputOptions}} />
+{{/if}}
