@@ -314,6 +314,16 @@ export default class FieldInformationService extends Service {
     } else if (modelRelationships.has(field)) {
       // The field is a relationship
       fieldMeta = get(modelRelationships.get(field), "meta");
+    } else if (
+      modelClass.hasOwnProperty("settings") &&
+      modelClass.settings.hasOwnProperty("computedMeta") &&
+      modelClass.settings.computedMeta.hasOwnProperty(field)
+    ) {
+      fieldMeta = modelClass.settings.computedMeta[field];
+
+      if (!fieldMeta.hasOwnProperty("options")) {
+        fieldMeta.options = {};
+      }
     }
 
     assert(
