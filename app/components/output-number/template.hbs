@@ -5,7 +5,13 @@
     </span>
   {{/if}}
   <span class={{if (or value (eq value 0)) 'value' 'value empty'}}>
-    {{@value}}
+    {{#if (and @options (eq @value @options.positiveINFValue))}}
+      +∞
+    {{else if (and @options (eq @value @options.negativeINFValue))}}
+      -∞
+    {{else}}
+      {{@value}}
+    {{/if}}
   </span>
   {{#if @suffix}}
     <span class="suffix">
