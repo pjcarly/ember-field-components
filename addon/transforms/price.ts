@@ -1,11 +1,11 @@
 import Transform from "ember-data/transform";
 
-function isNumber(value) {
+export function isNumber(value: any) {
   return value === value && value !== Infinity && value !== -Infinity;
 }
 
 export default Transform.extend({
-  deserialize(serialized) {
+  deserialize(serialized: any) {
     let transformed;
 
     if (serialized === "" || serialized === null || serialized === undefined) {
@@ -17,7 +17,7 @@ export default Transform.extend({
     }
   },
 
-  serialize(deserialized) {
+  serialize(deserialized: any) {
     let transformed;
 
     if (

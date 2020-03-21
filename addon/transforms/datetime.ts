@@ -1,7 +1,7 @@
 import Transform from "ember-data/transform";
 
 export default Transform.extend({
-  deserialize(serialized) {
+  deserialize(serialized: any) {
     let type = typeof serialized;
 
     if (type === "string") {
@@ -25,8 +25,8 @@ export default Transform.extend({
     }
   },
 
-  serialize(date) {
-    if (date instanceof Date && !isNaN(date)) {
+  serialize(date: any) {
+    if (date instanceof Date) {
       return date.toISOString();
     } else {
       return null;

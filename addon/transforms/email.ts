@@ -2,10 +2,10 @@ import { isNone as none } from "@ember/utils";
 import Transform from "ember-data/transform";
 
 export default Transform.extend({
-  deserialize(serialized) {
+  deserialize(serialized: any) {
     return none(serialized) ? null : String(serialized);
   },
-  serialize(deserialized) {
+  serialize(deserialized: any) {
     return none(deserialized) ? null : String(deserialized);
   }
 });
