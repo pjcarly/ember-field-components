@@ -28,7 +28,6 @@ export default class InputDateRangeFlatpickrComponent extends InputDateComponent
     }
   }
   set computedValue(value: [Date, Date] | [Date] | [] | null) {
-    console.log(value);
     if (value && value instanceof Array && value.length <= 2) {
       value = <[Date, Date] | [Date] | []>value.filter(singleValue => {
         // @ts-ignore
