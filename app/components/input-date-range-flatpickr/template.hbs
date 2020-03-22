@@ -1,0 +1,26 @@
+<span class={{this.computedClass}}>
+  {{#if @prefix}}
+    <span class="input-group-addon prefix">{{@prefix}}</span>
+  {{/if}}
+
+  <EmberFlatpickr
+    @id={{this.inputIdComputed}}
+    @date={{this.computedValue}}
+    @flatpickrRef={{this.flatpickr}}
+    @dateFormat={{this.flatpickrFormat}}
+    @minDate={{this.minDate}}
+    @maxDate={{this.maxDate}}
+    @mode="range"
+    @onChange={{action (mut this.computedValue)}} />
+
+  {{#if @suffix}}
+    <span class="input-group-addon suffix">{{@suffix}}</span>
+  {{/if}}
+  {{#if @showButton}}
+    <span class="input-group-btn">
+      <button type="button" class="btn{{if options.btnClass (concat ' ' options.btnClass) ' btn-default'}}" {{on "click" this.toggleCalendar}}>
+        📅
+      </button>
+    </span>
+  {{/if}}
+</span>
