@@ -4,6 +4,7 @@ import { isBlank } from "@ember/utils";
 
 export default class InputDatetimeBootstrapComponent extends InputDateBootstrapComponent {
   type = "datetime-bootstrap";
+  format = "YYYY-MM-DD HH:mm:ss";
 
   @computed("format", "fieldInformation.dateTimeFormat")
   get momentFormat(): string {

@@ -1,14 +1,14 @@
 <span class={{this.computedClass}}>
-  {{#if prefix}}
+  {{#if @prefix}}
     <span class="input-group-addon prefix">{{@prefix}}</span>
   {{/if}}
   {{input type='text' value=this.computedValue class='form-control' placeholder=@placeholder id=inputIdComputed}}
-  {{#if suffix}}
+  {{#if @suffix}}
     <span class="input-group-addon suffix">{{@suffix}}</span>
   {{/if}}
-  {{#if showButton}}
+  {{#if @showButton}}
     <span class="input-group-btn">
-      <button type="button" class="btn{{if options.btnClass (concat ' ' options.btnClass) ' btn-default'}}" {{action 'toggleCalendar'}}>
+      <button type="button" class="btn{{if options.btnClass (concat ' ' options.btnClass) ' btn-default'}}" {{on "click" this.toggleCalendar}}>
         📅
       </button>
     </span>
