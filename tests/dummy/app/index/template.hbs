@@ -54,7 +54,12 @@
   <OutputField @model={{this.contact}} @field="birthdate" />
 </div>
 <div>
-  <InputDateRangeFlatpickr @value={{this.defaultDate}} @options={{hash minDate="2020-03-10"}} @showButton={{true}}/>
+  <InputField @model={{this.contact}} @field="signUpDate" />
+  <OutputField @model={{this.contact}} @field="signUpDate" />
+</div>
+<div>
+  <InputField @model={{this.contact}} @field="lastSignInDate" />
+  <OutputField @model={{this.contact}} @field="lastSignInDate" />
 </div>
 
 <button onclick={{action 'save'}}>Save</button>

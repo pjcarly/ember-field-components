@@ -1,5 +1,34 @@
 {{#if (eq this.widgetName 'bootstrap')}}
-  <InputDatetimeBootstrap @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @prefix={{@prefix}} @suffix={{@suffix}} @class={{@inputClass}} @inputId={{@inputId}} @options={{this.inputOptions}}/>
+  <InputDatetimeBootstrap
+    @value={{this.value}}
+    @valueChanged={{action (mut this.value)}}
+    @preSetHook={{this.preSetHook}}
+    @placeholder={{@placeholder}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @class={{@inputClass}}
+    @inputId={{@inputId}}
+    @options={{this.inputOptions}}/>
+{{else if (eq this.widgetName 'flatpickr')}}
+  <InputDatetimeFlatpickr
+    @value={{this.value}}
+    @valueChanged={{action (mut this.value)}}
+    @preSetHook={{this.preSetHook}}
+    @placeholder={{@placeholder}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @class={{@inputClass}}
+    @inputId={{@inputId}}
+    @options={{this.inputOptions}}/>
 {{else}}
-  <InputDatetime @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @prefix={{@prefix}} @suffix={{@suffix}} @class={{@inputClass}} @inputId={{@inputId}} @options={{this.inputOptions}}/>
+  <InputDatetime
+    @value={{this.value}}
+    @valueChanged={{action (mut this.value)}}
+    @preSetHook={{this.preSetHook}}
+    @placeholder={{@placeholder}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @class={{@inputClass}}
+    @inputId={{@inputId}}
+    @options={{this.inputOptions}}/>
 {{/if}}

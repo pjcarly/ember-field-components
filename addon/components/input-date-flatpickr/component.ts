@@ -43,6 +43,10 @@ export default class InputDateFlatpickrComponent extends InputDateComponent {
     }
   }
   set computedValue(value: Date | null) {
+    if (value instanceof Array) {
+      value = value[0];
+    }
+
     value = this.preSetHook(value);
     this.valueChanged(value);
   }

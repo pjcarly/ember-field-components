@@ -45,6 +45,16 @@ export default class ContactModel extends Model {
   })
   birthdate?: Date;
 
+  @field("date", {
+    widget: "flatpickr"
+  })
+  signUpDate?: Date;
+
+  @field("datetime", {
+    widget: "flatpickr"
+  })
+  lastSignInDate?: Date;
+
   @belongsTo("company")
   company?: CompanyModel;
 }
