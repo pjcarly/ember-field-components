@@ -13,6 +13,7 @@
     @mode="range"
     @placeholder={{@placeholder}}
     @autocomplete="off"
+    @class="form-control"
     @onChange={{action (mut this.computedValue)}} />
 
   {{#if @suffix}}
