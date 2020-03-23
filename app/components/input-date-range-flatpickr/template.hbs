@@ -11,6 +11,8 @@
     @minDate={{this.minDate}}
     @maxDate={{this.maxDate}}
     @mode="range"
+    @placeholder={{@placeholder}}
+    @autocomplete="off"
     @onChange={{action (mut this.computedValue)}} />
 
   {{#if @suffix}}

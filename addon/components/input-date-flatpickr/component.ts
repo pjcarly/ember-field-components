@@ -39,7 +39,7 @@ export default class InputDateFlatpickrComponent extends InputDateComponent {
         return moment(this.value).toDate();
       }
     } else {
-      return this.value;
+      return null;
     }
   }
   set computedValue(value: Date | null) {

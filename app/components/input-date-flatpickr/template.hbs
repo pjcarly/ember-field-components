@@ -12,6 +12,8 @@
     @maxDate={{this.maxDate}}
     @allowInput={{true}}
     @enableTime={{false}}
+    @placeholder={{@placeholder}}
+    @autocomplete="off"
     @onChange={{action (mut this.computedValue)}} />
 
   {{#if @suffix}}
