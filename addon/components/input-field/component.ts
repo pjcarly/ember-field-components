@@ -39,6 +39,7 @@ export default class InputFieldComponent extends BaseField {
         },
         set(_, value) {
           this.model.set(this.field, value);
+          this.model.get("errors").remove(this.field);
           this.notifyExternalAction(value, this.value);
 
           // And finally clear potential Errors
