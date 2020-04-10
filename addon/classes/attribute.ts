@@ -2,11 +2,12 @@ import attr from "ember-data/attr";
 // @ts-ignore
 import { fragment } from "ember-data-model-fragments/attributes";
 import { isNumeric } from "ember-attribute-validations/utils";
-// @ts-ignore
-import { lookup } from "ember-dependency-lookup";
 import { assert } from "@ember/debug";
 import { assign } from "@ember/polyfills";
 import { isBlank, isEmpty } from "@ember/utils";
+import { getOwner } from "@ember/application";
+import Model from "ember-data/model";
+import FieldInformationService from "ember-field-components/services/field-information";
 
 export function setType(type: string, options: any) {
   let defaultOptions: any = {};
@@ -37,7 +38,7 @@ export function setType(type: string, options: any) {
       defaultValidations = {
         number: true,
         precision: precision,
-        decimals: decimals
+        decimals: decimals,
       };
 
       if (decimals === 0) {
@@ -47,25 +48,29 @@ export function setType(type: string, options: any) {
       break;
     }
     case "currency": {
-      const fieldInformation = lookup("service:field-information");
+      defaultOptions["defaultValue"] = (model: Model) => {
+        const fieldInformation: FieldInformationService = getOwner(
+          model
+        ).lookup("service:field-information");
+        return fieldInformation.defaultCurrency;
+      };
 
-      defaultOptions["defaultValue"] = fieldInformation.get("defaultCurrency");
       break;
     }
     case "email":
       defaultValidations = {
         email: true,
-        max: 255
+        max: 255,
       };
       break;
     case "string":
       defaultValidations = {
-        max: 255
+        max: 255,
       };
       break;
     case "link":
       defaultValidations = {
-        url: true
+        url: true,
       };
       break;
     case "address":
