@@ -1,4 +1,4 @@
 ember-field-components:
   label:
-    select_none: '-- None --'
+    select_none: "-- None --"
     hidden: Hidden
