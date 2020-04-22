@@ -1,4 +1,4 @@
-{{#if (eq this.widgetName 'bootstrap')}}
+{{!-- {{#if (eq this.widgetName 'bootstrap')}}
   <InputTimeBootstrap
     @value={{this.value}}
     @valueChanged={{action (mut this.value)}}
@@ -8,8 +8,8 @@
     @suffix={{@suffix}}
     @class={{@inputClass}}
     @inputId={{@inputId}}
-    @options={{this.inputOptions}} />
-{{else if (eq this.widgetName 'flatpickr')}}
+    @options={{this.inputOptions}} /> --}}
+{{#if (or (eq this.widgetName 'flatpickr') (eq this.widgetName 'bootstrap'))}}
   <InputTimeFlatpickr
     @value={{this.value}}
     @valueChanged={{action (mut this.value)}}
