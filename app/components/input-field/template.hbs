@@ -7,7 +7,7 @@
     @labelClass={{@labelClass}}
     @inline={{@inline}} />
 {{else}}
-  <div class={{computedClass}}>
+  <div class={{computedClass}} {{on "focusin" this.doFocusIn}} {{on "focusout" this.doFocusOut}}>
     {{#if this.modelComputed}}
       {{#if (not this.inline)}}
         <FieldLabel
