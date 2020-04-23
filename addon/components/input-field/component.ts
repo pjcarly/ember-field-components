@@ -60,7 +60,7 @@ export default class InputFieldComponent extends BaseField {
     return `${guidFor(this)}-input`;
   }
 
-  @computed("class", "componentName", "isRequired", "hasError")
+  @computed("class", "componentName", "isRequired", "hasError", "focus")
   get computedClass(): string {
     const classes: string[] = [];
 
@@ -85,6 +85,10 @@ export default class InputFieldComponent extends BaseField {
 
     if (this.hasError) {
       classes.push("has-error");
+    }
+
+    if (this.focus) {
+      classes.push('has-focus');
     }
 
     return classes.join(" ");
@@ -134,5 +138,15 @@ export default class InputFieldComponent extends BaseField {
   @action
   notifyExternalAction(value: any, oldValue: any) {
     this.valueChanged(value, oldValue);
+  }
+
+  @action
+  doFocusIn() {
+    this.set("focus", true);
+  }
+
+  @action
+  doFocusOut() {
+    this.set("focus", false);
   }
 }

@@ -48,6 +48,11 @@ export default abstract class BaseField extends Component {
   options: any = {};
 
   /**
+   * Property that is toggled upon focus
+   */
+  focus: boolean = false;
+
+  /**
    * Returns the dasherized name of the model class
    */
   @computed("model")
