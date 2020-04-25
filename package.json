@@ -55,7 +55,6 @@
     "ember-field-components"
   ],
   "dependencies": {
-    "autosize": "~4.0.2",
     "ember-attribute-validations": "git+ssh://git@gitlab.com:getflights/ember-attribute-validations.git#improvement/ember-upgrade",
     "ember-cli-babel": "~7.7.3",
     "ember-cli-htmlbars": "~3.1.0",
@@ -67,8 +66,7 @@
     "ember-decorators": "~6.1.1",
     "ember-flatpickr": "^2.15.4",
     "ember-intl": "~4.2.0",
-    "ember-truth-helpers": "~2.1.0",
-    "nouislider": "^14.2.0"
+    "ember-truth-helpers": "~2.1.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
