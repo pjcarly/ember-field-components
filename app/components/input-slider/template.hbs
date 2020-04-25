@@ -1,1 +1,9 @@
-<input id={{inputIdComputed}} type="text" />
+<Input
+  id={{this.inputIdComputed}}
+  class="form-control"
+  @type="range"
+  @value={{this.computedValue}}
+  @placeholder={{@placeholder}}
+  @min={{this.min}}
+  @max={{this.max}}
+  @step={{this.step}} />
