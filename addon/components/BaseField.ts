@@ -73,7 +73,7 @@ export default abstract class BaseField extends Component {
   }
 
   /**
-   * When a nested field is porvided we use the nested model, and the nested field
+   * When a nested field is provided we use the nested model, and the nested field
    */
   @computed("model", "field")
   get modelComputed(): Model /* | ModelFragment */ {
