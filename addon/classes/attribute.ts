@@ -1,5 +1,6 @@
 import attr from "ember-data/attr";
-// import { fragment } from "ember-data-model-fragments/attributes";
+// @ts-ignore
+import { fragment } from "ember-data-model-fragments/attributes";
 import { isNumeric } from "ember-attribute-validations/utils";
 import { assert } from "@ember/debug";
 import { assign } from "@ember/polyfills";
@@ -72,13 +73,13 @@ export function setType(type: string, options: any) {
         url: true,
       };
       break;
-    // case "address":
-    //   options = isBlank(options) ? {} : options;
-    //   options.validation = options.hasOwnProperty("validation")
-    //     ? options.validation
-    //     : {};
-    //   options.validation.validAddress = true;
-    //   return fragment("address", options); // TODO fix dependency with ember-mist-components
+    case "address":
+      options = isBlank(options) ? {} : options;
+      options.validation = options.hasOwnProperty("validation")
+        ? options.validation
+        : {};
+      options.validation.validAddress = true;
+      return fragment("address", options); // TODO fix dependency with ember-mist-components
   }
 
   // Now we have our default validations and or options
