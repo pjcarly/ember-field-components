@@ -55,9 +55,9 @@ export default class InputFieldComponent extends BaseField {
   /**
    * Returns a unique inputId for the instance of this field
    */
-  @computed()
+  @computed("inputId")
   get calculatedInputId(): string {
-    return `${guidFor(this)}-input`;
+    return this.inputId ?? `${guidFor(this)}-input`;
   }
 
   @computed("class", "componentName", "isRequired", "hasError", "focus")
