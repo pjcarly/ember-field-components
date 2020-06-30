@@ -2,7 +2,13 @@
   {{#if @prefix}}
     <span class="input-group-addon prefix">{{@prefix}}</span>
   {{/if}}
-  {{input type='search' value=this.computedValue class='form-control' placeholder=@placeholder id=@inputId}}
+  <Input
+    id={{this.inputId}}
+    class="form-control"
+    disabled={{@disabled}}
+    @type="search"
+    @value={{this.computedValue}}
+    @placeholder={{@placeholder}} />
   {{#if @suffix}}
     <span class="input-group-addon suffix">{{@suffix}}</span>
   {{/if}}

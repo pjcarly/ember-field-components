@@ -158,6 +158,18 @@ export default class FieldInformationService extends Service {
   }
 
   /**
+   * Looks up the translations for the singular of a modelname, in case nothing was found, the modelName will be returned again
+   * @param modelName THe model name you want the translated plural form of
+   */
+  getTranslatedSingular(modelName: string): string {
+    if (this.intl.exists(`ember-field-components.${modelName}.singular`)) {
+      return this.intl.t(`ember-field-components.${modelName}.singular`);
+    }
+
+    return modelName;
+  }
+
+  /**
    * Returns the translated value of a field label. If nothing is found, the field will be capitalized
    * @param modelName The name of the model
    * @param field The field

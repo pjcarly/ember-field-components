@@ -55,12 +55,12 @@ export default class InputFieldComponent extends BaseField {
   /**
    * Returns a unique inputId for the instance of this field
    */
-  @computed()
+  @computed("inputId")
   get calculatedInputId(): string {
-    return `${guidFor(this)}-input`;
+    return this.inputId ?? `${guidFor(this)}-input`;
   }
 
-  @computed("class", "componentName", "isRequired", "hasError")
+  @computed("class", "componentName", "isRequired", "hasError", "focus")
   get computedClass(): string {
     const classes: string[] = [];
 
@@ -85,6 +85,10 @@ export default class InputFieldComponent extends BaseField {
 
     if (this.hasError) {
       classes.push("has-error");
+    }
+
+    if (this.focus) {
+      classes.push('has-focus');
     }
 
     return classes.join(" ");
@@ -134,5 +138,15 @@ export default class InputFieldComponent extends BaseField {
   @action
   notifyExternalAction(value: any, oldValue: any) {
     this.valueChanged(value, oldValue);
+  }
+
+  @action
+  doFocusIn() {
+    this.set("focus", true);
+  }
+
+  @action
+  doFocusOut() {
+    this.set("focus", false);
   }
 }

@@ -10,6 +10,7 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -20,37 +21,23 @@
     "baseUrl": ".",
     "module": "es6",
     "paths": {
-      "dummy/tests/*": [
-        "tests/*"
-      ],
-      "dummy/*": [
-        "tests/dummy/app/*",
-        "app/*"
-      ],
-      "ember-field-components": [
-        "addon"
-      ],
-      "ember-field-components/*": [
-        "addon/*"
-      ],
-      "ember-field-components/test-support": [
-        "addon-test-support"
-      ],
-      "ember-field-components/test-support/*": [
-        "addon-test-support/*"
-      ],
+      "dummy/tests/*": ["tests/*"],
+      "dummy/*": ["tests/dummy/app/*", "app/*"],
+      "ember-field-components": ["addon"],
+      "ember-field-components/*": ["addon/*"],
+      "ember-field-components/test-support": ["addon-test-support"],
+      "ember-field-components/test-support/*": ["addon-test-support/*"],
       "ember-attribute-validations": [
         "node_modules/ember-attribute-validations/addon"
       ],
       "ember-attribute-validations/*": [
         "node_modules/ember-attribute-validations/addon/*"
       ],
-      "*": [
-        "types/*"
-      ]
+      "*": ["types/*"]
     },
     "experimentalDecorators": true
   },
+  "exclude": ["node_modules/**/*"],
   "include": [
     "app/**/*",
     "addon/**/*",

@@ -1,6 +1,0 @@
-{
-  "name": "ember-field-components",
-  "dependencies": {
-    "eonasdan-bootstrap-datetimepicker": "^4.17.37"
-  }
-}
