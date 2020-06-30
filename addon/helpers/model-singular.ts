@@ -4,7 +4,7 @@ import Model from "@ember-data/model";
 import { inject as service } from "@ember/service";
 import FieldInformationService from "ember-field-components/services/field-information";
 
-export default class ModelSingular extends Helper {
+export default class ModelSingularHelper extends Helper {
   @service fieldInformation!: FieldInformationService;
 
   compute([model]: [Model]): string {

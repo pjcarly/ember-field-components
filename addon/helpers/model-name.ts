@@ -4,7 +4,7 @@ import Model from "@ember-data/model";
 import { inject as service } from "@ember/service";
 import FieldInformationService from "ember-field-components/services/field-information";
 
-export default class ModelPluralHelper extends Helper {
+export default class ModelNameHelper extends Helper {
   @service fieldInformation!: FieldInformationService;
 
   compute([model]: [Model]): string {
@@ -13,7 +13,6 @@ export default class ModelPluralHelper extends Helper {
     }
 
     // @ts-ignore
-    const modelName = this.fieldInformation.getModelName(model);
-    return this.fieldInformation.getTranslatedSingular(modelName);
+    return this.fieldInformation.getModelName(model);
   }
 }
