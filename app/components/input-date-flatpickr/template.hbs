@@ -16,7 +16,8 @@
     @autocomplete="off"
     @class="form-control"
     @disabled={{@disabled}}
-    @onChange={{action (mut this.computedValue)}} />
+    @onChange={{action (mut this.computedValue)}} 
+    @getFlatpickrRef={{action this.onFlatpickrInstance}}/>
 
   {{#if @suffix}}
     <span class="input-group-addon suffix">{{@suffix}}</span>

@@ -88,10 +88,36 @@ export default class InputDateFlatpickrComponent extends InputDateComponent {
       : undefined;
   }
 
+  inputBlurred() {
+    if (this.flatpickr) {
+      const inputValue = this.flatpickr.input.value;
+      const parsedMoment = moment(inputValue);
+
+      if (parsedMoment.isValid()) {
+        this.set("computedValue", parsedMoment.toDate());
+      } else {
+        this.flatpickr.input.value = "";
+        this.set("computedValue", null);
+      }
+    }
+  }
+
   @action
   toggleCalendar() {
     if (this.flatpickr) {
       this.flatpickr.toggle();
     }
+  }
+
+  @action
+  onFlatpickrInstance(flatpickr: flatpickr.Instance) {
+    flatpickr.input.addEventListener("blur", this.inputBlurred.bind(this));
+  }
+
+  willDestroyElement() {
+    if (this.flatpickr) {
+      this.flatpickr.input.removeEventListener("blur", this.inputBlurred);
+    }
+    super.willDestroyElement();
   }
 }
