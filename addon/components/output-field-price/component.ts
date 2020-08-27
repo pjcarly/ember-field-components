@@ -9,8 +9,9 @@ export default class OutputFieldPriceComponent extends OutputFieldComponent {
 
   @computed("model.currency", "fieldInformation.defaultCurrency")
   get currency(): string {
-    // @ts-ignore
-    const modelCurrency = this.model.get("currency");
+    const modelCurrency = <string>this.model
+      // @ts-ignore
+      .get("currency");
     const availableCurrencies = this.fieldInformation.availableCurrencies;
 
     if (

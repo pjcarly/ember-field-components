@@ -5,8 +5,9 @@ import { isBlank } from "@ember/utils";
 export default class InputFieldPercentComponent extends InputField {
   @computed("model.currency", "fieldInformation.defaultCurrency")
   get currency() {
-    // @ts-ignore
-    const modelCurrency = this.model.get("currency");
+    const modelCurrency = <string>this.model
+      // @ts-ignore
+      .get("currency");
     const availableCurrencies = this.fieldInformation.get(
       "availableCurrencies"
     );
