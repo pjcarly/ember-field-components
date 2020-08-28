@@ -1,1 +1,1 @@
-export { default } from 'ember-field-components/components/input-textarea/component';
+export { default } from "@getflights/ember-field-components/components/input-textarea/component";

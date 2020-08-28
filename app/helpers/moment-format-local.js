@@ -1,2 +1,1 @@
-export { default } from 'ember-field-components/helpers/moment-format-local';
-
+export { default } from "@getflights/ember-field-components/helpers/moment-format-local";

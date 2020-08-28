@@ -1,7 +1,7 @@
 import Service from "@ember/service";
 import Store from "ember-data/store";
 import Model from "ember-data/model";
-import SelectOption from "ember-field-components/interfaces/SelectOption";
+import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import { inject as service } from "@ember/service";
 import { isBlank } from "@ember/utils";
 import { get } from "@ember/object";

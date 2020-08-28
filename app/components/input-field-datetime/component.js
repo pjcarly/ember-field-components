@@ -1,3 +1,3 @@
-import InputField from 'ember-field-components/components/input-field-datetime/component';
+import InputField from "@getflights/ember-field-components/components/input-field-datetime/component";
 
 export default InputField;

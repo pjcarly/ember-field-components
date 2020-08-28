@@ -1,1 +1,1 @@
-export { default } from 'ember-field-components/helpers/is-string';
+export { default } from "@getflights/ember-field-components/helpers/is-string";

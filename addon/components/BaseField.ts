@@ -1,10 +1,10 @@
 import Component from "@ember/component";
 import Store from "ember-data/store";
 import Model from "ember-data/model";
-import FieldInformation from "ember-field-components/services/field-information";
+import FieldInformation from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
-import { FieldOptionsInterface } from "ember-field-components/services/field-information";
+import { FieldOptionsInterface } from "@getflights/ember-field-components/services/field-information";
 import { tagName } from "@ember-decorators/component";
 
 @tagName("")

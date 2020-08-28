@@ -1,7 +1,7 @@
 import BaseOutput from "../BaseOutput";
 import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
-import FieldInformationService from "ember-field-components/services/field-information";
+import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 
 export default class OutputTextComponent extends BaseOutput {
   @service fieldInformation!: FieldInformationService;

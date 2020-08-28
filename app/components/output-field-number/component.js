@@ -1,2 +1,1 @@
-export { default } from 'ember-field-components/components/output-field-number/component';
-
+export { default } from "@getflights/ember-field-components/components/output-field-number/component";

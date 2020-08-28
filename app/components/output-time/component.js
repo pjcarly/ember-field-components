@@ -1,1 +1,1 @@
-export { default } from 'ember-field-components/components/output-time/component';
+export { default } from "@getflights/ember-field-components/components/output-time/component";

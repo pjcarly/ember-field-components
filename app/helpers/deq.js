@@ -1,1 +1,4 @@
-export { default, equal } from "ember-field-components/helpers/double-equals";
+export {
+  default,
+  equal,
+} from "@getflights/ember-field-components/helpers/double-equals";

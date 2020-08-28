@@ -1,1 +1,1 @@
-export { default } from "ember-field-components/transforms/multi-select";
+export { default } from "@getflights/ember-field-components/transforms/multi-select";

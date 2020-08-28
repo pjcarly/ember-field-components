@@ -1,1 +1,1 @@
-export { default } from 'ember-field-components/helpers/array-contains';
+export { default } from "@getflights/ember-field-components/helpers/array-contains";

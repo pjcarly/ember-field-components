@@ -1,13 +1,13 @@
 import attr from "ember-data/attr";
 // @ts-ignore
 import { fragment } from "ember-data-model-fragments/attributes";
-import { isNumeric } from "ember-attribute-validations/utils";
+import { isNumeric } from "@getflights/ember-attribute-validations/utils";
 import { assert } from "@ember/debug";
 import { assign } from "@ember/polyfills";
 import { isBlank, isEmpty } from "@ember/utils";
 import { getOwner } from "@ember/application";
 import Model from "ember-data/model";
-import FieldInformationService from "ember-field-components/services/field-information";
+import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 
 export function setType(type: string, options: any) {
   let defaultOptions: any = {};

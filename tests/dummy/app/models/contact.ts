@@ -1,6 +1,6 @@
 import Model from "ember-data/model";
-import { validationModel } from "ember-attribute-validations/decorators/validation-model";
-import { field } from "ember-field-components/model/attribute";
+import { validationModel } from "@getflights/ember-attribute-validations/decorators/validation-model";
+import { field } from "@getflights/ember-field-components/model/attribute";
 import { belongsTo } from "ember-data/relationships";
 import CompanyModel from "./company";
 
@@ -10,7 +10,7 @@ export default class ContactModel extends Model {
   salutation!: string;
 
   @field("string", {
-    validation: { required: true, range: { from: 2, to: 20 } }
+    validation: { required: true, range: { from: 2, to: 20 } },
   })
   firstName!: string;
 
@@ -29,8 +29,8 @@ export default class ContactModel extends Model {
     validation: {
       wholenumber: true,
       max: 150,
-      min: 0
-    }
+      min: 0,
+    },
   })
   age?: number;
 
@@ -40,18 +40,18 @@ export default class ContactModel extends Model {
       after: new Date("2000-01-01"),
       before() {
         return new Date();
-      }
-    }
+      },
+    },
   })
   birthdate?: Date;
 
   @field("date", {
-    widget: "flatpickr"
+    widget: "flatpickr",
   })
   signUpDate?: Date;
 
   @field("datetime", {
-    widget: "flatpickr"
+    widget: "flatpickr",
   })
   lastSignInDate?: Date;
 

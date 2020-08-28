@@ -1,1 +1,1 @@
-export { default } from "ember-field-components/transforms/percent";
+export { default } from "@getflights/ember-field-components/transforms/percent";

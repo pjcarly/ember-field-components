@@ -1,1 +1,1 @@
-export { default } from 'ember-field-components/services/field-information';
+export { default } from "@getflights/ember-field-components/services/field-information";

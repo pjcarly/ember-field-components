@@ -1,5 +1,5 @@
 import InputDateComponent from "../input-date/component";
-import FieldInformationService from "ember-field-components/services/field-information";
+import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
 import { guidFor } from "@ember/object/internals";

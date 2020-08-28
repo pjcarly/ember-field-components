@@ -1,5 +1,5 @@
 import Helper from "@ember/component/helper";
-import SelectOption from 'ember-field-components/interfaces/SelectOption';
+import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import { isBlank } from "@ember/utils";
 
 export default class SelectOptionHelper extends Helper {

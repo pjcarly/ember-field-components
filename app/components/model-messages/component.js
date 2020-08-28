@@ -1,1 +1,1 @@
-export { default } from 'ember-field-components/components/model-messages/component';
+export { default } from "@getflights/ember-field-components/components/model-messages/component";

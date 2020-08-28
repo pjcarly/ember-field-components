@@ -1,2 +1,1 @@
-export { default } from 'ember-field-components/components/input-field-currency/component';
-
+export { default } from "@getflights/ember-field-components/components/input-field-currency/component";

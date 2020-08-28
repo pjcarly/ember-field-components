@@ -1,5 +1,5 @@
 import OutputFieldComponent from "../output-field/component";
-import FieldInformationService from "ember-field-components/services/field-information";
+import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 import { computed } from "@ember/object";
 import { isBlank } from "@ember/utils";
 import { inject as service } from "@ember/service";

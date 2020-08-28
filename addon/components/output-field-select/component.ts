@@ -1,6 +1,6 @@
 import OutputFieldComponent from "../output-field/component";
-import SelectOption from "ember-field-components/interfaces/SelectOption";
-import FieldInformationService from "ember-field-components/services/field-information";
+import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
+import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
 import { isArray } from "@ember/array";
@@ -26,7 +26,7 @@ export default class OutputFieldSelectComponent extends OutputFieldComponent {
 
     for (const fieldSelectOption of fieldOptions.selectOptions) {
       const selectOption: SelectOption = {
-        value: fieldSelectOption.value
+        value: fieldSelectOption.value,
       };
 
       selectOption.label = this.fieldInformation.getTranslatedSelectOptionLabel(

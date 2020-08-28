@@ -1,1 +1,1 @@
-export { default } from 'ember-field-components/components/output-phone/component';
+export { default } from "@getflights/ember-field-components/components/output-phone/component";

@@ -2,7 +2,7 @@ import Helper from "@ember/component/helper";
 import { isBlank } from "@ember/utils";
 import Model from "@ember-data/model";
 import { inject as service } from "@ember/service";
-import FieldInformationService from "ember-field-components/services/field-information";
+import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 
 export default class ModelSingularHelper extends Helper {
   @service fieldInformation!: FieldInformationService;

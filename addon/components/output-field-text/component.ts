@@ -1,6 +1,6 @@
 import OutputFieldComponent from "../output-field/component";
 import { computed } from "@ember/object";
-import { FieldOptionsInterface } from "ember-field-components/services/field-information";
+import { FieldOptionsInterface } from "@getflights/ember-field-components/services/field-information";
 
 export interface FieldOptionsMaskInterface extends FieldOptionsInterface {
   mask: string;

@@ -23,21 +23,23 @@
     "paths": {
       "dummy/tests/*": ["tests/*"],
       "dummy/*": ["tests/dummy/app/*", "app/*"],
-      "ember-field-components": ["addon"],
-      "ember-field-components/*": ["addon/*"],
-      "ember-field-components/test-support": ["addon-test-support"],
-      "ember-field-components/test-support/*": ["addon-test-support/*"],
-      "ember-attribute-validations": [
-        "node_modules/ember-attribute-validations/addon"
+      "@getflights/ember-field-components": ["addon"],
+      "@getflights/ember-field-components/*": ["addon/*"],
+      "@getflights/ember-field-components/test-support": ["addon-test-support"],
+      "@getflights/ember-field-components/test-support/*": [
+        "addon-test-support/*"
       ],
-      "ember-attribute-validations/*": [
-        "node_modules/ember-attribute-validations/addon/*"
+      "@getflights/ember-attribute-validations": [
+        "node_modules/@getflights/ember-attribute-validations/addon"
+      ],
+      "@getflights/ember-attribute-validations/*": [
+        "node_modules/@getflights/ember-attribute-validations/addon/*"
       ],
       "*": ["types/*"]
     },
     "experimentalDecorators": true
   },
-  "exclude": ["node_modules/**/*"],
+  "exclude": ["node_modules/@getflights/**/*"],
   "include": [
     "app/**/*",
     "addon/**/*",
@@ -45,7 +47,7 @@
     "types/**/*",
     "test-support/**/*",
     "addon-test-support/**/*",
-    "node_modules/ember-attribute-validations/app",
-    "node_modules/ember-attribute-validations/addon"
+    "node_modules/@getflights/ember-attribute-validations/app",
+    "node_modules/@getflights/ember-attribute-validations/addon"
   ]
 }

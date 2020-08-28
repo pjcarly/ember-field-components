@@ -1,6 +1,6 @@
 import BaseInput from "../BaseInput";
-import SelectOption from "ember-field-components/interfaces/SelectOption";
-import SelectOptionGroup from "ember-field-components/interfaces/SelectOptionGroup";
+import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
+import SelectOptionGroup from "@getflights/ember-field-components/interfaces/SelectOptionGroup";
 import { computed } from "@ember/object";
 import { isBlank } from "@ember/utils";
 import { inject as service } from "@ember/service";

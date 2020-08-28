@@ -1,6 +1,6 @@
 import { setType } from "../classes/attribute";
 // @ts-ignore
-import { computedDecoratorWithParams } from "ember-field-components/-private/computed";
+import { computedDecoratorWithParams } from "@getflights/ember-field-components/-private/computed";
 
 /**
  * Field decorator for use with native classes

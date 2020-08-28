@@ -1,4 +1,4 @@
-import FieldInformationService from "ember-field-components/services/field-information";
+import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
 import { guidFor } from "@ember/object/internals";
@@ -29,7 +29,7 @@ export default class InputDateRangeFlatpickrComponent extends InputDateComponent
   }
   set computedValue(value: [Date, Date] | [Date] | [] | null) {
     if (value && value instanceof Array && value.length <= 2) {
-      value = <[Date, Date] | [Date] | []>value.filter(singleValue => {
+      value = <[Date, Date] | [Date] | []>value.filter((singleValue) => {
         // @ts-ignore
         return singleValue instanceof Date;
       });

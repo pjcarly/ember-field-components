@@ -1,1 +1,1 @@
-export { default } from 'ember-field-components/helpers/component-exists';
+export { default } from "@getflights/ember-field-components/helpers/component-exists";

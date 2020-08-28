@@ -1,1 +1,1 @@
-export { default } from "ember-field-components/helpers/model-name";
+export { default } from "@getflights/ember-field-components/helpers/model-name";

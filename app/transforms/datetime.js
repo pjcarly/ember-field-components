@@ -1,1 +1,1 @@
-export { default } from "ember-field-components/transforms/datetime";
+export { default } from "@getflights/ember-field-components/transforms/datetime";

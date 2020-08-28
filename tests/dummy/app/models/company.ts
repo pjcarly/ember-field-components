@@ -1,6 +1,6 @@
 import Model from "ember-data/model";
-import { validationModel } from "ember-attribute-validations/decorators/validation-model";
-import { field } from "ember-field-components/model/attribute";
+import { validationModel } from "@getflights/ember-attribute-validations/decorators/validation-model";
+import { field } from "@getflights/ember-field-components/model/attribute";
 import MutableArray from "@ember/array/mutable";
 import { hasMany } from "ember-data/relationships";
 
@@ -15,7 +15,7 @@ export default class CompanyModel extends Model {
   @field("number", {
     precision: 2,
     decimals: 1,
-    validation: { range: { from: 0, to: 5 } }
+    validation: { range: { from: 0, to: 5 } },
   })
   rating?: number;
 
@@ -25,14 +25,14 @@ export default class CompanyModel extends Model {
   @field("number", {
     precision: 2,
     decimals: 1,
-    validation: { negative: true, number: true }
+    validation: { negative: true, number: true },
   })
   credit?: number;
 
   @field("number", {
     precision: 2,
     decimals: 1,
-    validation: { positive: true, number: true }
+    validation: { positive: true, number: true },
   })
   debit?: number;
 

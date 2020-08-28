@@ -1,6 +1,6 @@
 import InputField from "../input-field/component";
-import SelectOption from "ember-field-components/interfaces/SelectOption";
-import FieldInformationService from "ember-field-components/services/field-information";
+import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
+import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
 import { isArray } from "@ember/array";
@@ -23,7 +23,7 @@ export default class InputFieldSelectComponent extends InputField {
         classicComputed("model", `model.${this.dependentField}`, {
           get() {
             return this.model.get(this.dependentField);
-          }
+          },
         })
       );
     }
@@ -100,7 +100,7 @@ export default class InputFieldSelectComponent extends InputField {
       }
 
       const selectOption: SelectOption = {
-        value: fieldSelectOption.value
+        value: fieldSelectOption.value,
       };
 
       selectOption.label = this.fieldInformation.getTranslatedSelectOptionLabel(

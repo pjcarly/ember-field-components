@@ -1,5 +1,5 @@
 import OutputFieldSelectComponent from "../output-field-select/component";
-import SelectOption from "ember-field-components/interfaces/SelectOption";
+import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
 
@@ -14,7 +14,7 @@ export default class OutputFieldCurrencyComponent extends OutputFieldSelectCompo
     for (const availableCurrency of availableCurrencies) {
       const selectOption: SelectOption = {
         value: availableCurrency,
-        label: availableCurrency
+        label: availableCurrency,
       };
 
       selectOptions.push(selectOption);

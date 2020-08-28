@@ -1,1 +1,1 @@
-export { default } from "ember-field-components/transforms/link";
+export { default } from "@getflights/ember-field-components/transforms/link";
