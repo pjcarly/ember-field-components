@@ -1,5 +1,5 @@
-import Component from '@ember/component';
+import BaseOutput from "../BaseOutput";
 
-export default class OutputCheckboxComponent extends Component {
-  type = 'checkbox';
+export default class OutputCheckboxComponent extends BaseOutput {
+  type = "checkbox";
 }
