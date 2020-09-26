@@ -1,4 +1,4 @@
-import Transform from "ember-data/transform";
+import Transform from "@ember-data/serializer/transform";
 
 export default Transform.extend({
   deserialize(serialized: any) {
@@ -31,5 +31,5 @@ export default Transform.extend({
     } else {
       return null;
     }
-  }
+  },
 });

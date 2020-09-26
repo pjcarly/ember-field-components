@@ -1,5 +1,5 @@
 import Component from "@ember/component";
-import Model from "ember-data/model";
+import Model from "@ember-data/model";
 import { computed } from "@ember/object";
 import { tagName } from "@ember-decorators/component";
 import { get } from "@ember/object";

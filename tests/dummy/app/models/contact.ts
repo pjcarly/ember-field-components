@@ -1,7 +1,7 @@
-import Model from "ember-data/model";
+import Model from "@ember-data/model";
 import { validationModel } from "@getflights/ember-attribute-validations/decorators/validation-model";
 import { field } from "@getflights/ember-field-components/model/attribute";
-import { belongsTo } from "ember-data/relationships";
+import { belongsTo } from "@ember-data/model";
 import CompanyModel from "./company";
 
 @validationModel

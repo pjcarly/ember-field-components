@@ -9,7 +9,7 @@ Use setType from classes/attribute.js to create your attrtibute types on your mo
 For example:
 
 ```javascript
-import Model from 'ember-data/model';
+import Model from '@ember-data/model';
 import { setType } from '@getflights/ember-field-components/classes/attribute';
 
 export default Model.extend({
@@ -73,7 +73,7 @@ Attributes with type `select` require you to define select options, possible val
 This is how you define selectOptions:
 
 ```javascript
-import Model from 'ember-data/model';
+import Model from '@ember-data/model';
 import { setType } from '@getflights/ember-field-components/classes/attribute';
 
 export default Model.extend({
@@ -104,7 +104,7 @@ These attribute types require you to define the precision and amount of decimals
 For example:
 
 ```javascript
-import Model from 'ember-data/model';
+import Model from '@ember-data/model';
 import { setType } from '@getflights/ember-field-components/classes/attribute';
 
 export default Model.extend({
@@ -154,7 +154,7 @@ Standard we use the [capitalized](http://emberjs.com/api/classes/Ember.String.ht
 For example:
 
 ```javascript
-import Model from 'ember-data/model';
+import Model from '@ember-data/model';
 import { setType } from '@getflights/ember-field-components/classes/attribute';
 
 let entity = Model.extend({

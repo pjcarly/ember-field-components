@@ -1,5 +1,5 @@
 import { isNone as none } from "@ember/utils";
-import Transform from "ember-data/transform";
+import Transform from "@ember-data/serializer/transform";
 
 export default Transform.extend({
   deserialize(serialized: any) {
@@ -7,5 +7,5 @@ export default Transform.extend({
   },
   serialize(deserialized: any) {
     return none(deserialized) ? null : String(deserialized);
-  }
+  },
 });

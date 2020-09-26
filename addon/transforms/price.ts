@@ -1,4 +1,4 @@
-import Transform from "ember-data/transform";
+import Transform from "@ember-data/serializer/transform";
 
 export function isNumber(value: any) {
   return value === value && value !== Infinity && value !== -Infinity;
@@ -31,5 +31,5 @@ export default Transform.extend({
 
       return isNumber(transformed) ? transformed : null;
     }
-  }
+  },
 });

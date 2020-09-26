@@ -1,8 +1,8 @@
-import Model from "ember-data/model";
+import Model from "@ember-data/model";
 import { validationModel } from "@getflights/ember-attribute-validations/decorators/validation-model";
 import { field } from "@getflights/ember-field-components/model/attribute";
 import MutableArray from "@ember/array/mutable";
-import { hasMany } from "ember-data/relationships";
+import { hasMany } from "@ember-data/model";
 
 @validationModel
 export default class CompanyModel extends Model {
