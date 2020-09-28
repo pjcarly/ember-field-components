@@ -1,11 +1,15 @@
-<div class={{computedClass}}>
-  {{#if modelComputed}}
+<div class={{this.computedClass}}>
+  {{#if this.modelComputed}}
     {{#if (not this.inline)}}
-      <FieldLabel @model={{@model}} @field={{@field}} @class={{@labelClass}} @label={{@label}} />
+      <FieldLabel 
+        @model={{@model}} 
+        @field={{@field}} 
+        @class={{this.labelClass}} 
+        @label={{@label}} />
     {{/if}}
 
     {{#if hasBlock}}
-      {{!-- You can provide your own component for output. By using the component as a block component. The label, and errors will be displayed --}}
+      {{!-- You can provide your own component for output. By using the component as a block component. The label will be displayed --}}
       {{yield}}
     {{else if (component-exists this.componentName)}}
       {{component this.componentName
@@ -19,9 +23,6 @@
     {{else}}
       Component {{this.componentName}} does not exist
     {{/if}}
-
-    {{!-- <FieldHelptext @model={{@model}} @field={{@field}} @class={{@helptextClass}} @helptext={{@helptext}} @for={{this.calculatedInputId}} />
-    <FieldMessages @model={{@model}} @field={{@field}} /> --}}
   {{else}}
     <span class="output">
       <span class="value empty"></span>
