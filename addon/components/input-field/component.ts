@@ -47,7 +47,7 @@ export default class InputFieldComponent extends BaseField {
           // errors.remove(field);
 
           return value;
-        }
+        },
       })
     );
   }
@@ -88,7 +88,7 @@ export default class InputFieldComponent extends BaseField {
     }
 
     if (this.focus) {
-      classes.push('has-focus');
+      classes.push("has-focus");
     }
 
     return classes.join(" ");

@@ -13,7 +13,7 @@ export default abstract class BaseInput extends Component {
   /**
    * The Value of the input component
    */
-  value!: any;
+  value?: any;
 
   /**
    * The custom class you want to give to the component
