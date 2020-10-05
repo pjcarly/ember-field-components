@@ -30,6 +30,11 @@ export default abstract class BaseInput extends Component {
    */
   inputGroup: boolean = false;
 
+  /**
+   * Some input components display helper buttons (like a calendar for date input) you can hide those buttons by settings this bool
+   */
+  showButton: boolean = true;
+
   @computed("value")
   get computedValue(): any {
     return this.value;
@@ -49,7 +54,12 @@ export default abstract class BaseInput extends Component {
       classes.push(this.class);
     }
 
-    if (!isBlank(this.prefix) || !isBlank(this.suffix) || this.inputGroup) {
+    if (
+      !isBlank(this.prefix) ||
+      !isBlank(this.suffix) ||
+      this.inputGroup ||
+      this.showButton
+    ) {
       classes.push("input-group");
     }
 

@@ -1,4 +1,4 @@
-{{#if (eq this.widgetName 'button-group')}}
+{{#if (eq this.widgetName "button-group")}}
   <InputButtonGroup
     @selectOptions={{this.selectOptionsComputed}}
     @value={{this.computedValue}}
@@ -8,7 +8,7 @@
     @noneLabel={{this.noneLabel}}
     @required={{this.isRequired}}
     @options={{this.inputOptions}} />
-{{else if (eq this.widgetName 'radio-buttons')}}
+{{else if (eq this.widgetName "radio-buttons")}}
   <InputRadioButtonList
     @selectOptions={{this.selectOptionsComputed}}
     @value={{this.computedValue}}
