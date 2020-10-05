@@ -77,6 +77,8 @@
   ],
   "dependencies": {
     "@getflights/ember-attribute-validations": "^1.0.0",
+    "@glimmer/component": "^1.0.2",
+    "@glimmer/tracking": "^1.0.2",
     "ember-cli-babel": "~7.7.3",
     "ember-cli-htmlbars": "~3.1.0",
     "ember-cli-moment-shim": "~3.8.0",
