@@ -7,37 +7,39 @@
     @labelClass={{@labelClass}}
     @inline={{@inline}} />
 {{else}}
-  <div class={{computedClass}} {{on "focusin" this.doFocusIn}} {{on "focusout" this.doFocusOut}}>
+  <div class="{{if (not this.inline) "form-group "}}{{this.computedClass}}" {{on "focusin" this.doFocusIn}} {{on "focusout" this.doFocusOut}} role="textbox">
     {{#if this.modelComputed}}
-      {{#if (not this.inline)}}
-        <FieldLabel
-          @model={{@model}}
-          @field={{@field}}
-          @class={{@labelClass}}
-          @label={{@label}}
-          @for={{this.calculatedInputId}} />
-      {{/if}}
+      <div class="input-container">
+        {{#if (not this.inline)}}
+          <FieldLabel
+            @model={{@model}}
+            @field={{@field}}
+            @class={{concat "control-label " @labelClass}}
+            @label={{@label}}
+            @for={{this.calculatedInputId}} />
+        {{/if}}
 
-      {{#if hasBlock}}
-        {{!-- You can provide your own component for input. By using the component as a block component. The label, and errors will be displayed --}}
-        {{yield this.calculatedInputId}}
-      {{else if (component-exists this.componentName)}}
-        {{component this.componentName
-          model=this.modelComputed
-          field=this.fieldComputed
-          placeholder=@placeholder
-          inputClass=@inputClass
-          prefix=@prefix
-          suffix=@suffix
-          inputId=this.calculatedInputId
-          options=@options
-          inline=this.inline
-          preSetHook=this.preSetHook
-          valueChanged=(action this.notifyExternalAction)}}
-      {{else}}
-        Component {{this.componentName}} does not exist
-      {{/if}}
-
+        {{#if hasBlock}}
+          {{!-- You can provide your own component for input. By using the component as a block component. The label, and errors will be displayed --}}
+          {{yield this.calculatedInputId}}
+        {{else if (component-exists this.componentName)}}
+          {{component this.componentName
+            model=this.modelComputed
+            field=this.fieldComputed
+            placeholder=@placeholder
+            inputClass=@inputClass
+            inline=this.inline
+            prefix=@prefix
+            suffix=@suffix
+            inputId=this.calculatedInputId
+            options=@options
+            preSetHook=this.preSetHook
+            valueChanged=(action this.notifyExternalAction)}}
+        {{else}}
+          {{! template-lint-disable no-bare-strings }}
+          Component {{this.componentName}} does not exist
+        {{/if}}
+      </div>
       {{#if (not this.inline)}}
         <FieldHelptext
           @model={{@model}}
