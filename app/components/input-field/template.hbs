@@ -33,7 +33,7 @@
           options=@options
           inline=this.inline
           preSetHook=this.preSetHook
-          valueChanged=(action 'notifyExternalAction')}}
+          valueChanged=(action this.notifyExternalAction)}}
       {{else}}
         Component {{this.componentName}} does not exist
       {{/if}}
