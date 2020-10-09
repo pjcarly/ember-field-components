@@ -348,7 +348,7 @@ export default class FieldInformationService extends Service {
 
   /**
    * This function returns the type of a field, nested lookups are possible. As well as support for ember-data-model-fragments
-   * @param modelName THe name of the model where the field exists
+   * @param modelName The name of the model where the field exists
    * @param field The name of the field
    */
   getFieldType(modelName: string, field: string): string | undefined {
@@ -398,6 +398,19 @@ export default class FieldInformationService extends Service {
 
       return modelClass.settings.computedMeta[field].type;
     }
+  }
+
+  /**
+   * Checks whether the field is a computed property or not
+   * @param modelName The name of the model where the potential computed property exists
+   * @param field The name of the potential computed property
+   */
+  getFieldIsComputedProperty(modelName: string, field: string): boolean {
+    const modelClass = this.getModelClass(modelName);
+    const splittedField = field.split(".");
+    const meta = modelClass.metaForProperty(splittedField[0]);
+
+    return meta && !(meta.isAttribute || meta.isRelationship);
   }
 
   /**

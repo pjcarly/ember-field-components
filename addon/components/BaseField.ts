@@ -122,11 +122,21 @@ export default abstract class BaseField extends Component {
       : undefined;
   }
 
-  @computed("fieldOptions")
+  @computed("fieldOptions", "modelName")
   get isReadOnly(): boolean {
-    return this.fieldOptions
-      ? this.fieldInformation.getFieldIsReadOnly(this.fieldOptions)
-      : false;
+    if (
+      this.modelName &&
+      this.fieldInformation.getFieldIsComputedProperty(
+        this.modelName,
+        this.field
+      )
+    ) {
+      return true;
+    } else if (this.fieldOptions) {
+      return this.fieldInformation.getFieldIsReadOnly(this.fieldOptions);
+    } else {
+      return false;
+    }
   }
 
   @computed("fieldOptions", "required")
