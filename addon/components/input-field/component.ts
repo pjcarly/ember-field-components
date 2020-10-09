@@ -83,6 +83,10 @@ export default class InputFieldComponent extends BaseField {
       classes.push("is-required");
     }
 
+    if (this.isReadOnly) {
+      classes.push("is-readonly");
+    }
+
     if (this.hasError) {
       classes.push("has-error");
     }

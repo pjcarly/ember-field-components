@@ -1,60 +1,58 @@
-{{#if this.isReadOnly}}
-  <OutputField
-    @model={{@model}}
-    @field={{@field}}
-    @options={{@options}}
-    @class={{@class}}
-    @labelClass={{@labelClass}}
-    @inline={{@inline}} />
-{{else}}
-  <div class="{{if (not this.inline) "form-group "}}{{this.computedClass}}" {{on "focusin" this.doFocusIn}} {{on "focusout" this.doFocusOut}} role="textbox">
-    {{#if this.modelComputed}}
-      <div class="input-container">
-        {{#if (not this.inline)}}
-          <FieldLabel
-            @model={{@model}}
-            @field={{@field}}
-            @class={{concat "control-label " @labelClass}}
-            @label={{@label}}
-            @for={{this.calculatedInputId}} />
-        {{/if}}
-
-        {{#if hasBlock}}
-          {{!-- You can provide your own component for input. By using the component as a block component. The label, and errors will be displayed --}}
-          {{yield this.calculatedInputId}}
-        {{else if (component-exists this.componentName)}}
-          {{component this.componentName
-            model=this.modelComputed
-            field=this.fieldComputed
-            placeholder=@placeholder
-            inputClass=@inputClass
-            inline=this.inline
-            prefix=@prefix
-            suffix=@suffix
-            inputId=this.calculatedInputId
-            options=@options
-            preSetHook=this.preSetHook
-            valueChanged=(action this.notifyExternalAction)}}
-        {{else}}
-          {{! template-lint-disable no-bare-strings }}
-          Component {{this.componentName}} does not exist
-        {{/if}}
-      </div>
+<div class="{{if (not this.inline) "form-group "}}{{this.computedClass}}" {{on "focusin" this.doFocusIn}} {{on "focusout" this.doFocusOut}} role="textbox">
+  {{#if this.modelComputed}}
+    <div class="input-container">
       {{#if (not this.inline)}}
-        <FieldHelptext
+        <FieldLabel
           @model={{@model}}
           @field={{@field}}
-          @class={{@helptextClass}}
-          @helptext={{@helptext}}
+          @class={{concat "control-label " @labelClass}}
+          @label={{@label}}
           @for={{this.calculatedInputId}} />
       {{/if}}
-      <FieldMessages
+
+      {{#if hasBlock}}
+        {{!-- You can provide your own component for input. By using the component as a block component. The label, and errors will be displayed --}}
+        {{yield this.calculatedInputId}}
+      {{else if this.isReadOnly}}
+        <OutputField
+          @model={{@model}}
+          @field={{@field}}
+          @options={{@options}}
+          @class={{@class}}
+          @labelClass={{this.labelClass}}
+          @inline={{true}} />
+      {{else if (component-exists this.componentName)}}
+        {{component this.componentName
+          model=this.modelComputed
+          field=this.fieldComputed
+          placeholder=@placeholder
+          inputClass=@inputClass
+          inline=this.inline
+          prefix=@prefix
+          suffix=@suffix
+          inputId=this.calculatedInputId
+          options=@options
+          preSetHook=this.preSetHook
+          valueChanged=(action this.notifyExternalAction)}}
+      {{else}}
+        {{! template-lint-disable no-bare-strings }}
+        Component {{this.componentName}} does not exist
+      {{/if}}
+    </div>
+    {{#if (not this.inline)}}
+      <FieldHelptext
         @model={{@model}}
-        @field={{@field}} />
-    {{else}}
-      <span class="output">
-        <span class="value empty"></span>
-      </span>
+        @field={{@field}}
+        @class={{@helptextClass}}
+        @helptext={{@helptext}}
+        @for={{this.calculatedInputId}} />
     {{/if}}
-  </div>
-{{/if}}
+    <FieldMessages
+      @model={{@model}}
+      @field={{@field}} />
+  {{else}}
+    <span class="output">
+      <span class="value empty"></span>
+    </span>
+  {{/if}}
+</div>
