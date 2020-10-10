@@ -4,15 +4,8 @@
       {{@prefix}}
     </span>
   {{/if}}
-  {{#if @value}}
-    <span class="value checked">
-      <IconCheckboxChecked />
-    </span>
-  {{else}}
-    <span class="value unchecked">
-      <IconCheckboxUnchecked />
-    </span>
-  {{/if}}
+  <span class={{if @value "value checked" "value unchecked"}}>
+  </span>
   {{#if (and @value @suffix)}}
     <span class="suffix">
       {{@suffix}}
