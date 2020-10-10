@@ -4,13 +4,7 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <span class="toggle-switch value">
-    {{#if @value}}
-      <input type="checkbox" hidden="hidden" checked="checked" />
-      <span class="ts-helper"></span>
-    {{else}}
-      <span class="ts-helper"></span>
-    {{/if}}
+  <span class={{if @value "value checked" "value unchecked"}}>
   </span>
   {{#if (and @value @suffix)}}
     <span class="suffix">

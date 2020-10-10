@@ -1,8 +1,19 @@
-<span class="{{this.computedClass}} toggle-switch form-control" {{action 'toggleSwitch'}}>
-  {{#if value}}
-    <input type="checkbox" hidden="hidden" checked="checked" />
-    <span class="ts-helper"></span>
-  {{else}}
-    <span class="ts-helper"></span>
+<span class={{this.computedClass}}>
+  {{#if @prefix}}
+    <div class="input-group-prepend">
+      <span class="input-group-text prefix">{{@prefix}}</span>
+    </div>
+  {{/if}}
+  <Input
+    id={{this.inputId}}
+    class="form-control switch"
+    disabled={{@disabled}}
+    @type="checkbox"
+    @checked={{this.computedValue}}
+    @placeholder={{@placeholder}} />
+  {{#if @suffix}}
+    <div class="input-group-append">
+      <span class="input-group-text suffix">{{@suffix}}</span>
+    </div>
   {{/if}}
 </span>
