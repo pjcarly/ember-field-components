@@ -33,6 +33,12 @@ export default abstract class BaseField extends Component {
   required: boolean = false;
 
   /**
+   * This flag marks the field as readonly, and renders a is-readonly class
+   * and no input field
+   */
+  readonly: boolean = false;
+
+  /**
    * The class you want to give the label accompanying the field
    */
   labelClass: string = "control-label";
@@ -122,9 +128,11 @@ export default abstract class BaseField extends Component {
       : undefined;
   }
 
-  @computed("fieldOptions", "modelName")
+  @computed("fieldOptions", "modelName", "readonly")
   get isReadOnly(): boolean {
-    if (
+    if (this.readonly) {
+      return true;
+    } else if (
       this.modelName &&
       this.fieldInformation.getFieldIsComputedProperty(
         this.modelName,
