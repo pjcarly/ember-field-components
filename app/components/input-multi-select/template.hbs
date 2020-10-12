@@ -5,7 +5,7 @@
     </div>
   {{/if}}
 
-  <select onchange={{action 'setValue'}} class='form-control' id={{@inputId}} disabled={{@disabled}} multiple>
+  <select {{on "change" this.setValue}} class='form-control' id={{@inputId}} disabled={{@disabled}} multiple>
     {{#if this.showNone}}
       <option selected={{not this.computedValue}} disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}</option>
     {{/if}}
