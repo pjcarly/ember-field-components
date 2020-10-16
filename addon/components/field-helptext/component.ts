@@ -1,34 +1,31 @@
-import Component from "@ember/component";
+import Component from "@glimmer/component";
 import FieldInformation from "@getflights/ember-field-components/services/field-information";
 import Model from "@ember-data/model";
-import { computed } from "@ember/object";
-import { isBlank } from "@ember/utils";
 import { inject as service } from "@ember/service";
-import { tagName } from "@ember-decorators/component";
 
-@tagName("")
-export default class FieldHelptextComponent extends Component {
+interface Arguments {
+  model: Model;
+  field: string;
+  modelName?: string;
+  helptext?: string;
+}
+
+export default class FieldHelptextComponent extends Component<Arguments> {
   @service intl!: any;
   @service fieldInformation!: FieldInformation;
 
-  model!: Model;
-  field!: string;
-  helptextClass: string = "helptext";
-  helptext: string = "";
-  modelName: string = "";
-
-  @computed("model", "field", "helptext", "modelName", "intl.locale")
   get helptextComputed() {
-    if (!isBlank(this.helptext)) {
-      return this.helptext;
+    if (this.args.helptext) {
+      return this.args.helptext;
     }
 
-    const modelName = isBlank(this.modelName)
-      ? this.fieldInformation.getModelName(this.model)
-      : this.modelName;
+    const modelName = this.args.modelName
+      ? this.args.modelName
+      : this.fieldInformation.getModelName(this.args.model);
+
     return this.fieldInformation.getTranslatedFieldHelptext(
       modelName,
-      this.field
+      this.args.field
     );
   }
 }

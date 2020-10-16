@@ -5,9 +5,9 @@
         <FieldLabel
           @model={{@model}}
           @field={{@field}}
-          @class={{concat "control-label " @labelClass}}
           @label={{@label}}
-          @for={{this.calculatedInputId}} />
+          class={{concat "control-label " @labelClass}}
+          for={{this.calculatedInputId}} />
       {{/if}}
 
       {{#if hasBlock}}
@@ -41,11 +41,10 @@
     </div>
     {{#if (not this.inline)}}
       <FieldHelptext
+        class={{@helptextClass}}
         @model={{@model}}
         @field={{@field}}
-        @class={{@helptextClass}}
-        @helptext={{@helptext}}
-        @for={{this.calculatedInputId}} />
+        @helptext={{@helptext}} />
     {{/if}}
     <FieldMessages
       @model={{@model}}
