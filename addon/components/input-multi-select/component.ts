@@ -1,34 +1,30 @@
-import InputSelectComponent from '../input-select/component';
-import { computed, action } from '@ember/object';
-import { isBlank } from '@ember/utils';
-import { guidFor } from '@ember/object/internals';
+import InputSelectComponent from "../input-select/component";
+import { action } from "@ember/object";
+import { guidFor } from "@ember/object/internals";
 
 export default class InputMultiSelectComponent extends InputSelectComponent {
-  @computed('inputId')
-  get inputIdComputed() : string {
-    if(!isBlank(this.inputId)) {
-      return this.inputId;
-    } else {
-      return `${guidFor(this)}-select`;
-    }
+  get inputIdComputed(): string {
+    return this.args.inputId ?? `${guidFor(this)}-select`;
   }
 
   @action
-  setValue() {
-    const element : HTMLSelectElement | null = <HTMLSelectElement> document.getElementById(this.inputIdComputed);
-    const values : string[] = [];
+  multiSelectValueChanged() {
+    const element: HTMLSelectElement | null = <HTMLSelectElement>(
+      document.getElementById(this.inputIdComputed)
+    );
+    const values: string[] = [];
 
-    if(!element) {
-      this.computedValue = values;
+    if (!element) {
+      this.valueChanged(values);
       return;
     }
 
-    for(const option of element.options) {
-      if(option.selected) {
+    for (const option of element.options) {
+      if (option.selected) {
         values.push(option.value);
       }
     }
 
-    this.computedValue = values;
+    this.valueChanged(values);
   }
 }

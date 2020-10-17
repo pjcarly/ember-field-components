@@ -1,5 +1,5 @@
-import BaseInput from '../BaseInput';
+import BaseInput, { Arguments } from "../BaseInput";
 
-export default class InputTextareaComponent extends BaseInput {
-  type = 'textarea';
+export default class InputTextareaComponent extends BaseInput<Arguments> {
+  type = "textarea";
 }

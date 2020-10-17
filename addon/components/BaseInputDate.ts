@@ -1,41 +1,45 @@
-import BaseInput from "./BaseInput";
+import BaseInput, { Arguments } from "./BaseInput";
 import moment from "moment";
-import { isBlank } from "@ember/utils";
-import { computed } from "@ember/object";
-import { tagName } from "@ember-decorators/component";
 
-@tagName("")
-export default abstract class BaseInputDate extends BaseInput {
+export interface DateArguments extends Arguments {
+  value?: Date;
+
   /**
    * The format to which your date should be displayed (this follows the moment.js formatting)
    */
+  format?: string;
+}
+
+export default abstract class BaseInputDate<
+  T extends DateArguments
+> extends BaseInput<T> {
   format!: string;
 
-  @computed("value")
-  get computedValue(): any {
-    if (!isBlank(this.value)) {
-      if (this.value instanceof Date) {
-        return moment(this.value).format(this.momentFormat);
-      } else {
-        return this.value;
-      }
+  constructor(owner: any, args: T) {
+    super(owner, args);
+
+    if (args.format) {
+      this.format = args.format;
     }
   }
-  set computedValue(value: any) {
-    if (!isBlank(value)) {
-      const momentValue = moment(value, this.momentFormat, true);
+
+  get computedValue(): string | undefined {
+    if (this.args.value) {
+      return moment(this.args.value).format(this.format);
+    } else {
+      return;
+    }
+  }
+
+  valueChanged(newValue?: Date) {
+    if (newValue) {
+      const momentValue = moment(newValue, this.format, true);
 
       if (momentValue.isValid()) {
-        value = momentValue.toDate();
+        newValue = momentValue.toDate();
       }
     }
 
-    value = this.preSetHook(value);
-    this.valueChanged(value);
-  }
-
-  @computed("format")
-  get momentFormat(): string {
-    return this.format;
+    super.valueChanged(newValue);
   }
 }

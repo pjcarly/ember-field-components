@@ -1,8 +1,22 @@
 {{#if this.showNone}}
-  <input type="radio" id={{concat this.inputId '-none'}} name={{this.inputIdComputed}} value={{undefined}} checked={{not this.computedValue}} onchange={{action (mut this.computedValue) undefined}} disabled={{@disabled}}/>
+  <Input
+    @id={{concat this.inputId '-none'}}
+    @type="radio"
+    @value={{undefined}}
+    @checked={{not @value}}
+    name={{this.inputIdComputed}}
+    disabled={{@disabled}}
+    {{on "input" (fn this.valueChanged undefined)}} ...attributes />
   <label for={{concat this.inputId '-none'}}>{{this.noneLabelComputed}}</label>
 {{/if}}
 {{#each @selectOptions as |selectOption index|}}
-  <input type="radio" id={{concat this.inputId index}} name={{this.inputIdComputed}} value={{selectOption.value}} checked={{eq selectOption.value this.computedValue}} onchange={{action (mut this.computedValue) selectOption.value}} disabled={{@disabled}}/>
+  <Input
+    @id={{concat this.inputId index}}
+    @type="radio"
+    @value={{selectOption.value}}
+    @checked={{deq selectOption.value @value}}
+    name={{this.inputIdComputed}}
+    disabled={{@disabled}}
+    {{on "input" (fn this.valueChanged selectOption.value)}} ...attributes />
   <label for={{concat this.inputId index}}>{{selectoption-label selectOption}}</label>
 {{/each}}

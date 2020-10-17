@@ -7,9 +7,11 @@
   <Input
     @id={{@inputId}}
     @type="url"
-    @value={{this.computedValue}}
+    @value={{@value}}
     class="form-control"
-    placeholder={{@placeholder}} ...attributes/>
+    placeholder={{@placeholder}} 
+    {{on "input" this.valueChanged}}
+    ...attributes/>
   {{#if @suffix}}
     <div class="input-group-append">
       <span class="input-group-text suffix">{{@suffix}}</span>

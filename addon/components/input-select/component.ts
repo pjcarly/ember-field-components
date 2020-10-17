@@ -4,14 +4,16 @@ import SelectOptionGroup from "@getflights/ember-field-components/interfaces/Sel
 import { inject as service } from "@ember/service";
 import { action } from "@ember/object";
 
-interface SelectArguments extends Arguments {
+export interface SelectArguments extends Arguments {
   value: string;
   required?: boolean;
   noneLabel?: string;
   selectOptions?: SelectOption[] | SelectOptionGroup[];
 }
 
-export default class InputSelectComponent extends BaseInput<SelectArguments> {
+export default class InputSelectComponent<
+  T extends SelectArguments
+> extends BaseInput<T> {
   @service intl!: any;
 
   type = "select";
@@ -65,7 +67,7 @@ export default class InputSelectComponent extends BaseInput<SelectArguments> {
   }
 
   @action
-  valueChanged({ target }: { target: HTMLSelectElement }) {
-    super.valueChanged(target.value);
+  selectValueChanged({ target }: { target: HTMLSelectElement }) {
+    this.valueChanged(target.value);
   }
 }

@@ -1,11 +1,11 @@
-import BaseInput from '../BaseInput';
-import { action } from '@ember/object';
+import BaseInput, { Arguments } from "../BaseInput";
+import { action } from "@ember/object";
 
-export default class InputTextComponent extends BaseInput {
-  type = 'switch';
+export default class InputSwitchComponent extends BaseInput<Arguments> {
+  type = "switch";
 
   @action
   toggleSwitch() {
-    this.toggleProperty('computedValue');
+    this.valueChanged(!this.args.value);
   }
 }

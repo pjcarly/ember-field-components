@@ -1,17 +1,10 @@
-import BaseInput from "../BaseInput";
+import BaseInput, { Arguments } from "../BaseInput";
 import { guidFor } from "@ember/object/internals";
-import { computed } from "@ember/object";
-import { isBlank } from "@ember/utils";
 
-export default class InputTextareaComponent extends BaseInput {
+export default class InputTextareaComponent extends BaseInput<Arguments> {
   type = "textarea-resizeable";
 
-  @computed("inputId")
   get inputIdComputed(): string {
-    if (!isBlank(this.inputId)) {
-      return this.inputId;
-    } else {
-      return `${guidFor(this)}-select`;
-    }
+    return this.args.inputId ?? `${guidFor(this)}-queue`;
   }
 }

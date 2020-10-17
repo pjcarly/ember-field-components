@@ -5,12 +5,14 @@
     </div>
   {{/if}}
   <Textarea 
-    @value={{this.computedValue}} 
+    @value={{@value}} 
+    @id={{@inputId}}
     disabled={{@disabled}}
     rows='3' 
     class='form-control' 
     placeholder={{@placeholder}} 
-    id={{@inputId}} />
+    {{on "input" this.valueChanged}}
+    ...attributes />
   {{#if @suffix}}
     <div class="input-group-append">
       <span class="input-group-text suffix">{{@suffix}}</span>

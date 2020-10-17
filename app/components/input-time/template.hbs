@@ -7,10 +7,12 @@
   <Input
     @id={{@inputId}}
     @type="time"
-    @value={{this.computedValue}}
+    @value={{@value}}
     class="form-control"
     disabled={{@disabled}}
-    placeholder={{@placeholder}} ...attributes/>
+    placeholder={{@placeholder}} 
+    {{on "input" this.valueChanged}}
+    ...attributes/>
   {{#if @suffix}}
     <div class="input-group-append">
       <span class="input-group-text suffix">{{@suffix}}</span>
