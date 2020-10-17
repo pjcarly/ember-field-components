@@ -5,21 +5,23 @@
     </div>
   {{/if}}
 
-  <select onchange={{action (mut this.computedValue) value='target.value'}} class="form-control" id={{@inputId}}
-    disabled={{@disabled}}>
+  <select {{on "input" this.valueChanged}} 
+    class="form-control" 
+    id={{@inputId}}
+    disabled={{@disabled}} ...attributes>
     {{#if this.showNone}}
-      <option selected={{not this.computedValue}} value="" disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}
+      <option selected={{not @value}} value="" disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}
       </option>
     {{/if}}
     {{#each @selectOptions as |selectOption|}}
       {{#if selectOption.selectOptions}} {{!-- Opt-Group --}}
         <optgroup label={{selectOption.label}}>
           {{#each selectOption.selectOptions as |groupedSelectOption|}}
-            <option value={{groupedSelectOption.value}} selected={{deq groupedSelectOption.value this.computedValue}}>{{selectoption-label groupedSelectOption}}</option>
+            <option value={{groupedSelectOption.value}} selected={{deq groupedSelectOption.value @value}}>{{selectoption-label groupedSelectOption}}</option>
           {{/each}}
         </optgroup>
       {{else}}
-        <option value={{selectOption.value}} selected={{deq selectOption.value this.computedValue}}>{{selectoption-label selectOption}}</option>
+        <option value={{selectOption.value}} selected={{deq selectOption.value @value}}>{{selectoption-label selectOption}}</option>
       {{/if}}
     {{/each}}
     {{#if (and @value (not this.selectOptionsContainsValue))}}

@@ -1,66 +1,71 @@
-import BaseInput from "../BaseInput";
+import BaseInput, { Arguments } from "../BaseInput";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import SelectOptionGroup from "@getflights/ember-field-components/interfaces/SelectOptionGroup";
-import { computed } from "@ember/object";
-import { isBlank } from "@ember/utils";
 import { inject as service } from "@ember/service";
+import { action } from "@ember/object";
 
-export default class InputSelectComponent extends BaseInput {
+interface SelectArguments extends Arguments {
+  value: string;
+  required?: boolean;
+  noneLabel?: string;
+  selectOptions?: SelectOption[] | SelectOptionGroup[];
+}
+
+export default class InputSelectComponent extends BaseInput<SelectArguments> {
   @service intl!: any;
 
   type = "select";
-  required: boolean = false;
-  noneLabel: string = "";
-  selectOptions: SelectOption[] | SelectOptionGroup[] = [];
 
-  @computed("computedValue", "required")
   get showNone(): boolean {
-    return isBlank(this.computedValue) || this.required === false;
+    return this.args.value ? true : false || this.args.required === false;
   }
 
-  @computed("computedValue", "required")
   get noneDisabled(): boolean {
-    return isBlank(this.computedValue) && this.required;
+    return this.args.value ? false : true || this.args.required === true;
   }
 
-  @computed("computedValue", "required")
   get noneSelected(): boolean {
-    return isBlank(this.computedValue) && this.required;
+    return this.args.value ? false : true || this.args.required === true;
   }
 
-  @computed("noneLabel", "intl.local")
   get noneLabelComputed(): string {
-    return isBlank(this.noneLabel)
-      ? this.intl.t("ember-field-components.label.select_none")
-      : this.noneLabel;
+    return this.args.noneLabel
+      ? this.args.noneLabel
+      : this.intl.t("ember-field-components.label.select_none");
   }
 
-  @computed("selectOptions.[]", "value")
   get selectOptionsContainsValue(): boolean {
     let returnValue = false;
 
-    for (const selectOption of this.selectOptions) {
-      // @ts-ignore
-      if (selectOption.selectOptions) {
+    if (this.args.selectOptions) {
+      for (const selectOption of this.args.selectOptions) {
         // @ts-ignore
-        for (const nestedSelectOption of selectOption.selectOptions) {
-          if (nestedSelectOption.value == this.value) {
-            returnValue = true;
-            break;
+        if (selectOption.selectOptions) {
+          // @ts-ignore
+          for (const nestedSelectOption of selectOption.selectOptions) {
+            if (nestedSelectOption.value == this.args.value) {
+              returnValue = true;
+              break;
+            }
           }
         }
-      }
 
-      // @ts-ignore
-      if (selectOption.value == this.value) {
-        returnValue = true;
-      }
+        // @ts-ignore
+        if (selectOption.value == this.args.value) {
+          returnValue = true;
+        }
 
-      if (returnValue) {
-        break;
+        if (returnValue) {
+          break;
+        }
       }
     }
 
     return returnValue;
+  }
+
+  @action
+  valueChanged({ target }: { target: HTMLSelectElement }) {
+    super.valueChanged(target.value);
   }
 }

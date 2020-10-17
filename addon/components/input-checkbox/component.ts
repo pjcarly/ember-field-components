@@ -1,5 +1,9 @@
-import BaseInput from '../BaseInput';
+import BaseInput, { Arguments } from "../BaseInput";
 
-export default class InputTextComponent extends BaseInput {
-  type = 'checkbox';
+interface CheckboxArguments extends Arguments {
+  value?: boolean;
+}
+
+export default class InputTextComponent extends BaseInput<CheckboxArguments> {
+  type = "checkbox";
 }

@@ -5,12 +5,12 @@
     </div>
   {{/if}}
   <Input
-    id={{this.inputId}}
-    class="form-control"
-    disabled={{@disabled}}
+    @id={{@inputId}}
     @type="time"
     @value={{this.computedValue}}
-    @placeholder={{@placeholder}} />
+    class="form-control"
+    disabled={{@disabled}}
+    placeholder={{@placeholder}} ...attributes/>
   {{#if @suffix}}
     <div class="input-group-append">
       <span class="input-group-text suffix">{{@suffix}}</span>

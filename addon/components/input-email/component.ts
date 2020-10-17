@@ -1,5 +1,9 @@
-import BaseInput from '../BaseInput';
+import BaseInput, { Arguments } from "../BaseInput";
 
-export default class InputEmailComponent extends BaseInput {
-  type = 'email';
+interface EmailArguments extends Arguments {
+  value?: string;
+}
+
+export default class InputEmailComponent extends BaseInput<EmailArguments> {
+  type = "email";
 }

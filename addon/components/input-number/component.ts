@@ -1,5 +1,9 @@
-import BaseInput from '../BaseInput';
+import BaseInput, { Arguments } from "../BaseInput";
 
-export default class InputNumberComponent extends BaseInput {
-  type = 'number';
+export interface NumberArguments extends Arguments {
+  value?: number;
+}
+
+export default class InputNumberComponent extends BaseInput<NumberArguments> {
+  type = "number";
 }
