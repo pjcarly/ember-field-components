@@ -1,5 +1,6 @@
 import BaseInput, { Arguments } from "./BaseInput";
 import moment from "moment";
+import { action } from "@ember/object";
 
 export interface DateArguments extends Arguments {
   value?: Date;
@@ -31,15 +32,19 @@ export default abstract class BaseInputDate<
     }
   }
 
-  valueChanged(newValue?: Date) {
-    if (newValue) {
-      const momentValue = moment(newValue, this.format, true);
+  @action
+  valueChanged(event: Event) {
+    const element = <HTMLInputElement>event.target;
+    let newValue: Date | null = null;
+
+    if (element.value) {
+      const momentValue = moment(element.value, this.format, true);
 
       if (momentValue.isValid()) {
         newValue = momentValue.toDate();
       }
     }
 
-    super.valueChanged(newValue);
+    this.setNewValue(newValue);
   }
 }

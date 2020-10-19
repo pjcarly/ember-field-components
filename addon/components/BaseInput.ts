@@ -54,6 +54,14 @@ export default abstract class BaseInput<T extends Arguments> extends Component<
    */
   abstract type: string;
   protected inputGroup = false;
+  protected showButton = true;
+
+  constructor(owner: any, args: T) {
+    super(owner, args);
+    if (this.args.showButton === false) {
+      this.showButton = false;
+    }
+  }
 
   get computedClass(): string {
     const classes: string[] = [];
@@ -69,7 +77,7 @@ export default abstract class BaseInput<T extends Arguments> extends Component<
       this.args.suffix ||
       this.args.inputGroup ||
       this.inputGroup ||
-      this.args.showButton
+      this.showButton
     ) {
       classes.push("input-group");
     }
@@ -90,6 +98,7 @@ export default abstract class BaseInput<T extends Arguments> extends Component<
   @action
   valueChanged(event: Event) {
     const target = <HTMLInputElement>event.target;
+    console.log(target.value);
     this.setNewValue(target.value);
   }
 }

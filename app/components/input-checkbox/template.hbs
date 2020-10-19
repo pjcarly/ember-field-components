@@ -11,7 +11,7 @@
     class="form-control"
     disabled={{@disabled}}
     placeholder={{@placeholder}} 
-    {{on "input" this.valueChanged}}
+    {{on "input" this.toggleValue}}
     ...attributes />
   {{#if @suffix}}
     <div class="input-group-append">

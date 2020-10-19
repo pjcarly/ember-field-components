@@ -1,12 +1,12 @@
 import InputDateComponent from "../input-date/component";
 import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
 import { guidFor } from "@ember/object/internals";
-import { isBlank } from "@ember/utils";
 import { action } from "@ember/object";
 import flatpickr from "flatpickr";
 import moment from "moment";
+import { DateArguments } from "../BaseInputDate";
+import { OptionsArgument } from "../BaseInput";
 
 export function momentFormatToFlatpickrFormat(momentFormat: string): string {
   if (!momentFormat) {
@@ -23,68 +23,61 @@ export function momentFormatToFlatpickrFormat(momentFormat: string): string {
     .replace("ss", "S");
 }
 
-export default class InputDateFlatpickrComponent extends InputDateComponent {
+export interface DateFlatpickrArguments extends DateArguments {
+  options?: DateFlatpickrOptionsArgument;
+}
+
+export interface DateFlatpickrOptionsArgument extends OptionsArgument {
+  minDate?: string | Date;
+  maxDate?: string | Date;
+}
+
+export default class InputDateFlatpickrComponent extends InputDateComponent<
+  DateFlatpickrArguments
+> {
   @service fieldInformation!: FieldInformationService;
 
   type = "date-flatpickr";
   format: string = "";
   flatpickr?: flatpickr.Instance;
 
-  @computed("value")
-  get computedValue(): Date | null {
-    if (this.value) {
-      if (this.value instanceof Date) {
-        return this.value;
+  get flatpickrValue(): Date | null {
+    if (this.args.value) {
+      if (this.args.value instanceof Date) {
+        return this.args.value;
       } else {
-        return moment(this.value).toDate();
+        return moment(this.args.value).toDate();
       }
     } else {
       return null;
     }
   }
-  set computedValue(value: Date | null) {
-    if (value instanceof Array) {
-      value = value[0];
-    }
 
-    value = this.preSetHook(value);
-    this.valueChanged(value);
-  }
-
-  @computed("format", "fieldInformation.dateFormat")
   get momentFormat(): string {
-    if (isBlank(this.format)) {
-      return this.fieldInformation.dateFormat;
-    } else {
+    if (this.format) {
       return this.format;
+    } else {
+      return this.fieldInformation.dateFormat;
     }
   }
 
-  @computed("momentFormat")
   get flatpickrFormat(): string {
     return momentFormatToFlatpickrFormat(this.momentFormat);
   }
 
-  @computed("inputId")
   get inputIdComputed(): string {
-    if (!isBlank(this.inputId)) {
-      return this.inputId;
-    } else {
-      return `${guidFor(this)}-select`;
-    }
+    return this.args.inputId ?? `${guidFor(this)}-select`;
   }
 
-  @computed("options.minDate")
-  get minDate() {
-    return this.options && this.options.minDate
-      ? this.options.minDate
+  get minDate(): string | Date | undefined {
+    return this.args.options && this.args.options.minDate
+      ? this.args.options.minDate
       : undefined;
   }
 
-  @computed("options.maxDate")
-  get maxDate() {
-    return this.options && this.options.maxDate
-      ? this.options.maxDate
+  get maxDate(): string | Date | undefined {
+    return this.args.options && this.args.options.maxDate
+      ? this.args.options.maxDate
       : undefined;
   }
 
@@ -94,12 +87,21 @@ export default class InputDateFlatpickrComponent extends InputDateComponent {
       const parsedMoment = moment(inputValue);
 
       if (parsedMoment.isValid()) {
-        this.set("computedValue", parsedMoment.toDate());
+        this.setNewValue(parsedMoment.toDate());
       } else {
         this.flatpickr.input.value = "";
-        this.set("computedValue", null);
+        this.setNewValue(null);
       }
     }
+  }
+
+  @action
+  setFlatpickrValue(value: Date | null) {
+    if (value instanceof Array) {
+      value = value[0];
+    }
+
+    this.setNewValue(value);
   }
 
   @action
@@ -114,10 +116,10 @@ export default class InputDateFlatpickrComponent extends InputDateComponent {
     flatpickr.input.addEventListener("blur", this.inputBlurred.bind(this));
   }
 
-  willDestroyElement() {
+  willDestroy() {
     if (this.flatpickr) {
       this.flatpickr.input.removeEventListener("blur", this.inputBlurred);
     }
-    super.willDestroyElement();
+    super.willDestroy();
   }
 }
