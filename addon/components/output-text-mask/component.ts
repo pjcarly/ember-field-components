@@ -1,24 +1,36 @@
-import BaseOutput from "../BaseOutput";
-import { computed } from "@ember/object";
+import BaseOutput, { Arguments } from "../BaseOutput";
 
-export default class OutputTextComponent extends BaseOutput {
-  type = "text";
+export interface TextMaskArguments extends Arguments {
+  regex: RegExp;
+  mask: string;
+  pattern: RegExp;
+}
 
-  regex!: RegExp;
-  mask!: string;
+export default class OutputTextMaskComponent extends BaseOutput<
+  TextMaskArguments
+> {
+  type = "text mask";
+
   pattern = /\{\{(\d+)\}\}/g;
 
-  @computed("value")
+  constructor(owner: any, args: TextMaskArguments) {
+    super(owner, args);
+
+    if (args.pattern) {
+      this.pattern = args.pattern;
+    }
+  }
+
   get maskedValue(): string | undefined | null {
-    if (!this.value) {
-      return this.value;
+    if (!this.args.value) {
+      return this.args.value;
     }
 
-    const matchedValue = this.value.match(this.regex);
+    const matchedValue = this.args.value.match(this.args.regex);
 
-    let maskedValue = this.mask;
+    let maskedValue = this.args.mask;
     let match: RegExpExecArray | null = null;
-    while ((match = this.pattern.exec(this.mask))) {
+    while ((match = this.pattern.exec(this.args.mask))) {
       if (match) {
         const matchedIndex = parseInt(match[1]);
         maskedValue = maskedValue.replace(match[0], matchedValue[matchedIndex]);

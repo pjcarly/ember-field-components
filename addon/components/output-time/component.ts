@@ -1,20 +1,18 @@
 import BaseOutput from "../BaseOutput";
 import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
-import { isBlank } from "@ember/utils";
+import { DateArguments } from "../output-date/component";
 
-export default class OutputTimeComponent extends BaseOutput {
+export default class OutputTimeComponent extends BaseOutput<DateArguments> {
   @service fieldInformation!: FieldInformationService;
 
   type = "time";
 
-  @computed("options.format", "fieldInformation.timeFormat")
   get momentFormat(): string {
-    if (isBlank(this.options) || isBlank(this.options.format)) {
-      return this.fieldInformation.timeFormat;
+    if (this.args.options && this.args.options.format) {
+      return this.args.options.format;
     } else {
-      return this.options.format;
+      return this.fieldInformation.timeFormat;
     }
   }
 }

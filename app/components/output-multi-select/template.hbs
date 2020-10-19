@@ -4,7 +4,7 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <span class={{if this.selectedLabels 'value' 'value empty'}}>
+  <span class={{if this.selectedLabels 'value' 'value empty'}} ...attributes>
     {{this.selectedLabels}}
   </span>
   {{#if (and @value @suffix)}}

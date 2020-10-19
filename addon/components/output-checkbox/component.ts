@@ -1,5 +1,5 @@
-import BaseOutput from "../BaseOutput";
+import BaseOutput, { Arguments } from "../BaseOutput";
 
-export default class OutputCheckboxComponent extends BaseOutput {
+export default class OutputCheckboxComponent extends BaseOutput<Arguments> {
   type = "checkbox";
 }

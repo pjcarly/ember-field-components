@@ -1,5 +1,5 @@
-import BaseOutput from "../BaseOutput";
+import BaseOutput, { Arguments } from "../BaseOutput";
 
-export default class OutputPasswordComponent extends BaseOutput {
-  type = 'password';
+export default class OutputPasswordComponent extends BaseOutput<Arguments> {
+  type = "password";
 }

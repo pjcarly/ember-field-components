@@ -4,7 +4,7 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <span class={{if @value "value checked" "value unchecked"}}>
+  <span class={{if @value "value checked" "value unchecked"}} ...attributes>
   </span>
   {{#if (and @value @suffix)}}
     <span class="suffix">

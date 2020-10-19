@@ -1,33 +1,37 @@
-import BaseOutput from "../BaseOutput";
-import { computed } from "@ember/object";
-import { isBlank } from "@ember/utils";
+import BaseOutput, { Arguments } from "../BaseOutput";
 import { inject as service } from "@ember/service";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import MutableArray from "@ember/array/mutable";
 import { A } from "@ember/array";
 
-export default class OutputSelectComponent extends BaseOutput {
+export interface MultiSelectArguments extends Arguments {
+  value?: string;
+  selectOptions: SelectOption[];
+}
+
+export default class OutputSelectComponent extends BaseOutput<
+  MultiSelectArguments
+> {
   @service intl!: any;
 
   type = "select";
-  selectOptions!: SelectOption[];
 
-  @computed("selectOptions")
   get selectOptionComputed(): MutableArray<SelectOption> {
-    return A(this.selectOptions);
+    return A(this.args.selectOptions);
   }
 
-  @computed("value")
   get selectedLabel(): string | undefined {
-    if (!isBlank(this.value)) {
-      const selectedOption = this.selectOptionComputed.findBy(
+    if (this.args.value) {
+      const selectOption = this.selectOptionComputed.findBy(
         "value",
-        this.value
+        this.args.value
       );
 
-      if (selectedOption) {
-        return selectedOption.label;
+      if (selectOption) {
+        return selectOption.label ?? selectOption.value;
       }
+
+      return this.args.value;
     }
 
     return;

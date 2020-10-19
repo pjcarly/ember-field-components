@@ -1,30 +1,22 @@
-import BaseOutput from "../BaseOutput";
-import { computed } from "@ember/object";
+import BaseOutput, { Arguments } from "../BaseOutput";
 import { inject as service } from "@ember/service";
 import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 
-export default class OutputTextComponent extends BaseOutput {
+export interface PriceArguments extends Arguments {
+  currency: string;
+  precision: number;
+}
+
+export default class OutputPriceComponent extends BaseOutput<PriceArguments> {
   @service fieldInformation!: FieldInformationService;
 
   type = "price";
-  currency!: string;
-  precision!: number;
 
-  @computed("fieldInformation.defaultCurrency", "currency")
   get currencyComputed(): string {
-    if (this.currency) {
-      return this.currency;
+    if (this.args.currency) {
+      return this.args.currency;
     } else {
       return this.fieldInformation.defaultCurrency;
     }
-  }
-
-  @computed("options.minimumDigits")
-  get minimumDigits(): number | undefined {
-    if (this.options.minimumDigits) {
-      return this.options.minimumDigits;
-    }
-
-    return;
   }
 }

@@ -7,6 +7,7 @@ import { isBlank } from "@ember/utils";
 import { get } from "@ember/object";
 import { assert } from "@ember/debug";
 import { capitalize } from "@ember/string";
+import { tracked } from "@glimmer/tracking";
 
 export interface FieldOptionsInterface {
   readOnly: boolean;
@@ -29,12 +30,12 @@ export default class FieldInformationService extends Service {
   @service store!: Store;
   @service intl!: any;
 
-  dateFormat: string = "YYYY-MM-DD";
-  dateTimeFormat: string = "YYYY-MM-DD HH:mm:ss";
-  timeFormat: string = "HH:mm:ss";
-  locale: string = "en-001";
-  currencyDisplay: string = "symbol";
-  defaultCurrency: string = "EUR";
+  @tracked dateFormat: string = "YYYY-MM-DD";
+  @tracked dateTimeFormat: string = "YYYY-MM-DD HH:mm:ss";
+  @tracked timeFormat: string = "HH:mm:ss";
+  @tracked locale: string = "en-001";
+  @tracked currencyDisplay: string = "symbol";
+  @tracked defaultCurrency: string = "EUR";
   availableCurrencies: string[] = ["EUR", "USD", "GBP"];
 
   /**

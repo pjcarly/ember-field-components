@@ -1,30 +1,40 @@
-import OutputSelectComponent from "../output-select/component";
-import { computed } from "@ember/object";
-import { isArray } from "@ember/array";
-import { isBlank } from "@ember/utils";
+import BaseOutput, { Arguments } from "../BaseOutput";
+import { A, isArray } from "@ember/array";
+import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
+import MutableArray from "@ember/array/mutable";
 
-export default class OutputMultiSelectComponent extends OutputSelectComponent {
-  @computed("value")
+export interface MultiSelectArguments extends Arguments {
+  value?: string[];
+  selectOptions: SelectOption[];
+}
+
+export default class OutputMultiSelectComponent extends BaseOutput<
+  MultiSelectArguments
+> {
+  type = "multi-select";
+
+  get selectOptionComputed(): MutableArray<SelectOption> {
+    return A(this.args.selectOptions);
+  }
+
   get selectedLabels(): string | undefined {
-    const selectedValues = <string[]>this.value;
     const selectedLabels: string[] = [];
 
-    if (isArray(selectedValues)) {
-      for (const selectedValue of selectedValues) {
+    if (isArray(this.args.value)) {
+      for (const selectedValue of this.args.value) {
         const selectedOption = this.selectOptionComputed.findBy(
           "value",
           selectedValue
         );
 
-        if (!isBlank(selectedOption)) {
-          //@ts-ignore
-          selectedLabels.push(selectedOption.label);
+        if (selectedOption) {
+          selectedLabels.push(selectedOption.label ?? selectedOption.value);
+        } else {
+          selectedLabels.push(selectedValue);
         }
       }
-
-      return selectedLabels.join(", ");
     }
 
-    return;
+    return selectedLabels.join(", ");
   }
 }
