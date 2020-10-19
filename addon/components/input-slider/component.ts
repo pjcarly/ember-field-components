@@ -16,6 +16,7 @@ export default class InputSliderComponent extends BaseInput<SliderArguments> {
 
   get inputIdComputed(): string {
     return this.args.inputId ?? `${guidFor(this)}-select`;
+  }
 
   get min(): number {
     return this.args.options &&

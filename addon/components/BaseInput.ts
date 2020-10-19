@@ -67,7 +67,7 @@ export default abstract class BaseInput<T extends Arguments> extends Component<
     if (
       this.args.prefix ||
       this.args.suffix ||
-      this.args.inputGroup || 
+      this.args.inputGroup ||
       this.inputGroup ||
       this.args.showButton
     ) {
@@ -77,8 +77,7 @@ export default abstract class BaseInput<T extends Arguments> extends Component<
     return classes.join(" ");
   }
 
-  @action
-  valueChanged(newValue: any) {
+  protected setNewValue(newValue: any): void {
     if (this.args.preSetHook) {
       newValue = this.args.preSetHook(newValue);
     }
@@ -86,5 +85,11 @@ export default abstract class BaseInput<T extends Arguments> extends Component<
     if (this.args.valueChanged) {
       this.args.valueChanged(newValue);
     }
+  }
+
+  @action
+  valueChanged(event: Event) {
+    const target = <HTMLInputElement>event.target;
+    this.setNewValue(target.value);
   }
 }

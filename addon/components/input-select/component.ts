@@ -2,7 +2,6 @@ import BaseInput, { Arguments } from "../BaseInput";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import SelectOptionGroup from "@getflights/ember-field-components/interfaces/SelectOptionGroup";
 import { inject as service } from "@ember/service";
-import { action } from "@ember/object";
 
 export interface SelectArguments extends Arguments {
   value: string;
@@ -64,10 +63,5 @@ export default class InputSelectComponent<
     }
 
     return returnValue;
-  }
-
-  @action
-  selectValueChanged({ target }: { target: HTMLSelectElement }) {
-    this.valueChanged(target.value);
   }
 }

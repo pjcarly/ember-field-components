@@ -5,9 +5,9 @@
     </div>
   {{/if}}
 
-  <select {{on "input" this.multiSelectValueChanged}} class='form-control' id={{this.inputIdComputed}} disabled={{@disabled}} multiple ...attributes>
+  <select {{on "input" this.multiSelectValueChanged}} class="form-control" id={{this.inputIdComputed}} disabled={{@disabled}} multiple={{true}} ...attributes>
     {{#if this.showNone}}
-      <option selected={{not @value}} disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}</option>
+      <option value="" selected={{or (not @value) (is-empty @value)}} disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}</option>
     {{/if}}
     {{#each @selectOptions as |selectOption|}}
       <option value={{selectOption.value}} selected={{array-contains @value selectOption.value}}>{{selectoption-label selectOption}}</option>
