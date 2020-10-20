@@ -17,7 +17,7 @@ export default class OutputMultiSelectComponent extends BaseOutput<
     return A(this.args.selectOptions);
   }
 
-  get selectedLabels(): string | undefined {
+  get selectedLabels(): string[] {
     const selectedLabels: string[] = [];
 
     if (isArray(this.args.value)) {
@@ -35,6 +35,6 @@ export default class OutputMultiSelectComponent extends BaseOutput<
       }
     }
 
-    return selectedLabels.join(", ");
+    return selectedLabels;
   }
 }
