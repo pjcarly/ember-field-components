@@ -1,5 +1,6 @@
-import OutputFieldComponent from "../output-field/component";
-import { computed } from "@ember/object";
+import OutputFieldComponent, {
+  OutputFieldArguments,
+} from "../output-field/component";
 import { FieldOptionsInterface } from "@getflights/ember-field-components/services/field-information";
 
 export interface FieldOptionsMaskInterface extends FieldOptionsInterface {
@@ -7,8 +8,9 @@ export interface FieldOptionsMaskInterface extends FieldOptionsInterface {
   regex: RegExp;
 }
 
-export default class OutputFieldTextComponent extends OutputFieldComponent {
-  @computed("fieldOptions")
+export default class OutputFieldTextComponent extends OutputFieldComponent<
+  OutputFieldArguments
+> {
   get mask(): string | undefined {
     const fieldOptions = <FieldOptionsMaskInterface>this.fieldOptions;
 
@@ -19,7 +21,6 @@ export default class OutputFieldTextComponent extends OutputFieldComponent {
       : undefined;
   }
 
-  @computed("fieldOptions")
   get regex(): RegExp | undefined {
     const fieldOptions = <FieldOptionsMaskInterface>this.fieldOptions;
 

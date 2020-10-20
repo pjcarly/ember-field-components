@@ -37,7 +37,7 @@ export interface Arguments {
   /**
    * The class you want to give the label accompanying the field
    */
-  labelClass: string;
+  labelClass?: string;
 
   /**
    * The CSS class you want to give to the wrapper element of the input-field component

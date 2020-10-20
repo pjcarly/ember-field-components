@@ -1,7 +1,7 @@
-<div class="{{if (not this.inline) "form-group "}}{{this.computedClass}}" {{on "focusin" this.doFocusIn}} {{on "focusout" this.doFocusOut}} role="textbox">
+<div class="{{if (not @inline) "form-group "}}{{this.computedClass}}" {{on "focusin" this.doFocusIn}} {{on "focusout" this.doFocusOut}} role="textbox">
   {{#if this.modelComputed}}
     <div class="input-container">
-      {{#if (not this.inline)}}
+      {{#if (not @inline)}}
         <FieldLabel
           @model={{@model}}
           @field={{@field}}
@@ -19,7 +19,7 @@
           @field={{@field}}
           @options={{@options}}
           @class={{@class}}
-          @labelClass={{this.labelClass}}
+          @labelClass={{@labelClass}}
           @inline={{true}} />
       {{else if (component-exists this.componentName)}}
         {{component this.componentName
@@ -27,7 +27,7 @@
           field=this.fieldComputed
           placeholder=@placeholder
           inputClass=@inputClass
-          inline=this.inline
+          inline=@inline
           prefix=@prefix
           suffix=@suffix
           inputId=this.calculatedInputId
@@ -39,7 +39,7 @@
         Component {{this.componentName}} does not exist
       {{/if}}
     </div>
-    {{#if (not this.inline)}}
+    {{#if (not @inline)}}
       <FieldHelptext
         class={{@helptextClass}}
         @model={{@model}}

@@ -1,49 +1,44 @@
-import BaseField from "../BaseField";
-import { defineProperty, computed as classicComputed } from "@ember/object";
+import BaseField, { Arguments } from "../BaseField";
 import { computed } from "@ember/object";
 import { dasherize } from "@ember/string";
 
-export default class OutputFieldComponent extends BaseField {
+export interface OutputFieldArguments extends Arguments {
   /**
    * The CSS class you want to give to the output element in the DOM
    */
-  outputClass: string = "";
-  labelClass = "output-label";
+  outputClass?: string;
+  options?: OutputFieldOptionsArgument;
+}
 
-  init() {
-    super.init();
+export interface OutputFieldOptionsArgument {
+  outputOptions?: any;
+}
 
-    // This is where the magic happens, we define a computed property on the instance of this component,
-    // but because the name of the field is passed in, the dependent keys of the computed property are dynamic
-    // by using defineProperty, we can set the computed property on Init of this component, with the correct dependent keys.
-
-    defineProperty(
-      this,
-      "value",
-      classicComputed("model", `model.${this.field}`, {
-        get() {
-          return this.model.get(this.field);
-        },
-      })
-    );
+export default class OutputFieldComponent<
+  T extends OutputFieldArguments
+> extends BaseField<T> {
+  get value(): any {
+    // @ts-ignore
+    return this.args.model.get(this.args.field);
   }
 
-  @computed("class", "componentName")
   get computedClass(): string {
     const classes: string[] = [];
 
     classes.push("output-field");
     classes.push(this.componentName);
     if (this.modelName) {
-      classes.push(`${dasherize(this.modelName)}-${dasherize(this.field)}`);
+      classes.push(
+        `${dasherize(this.modelName)}-${dasherize(this.args.field)}`
+      );
     }
 
-    if (this.inline) {
+    if (this.args.inline) {
       classes.push("inline");
     }
 
-    if (this.class) {
-      classes.push(this.class);
+    if (this.args.class) {
+      classes.push(this.args.class);
     }
 
     return classes.join(" ");
@@ -52,7 +47,7 @@ export default class OutputFieldComponent extends BaseField {
   /**
    * The name of the subcomponent that will be injected as the output-field. This is dependent on the type of field
    */
-  @computed("type")
+  @computed()
   get componentName(): string {
     let type = this.type;
 
@@ -66,8 +61,7 @@ export default class OutputFieldComponent extends BaseField {
   /**
    * These are options that will get bassed down to the output component
    */
-  @computed("options.outputOptions")
   get outputOptions(): any {
-    return this.options ? this.options.outputOptions : undefined;
+    return this.args.options ? this.args.options.outputOptions : undefined;
   }
 }

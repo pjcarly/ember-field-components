@@ -1,12 +1,10 @@
 import OutputFieldSelectComponent from "../output-field-select/component";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
-import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
 
 export default class OutputFieldCurrencyComponent extends OutputFieldSelectComponent {
   @service fieldInformation!: any;
 
-  @computed("fieldInformation.availableCurrencies")
   get selectOptions(): SelectOption[] {
     const selectOptions: SelectOption[] = [];
     const availableCurrencies = this.fieldInformation.availableCurrencies;
