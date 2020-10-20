@@ -1,9 +1,7 @@
 import InputFieldSelectComponent from "../input-field-select/component";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
-import { computed } from "@ember/object";
 
 export default class InputFieldCurrencyComponent extends InputFieldSelectComponent {
-  @computed("fieldInformation.availableCurrencies")
   get selectOptionsComputed(): SelectOption[] {
     const selectOptions: SelectOption[] = [];
 

@@ -2,7 +2,7 @@
   <InputButtonGroup
     @selectOptions={{this.selectOptionsComputed}}
     @value={{this.computedValue}}
-    @valueChanged={{action (mut this.value)}}
+    @valueChanged={{this.setNewValue}}
     @class={{@inputClass}}
     @inputId={{this.inputId}}
     @noneLabel={{this.noneLabel}}
@@ -12,7 +12,7 @@
   <InputRadioButtonList
     @selectOptions={{this.selectOptionsComputed}}
     @value={{this.computedValue}}
-    @valueChanged={{action (mut this.value)}}
+    @valueChanged={{this.setNewValue}}
     @class={{@inputClass}}
     @inputId={{this.inputId}}
     @noneLabel={{this.noneLabel}}
@@ -22,7 +22,7 @@
   <InputSelect
     @selectOptions={{this.selectOptionsComputed}}
     @value={{this.computedValue}}
-    @valueChanged={{action (mut this.value)}}
+    @valueChanged={{this.setNewValue}}
     @class={{@inputClass}}
     @inputId={{this.inputId}}
     @noneLabel={{this.noneLabel}}

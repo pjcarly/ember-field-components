@@ -1,7 +1,7 @@
 <InputText
   @value={{this.value}}
-  @valueChanged={{action (mut this.value)}}
-  @preSetHook={{this.preSetHook}}
+  @valueChanged={{this.setNewValue}}
+  @preSetHook={{@preSetHook}}
   @placeholder={{@placeholder}}
   @prefix={{@prefix}}
   @suffix={{@suffix}}

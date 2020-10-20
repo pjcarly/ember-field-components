@@ -1,22 +1,15 @@
-import InputField from "../input-field/component";
-import { computed } from "@ember/object";
-import { isBlank } from "@ember/utils";
+import InputField, { InputFieldArguments } from "../input-field/component";
 
-export default class InputFieldPercentComponent extends InputField {
-  @computed("model.currency", "fieldInformation.defaultCurrency")
-  get currency() {
-    const modelCurrency = <string>this.model
-      // @ts-ignore
-      .get("currency");
-    const availableCurrencies = this.fieldInformation.get(
-      "availableCurrencies"
-    );
+export default class InputFieldPercentComponent extends InputField<
+  InputFieldArguments
+> {
+  get currency(): string {
+    const modelCurrency = <string>// @ts-ignore
+    this.args.model.currency;
+    const availableCurrencies = this.fieldInformation.availableCurrencies;
 
-    if (
-      isBlank(modelCurrency) ||
-      !availableCurrencies.includes(modelCurrency)
-    ) {
-      return this.fieldInformation.get("defaultCurrency");
+    if (!modelCurrency || !availableCurrencies.includes(modelCurrency)) {
+      return this.fieldInformation.defaultCurrency;
     } else {
       return modelCurrency;
     }

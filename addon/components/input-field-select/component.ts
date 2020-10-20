@@ -1,32 +1,20 @@
-import InputField from "../input-field/component";
+import InputField, { InputFieldArguments } from "../input-field/component";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
-import FieldInformationService from "@getflights/ember-field-components/services/field-information";
-import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
 import { isArray } from "@ember/array";
-import { defineProperty, computed as classicComputed } from "@ember/object";
 
-export default class InputFieldSelectComponent extends InputField {
-  @service fieldInformation!: FieldInformationService;
+export interface FieldSelectArguments extends InputFieldArguments {}
 
-  dependentValue!: undefined | string;
+export default class InputFieldSelectComponent extends InputField<
+  FieldSelectArguments
+> {
   selectOptions?: SelectOption[];
 
-  init() {
-    super.init();
-
-    // Here we define a dynamic computed property for the dependentValue if a dependentField is defined
-    if (this.dependentField) {
-      defineProperty(
-        this,
-        "dependentValue",
-        classicComputed("model", `model.${this.dependentField}`, {
-          get() {
-            return this.model.get(this.dependentField);
-          },
-        })
-      );
-    }
+  get dependentValue() {
+    return (
+      this.args.model
+        // @ts-ignore
+        .get(this.args.dependentValue)
+    );
   }
 
   /**
@@ -35,7 +23,6 @@ export default class InputFieldSelectComponent extends InputField {
    * This will only be done for fields with a dependency.
    * And is just a clone of value if no dependency is defined
    */
-  @computed("value", "dependentValue", "selectOptionsComputed")
   get computedValue(): any {
     if (this.dependentField) {
       let allowedValueFound = false;
@@ -47,7 +34,7 @@ export default class InputFieldSelectComponent extends InputField {
       }
 
       if (!allowedValueFound) {
-        this.set("value", null);
+        this.setNewValue(null);
       } else {
         return this.value;
       }
@@ -56,7 +43,6 @@ export default class InputFieldSelectComponent extends InputField {
     }
   }
 
-  @computed("fieldOptions", "intl.locale", "dependentValue", "selectOptions")
   get selectOptionsComputed(): SelectOption[] {
     const fieldOptions = this.fieldOptions;
     const selectOptions: SelectOption[] = [];
@@ -78,7 +64,11 @@ export default class InputFieldSelectComponent extends InputField {
    * Returns the allowed selectOptions based if a dependency is present or not
    * @param selectOptions The selectOptions you want to filter
    */
-  getAllowedSelectOptions(selectOptions: SelectOption[]) {
+  getAllowedSelectOptions(selectOptions: SelectOption[]): SelectOption[] {
+    if (!this.modelName) {
+      return [];
+    }
+
     const returnValues: SelectOption[] = [];
 
     let allowedValues: string[] | undefined = undefined;
@@ -104,9 +94,8 @@ export default class InputFieldSelectComponent extends InputField {
       };
 
       selectOption.label = this.fieldInformation.getTranslatedSelectOptionLabel(
-        // @ts-ignore
         this.modelName,
-        this.field,
+        this.args.field,
         fieldSelectOption.value
       );
       returnValues.push(selectOption);
@@ -115,7 +104,6 @@ export default class InputFieldSelectComponent extends InputField {
     return returnValues;
   }
 
-  @computed("fieldOptions")
   get selectOptionDependencies(): Map<string, string[]> | undefined {
     const fieldOptions = this.fieldOptions;
 
@@ -129,7 +117,6 @@ export default class InputFieldSelectComponent extends InputField {
     return fieldOptions.selectOptionDependencies;
   }
 
-  @computed("fieldOptions")
   get dependentField(): string | undefined {
     const fieldOptions = this.fieldOptions;
 
@@ -140,12 +127,14 @@ export default class InputFieldSelectComponent extends InputField {
     return fieldOptions.dependentField;
   }
 
-  @computed("fieldOptions")
   get noneLabel(): string {
+    if (!this.modelName) {
+      return "None";
+    }
+
     return this.fieldInformation.getTranslatedSelectNoneLabel(
-      // @ts-ignore
       this.modelName,
-      this.field
+      this.args.field
     );
   }
 }

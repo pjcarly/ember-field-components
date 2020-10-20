@@ -1,3 +1,5 @@
-import InputField from '../input-field/component';
+import InputField, { InputFieldArguments } from "../input-field/component";
 
-export default class InputFieldPhoneComponent extends InputField {}
+export default class InputFieldPhoneComponent extends InputField<
+  InputFieldArguments
+> {}

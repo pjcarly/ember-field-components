@@ -2,7 +2,7 @@
   <InputTimeFlatpickr
     @value={{this.value}}
     @valueChanged={{action (mut this.value)}}
-    @preSetHook={{this.preSetHook}}
+    @preSetHook={{@preSetHook}}
     @placeholder={{@placeholder}}
     @prefix={{@prefix}}
     @suffix={{@suffix}}
@@ -13,7 +13,7 @@
   <InputTime
     @value={{this.value}}
     @valueChanged={{action (mut this.value)}}
-    @preSetHook={{this.preSetHook}}
+    @preSetHook={{@preSetHook}}
     @placeholder={{@placeholder}}
     @prefix={{@prefix}}
     @suffix={{@suffix}}
