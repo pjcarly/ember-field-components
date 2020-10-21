@@ -18,15 +18,15 @@ export default class InputSelectComponent<
   type = "select";
 
   get showNone(): boolean {
-    return this.args.value ? true : false || this.args.required === false;
+    return this.args.value ? false : true || this.args.required === false;
   }
 
   get noneDisabled(): boolean {
-    return this.args.value ? false : true || this.args.required === true;
+    return this.args.value ? false : true && this.args.required === true;
   }
 
   get noneSelected(): boolean {
-    return this.args.value ? false : true || this.args.required === true;
+    return this.args.value ? false : true && this.args.required === true;
   }
 
   get noneLabelComputed(): string {

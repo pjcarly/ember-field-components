@@ -1,6 +1,8 @@
 import InputField, { InputFieldArguments } from "../input-field/component";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import { isArray } from "@ember/array";
+import { action } from "@ember/object";
+import Model from "@ember-data/model";
 
 export interface FieldSelectArguments extends InputFieldArguments {}
 
@@ -9,38 +11,46 @@ export default class InputFieldSelectComponent extends InputField<
 > {
   selectOptions?: SelectOption[];
 
+  protected dependencyOf = new Map<String, Map<string, string[]>>();
+
+  constructor(owner: any, args: FieldSelectArguments) {
+    super(owner, args);
+    this.fillDependencies();
+  }
+
+  /**
+   * Here we build a map of other select fields who are dependent on the value of this field
+   * If the value of this field changes, and it is not allowed in the dependent fields,
+   * we must clear the value of the dependent fiels as well
+   */
+  protected fillDependencies(): void {
+    const modelClass = <Model>this.modelClass;
+
+    let currentField = this.args.field;
+    if (currentField === "passengerType") {
+      // debugger;
+    }
+
+    // @ts-ignore
+    modelClass.eachAttribute((field: string, meta: any) => {
+      if (
+        meta.type === "select" &&
+        meta.options?.dependentField &&
+        meta.options?.selectOptionDependencies
+      ) {
+        if (meta.options.dependentField === this.args.field) {
+          this.dependencyOf.set(field, meta.options.selectOptionDependencies);
+        }
+      }
+    });
+  }
+
   get dependentValue() {
     return (
       this.args.model
         // @ts-ignore
-        .get(this.args.dependentValue)
+        .get(this.dependentField)
     );
-  }
-
-  /**
-   * Here we define a computed property for the "value", which checks whether the value is found in the
-   * selectOptions, and if not, will set the field to NULL.
-   * This will only be done for fields with a dependency.
-   * And is just a clone of value if no dependency is defined
-   */
-  get computedValue(): any {
-    if (this.dependentField) {
-      let allowedValueFound = false;
-      for (const selectOption of this.selectOptionsComputed) {
-        if (selectOption.value === this.value) {
-          allowedValueFound = true;
-          break;
-        }
-      }
-
-      if (!allowedValueFound) {
-        this.setNewValue(null);
-      } else {
-        return this.value;
-      }
-    } else {
-      return this.value;
-    }
   }
 
   get selectOptionsComputed(): SelectOption[] {
@@ -78,9 +88,13 @@ export default class InputFieldSelectComponent extends InputField<
       if (
         dependencies &&
         this.dependentValue &&
-        dependencies.has(this.dependentValue)
+        dependencies
+          // @ts-ignore
+          .has(this.dependentValue)
       ) {
-        allowedValues = dependencies.get(this.dependentValue);
+        allowedValues = dependencies
+          // @ts-ignore
+          .get(this.dependentValue);
       }
     }
 
@@ -136,5 +150,34 @@ export default class InputFieldSelectComponent extends InputField<
       this.modelName,
       this.args.field
     );
+  }
+
+  @action
+  setSelectValue(value?: any) {
+    // First we set the value on the field itself
+    this.setNewValue(value);
+
+    // Next we check for possible not allowed dependencies which we need to clear
+    // in case the depenent value is no longer allowed
+    this.dependencyOf.forEach((dependencies, field) => {
+      if (dependencies.has(value)) {
+        const dependentValue: any = this.args.model
+          // @ts-ignore
+          .get(field);
+
+        if (dependencies.get(value)?.indexOf(dependentValue) !== -1) {
+          // The current value exists in the allowed mapping, nothing needs to happen
+        } else {
+          this.args.model
+            // @ts-ignore
+            .set(field, undefined);
+        }
+      } else {
+        // The value does not exists in the allowed mapping, we clear the dependency
+        this.args.model
+          // @ts-ignore
+          .set(field, undefined);
+      }
+    });
   }
 }
