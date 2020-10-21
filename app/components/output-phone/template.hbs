@@ -4,7 +4,7 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <span class={{if @value 'value' 'value empty'}} ...attributes>
+  <span class={{if @value "value" "value empty"}} ...attributes>
     {{@value}}
   </span>
   {{#if (and @value @suffix)}}

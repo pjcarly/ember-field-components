@@ -39,6 +39,10 @@ export default class InputFieldComponent<
         .get(this.args.field)
     );
   }
+  set value(_value: any) {
+    // There is a bug in Ember where a focus-out event triggering the setter of the value() only when the value getter returned NULL
+    // The setter is not used, but it must be present.
+  }
 
   /**
    * Returns a unique inputId for the instance of this field
@@ -65,6 +69,8 @@ export default class InputFieldComponent<
 
     if (this.args.inline) {
       classes.push("inline");
+    } else {
+      classes.push("form-group");
     }
 
     if (this.isRequired) {

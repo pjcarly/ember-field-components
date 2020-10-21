@@ -4,8 +4,8 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <pre class={{if @value 'value' 'value empty'}} ...attributes>{{!--
-    --}}{{if @value @value ' '}}{{!--
+  <pre class={{if @value "value" "value empty"}} ...attributes>{{!--
+    --}}{{if @value @value " "}}{{!--
   --}}</pre>
   {{#if (and @value @suffix)}}
     <span class="suffix">

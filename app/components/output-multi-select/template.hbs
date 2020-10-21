@@ -4,7 +4,7 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <span class={{if this.selectedLabels 'value' 'value empty'}} ...attributes>
+  <span class={{if this.selectedLabels "value" "value empty"}} ...attributes>
     {{#if this.selectedLabels}}
       <ul>
       {{#each @value as |singleValue|}}

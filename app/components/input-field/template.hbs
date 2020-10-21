@@ -1,4 +1,4 @@
-<div class="{{if (not @inline) "form-group "}}{{this.computedClass}}" {{on "focusin" this.doFocusIn}} {{on "focusout" this.doFocusOut}} role="textbox">
+<div class={{this.computedClass}} {{on "focusin" this.doFocusIn}} {{on "focusout" this.doFocusOut}} role="textbox">
   {{#if this.modelComputed}}
     <div class="input-container">
       {{#if (not @inline)}}
