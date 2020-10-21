@@ -26,11 +26,6 @@ export default class InputFieldSelectComponent extends InputField<
   protected fillDependencies(): void {
     const modelClass = <Model>this.modelClass;
 
-    let currentField = this.args.field;
-    if (currentField === "passengerType") {
-      // debugger;
-    }
-
     // @ts-ignore
     modelClass.eachAttribute((field: string, meta: any) => {
       if (
