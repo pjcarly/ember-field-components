@@ -4,16 +4,18 @@ import { isArray } from "@ember/array";
 import { action } from "@ember/object";
 import Model from "@ember-data/model";
 
-export interface FieldSelectArguments extends InputFieldArguments {}
+export interface InputFieldSelectArguments
+  extends InputFieldArguments<string | string[]> {}
 
 export default class InputFieldSelectComponent extends InputField<
-  FieldSelectArguments
+  InputFieldSelectArguments,
+  string | string[]
 > {
   selectOptions?: SelectOption[];
 
   protected dependencyOf = new Map<String, Map<string, string[]>>();
 
-  constructor(owner: any, args: FieldSelectArguments) {
+  constructor(owner: any, args: InputFieldSelectArguments) {
     super(owner, args);
     this.fillDependencies();
   }

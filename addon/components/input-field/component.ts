@@ -3,7 +3,7 @@ import { action } from "@ember/object";
 import { guidFor } from "@ember/object/internals";
 import { dasherize } from "@ember/string";
 
-export interface InputFieldArguments extends Arguments {
+export interface InputFieldArguments<T> extends Arguments {
   /**
    * Returns a unique dom id that can be used to identify the input element.
    * This is also bound to the label and put on the label "for" attribute
@@ -20,26 +20,23 @@ export interface InputFieldArguments extends Arguments {
    * @param value The new value of the field
    * @param oldValue The old value of the field
    */
-  valueChanged?: (_: any, _2: any) => void;
+  valueChanged?: (newValue ?: T, oldValue ?: T) => void;
 
   /**
    * This function gives you the ability to perform modifications on the value before it is set on the model. Pass your own function and return the value
    * @param value The value that is going to be changed
    */
-  preSetHook?: (value: any) => void;
+  preSetHook?: (value ?: T) => T | undefined;
 }
 
 export default class InputFieldComponent<
-  T extends InputFieldArguments
+  T extends InputFieldArguments<T2>, T2
 > extends BaseField<T> {
-  get value(): any {
-    return (
-      this.args.model
-        // @ts-ignore
-        .get(this.args.field)
-    );
+  get value(): T2 | undefined {
+    // @ts-ignore
+    return this.args.model.get(this.args.field);
   }
-  set value(_value: any) {
+  set value(_value: T2 | undefined) {
     // There is a bug in Ember where a focus-out event triggering the setter of the value() only when the value getter returned NULL
     // The setter is not used, but it must be present.
   }
@@ -113,7 +110,7 @@ export default class InputFieldComponent<
   }
 
   @action
-  setNewValue(value?: any): void {
+  setNewValue(value?: T2): void {
     const oldValue = this.value;
 
     this.args.model
@@ -132,7 +129,7 @@ export default class InputFieldComponent<
    * @param value The new value
    */
   @action
-  notifyExternalAction(value: any, oldValue: any) {
+  notifyExternalAction(value ?: T2, oldValue ?: T2) {
     if (this.args.valueChanged) {
       this.args.valueChanged(value, oldValue);
     }
