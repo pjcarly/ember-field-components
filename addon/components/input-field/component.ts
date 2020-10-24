@@ -105,7 +105,7 @@ export default class InputFieldComponent<
   /**
    * These are options that will get bassed down to the input component
    */
-  get inputOptions(): any {
+  get inputOptions(): any | undefined {
     return this.args.options ? this.args.options.inputOptions : undefined;
   }
 
