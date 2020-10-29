@@ -1,10 +1,10 @@
 <div class={{this.computedClass}}>
   {{#if this.modelComputed}}
-    {{#if (not this.inline)}}
+    {{#if (not @inline)}}
       <FieldLabel 
         @model={{@model}} 
         @field={{@field}} 
-        class={{this.labelClass}} 
+        class={{concat "output-label " @labelClass}}
         @label={{@label}} />
     {{/if}}
 
@@ -16,7 +16,7 @@
         model=this.modelComputed
         field=this.fieldComputed
         outputClass=@outputClass
-        inline=this.inline
+        inline=@inline
         prefix=@prefix
         suffix=@suffix
         options=@options}}

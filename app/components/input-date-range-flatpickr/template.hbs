@@ -7,7 +7,7 @@
 
   <EmberFlatpickr
     @id={{this.inputIdComputed}}
-    @date={{readonly this.computedValue}}
+    @date={{this.flatpickrValue}}
     @flatpickrRef={{this.flatpickr}}
     @dateFormat={{this.flatpickrFormat}}
     @minDate={{this.minDate}}
@@ -17,11 +17,11 @@
     @autocomplete="off"
     @class="form-control"
     @disabled={{@disabled}}
-    @onChange={{action (mut this.computedValue)}} />
+    @onChange={{action this.setFlatpickrValue}} />
 
   {{#if (or this.showButton @suffix)}}
     <div class="input-group-append">
-      <button type="button" class="btn{{if options.btnClass (concat ' ' options.btnClass) ' btn-default'}}" {{on "click" this.toggleCalendar}}>
+      <button type="button" class="btn{{if @options.btnClass (concat ' ' @options.btnClass) ' btn-default'}}" {{on "click" this.toggleCalendar}}>
         <IconCalendar />
       </button>
       {{#if @suffix}}

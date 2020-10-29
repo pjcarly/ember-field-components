@@ -1,3 +1,6 @@
-import InputField from '../input-field/component';
+import InputField, { InputFieldArguments } from "../input-field/component";
 
-export default class InputFieldTimeComponent extends InputField {}
+export default class InputFieldTimeComponent extends InputField<
+  InputFieldArguments<Date>,
+  Date
+> {}

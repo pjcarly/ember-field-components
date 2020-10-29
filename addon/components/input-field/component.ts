@@ -1,66 +1,53 @@
-import BaseField from "../BaseField";
-import { defineProperty, computed as classicComputed } from "@ember/object";
-import { computed, action } from "@ember/object";
+import BaseField, { Arguments } from "../BaseField";
+import { action } from "@ember/object";
 import { guidFor } from "@ember/object/internals";
-import { tagName } from "@ember-decorators/component";
 import { dasherize } from "@ember/string";
 
-@tagName("")
-export default class InputFieldComponent extends BaseField {
+export interface InputFieldArguments<T> extends Arguments {
   /**
    * Returns a unique dom id that can be used to identify the input element.
    * This is also bound to the label and put on the label "for" attribute
    */
-  inputId!: string;
+  inputId: string;
 
   /**
    * The CSS class you want to give to the input element in the DOM
    */
-  inputClass: string = "";
+  inputClass?: string;
 
   /**
-   * Will be defined as a classic computed property in the init() hook
+   * Provide your own function and get notified of new values
+   * @param value The new value of the field
+   * @param oldValue The old value of the field
    */
-  value?: any;
+  valueChanged?: (newValue ?: T, oldValue ?: T) => void;
 
-  init() {
-    super.init();
+  /**
+   * This function gives you the ability to perform modifications on the value before it is set on the model. Pass your own function and return the value
+   * @param value The value that is going to be changed
+   */
+  preSetHook?: (value ?: T) => T | undefined;
+}
 
-    // This is where the magic happens, we define a computed property on the instance of this component,
-    // but because the name of the field is passed in, the dependent keys of the computed property are dynamic
-    // by using defineProperty, we can set the computed property on Init of this component, with the correct dependent keys.
-
-    defineProperty(
-      this,
-      "value",
-      classicComputed("model", `model.${this.field}`, {
-        get() {
-          return this.model.get(this.field);
-        },
-        set(_, value) {
-          this.model.set(this.field, value);
-          this.model.get("errors").remove(this.field);
-          this.notifyExternalAction(value, this.value);
-
-          // And finally clear potential Errors
-          // let errors = model.get('errors');
-          // errors.remove(field);
-
-          return value;
-        },
-      })
-    );
+export default class InputFieldComponent<
+  T extends InputFieldArguments<T2>, T2
+> extends BaseField<T> {
+  get value(): T2 | undefined {
+    // @ts-ignore
+    return this.args.model.get(this.args.field);
+  }
+  set value(_value: T2 | undefined) {
+    // There is a bug in Ember where a focus-out event triggering the setter of the value() only when the value getter returned NULL
+    // The setter is not used, but it must be present.
   }
 
   /**
    * Returns a unique inputId for the instance of this field
    */
-  @computed("inputId")
   get calculatedInputId(): string {
-    return this.inputId ?? `${guidFor(this)}-input`;
+    return this.args.inputId ?? `${guidFor(this)}-input`;
   }
 
-  @computed("class", "componentName", "isRequired", "hasError", "focus")
   get computedClass(): string {
     const classes: string[] = [];
 
@@ -68,15 +55,19 @@ export default class InputFieldComponent extends BaseField {
     classes.push(this.componentName);
 
     if (this.modelName) {
-      classes.push(`${dasherize(this.modelName)}-${dasherize(this.field)}`);
+      classes.push(
+        `${dasherize(this.modelName)}-${dasherize(this.args.field)}`
+      );
     }
 
-    if (this.class) {
-      classes.push(this.class);
+    if (this.args.class) {
+      classes.push(this.args.class);
     }
 
-    if (this.inline) {
+    if (this.args.inline) {
       classes.push("inline");
+    } else {
+      classes.push("form-group");
     }
 
     if (this.isRequired) {
@@ -101,7 +92,6 @@ export default class InputFieldComponent extends BaseField {
   /**
    * The name of the subcomponent that will be injected as the input-field. This is dependent on the type of field
    */
-  @computed("type")
   get componentName(): string {
     let type = this.type;
 
@@ -115,24 +105,23 @@ export default class InputFieldComponent extends BaseField {
   /**
    * These are options that will get bassed down to the input component
    */
-  @computed("options.inputOptions")
-  get inputOptions(): any {
-    return this.options ? this.options.inputOptions : undefined;
+  get inputOptions(): any | undefined {
+    return this.args.options ? this.args.options.inputOptions : undefined;
   }
 
-  /**
-   * Provide your own function and get notified of new values
-   * @param value The new value of the field
-   * @param oldValue The old value of the field
-   */
-  valueChanged(_: any, _2: any) {}
+  @action
+  setNewValue(value?: T2): void {
+    const oldValue = this.value;
 
-  /**
-   * This function gives you the ability to perform modifications on the value before it is set on the model. Pass your own function and return the value
-   * @param value The value that is going to be changed
-   */
-  preSetHook(value: any): any {
-    return value;
+    this.args.model
+      // @ts-ignore
+      .set(this.args.field, value);
+
+    this.args.model.errors
+      // @ts-ignore
+      .remove(this.args.field);
+
+    this.notifyExternalAction(value, oldValue);
   }
 
   /**
@@ -140,17 +129,19 @@ export default class InputFieldComponent extends BaseField {
    * @param value The new value
    */
   @action
-  notifyExternalAction(value: any, oldValue: any) {
-    this.valueChanged(value, oldValue);
+  notifyExternalAction(value ?: T2, oldValue ?: T2) {
+    if (this.args.valueChanged) {
+      this.args.valueChanged(value, oldValue);
+    }
   }
 
   @action
   doFocusIn() {
-    this.set("focus", true);
+    this.focus = true;
   }
 
   @action
   doFocusOut() {
-    this.set("focus", false);
+    this.focus = false;
   }
 }

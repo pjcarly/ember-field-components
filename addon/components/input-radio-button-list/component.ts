@@ -1,15 +1,12 @@
-import InputSelectComponent from '../input-select/component';
-import { computed } from '@ember/object';
-import { guidFor } from '@ember/object/internals';
-import { isBlank } from '@ember/utils';
+import InputSelectComponent, {
+  SelectArguments,
+} from "../input-select/component";
+import { guidFor } from "@ember/object/internals";
 
-export default class InputMultiSelectComponent extends InputSelectComponent {
-  @computed('inputId')
-  get inputIdComputed() : string {
-    if(!isBlank(this.inputId)) {
-      return this.inputId;
-    } else {
-      return `${guidFor(this)}-select`;
-    }
+export default class InputMultiSelectComponent extends InputSelectComponent<
+  SelectArguments
+> {
+  get inputIdComputed(): string {
+    return this.args.inputId ?? `${guidFor(this)}-queue`;
   }
 }

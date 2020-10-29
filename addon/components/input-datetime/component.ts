@@ -1,6 +1,8 @@
-import BaseInputDate from '../BaseInputDate';
+import BaseInputDate, { DateArguments } from "../BaseInputDate";
 
-export default class InputDatetimeComponent extends BaseInputDate {
-  type = 'datetime';
-  format = 'YYYY-MM-DDTHH:mm:ss';
+export default class InputDatetimeComponent extends BaseInputDate<
+  DateArguments
+> {
+  type = "datetime";
+  format = "YYYY-MM-DDTHH:mm:ss";
 }

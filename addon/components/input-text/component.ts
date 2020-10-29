@@ -1,5 +1,5 @@
-import BaseInput from '../BaseInput';
+import BaseInput, { Arguments } from "../BaseInput";
 
-export default class InputTextComponent extends BaseInput {
-  type = 'text';
+export default class InputTextComponent extends BaseInput<Arguments> {
+  type = "text";
 }

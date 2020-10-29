@@ -5,12 +5,14 @@
     </div>
   {{/if}}
   <Input
-    id={{this.inputId}}
+    @id={{@inputId}}
+    @type="checkbox"
+    @checked={{@value}}
     class="form-control switch"
     disabled={{@disabled}}
-    @type="checkbox"
-    @checked={{this.computedValue}}
-    @placeholder={{@placeholder}} />
+    placeholder={{@placeholder}} 
+    {{on "input" this.toggleSwitch}}
+    ...attributes/>
   {{#if @suffix}}
     <div class="input-group-append">
       <span class="input-group-text suffix">{{@suffix}}</span>

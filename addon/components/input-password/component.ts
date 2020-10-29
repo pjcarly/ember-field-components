@@ -1,5 +1,11 @@
-import BaseInput from '../BaseInput';
+import BaseInput, { Arguments } from "../BaseInput";
 
-export default class InputPasswordComponent extends BaseInput {
-  type = 'password';
+interface PasswordArguments extends Arguments {
+  value?: string;
+}
+
+export default class InputPasswordComponent extends BaseInput<
+  PasswordArguments
+> {
+  type = "password";
 }

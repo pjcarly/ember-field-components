@@ -1,67 +1,69 @@
-import Component from "@ember/component";
+import Component from "@glimmer/component";
 import Store from "@ember-data/store";
 import Model from "@ember-data/model";
 import FieldInformation from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
 import { FieldOptionsInterface } from "@getflights/ember-field-components/services/field-information";
-import { tagName } from "@ember-decorators/component";
+import { tracked } from "@glimmer/tracking";
+import { computed } from "@ember/object";
 
-@tagName("")
-export default abstract class BaseField extends Component {
-  @service store!: Store;
-  @service fieldInformation!: FieldInformation;
-
+export interface Arguments {
   /**
    * The model you want to render a field for
    */
-  model!: Model;
+  model: Model;
 
   /**
    * The fieldname (attribute) of the model you want to render a field for
    */
-  field!: string;
+  field: string;
 
   /**
    * This flag renders the Field inline. No Label will be added.
    */
-  inline: boolean = false;
+  inline: boolean;
 
   /**
    * This flag marks the field as required, and renders a is-required class
    */
-  required: boolean = false;
+  required: boolean;
 
   /**
    * This flag marks the field as readonly, and renders a is-readonly class
    * and no input field
    */
-  readonly: boolean = false;
+  readonly: boolean;
 
   /**
    * The class you want to give the label accompanying the field
    */
-  labelClass: string = "control-label";
+  labelClass?: string;
 
   /**
    * The CSS class you want to give to the wrapper element of the input-field component
    */
-  class: string = "";
+  class?: string;
 
   /**
    * A hash containing possible options depending on the implementation
    */
-  options: any = {};
+  options?: any;
+}
+
+export default abstract class BaseField<T extends Arguments> extends Component<
+  T
+> {
+  @service store!: Store;
+  @service fieldInformation!: FieldInformation;
 
   /**
    * Property that is toggled upon focus
    */
-  focus: boolean = false;
+  @tracked focus: boolean = false;
 
   /**
    * Returns the dasherized name of the model class
    */
-  @computed("model")
   get modelName(): string | undefined {
     return this.modelComputed
       ? this.fieldInformation.getModelName(this.modelComputed)
@@ -71,7 +73,6 @@ export default abstract class BaseField extends Component {
   /**
    * Returns the model class looked up from the ember-data store.
    */
-  @computed("modelName")
   get modelClass(): any | undefined {
     return this.modelName
       ? this.fieldInformation.getModelClass(this.modelName)
@@ -81,10 +82,9 @@ export default abstract class BaseField extends Component {
   /**
    * When a nested field is provided we use the nested model, and the nested field
    */
-  @computed("model", "field")
   get modelComputed(): Model /* | ModelFragment */ {
-    const splittedField = this.field.split(".");
-    let model = this.model;
+    const splittedField = this.args.field.split(".");
+    let model = this.args.model;
 
     if (splittedField.length > 1) {
       // nested value
@@ -96,29 +96,27 @@ export default abstract class BaseField extends Component {
     return model;
   }
 
-  @computed("field")
   get fieldComputed(): string {
-    const splittedField = this.field.split(".");
+    const splittedField = this.args.field.split(".");
 
     if (splittedField.length > 1) {
       // @ts-ignore
       return splittedField.pop();
     } else {
-      return this.field;
+      return this.args.field;
     }
   }
 
   /**
    * The type of Field is returned. This is the attribute type provided in the modelclass definition
    */
-  @computed("modelName", "field")
   get type(): string | undefined {
     return this.modelName
       ? this.fieldInformation.getFieldType(this.modelName, this.fieldComputed)
       : undefined;
   }
 
-  @computed("modelName", "field")
+  @computed()
   get fieldOptions(): FieldOptionsInterface | undefined {
     return this.modelName
       ? this.fieldInformation.getFieldOptions(
@@ -128,15 +126,14 @@ export default abstract class BaseField extends Component {
       : undefined;
   }
 
-  @computed("fieldOptions", "modelName", "readonly")
   get isReadOnly(): boolean {
-    if (this.readonly) {
+    if (this.args.readonly) {
       return true;
     } else if (
       this.modelName &&
       this.fieldInformation.getFieldIsComputedProperty(
         this.modelName,
-        this.field
+        this.args.field
       )
     ) {
       return true;
@@ -147,23 +144,25 @@ export default abstract class BaseField extends Component {
     }
   }
 
-  @computed("fieldOptions", "required")
   get isRequired(): boolean {
     return (
-      this.required ||
+      this.args.required ||
       (this.fieldOptions
         ? this.fieldInformation.getFieldIsRequired(this.fieldOptions)
         : false)
     );
   }
 
-  @computed("model.errors.[]", "field")
   get hasError(): boolean {
-    const errors = this.modelComputed.get("errors");
-    return errors.has(this.fieldComputed);
+    const errors = this.modelComputed.errors;
+    return (
+      errors
+        // @ts-ignore
+        .has(this.fieldComputed)
+    );
   }
 
-  @computed("fieldOptions")
+  @computed()
   get widgetName(): string | undefined {
     const fieldOptions = this.fieldOptions;
 

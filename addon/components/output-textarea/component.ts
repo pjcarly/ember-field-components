@@ -1,5 +1,5 @@
-import BaseOutput from "../BaseOutput";
+import BaseOutput, { Arguments } from "../BaseOutput";
 
-export default class OutputTextareaComponent extends BaseOutput {
-  type = 'textarea';
+export default class OutputTextareaComponent extends BaseOutput<Arguments> {
+  type = "textarea";
 }

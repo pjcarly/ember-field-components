@@ -1,5 +1,5 @@
-import BaseOutput from "../BaseOutput";
+import BaseOutput, { Arguments } from "../BaseOutput";
 
-export default class OutputUrlComponent extends BaseOutput {
-  type = 'url';
+export default class OutputUrlComponent extends BaseOutput<Arguments> {
+  type = "url";
 }

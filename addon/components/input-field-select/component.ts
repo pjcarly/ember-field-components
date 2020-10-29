@@ -1,62 +1,55 @@
-import InputField from "../input-field/component";
+import InputField, { InputFieldArguments } from "../input-field/component";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
-import FieldInformationService from "@getflights/ember-field-components/services/field-information";
-import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
 import { isArray } from "@ember/array";
-import { defineProperty, computed as classicComputed } from "@ember/object";
+import { action } from "@ember/object";
+import Model from "@ember-data/model";
 
-export default class InputFieldSelectComponent extends InputField {
-  @service fieldInformation!: FieldInformationService;
+export interface InputFieldSelectArguments
+  extends InputFieldArguments<string | string[]> {}
 
-  dependentValue!: undefined | string;
+export default class InputFieldSelectComponent extends InputField<
+  InputFieldSelectArguments,
+  string | string[]
+> {
   selectOptions?: SelectOption[];
 
-  init() {
-    super.init();
+  protected dependencyOf = new Map<String, Map<string, string[]>>();
 
-    // Here we define a dynamic computed property for the dependentValue if a dependentField is defined
-    if (this.dependentField) {
-      defineProperty(
-        this,
-        "dependentValue",
-        classicComputed("model", `model.${this.dependentField}`, {
-          get() {
-            return this.model.get(this.dependentField);
-          },
-        })
-      );
-    }
+  constructor(owner: any, args: InputFieldSelectArguments) {
+    super(owner, args);
+    this.fillDependencies();
   }
 
   /**
-   * Here we define a computed property for the "value", which checks whether the value is found in the
-   * selectOptions, and if not, will set the field to NULL.
-   * This will only be done for fields with a dependency.
-   * And is just a clone of value if no dependency is defined
+   * Here we build a map of other select fields who are dependent on the value of this field
+   * If the value of this field changes, and it is not allowed in the dependent fields,
+   * we must clear the value of the dependent fiels as well
    */
-  @computed("value", "dependentValue", "selectOptionsComputed")
-  get computedValue(): any {
-    if (this.dependentField) {
-      let allowedValueFound = false;
-      for (const selectOption of this.selectOptionsComputed) {
-        if (selectOption.value === this.value) {
-          allowedValueFound = true;
-          break;
+  protected fillDependencies(): void {
+    const modelClass = <Model>this.modelClass;
+
+    // @ts-ignore
+    modelClass.eachAttribute((field: string, meta: any) => {
+      if (
+        meta.type === "select" &&
+        meta.options?.dependentField &&
+        meta.options?.selectOptionDependencies
+      ) {
+        if (meta.options.dependentField === this.args.field) {
+          this.dependencyOf.set(field, meta.options.selectOptionDependencies);
         }
       }
-
-      if (!allowedValueFound) {
-        this.set("value", null);
-      } else {
-        return this.value;
-      }
-    } else {
-      return this.value;
-    }
+    });
   }
 
-  @computed("fieldOptions", "intl.locale", "dependentValue", "selectOptions")
+  get dependentValue() {
+    return (
+      this.args.model
+        // @ts-ignore
+        .get(this.dependentField)
+    );
+  }
+
   get selectOptionsComputed(): SelectOption[] {
     const fieldOptions = this.fieldOptions;
     const selectOptions: SelectOption[] = [];
@@ -78,7 +71,11 @@ export default class InputFieldSelectComponent extends InputField {
    * Returns the allowed selectOptions based if a dependency is present or not
    * @param selectOptions The selectOptions you want to filter
    */
-  getAllowedSelectOptions(selectOptions: SelectOption[]) {
+  getAllowedSelectOptions(selectOptions: SelectOption[]): SelectOption[] {
+    if (!this.modelName) {
+      return [];
+    }
+
     const returnValues: SelectOption[] = [];
 
     let allowedValues: string[] | undefined = undefined;
@@ -88,9 +85,13 @@ export default class InputFieldSelectComponent extends InputField {
       if (
         dependencies &&
         this.dependentValue &&
-        dependencies.has(this.dependentValue)
+        dependencies
+          // @ts-ignore
+          .has(this.dependentValue)
       ) {
-        allowedValues = dependencies.get(this.dependentValue);
+        allowedValues = dependencies
+          // @ts-ignore
+          .get(this.dependentValue);
       }
     }
 
@@ -104,9 +105,8 @@ export default class InputFieldSelectComponent extends InputField {
       };
 
       selectOption.label = this.fieldInformation.getTranslatedSelectOptionLabel(
-        // @ts-ignore
         this.modelName,
-        this.field,
+        this.args.field,
         fieldSelectOption.value
       );
       returnValues.push(selectOption);
@@ -115,7 +115,6 @@ export default class InputFieldSelectComponent extends InputField {
     return returnValues;
   }
 
-  @computed("fieldOptions")
   get selectOptionDependencies(): Map<string, string[]> | undefined {
     const fieldOptions = this.fieldOptions;
 
@@ -129,7 +128,6 @@ export default class InputFieldSelectComponent extends InputField {
     return fieldOptions.selectOptionDependencies;
   }
 
-  @computed("fieldOptions")
   get dependentField(): string | undefined {
     const fieldOptions = this.fieldOptions;
 
@@ -140,12 +138,43 @@ export default class InputFieldSelectComponent extends InputField {
     return fieldOptions.dependentField;
   }
 
-  @computed("fieldOptions")
   get noneLabel(): string {
+    if (!this.modelName) {
+      return "None";
+    }
+
     return this.fieldInformation.getTranslatedSelectNoneLabel(
-      // @ts-ignore
       this.modelName,
-      this.field
+      this.args.field
     );
+  }
+
+  @action
+  setSelectValue(value?: any) {
+    // First we set the value on the field itself
+    this.setNewValue(value);
+
+    // Next we check for possible not allowed dependencies which we need to clear
+    // in case the depenent value is no longer allowed
+    this.dependencyOf.forEach((dependencies, field) => {
+      if (dependencies.has(value)) {
+        const dependentValue: any = this.args.model
+          // @ts-ignore
+          .get(field);
+
+        if (dependencies.get(value)?.indexOf(dependentValue) !== -1) {
+          // The current value exists in the allowed mapping, nothing needs to happen
+        } else {
+          this.args.model
+            // @ts-ignore
+            .set(field, undefined);
+        }
+      } else {
+        // The value does not exists in the allowed mapping, we clear the dependency
+        this.args.model
+          // @ts-ignore
+          .set(field, undefined);
+      }
+    });
   }
 }

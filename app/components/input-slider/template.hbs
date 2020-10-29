@@ -1,10 +1,10 @@
 <Input
-  id={{this.inputIdComputed}}
+  @id={{this.inputIdComputed}}
+  @type="range"
+  @value={{@value}}
   class="form-control"
   disabled={{@disabled}}
-  @type="range"
-  @value={{this.computedValue}}
-  @placeholder={{@placeholder}}
-  @min={{this.min}}
-  @max={{this.max}}
-  @step={{this.step}} />
+  placeholder={{@placeholder}}
+  min={{this.min}}
+  max={{this.max}}
+  step={{this.step}} ...attributes/>

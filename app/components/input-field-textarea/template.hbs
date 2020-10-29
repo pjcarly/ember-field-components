@@ -1,5 +1,19 @@
-{{#if (eq widgetName 'resizeable')}}
-  <InputTextareaResizeable @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @class={{@inputClass}} @inputId={{@inputId}} @options={{this.inputOptions}}/>
+{{#if (eq this.widgetName 'resizeable')}}
+  <InputTextareaResizeable 
+    @value={{this.value}} 
+    @valueChanged={{this.setNewValue}}
+    @preSetHook={{@preSetHook}} 
+    @placeholder={{@placeholder}} 
+    @class={{@inputClass}} 
+    @inputId={{@inputId}} 
+    @options={{this.inputOptions}}/>
 {{else}}
-  <InputTextarea @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @class={{@inputClass}} @inputId={{@inputId}} @options={{this.inputOptions}}/>
+  <InputTextarea 
+    @value={{this.value}} 
+    @valueChanged={{this.setNewValue}}
+    @preSetHook={{@preSetHook}} 
+    @placeholder={{@placeholder}} 
+    @class={{@inputClass}} 
+    @inputId={{@inputId}} 
+    @options={{this.inputOptions}}/>
 {{/if}}

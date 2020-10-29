@@ -1,62 +1,81 @@
-import Component from "@ember/component";
-import { isBlank } from "@ember/utils";
-import { computed } from "@ember/object";
-import { tagName } from "@ember-decorators/component";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
 
-@tagName("")
-export default abstract class BaseInput extends Component {
-  /**
-   * The type of Input Component. This will be added to the classes later
-   */
-  type!: string;
-
+export interface Arguments {
   /**
    * The Value of the input component
    */
   value?: any;
+  placeholder?: string;
+  prefix?: string;
+  suffix?: string;
+  inputId?: string;
 
   /**
-   * The custom class you want to give to the component
+   * The classes that will be applied to the outer element
+   * If you want to add classes to the input component itself use the regular class syntax (without @)
    */
-  class: string = "";
-  placeholder: string = "";
-  inputId: string = "";
-  options: any = {};
-  prefix: string = "";
-  suffix: string = "";
-
-  /**
-   * A pass in attribute that can be set to force an input element as an input-group
-   */
-  inputGroup: boolean = false;
+  class?: string;
 
   /**
    * Some input components display helper buttons (like a calendar for date input) you can hide those buttons by settings this bool
    */
-  showButton: boolean = true;
+  showButton?: boolean;
 
-  @computed("value")
-  get computedValue(): any {
-    return this.value;
-  }
-  set computedValue(value: any) {
-    value = this.preSetHook(value);
-    this.valueChanged(value);
+  /**
+   * A pass in attribute that can be set to force an input element as an input-group
+   */
+  inputGroup?: boolean;
+
+  /**
+   * The options that can be passed in specifically for a component extending this base class
+   * All subclasses should extend this interface to define their own options
+   */
+  options?: OptionsArgument;
+
+  /**
+   * A method that can be passed in, that will be called before setting the value, where you can change the value before setting
+   */
+  preSetHook?: (value: any) => any;
+
+  /**
+   * The action that can be passed into the component to get notified of changes
+   */
+  valueChanged?: (newValue: any) => void;
+}
+
+export interface OptionsArgument {}
+
+export default abstract class BaseInput<T extends Arguments> extends Component<
+  T
+> {
+  /**
+   * The type of Input Component. This will be added to the classes later
+   */
+  abstract type: string;
+  protected inputGroup = false;
+  protected showButton = true;
+
+  constructor(owner: any, args: T) {
+    super(owner, args);
+    if (this.args.showButton === false) {
+      this.showButton = false;
+    }
   }
 
-  @computed("type", "class")
   get computedClass(): string {
     const classes: string[] = [];
     classes.push("input");
     classes.push(this.type);
 
-    if (this.class) {
-      classes.push(this.class);
+    if (this.args.class) {
+      classes.push(this.args.class);
     }
 
     if (
-      !isBlank(this.prefix) ||
-      !isBlank(this.suffix) ||
+      this.args.prefix ||
+      this.args.suffix ||
+      this.args.inputGroup ||
       this.inputGroup ||
       this.showButton
     ) {
@@ -66,12 +85,19 @@ export default abstract class BaseInput extends Component {
     return classes.join(" ");
   }
 
-  preSetHook(value: any) {
-    return value;
+  protected setNewValue(newValue: any): void {
+    if (this.args.preSetHook) {
+      newValue = this.args.preSetHook(newValue);
+    }
+
+    if (this.args.valueChanged) {
+      this.args.valueChanged(newValue);
+    }
   }
 
-  /**
-   * The action that can be passed into the component to get notified of changes
-   */
-  valueChanged(_: any) {}
+  @action
+  valueChanged(event: Event) {
+    const target = <HTMLInputElement>event.target;
+    this.setNewValue(target.value);
+  }
 }

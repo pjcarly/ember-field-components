@@ -4,8 +4,14 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <span class={{if this.selectedLabels 'value' 'value empty'}}>
-    {{this.selectedLabels}}
+  <span class={{if this.selectedLabels "value" "value empty"}} ...attributes>
+    {{#if this.selectedLabels}}
+      <ul>
+      {{#each @value as |singleValue|}}
+        <li>{{singleValue}}</li>
+      {{/each}}
+      </ul>
+    {{/if}}
   </span>
   {{#if (and @value @suffix)}}
     <span class="suffix">

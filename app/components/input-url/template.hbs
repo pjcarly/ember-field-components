@@ -5,11 +5,13 @@
     </div>
   {{/if}}
   <Input
-    id={{this.inputId}}
-    class="form-control"
+    @id={{@inputId}}
     @type="url"
-    @value={{this.computedValue}}
-    @placeholder={{@placeholder}} />
+    @value={{@value}}
+    class="form-control"
+    placeholder={{@placeholder}} 
+    {{on "input" this.valueChanged}}
+    ...attributes/>
   {{#if @suffix}}
     <div class="input-group-append">
       <span class="input-group-text suffix">{{@suffix}}</span>

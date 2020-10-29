@@ -1,25 +1,38 @@
 import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
 import { guidFor } from "@ember/object/internals";
-import { isBlank } from "@ember/utils";
 import { action } from "@ember/object";
 import flatpickr from "flatpickr";
-import InputDateComponent from "../input-date/component";
-import { momentFormatToFlatpickrFormat } from "../input-date-flatpickr/component";
+import {
+  DateFlatpickrOptionsArgument,
+  momentFormatToFlatpickrFormat,
+} from "../input-date-flatpickr/component";
+import BaseInput, { Arguments } from "../BaseInput";
 
-export default class InputDateRangeFlatpickrComponent extends InputDateComponent {
+export interface DateRangeFlatpickrArguments extends Arguments {
+  value?: [Date, Date] | [Date] | [];
+
+  /**
+   * The format to which your date should be displayed (this follows the moment.js formatting)
+   */
+  format?: string;
+
+  options?: DateFlatpickrOptionsArgument;
+}
+
+export default class InputDateRangeFlatpickrComponent extends BaseInput<
+  DateRangeFlatpickrArguments
+> {
   @service fieldInformation!: FieldInformationService;
 
   type = "date-range-flatpickr";
   format: string = "";
   flatpickr?: flatpickr.Instance;
 
-  @computed("value")
-  get computedValue(): [Date, Date] | [Date] | [] | null {
-    if (this.value) {
-      if (this.value instanceof Array && this.value.length <= 2) {
-        return <[Date, Date] | [Date] | []>this.value;
+  get flatpickrValue(): [Date, Date] | [Date] | [] | null {
+    if (this.args.value) {
+      if (this.args.value instanceof Array && this.args.value.length <= 2) {
+        return <[Date, Date] | [Date] | []>this.args.value;
       } else {
         return [];
       }
@@ -27,7 +40,37 @@ export default class InputDateRangeFlatpickrComponent extends InputDateComponent
       return null;
     }
   }
-  set computedValue(value: [Date, Date] | [Date] | [] | null) {
+
+  get momentFormat(): string {
+    if (this.format) {
+      return this.format;
+    } else {
+      return this.fieldInformation.dateFormat;
+    }
+  }
+
+  get flatpickrFormat(): string {
+    return momentFormatToFlatpickrFormat(this.momentFormat);
+  }
+
+  get inputIdComputed(): string {
+    return this.args.inputId ?? `${guidFor(this)}-select`;
+  }
+
+  get minDate(): string | Date | undefined {
+    return this.args.options && this.args.options.minDate
+      ? this.args.options.minDate
+      : undefined;
+  }
+
+  get maxDate(): string | Date | undefined {
+    return this.args.options && this.args.options.maxDate
+      ? this.args.options.maxDate
+      : undefined;
+  }
+
+  @action
+  setFlatpickrValue(value: [Date, Date] | [Date] | [] | null) {
     if (value && value instanceof Array && value.length <= 2) {
       value = <[Date, Date] | [Date] | []>value.filter((singleValue) => {
         // @ts-ignore
@@ -37,45 +80,7 @@ export default class InputDateRangeFlatpickrComponent extends InputDateComponent
       value = null;
     }
 
-    value = this.preSetHook(value);
-    this.valueChanged(value);
-  }
-
-  @computed("format", "fieldInformation.dateFormat")
-  get momentFormat(): string {
-    if (isBlank(this.format)) {
-      return this.fieldInformation.dateFormat;
-    } else {
-      return this.format;
-    }
-  }
-
-  @computed("momentFormat")
-  get flatpickrFormat(): string {
-    return momentFormatToFlatpickrFormat(this.momentFormat);
-  }
-
-  @computed("inputId")
-  get inputIdComputed(): string {
-    if (!isBlank(this.inputId)) {
-      return this.inputId;
-    } else {
-      return `${guidFor(this)}-select`;
-    }
-  }
-
-  @computed("options.minDate")
-  get minDate() {
-    return this.options && this.options.minDate
-      ? this.options.minDate
-      : undefined;
-  }
-
-  @computed("options.maxDate")
-  get maxDate() {
-    return this.options && this.options.maxDate
-      ? this.options.maxDate
-      : undefined;
+    this.setNewValue(value);
   }
 
   @action

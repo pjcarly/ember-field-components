@@ -5,12 +5,12 @@
     </div>
   {{/if}}
 
-  <select {{on "change" this.setValue}} class='form-control' id={{@inputId}} disabled={{@disabled}} multiple>
+  <select {{on "input" this.multiSelectValueChanged}} class="form-control" id={{this.inputIdComputed}} disabled={{@disabled}} multiple={{true}} ...attributes>
     {{#if this.showNone}}
-      <option selected={{not this.computedValue}} disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}</option>
+      <option value="" selected={{or (not @value) (is-empty @value)}} disabled={{this.noneDisabled}}>{{this.noneLabelComputed}}</option>
     {{/if}}
     {{#each @selectOptions as |selectOption|}}
-      <option value={{selectOption.value}} selected={{array-contains this.computedValue selectOption.value}}>{{selectoption-label selectOption}}</option>
+      <option value={{selectOption.value}} selected={{array-contains @value selectOption.value}}>{{selectoption-label selectOption}}</option>
     {{/each}}
   </select>
 

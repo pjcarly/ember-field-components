@@ -4,8 +4,8 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <span class={{if this.selectedLabels 'value' 'value empty'}}>
-    {{t 'ember-field-components.label.hidden'}}
+  <span class={{if this.selectedLabels "value" "value empty"}} ...attributes>
+    {{t "ember-field-components.label.hidden"}}
   </span>
   {{#if (and @value @suffix)}}
     <span class="suffix">

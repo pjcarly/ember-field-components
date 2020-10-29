@@ -4,7 +4,7 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <span data-select-option={{value}} class={{if @value 'value' 'value empty'}}>
+  <span data-select-option={{@value}} class={{if @value "value" "value empty"}} ...attributes>
     {{this.selectedLabel}}
   </span>
   {{#if (and @value @suffix)}}

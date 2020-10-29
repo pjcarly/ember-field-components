@@ -1,5 +1,5 @@
-import BaseInput from '../BaseInput';
+import BaseInput, { Arguments } from "../BaseInput";
 
-export default class InputUrlComponent extends BaseInput {
-  type = 'url';
+export default class InputUrlComponent extends BaseInput<Arguments> {
+  type = "url";
 }

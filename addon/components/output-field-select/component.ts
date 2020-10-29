@@ -1,14 +1,16 @@
-import OutputFieldComponent from "../output-field/component";
+import OutputFieldComponent, {
+  OutputFieldArguments,
+} from "../output-field/component";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
 import { isArray } from "@ember/array";
 
-export default class OutputFieldSelectComponent extends OutputFieldComponent {
+export default class OutputFieldSelectComponent extends OutputFieldComponent<
+  OutputFieldArguments
+> {
   @service fieldInformation!: FieldInformationService;
 
-  @computed("fieldOptions", "intl.locale")
   get selectOptions(): SelectOption[] {
     const fieldOptions = this.fieldOptions;
     const selectOptions: SelectOption[] = [];
@@ -32,7 +34,7 @@ export default class OutputFieldSelectComponent extends OutputFieldComponent {
       selectOption.label = this.fieldInformation.getTranslatedSelectOptionLabel(
         // @ts-ignore
         this.modelName,
-        this.field,
+        this.args.field,
         fieldSelectOption.value
       );
       selectOptions.push(selectOption);

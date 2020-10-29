@@ -1,5 +1,14 @@
-import BaseOutput from "../BaseOutput";
+import BaseOutput, { Arguments } from "../BaseOutput";
 
-export default class OutputNumberComponent extends BaseOutput {
-  type = 'number';
+export interface NumberArguments extends Arguments {
+  options?: NumberOptionsArgument;
+}
+
+export interface NumberOptionsArgument {
+  positiveINFValue?: number | string;
+  negativeINFValue?: number | string;
+}
+
+export default class OutputNumberComponent extends BaseOutput<NumberArguments> {
+  type = "number";
 }

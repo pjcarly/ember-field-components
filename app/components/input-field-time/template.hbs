@@ -1,8 +1,8 @@
 {{#if (or (eq this.widgetName 'flatpickr') (eq this.widgetName 'bootstrap'))}}
   <InputTimeFlatpickr
     @value={{this.value}}
-    @valueChanged={{action (mut this.value)}}
-    @preSetHook={{this.preSetHook}}
+    @valueChanged={{this.setNewValue}}
+    @preSetHook={{@preSetHook}}
     @placeholder={{@placeholder}}
     @prefix={{@prefix}}
     @suffix={{@suffix}}
@@ -12,8 +12,8 @@
 {{else}}
   <InputTime
     @value={{this.value}}
-    @valueChanged={{action (mut this.value)}}
-    @preSetHook={{this.preSetHook}}
+    @valueChanged={{this.setNewValue}}
+    @preSetHook={{@preSetHook}}
     @placeholder={{@placeholder}}
     @prefix={{@prefix}}
     @suffix={{@suffix}}

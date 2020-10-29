@@ -1,5 +1,9 @@
-import BaseInput from '../BaseInput';
+import BaseInput, { Arguments } from "../BaseInput";
 
-export default class InputSearchComponent extends BaseInput {
-  type = 'search';
+interface SearchArguments extends Arguments {
+  value?: string;
+}
+
+export default class InputSearchComponent extends BaseInput<SearchArguments> {
+  type = "search";
 }

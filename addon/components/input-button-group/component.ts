@@ -1,17 +1,26 @@
-import InputSelectComponent from "../input-select/component";
-import { computed } from "@ember/object";
-import { isBlank } from "@ember/utils";
+import { OptionsArgument } from "../BaseInput";
+import InputSelectComponent, {
+  SelectArguments,
+} from "../input-select/component";
 
-export default class InputButtonGroupComponent extends InputSelectComponent {
-  @computed("class")
+export interface ButtonGroupArguments extends SelectArguments {
+  options?: ButtonGroupOptionsArgument;
+}
+
+export interface ButtonGroupOptionsArgument extends OptionsArgument {
+  buttonClass?: string;
+}
+
+export default class InputButtonGroupComponent extends InputSelectComponent<
+  ButtonGroupArguments
+> {
   get classComputed(): string {
-    return isBlank(this.class) ? "btn-group" : this.class;
+    return this.args.class ?? "btn-group";
   }
 
-  @computed("options.buttonClass")
   get buttonClassComputed(): string {
-    return this.options && this.options.buttonClass
-      ? this.options.buttonClass
+    return this.args.options && this.args.options.buttonClass
+      ? this.args.options.buttonClass
       : "btn btn-default";
   }
 }

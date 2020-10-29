@@ -1,5 +1,7 @@
-import OutputFieldComponent from '../output-field/component';
+import OutputFieldComponent, {
+  OutputFieldArguments,
+} from "../output-field/component";
 
-export default class OutputFieldDatetimeComponent extends OutputFieldComponent {
-
-}
+export default class OutputFieldDatetimeComponent extends OutputFieldComponent<
+  OutputFieldArguments
+> {}

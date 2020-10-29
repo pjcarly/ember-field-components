@@ -4,7 +4,7 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <span class={{if @value 'value' 'value empty'}}>
+  <span class={{if @value "value" "value empty"}} ...attributes>
     {{@value}}
   </span>
   {{#if (and @value @suffix)}}
@@ -13,7 +13,7 @@
     </span>
   {{/if}}
   {{#if (and @value this.showButton)}}
-    <a class="btn btn-default url-button" href={{value}} target="_blank">
+    <a class="btn btn-default url-button" href={{@value}} target="_blank">
       <IconNewWindow />
     </a>
   {{/if}}

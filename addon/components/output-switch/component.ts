@@ -1,5 +1,5 @@
-import BaseOutput from "../BaseOutput";
+import BaseOutput, { Arguments } from "../BaseOutput";
 
-export default class OutputTextComponent extends BaseOutput {
-  type = 'switch';
+export default class OutputTextComponent extends BaseOutput<Arguments> {
+  type = "switch";
 }

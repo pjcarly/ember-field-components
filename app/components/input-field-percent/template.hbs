@@ -1,1 +1,10 @@
-<InputNumber @value={{this.value}} @valueChanged={{action (mut this.value)}} @preSetHook={{this.preSetHook}} @placeholder={{@placeholder}} @prefix={{@prefix}} @suffix='%' @class={{@inputClass}} @inputId={{@inputId}} @options={{this.inputOptions}} />
+<InputNumber 
+  @value={{this.value}} 
+  @valueChanged={{this.setNewValue}}
+  @preSetHook={{@preSetHook}} 
+  @placeholder={{@placeholder}} 
+  @prefix={{@prefix}} 
+  @suffix='%' 
+  @class={{@inputClass}} 
+  @inputId={{@inputId}} 
+  @options={{this.inputOptions}} />
