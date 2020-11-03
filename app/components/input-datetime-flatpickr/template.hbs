@@ -20,8 +20,8 @@
     @autocomplete="off"
     @class="form-control"
     @disabled={{@disabled}}
-    @onChange={{action this.setFlatpickrValue}}
-    @getFlatpickrRef={{action this.onFlatpickrInstance}} />
+    @onChange={{this.setFlatpickrValue}}
+    @getFlatpickrRef={{this.onFlatpickrInstance}} />
 
   {{#if (or this.showButton @suffix)}}
     <div class="input-group-append">

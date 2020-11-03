@@ -33,7 +33,7 @@
           inputId=this.calculatedInputId
           options=@options
           preSetHook=this.preSetHook
-          valueChanged=(action this.notifyExternalAction)}}
+          valueChanged=this.notifyExternalAction}}
       {{else}}
         {{! template-lint-disable no-bare-strings }}
         Component {{this.componentName}} does not exist
