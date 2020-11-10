@@ -25,6 +25,7 @@ export default class InputDateRangeFlatpickrComponent extends BaseInput<
 > {
   @service fieldInformation!: FieldInformationService;
 
+  showButton = true;
   type = "date-range-flatpickr";
   format: string = "";
   flatpickr?: flatpickr.Instance;

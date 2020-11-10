@@ -54,7 +54,7 @@ export default abstract class BaseInput<T extends Arguments> extends Component<
    */
   abstract type: string;
   protected inputGroup = false;
-  protected showButton = true;
+  protected showButton = false;
 
   constructor(owner: any, args: T) {
     super(owner, args);

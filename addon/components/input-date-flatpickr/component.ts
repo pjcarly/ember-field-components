@@ -37,6 +37,7 @@ export default class InputDateFlatpickrComponent extends InputDateComponent<
 > {
   @service fieldInformation!: FieldInformationService;
 
+  showButton = true;
   type = "date-flatpickr";
   format: string = "";
   flatpickr?: flatpickr.Instance;
