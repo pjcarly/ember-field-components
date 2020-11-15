@@ -82,6 +82,7 @@ export default class InputDateFlatpickrComponent extends InputDateComponent<
       : undefined;
   }
 
+  @action
   inputBlurred() {
     if (this.flatpickr) {
       const inputValue = this.flatpickr.input.value;
@@ -114,7 +115,7 @@ export default class InputDateFlatpickrComponent extends InputDateComponent<
 
   @action
   onFlatpickrInstance(flatpickr: flatpickr.Instance) {
-    flatpickr.input.addEventListener("blur", this.inputBlurred.bind(this));
+    flatpickr.input.addEventListener("blur", this.inputBlurred);
   }
 
   willDestroy() {
