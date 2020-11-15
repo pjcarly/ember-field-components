@@ -1,9 +1,9 @@
 import BaseInput, { Arguments } from "../BaseInput";
 
-interface PhoneArguments extends Arguments {
+export interface PhoneArguments extends Arguments {
   value?: string;
 }
 
-export default class InputPhoneComponent extends BaseInput<PhoneArguments> {
+export default class InputPhoneComponent<T extends PhoneArguments> extends BaseInput<T> {
   type = "phone";
 }
