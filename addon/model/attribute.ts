@@ -1,11 +1,6 @@
 import { setType } from "../classes/attribute";
-// @ts-ignore
-import { computedDecoratorWithParams } from "@getflights/ember-field-components/-private/computed";
 
-/**
- * Field decorator for use with native classes
- */
-export let field = computedDecoratorWithParams((_: any, params: any) =>
+export function field(_type: string, _options?: any) {
   // @ts-ignore
-  setType.apply(this, [_, params])
-);
+  return setType.apply(this, [_, params]);
+}
