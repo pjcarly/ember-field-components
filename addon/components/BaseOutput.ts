@@ -32,9 +32,9 @@ export interface Arguments {
   suffix?: string;
 }
 
-export default abstract class BaseOutput<T extends Arguments> extends Component<
-  T
-> {
+export default abstract class BaseOutput<
+  T extends Arguments
+> extends Component<T> {
   /**
    * The type of Input Component. This will be added to the classes later
    */

@@ -12,7 +12,7 @@
       {{@suffix}}
     </span>
   {{/if}}
-  {{#if (and this.showButton @value)}}
+  {{#if (and this.showButton @value @showButton)}}
     <a class="btn btn-default phone-button" href="tel:{{@value}}">
       <IconPhone />
     </a>

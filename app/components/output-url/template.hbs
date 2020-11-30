@@ -12,7 +12,7 @@
       {{@suffix}}
     </span>
   {{/if}}
-  {{#if (and @value this.showButton)}}
+  {{#if (and @value this.showButton @showButton)}}
     <a class="btn btn-default url-button" href={{@value}} target="_blank">
       <IconNewWindow />
     </a>

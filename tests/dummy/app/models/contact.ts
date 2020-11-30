@@ -1,11 +1,9 @@
-import Model from "@ember-data/model";
-import { validationModel } from "@getflights/ember-attribute-validations/decorators/validation-model";
+import ValidationModel from "@getflights/ember-attribute-validations/model/validation-model";
 import { field } from "@getflights/ember-field-components/model/attribute";
 import { belongsTo } from "@ember-data/model";
 import CompanyModel from "./company";
 
-@validationModel
-export default class ContactModel extends Model {
+export default class ContactModel extends ValidationModel {
   @field("string", { validation: { in: { values: ["MR", "MS"] } } })
   salutation!: string;
 
