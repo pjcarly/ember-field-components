@@ -1,6 +1,6 @@
 {
   "name": "@getflights/ember-field-components",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
@@ -76,7 +76,7 @@
     "ember-field-components"
   ],
   "dependencies": {
-    "@getflights/ember-attribute-validations": "^1.0.0",
+    "@getflights/ember-attribute-validations": "^2.0.0",
     "@glimmer/component": "^1.0.2",
     "@glimmer/tracking": "^1.0.2",
     "ember-cli-babel": "^7.19.0",
