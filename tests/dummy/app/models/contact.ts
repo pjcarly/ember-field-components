@@ -1,27 +1,32 @@
 import ValidationModel from "@getflights/ember-attribute-validations/model/validation-model";
-import { field } from "@getflights/ember-field-components/model/attribute";
-import { belongsTo } from "@ember-data/model";
+import { attr, belongsTo } from "@ember-data/model";
 import CompanyModel from "./company";
 
 export default class ContactModel extends ValidationModel {
-  @field("string", { validation: { in: { values: ["MR", "MS"] } } })
+  // @ts-ignore
+  @attr("string", { validation: { in: { values: ["MR", "MS"] } } })
   salutation!: string;
 
-  @field("string", {
+  // @ts-ignore
+  @attr("string", {
     validation: { required: true, range: { from: 2, to: 20 } },
   })
   firstName!: string;
 
-  @field("string", { validation: { required: true } })
+  // @ts-ignore
+  @attr("string", { validation: { required: true } })
   lastName!: string;
 
-  @field("email")
+  // @ts-ignore
+  @attr("email")
   email?: string;
 
-  @field("phone")
+  // @ts-ignore
+  @attr("phone")
   phone?: string;
 
-  @field("number", {
+  // @ts-ignore
+  @attr("number", {
     precision: 2,
     decimals: 1,
     validation: {
@@ -32,7 +37,8 @@ export default class ContactModel extends ValidationModel {
   })
   age?: number;
 
-  @field("date", {
+  // @ts-ignore
+  @attr("date", {
     validation: {
       date: true,
       after: new Date("2000-01-01"),
@@ -43,12 +49,14 @@ export default class ContactModel extends ValidationModel {
   })
   birthdate?: Date;
 
-  @field("date", {
+  // @ts-ignore
+  @attr("date", {
     widget: "flatpickr",
   })
   signUpDate?: Date;
 
-  @field("datetime", {
+  // @ts-ignore
+  @attr("datetime", {
     widget: "flatpickr",
   })
   lastSignInDate?: Date;
