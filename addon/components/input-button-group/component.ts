@@ -1,3 +1,5 @@
+import { action } from "@ember/object";
+import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import { OptionsArgument } from "../BaseInput";
 import InputSelectComponent, {
   SelectArguments,
@@ -11,9 +13,7 @@ export interface ButtonGroupOptionsArgument extends OptionsArgument {
   buttonClass?: string;
 }
 
-export default class InputButtonGroupComponent extends InputSelectComponent<
-  ButtonGroupArguments
-> {
+export default class InputButtonGroupComponent extends InputSelectComponent<ButtonGroupArguments> {
   get classComputed(): string {
     return this.args.class ?? "btn-group";
   }
@@ -22,5 +22,10 @@ export default class InputButtonGroupComponent extends InputSelectComponent<
     return this.args.options && this.args.options.buttonClass
       ? this.args.options.buttonClass
       : "btn btn-default";
+  }
+
+  @action
+  buttonClicked(selectOption: SelectOption) {
+    this.setNewValue(selectOption.value);
   }
 }

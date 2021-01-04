@@ -1,6 +1,6 @@
 <div class={{this.classComputed}} role="group">
   {{#each @selectOptions as |selectOption|}}
-    <button {{on "click" (fn this.valueChanged selectOption.value)}} class="{{this.buttonClassComputed}}{{if (deq selectOption.value @value) ' active'}}">
+    <button {{on "click" (fn this.buttonClicked selectOption)}} class="{{this.buttonClassComputed}}{{if (deq selectOption.value @value) ' active'}}">
       {{selectoption-label selectOption}}
     </button>
   {{/each}}
