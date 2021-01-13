@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 import Model from "@ember-data/model";
+import DS from "ember-data";
 
 interface Arguments {
   model: Model;
@@ -8,11 +9,7 @@ interface Arguments {
 
 export default class FieldMessagesComponent extends Component<Arguments> {
   get errors() {
-    const errors = this.args.model.errors;
-    return (
-      errors
-        // @ts-ignore
-        .errorsFor(this.args.field)
-    );
+    const errors = <DS.Errors>(<unknown>this.args.model.errors);
+    return errors.errorsFor(this.args.field);
   }
 }
