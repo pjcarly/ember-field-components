@@ -64,6 +64,18 @@ export default class FieldInformationService extends Service {
   }
 
   /**
+   * Check what type a relationship is
+   * @param modelName The model you are check the relationship type on
+   * @param relationshipName THe name of the relationship to check
+   */
+  getRelationshipType(modelName: string, relationshipName: string) : "hasMany" | "belongsTo" {
+    const model = this.getModelClass(modelName);
+    const relationships = model.relationshipsByName;
+
+    return relationships.get(relationshipName).kind;
+  }
+
+  /**
    * Looks up a hasMany relationship, and returns the modelname for the relationship
    * @param modelName the name of the model where the hasmany is defined
    * @param relationshipName the name of the relationship
