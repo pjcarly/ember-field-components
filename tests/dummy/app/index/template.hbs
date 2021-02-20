@@ -1,4 +1,6 @@
-<h2>Company</h2>
+<h2>
+  Company
+</h2>
 <ModelMessages @model={{this.company}} @displayAll={{true}} />
 
 <div>
@@ -26,7 +28,9 @@
   <OutputField @model={{this.company}} @field="credit" />
 </div>
 
-<h2>Contact</h2>
+<h2>
+  Contact
+</h2>
 <ModelMessages @model={{this.contact}} @displayAll={{true}} />
 
 <div>
@@ -65,4 +69,6 @@
   <InputDateRangeFlatpickr />
 </div>
 
-<button {{on "click" this.save}}>Save</button>
+<button type="button" {{on "click" this.save}}>
+  Save
+</button>

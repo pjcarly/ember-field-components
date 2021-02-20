@@ -1,4 +1,12 @@
 <div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: {{html-safe this.width}}%;" aria-valuenow={{this.value}} aria-valuemin={{this.min}} aria-valuemax={{this.max}}>
+  {{! template-lint-disable no-inline-styles style-concatenation }}
+  <div
+    class="progress-bar"
+    role="progressbar"
+    style="width: {{html-safe this.width}}%;"
+    aria-valuenow={{this.value}}
+    aria-valuemin={{this.min}}
+    aria-valuemax={{this.max}}
+  >
   </div>
 </div>

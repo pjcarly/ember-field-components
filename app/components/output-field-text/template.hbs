@@ -1,4 +1,4 @@
-{{#if (eq this.widgetName 'mask')}}
+{{#if (eq this.widgetName "mask")}}
   <OutputTextMask
     @value={{this.value}}
     @prefix={{@prefix}}
@@ -6,12 +6,14 @@
     @class={{@outputClass}}
     @mask={{this.mask}}
     @regex={{this.regex}}
-    @options={{this.outputOptions}} />
+    @options={{this.outputOptions}}
+  />
 {{else}}
   <OutputText
     @value={{this.value}}
     @prefix={{@prefix}}
     @suffix={{@suffix}}
     @class={{@outputClass}}
-    @options={{this.outputOptions}} />
+    @options={{this.outputOptions}}
+  />
 {{/if}}

@@ -7,9 +7,11 @@
   <span class={{if this.selectedLabels "value" "value empty"}} ...attributes>
     {{#if this.selectedLabels}}
       <ul>
-      {{#each @value as |singleValue|}}
-        <li>{{singleValue}}</li>
-      {{/each}}
+        {{#each @value as |singleValue|}}
+          <li>
+            {{singleValue}}
+          </li>
+        {{/each}}
       </ul>
     {{/if}}
   </span>

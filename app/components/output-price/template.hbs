@@ -5,12 +5,14 @@
     </span>
   {{/if}}
   {{#if (or @value (eq @value 0))}}
-    <span class= "value" ...attributes>
-      {{format-number @value
-          style="currency"
-          currency=this.currencyComputed
-          currencyDisplay=this.fieldInformation.currencyDisplay
-          minimumFractionDigits=@precision}}
+    <span class="value" ...attributes>
+      {{format-number
+        @value
+        style="currency"
+        currency=this.currencyComputed
+        currencyDisplay=this.fieldInformation.currencyDisplay
+        minimumFractionDigits=@precision
+      }}
     </span>
   {{else}}
     <span class="value empty" ...attributes></span>

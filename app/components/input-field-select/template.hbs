@@ -7,7 +7,8 @@
     @inputId={{@inputId}}
     @noneLabel={{this.noneLabel}}
     @required={{this.isRequired}}
-    @options={{this.inputOptions}} />
+    @options={{this.inputOptions}}
+  />
 {{else if (eq this.widgetName "radio-buttons")}}
   <InputRadioButtonList
     @selectOptions={{this.selectOptionsComputed}}
@@ -17,7 +18,8 @@
     @inputId={{@inputId}}
     @noneLabel={{this.noneLabel}}
     @required={{this.isRequired}}
-    @options={{this.inputOptions}} />
+    @options={{this.inputOptions}}
+  />
 {{else}}
   <InputSelect
     @selectOptions={{this.selectOptionsComputed}}
@@ -27,5 +29,6 @@
     @inputId={{@inputId}}
     @noneLabel={{this.noneLabel}}
     @required={{this.isRequired}}
-    @options={{this.inputOptions}} />
+    @options={{this.inputOptions}}
+  />
 {{/if}}

@@ -1,17 +1,23 @@
-<div class={{this.computedClass}} {{on "focusin" this.doFocusIn}} {{on "focusout" this.doFocusOut}} role="textbox">
+<div
+  class={{this.computedClass}}
+  role="textbox"
+  {{on "focusin" this.doFocusIn}}
+  {{on "focusout" this.doFocusOut}}
+>
   {{#if this.modelComputed}}
     <div class="input-container">
-      {{#if (not @inline)}}
+      {{#unless @inline}}
         <FieldLabel
           @model={{@model}}
           @field={{@field}}
           @label={{@label}}
           class={{concat "control-label " @labelClass}}
-          for={{this.calculatedInputId}} />
-      {{/if}}
+          for={{this.calculatedInputId}}
+        />
+      {{/unless}}
 
       {{#if hasBlock}}
-        {{!-- You can provide your own component for input. By using the component as a block component. The label, and errors will be displayed --}}
+        {{! You can provide your own component for input. By using the component as a block component. The label, and errors will be displayed }}
         {{yield this.calculatedInputId}}
       {{else if this.isReadOnly}}
         <OutputField
@@ -20,9 +26,11 @@
           @options={{@options}}
           @class={{@class}}
           @labelClass={{@labelClass}}
-          @inline={{true}} />
+          @inline={{true}}
+        />
       {{else if (component-exists this.componentName)}}
-        {{component this.componentName
+        {{component
+          this.componentName
           model=this.modelComputed
           field=this.fieldComputed
           placeholder=@placeholder
@@ -33,22 +41,22 @@
           inputId=this.calculatedInputId
           options=@options
           preSetHook=this.preSetHook
-          valueChanged=this.notifyExternalAction}}
+          valueChanged=this.notifyExternalAction
+        }}
       {{else}}
         {{! template-lint-disable no-bare-strings }}
         Component {{this.componentName}} does not exist
       {{/if}}
     </div>
-    {{#if (not @inline)}}
+    {{#unless @inline}}
       <FieldHelptext
         class={{@helptextClass}}
         @model={{@model}}
         @field={{@field}}
-        @helptext={{@helptext}} />
-    {{/if}}
-    <FieldMessages
-      @model={{@model}}
-      @field={{@field}} />
+        @helptext={{@helptext}}
+      />
+    {{/unless}}
+    <FieldMessages @model={{@model}} @field={{@field}} />
   {{else}}
     <span class="output">
       <span class="value empty"></span>

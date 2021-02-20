@@ -4,7 +4,10 @@
       {{@prefix}}
     </span>
   {{/if}}
-  <span class={{if (or @value (eq @value 0)) "value" "value empty"}} ...attributes>
+  <span
+    class={{if (or @value (eq @value 0)) "value" "value empty"}}
+    ...attributes
+  >
     {{#if (and @options (eq @value @options.positiveINFValue))}}
       +∞
     {{else if (and @options (eq @value @options.negativeINFValue))}}

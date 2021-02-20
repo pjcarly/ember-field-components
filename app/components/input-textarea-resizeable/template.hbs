@@ -1,21 +1,26 @@
 <span class={{this.computedClass}}>
   {{#if @prefix}}
     <div class="input-group-prepend">
-      <span class="input-group-text prefix">{{@prefix}}</span>
+      <span class="input-group-text prefix">
+        {{@prefix}}
+      </span>
     </div>
   {{/if}}
-  <Textarea 
-    @value={{@value}} 
+  <Textarea
+    @value={{@value}}
     @id={{@inputId}}
     disabled={{@disabled}}
-    rows='3' 
-    class='form-control' 
-    placeholder={{@placeholder}} 
+    rows="3"
+    class="form-control"
+    placeholder={{@placeholder}}
+    ...attributes
     {{on "input" this.valueChanged}}
-    ...attributes />
+  />
   {{#if @suffix}}
     <div class="input-group-append">
-      <span class="input-group-text suffix">{{@suffix}}</span>
+      <span class="input-group-text suffix">
+        {{@suffix}}
+      </span>
     </div>
   {{/if}}
 </span>

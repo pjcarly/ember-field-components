@@ -1,4 +1,4 @@
-{{#if (or (eq this.widgetName 'flatpickr') (eq this.widgetName 'bootstrap'))}}
+{{#if (or (eq this.widgetName "flatpickr") (eq this.widgetName "bootstrap"))}}
   <InputDatetimeFlatpickr
     @value={{this.value}}
     @valueChanged={{this.setNewValue}}
@@ -8,7 +8,8 @@
     @suffix={{@suffix}}
     @class={{@inputClass}}
     @inputId={{@inputId}}
-    @options={{this.inputOptions}}/>
+    @options={{this.inputOptions}}
+  />
 {{else}}
   <InputDatetime
     @value={{this.value}}
@@ -19,5 +20,6 @@
     @suffix={{@suffix}}
     @class={{@inputClass}}
     @inputId={{@inputId}}
-    @options={{this.inputOptions}}/>
+    @options={{this.inputOptions}}
+  />
 {{/if}}

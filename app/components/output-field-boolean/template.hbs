@@ -1,15 +1,17 @@
-{{#if (eq this.widgetName 'switch')}}
-  <OutputSwitch 
-    @value={{this.value}} 
-    @prefix={{@prefix}} 
-    @suffix={{@suffix}} 
-    @class={{@outputClass}} 
-    @options={{this.outputOptions}} />
+{{#if (eq this.widgetName "switch")}}
+  <OutputSwitch
+    @value={{this.value}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @class={{@outputClass}}
+    @options={{this.outputOptions}}
+  />
 {{else}}
-  <OutputCheckbox 
-    @value={{this.value}} 
-    @prefix={{@prefix}} 
-    @suffix={{@suffix}} 
-    @class={{@outputClass}} 
-    @options={{this.outputOptions}} />
+  <OutputCheckbox
+    @value={{this.value}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @class={{@outputClass}}
+    @options={{this.outputOptions}}
+  />
 {{/if}}
