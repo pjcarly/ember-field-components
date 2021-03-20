@@ -1,7 +1,7 @@
-import BaseField, { Arguments } from "../BaseField";
-import { action } from "@ember/object";
-import { guidFor } from "@ember/object/internals";
-import { dasherize } from "@ember/string";
+import BaseField, { Arguments } from '../BaseField';
+import { action } from '@ember/object';
+import { guidFor } from '@ember/object/internals';
+import { dasherize } from '@ember/string';
 
 export interface InputFieldArguments<T> extends Arguments {
   /**
@@ -20,21 +20,25 @@ export interface InputFieldArguments<T> extends Arguments {
    * @param value The new value of the field
    * @param oldValue The old value of the field
    */
-  valueChanged?: (newValue ?: T, oldValue ?: T) => void;
+  valueChanged?: (newValue?: T, oldValue?: T) => void;
 
   /**
    * This function gives you the ability to perform modifications on the value before it is set on the model. Pass your own function and return the value
    * @param value The value that is going to be changed
    */
-  preSetHook?: (value ?: T) => T | undefined;
+  preSetHook?: (value?: T) => T | undefined;
 }
 
 export default class InputFieldComponent<
-  T extends InputFieldArguments<T2>, T2
+  T extends InputFieldArguments<T2>,
+  T2
 > extends BaseField<T> {
   get value(): T2 | undefined {
     // @ts-ignore
-    return this.args.model.get(this.args.field);
+    // There is a bug in Ember, where some tracking contexts are recomputed when rolling back a controllers model
+    // Causing the model here, to be undefined earlier than the template knows.
+    // That is why we need to make sure the model is not null before getting some on it
+    return this.args.model?.get(this.args.field);
   }
   set value(_value: T2 | undefined) {
     // There is a bug in Ember where a focus-out event triggering the setter of the value() only when the value getter returned NULL
@@ -51,7 +55,7 @@ export default class InputFieldComponent<
   get computedClass(): string {
     const classes: string[] = [];
 
-    classes.push("input-field");
+    classes.push('input-field');
     classes.push(this.componentName);
 
     if (this.modelName) {
@@ -65,28 +69,28 @@ export default class InputFieldComponent<
     }
 
     if (this.args.inline) {
-      classes.push("inline");
+      classes.push('inline');
     } else {
-      classes.push("form-group");
+      classes.push('form-group');
     }
 
     if (this.isRequired) {
-      classes.push("is-required");
+      classes.push('is-required');
     }
 
     if (this.isReadOnly) {
-      classes.push("is-readonly");
+      classes.push('is-readonly');
     }
 
     if (this.hasError) {
-      classes.push("has-error");
+      classes.push('has-error');
     }
 
     if (this.focus) {
-      classes.push("has-focus");
+      classes.push('has-focus');
     }
 
-    return classes.join(" ");
+    return classes.join(' ');
   }
 
   /**
@@ -95,8 +99,8 @@ export default class InputFieldComponent<
   get componentName(): string {
     let type = this.type;
 
-    if (type === "id" || type === "string") {
-      type = "text";
+    if (type === 'id' || type === 'string') {
+      type = 'text';
     }
 
     return `input-field-${type}`.toLowerCase();
@@ -129,7 +133,7 @@ export default class InputFieldComponent<
    * @param value The new value
    */
   @action
-  notifyExternalAction(value ?: T2, oldValue ?: T2) {
+  notifyExternalAction(value?: T2, oldValue?: T2) {
     if (this.args.valueChanged) {
       this.args.valueChanged(value, oldValue);
     }
