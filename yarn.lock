@@ -1209,11 +1209,12 @@
     tslib "^2.0.1"
 
 "@getflights/ember-attribute-validations@^2.0.0":
-  version "2.0.6"
-  resolved "https://gitlab.com/api/v4/projects/20773295/packages/npm/@getflights/ember-attribute-validations/-/@getflights/ember-attribute-validations-2.0.6.tgz#5715788f2b04ead9af7617ddf0f2732848bd3e17"
-  integrity sha1-VxV4jysE6tmvdhfd8PJzKEi9Phc=
+  version "2.0.7"
+  resolved "https://gitlab.com/api/v4/projects/20773295/packages/npm/@getflights/ember-attribute-validations/-/@getflights/ember-attribute-validations-2.0.7.tgz#9ce040ff3d4f7428d89be75bd2c5137d0d060a08"
+  integrity sha1-nOBA/z1PdCjYm+db0sUTfQ0GCgg=
   dependencies:
     "@glimmer/tracking" "^1.0.2"
+    ember-cached-decorator-polyfill "^0.1.1"
     ember-cli-babel "^7.19.0"
     ember-cli-htmlbars "^5.3.1"
     ember-cli-typescript "^4.0.0"
