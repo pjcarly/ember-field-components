@@ -1,5 +1,4 @@
 import BaseField, { Arguments } from "../BaseField";
-import { computed } from "@ember/object";
 import { dasherize } from "@ember/string";
 
 export interface OutputFieldArguments extends Arguments {
@@ -47,7 +46,6 @@ export default class OutputFieldComponent<
   /**
    * The name of the subcomponent that will be injected as the output-field. This is dependent on the type of field
    */
-  @computed()
   get componentName(): string {
     let type = this.type;
 

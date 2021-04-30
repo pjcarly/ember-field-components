@@ -4,8 +4,7 @@ import Model from "@ember-data/model";
 import FieldInformation from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
 import { FieldOptionsInterface } from "@getflights/ember-field-components/services/field-information";
-import { tracked } from "@glimmer/tracking";
-import { computed } from "@ember/object";
+import { cached, tracked } from "@glimmer/tracking";
 
 export interface Arguments {
   /**
@@ -110,13 +109,14 @@ export default abstract class BaseField<T extends Arguments> extends Component<
   /**
    * The type of Field is returned. This is the attribute type provided in the modelclass definition
    */
+  @cached
   get type(): string | undefined {
     return this.modelName
       ? this.fieldInformation.getFieldType(this.modelName, this.fieldComputed)
       : undefined;
   }
 
-  @computed()
+  @cached
   get fieldOptions(): FieldOptionsInterface | undefined {
     return this.modelName
       ? this.fieldInformation.getFieldOptions(
@@ -162,7 +162,6 @@ export default abstract class BaseField<T extends Arguments> extends Component<
     );
   }
 
-  @computed()
   get widgetName(): string | undefined {
     const fieldOptions = this.fieldOptions;
 
