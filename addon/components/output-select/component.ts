@@ -3,6 +3,7 @@ import { inject as service } from "@ember/service";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import MutableArray from "@ember/array/mutable";
 import { A } from "@ember/array";
+import type IntlService from 'ember-intl/services/intl';
 
 export interface MultiSelectArguments extends Arguments {
   value?: string;
@@ -12,7 +13,7 @@ export interface MultiSelectArguments extends Arguments {
 export default class OutputSelectComponent extends BaseOutput<
   MultiSelectArguments
 > {
-  @service intl!: any;
+  @service intl!: IntlService;
 
   type = "select";
 

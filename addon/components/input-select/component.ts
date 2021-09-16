@@ -2,6 +2,7 @@ import BaseInput, { Arguments } from "../BaseInput";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import SelectOptionGroup from "@getflights/ember-field-components/interfaces/SelectOptionGroup";
 import { inject as service } from "@ember/service";
+import type IntlService from 'ember-intl/services/intl';
 
 export interface SelectArguments extends Arguments {
   value: string;
@@ -12,8 +13,8 @@ export interface SelectArguments extends Arguments {
 
 export default class InputSelectComponent<
   T extends SelectArguments
-> extends BaseInput<T> {
-  @service intl!: any;
+  > extends BaseInput<T> {
+  @service intl!: IntlService;
 
   type = "select";
 

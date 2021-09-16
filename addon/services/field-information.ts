@@ -8,6 +8,7 @@ import { get } from "@ember/object";
 import { assert } from "@ember/debug";
 import { capitalize } from "@ember/string";
 import { tracked } from "@glimmer/tracking";
+import type IntlService from 'ember-intl/services/intl';
 
 export interface FieldOptionsInterface {
   readOnly: boolean;
@@ -28,7 +29,7 @@ export interface FieldValidationInterface {
 
 export default class FieldInformationService extends Service {
   @service store!: Store;
-  @service intl!: any;
+  @service intl!: IntlService;
 
   @tracked dateFormat: string = "YYYY-MM-DD";
   @tracked dateTimeFormat: string = "YYYY-MM-DD HH:mm:ss";
@@ -68,7 +69,7 @@ export default class FieldInformationService extends Service {
    * @param modelName The model you are check the relationship type on
    * @param relationshipName THe name of the relationship to check
    */
-  getRelationshipType(modelName: string, relationshipName: string) : "hasMany" | "belongsTo" {
+  getRelationshipType(modelName: string, relationshipName: string): "hasMany" | "belongsTo" {
     const model = this.getModelClass(modelName);
     const relationships = model.relationshipsByName;
 
@@ -405,8 +406,8 @@ export default class FieldInformationService extends Service {
       assert(
         `Computed properties should have their type defined in the computedMeta key of the settings hash. ${modelName} - ${field}`,
         modelClass.settings.hasOwnProperty("computedMeta") &&
-          modelClass.settings.computedMeta.hasOwnProperty(field) &&
-          modelClass.settings.computedMeta[field].hasOwnProperty("type")
+        modelClass.settings.computedMeta.hasOwnProperty(field) &&
+        modelClass.settings.computedMeta[field].hasOwnProperty("type")
       );
 
       return modelClass.settings.computedMeta[field].type;
