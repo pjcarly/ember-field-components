@@ -44,7 +44,7 @@ export interface Arguments {
   valueChanged?: (newValue: any) => void;
 }
 
-export interface OptionsArgument {}
+export interface OptionsArgument { }
 
 export default abstract class BaseInput<T extends Arguments> extends Component<
   T
