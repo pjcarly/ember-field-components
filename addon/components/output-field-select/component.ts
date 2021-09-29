@@ -5,11 +5,13 @@ import SelectOption from "@getflights/ember-field-components/interfaces/SelectOp
 import FieldInformationService from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
 import { isArray } from "@ember/array";
+import type IntlService from 'ember-intl/services/intl';
 
 export default class OutputFieldSelectComponent extends OutputFieldComponent<
   OutputFieldArguments
 > {
   @service fieldInformation!: FieldInformationService;
+  @service intl!: IntlService;
 
   get selectOptions(): SelectOption[] {
     const fieldOptions = this.fieldOptions;
@@ -41,5 +43,23 @@ export default class OutputFieldSelectComponent extends OutputFieldComponent<
     }
 
     return selectOptions;
+  }
+
+  get noneLabel(): string | undefined {
+    if (!this.modelName) {
+      return;
+    }
+
+    if (
+      this.intl.exists(
+        `ember-field-components.${this.modelName}.selectNone.${this.args.field}`
+      )
+    ) {
+      return this.intl.t(
+        `ember-field-components.${this.modelName}.selectNone.${this.args.field}`
+      );
+    }
+
+    return;
   }
 }

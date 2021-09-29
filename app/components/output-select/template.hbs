@@ -6,7 +6,11 @@
   {{/if}}
   <span
     data-select-option={{@value}}
-    class={{if @value "value" "value empty"}}
+    class={{if
+      @value
+      "value"
+      (if @noneLabel "value empty none-label" "value empty")
+    }}
     ...attributes
   >
     {{this.selectedLabel}}

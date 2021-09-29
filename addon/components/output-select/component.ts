@@ -1,20 +1,17 @@
 import BaseOutput, { Arguments } from "../BaseOutput";
-import { inject as service } from "@ember/service";
 import SelectOption from "@getflights/ember-field-components/interfaces/SelectOption";
 import MutableArray from "@ember/array/mutable";
 import { A } from "@ember/array";
-import type IntlService from 'ember-intl/services/intl';
 
 export interface MultiSelectArguments extends Arguments {
   value?: string;
   selectOptions: SelectOption[];
+  noneLabel?: string;
 }
 
 export default class OutputSelectComponent extends BaseOutput<
   MultiSelectArguments
 > {
-  @service intl!: IntlService;
-
   type = "select";
 
   get selectOptionComputed(): MutableArray<SelectOption> {
@@ -33,6 +30,8 @@ export default class OutputSelectComponent extends BaseOutput<
       }
 
       return this.args.value;
+    } else if (this.args.noneLabel) {
+      return this.args.noneLabel;
     }
 
     return;
