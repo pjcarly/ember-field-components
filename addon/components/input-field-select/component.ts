@@ -5,7 +5,7 @@ import { action } from "@ember/object";
 import Model from "@ember-data/model";
 
 export interface InputFieldSelectArguments
-  extends InputFieldArguments<string | string[]> {}
+  extends InputFieldArguments<string | string[]> { }
 
 export default class InputFieldSelectComponent extends InputField<
   InputFieldSelectArguments,
@@ -56,6 +56,8 @@ export default class InputFieldSelectComponent extends InputField<
 
     if (this.selectOptions) {
       return this.selectOptions;
+    } else if (this.args.options?.selectOptions) {
+      return this.args.options.selectOptions;
     } else if (
       fieldOptions &&
       fieldOptions.hasOwnProperty("selectOptions") &&
