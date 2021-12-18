@@ -1710,9 +1710,9 @@
     tslib "^2.1.0"
 
 "@getflights/ember-attribute-validations@^2.0.0":
-  version "2.0.10"
-  resolved "https://gitlab.com/api/v4/projects/20773295/packages/npm/@getflights/ember-attribute-validations/-/@getflights/ember-attribute-validations-2.0.10.tgz#12cca586f1a51a391cafabf58bf90c56d5b89bfd"
-  integrity sha1-EsylhvGlGjkcr6v1i/kMVtW4m/0=
+  version "2.0.12"
+  resolved "https://gitlab.com/api/v4/projects/20773295/packages/npm/@getflights/ember-attribute-validations/-/@getflights/ember-attribute-validations-2.0.12.tgz#21b5a3a02361cd804091511dcefbe01c2fad2156"
+  integrity sha1-IbWjoCNhzYBAkVEdzvvgHC+tIVY=
   dependencies:
     "@glimmer/tracking" "^1.0.2"
     ember-cached-decorator-polyfill "^0.1.1"

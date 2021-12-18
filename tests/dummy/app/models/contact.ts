@@ -4,7 +4,7 @@ import CompanyModel from "./company";
 
 export default class ContactModel extends ValidationModel {
   // @ts-ignore
-  @attr("string", { validation: { in: { values: ["MR", "MS"] } } })
+  @attr("string", { validation: { in: ["MR", "MS"] } })
   salutation!: string;
 
   // @ts-ignore
