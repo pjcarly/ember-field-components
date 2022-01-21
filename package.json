@@ -1,6 +1,6 @@
 {
   "name": "@getflights/ember-field-components",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
@@ -96,7 +96,7 @@
     "ember-data": "~3.24.0",
     "ember-data-model-fragments": "~5.0.0-beta.0",
     "ember-data-storefront": "^0.17.1",
-    "ember-flatpickr": "^2.15.4",
+    "ember-flatpickr": "^3.2.2",
     "ember-intl": "^5.5.0",
     "ember-truth-helpers": "~2.1.0"
   },

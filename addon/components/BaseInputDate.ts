@@ -13,7 +13,7 @@ export interface DateArguments extends Arguments {
 
 export default abstract class BaseInputDate<
   T extends DateArguments
-> extends BaseInput<T> {
+  > extends BaseInput<T> {
   format!: string;
 
   constructor(owner: any, args: T) {
@@ -30,6 +30,9 @@ export default abstract class BaseInputDate<
     } else {
       return;
     }
+  }
+  set computedValue(_value: string | undefined) {
+    // not being used
   }
 
   @action

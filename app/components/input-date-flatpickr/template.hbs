@@ -21,7 +21,7 @@
     @class="form-control"
     @disabled={{@disabled}}
     @onChange={{this.setFlatpickrValue}}
-    @getFlatpickrRef={{this.onFlatpickrInstance}}
+    @onReady={{this.onReady}}
   />
 
   {{#if (or this.showButton @suffix)}}
@@ -29,9 +29,11 @@
       {{#if this.showButton}}
         <button
           type="button"
-          class="btn{{
-            if @options.btnClass (concat " " @options.btnClass) " btn-default"
-          }}"
+          class="btn{{if
+              @options.btnClass
+              (concat ' ' @options.btnClass)
+              ' btn-default'
+            }}"
           {{on "click" this.toggleCalendar}}
         >
           <IconCalendar />
