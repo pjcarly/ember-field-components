@@ -16,7 +16,7 @@
         />
       {{/unless}}
 
-      {{#if hasBlock}}
+      {{#if (has-block)}}
         {{! You can provide your own component for input. By using the component as a block component. The label, and errors will be displayed }}
         {{yield this.calculatedInputId}}
       {{else if this.isReadOnly}}
@@ -45,7 +45,9 @@
         }}
       {{else}}
         {{! template-lint-disable no-bare-strings }}
-        Component {{this.componentName}} does not exist
+        Component
+        {{this.componentName}}
+        does not exist
       {{/if}}
     </div>
     {{#unless @inline}}

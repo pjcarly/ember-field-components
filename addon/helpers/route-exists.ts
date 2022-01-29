@@ -8,6 +8,6 @@ export default class RouteExistsHelper extends Helper {
       return false;
     }
 
-    return getOwner(this).lookup(`route:${route}`) ? true : false;
+    return (<any>getOwner(this)).lookup(`route:${route}`) ? true : false;
   }
 }

@@ -3,7 +3,7 @@ import { getOwner } from '@ember/application';
 
 export default class ComponentExistsHelper extends Helper {
   compute([name]: [string]) {
-    const owner = getOwner(this);
+    const owner = <any>getOwner(this);
     const lookup = owner.lookup('component-lookup:main');
 
     if (!lookup.componentFor) {

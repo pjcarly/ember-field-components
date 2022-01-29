@@ -1,5 +1,4 @@
 import Component from "@glimmer/component";
-import Store from "@ember-data/store";
 import Model from "@ember-data/model";
 import FieldInformation from "@getflights/ember-field-components/services/field-information";
 import { inject as service } from "@ember/service";
@@ -52,7 +51,6 @@ export interface Arguments {
 export default abstract class BaseField<T extends Arguments> extends Component<
   T
 > {
-  @service store!: Store;
   @service fieldInformation!: FieldInformation;
 
   /**
@@ -70,7 +68,7 @@ export default abstract class BaseField<T extends Arguments> extends Component<
   }
 
   /**
-   * Returns the model class looked up from the ember-data store.
+   * Returns the model class looked up from the ember-data.
    */
   get modelClass(): any | undefined {
     return this.modelName
@@ -120,9 +118,9 @@ export default abstract class BaseField<T extends Arguments> extends Component<
   get fieldOptions(): FieldOptionsInterface | undefined {
     return this.modelName
       ? this.fieldInformation.getFieldOptions(
-          this.modelName,
-          this.fieldComputed
-        )
+        this.modelName,
+        this.fieldComputed
+      )
       : undefined;
   }
 

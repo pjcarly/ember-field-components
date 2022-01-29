@@ -9,7 +9,7 @@
       />
     {{/unless}}
 
-    {{#if hasBlock}}
+    {{#if (has-block)}}
       {{! You can provide your own component for output. By using the component as a block component. The label will be displayed }}
       {{yield}}
     {{else if (component-exists this.componentName)}}
@@ -24,7 +24,9 @@
         options=@options
       }}
     {{else}}
-      Component {{this.componentName}} does not exist
+      Component
+      {{this.componentName}}
+      does not exist
     {{/if}}
   {{else}}
     <span class="output">
