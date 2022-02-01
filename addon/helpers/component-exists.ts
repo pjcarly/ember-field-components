@@ -1,9 +1,10 @@
 import Helper from '@ember/component/helper';
 import { getOwner } from '@ember/application';
+import ApplicationInstance from "@ember/application/instance";
 
 export default class ComponentExistsHelper extends Helper {
   compute([name]: [string]) {
-    const owner = <any>getOwner(this);
+    const owner = <ApplicationInstance>getOwner(this);
     const lookup = owner.lookup('component-lookup:main');
 
     if (!lookup.componentFor) {
