@@ -1,6 +1,6 @@
 {{#if this.showNone}}
   <Input
-    @id={{concat this.inputId "-none"}}
+    id={{concat this.inputId "-none"}}
     @type="radio"
     @value={{undefined}}
     @checked={{not @value}}
@@ -15,7 +15,7 @@
 {{/if}}
 {{#each @selectOptions as |selectOption index|}}
   <Input
-    @id={{concat this.inputId index}}
+    id={{concat this.inputId index}}
     @type="radio"
     @value={{selectOption.value}}
     @checked={{deq selectOption.value @value}}

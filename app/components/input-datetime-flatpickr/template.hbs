@@ -8,7 +8,7 @@
   {{/if}}
 
   <EmberFlatpickr
-    @id={{this.inputIdComputed}}
+    id={{this.inputIdComputed}}
     @date={{this.flatpickrValue}}
     @flatpickrRef={{this.flatpickr}}
     @dateFormat={{this.flatpickrFormat}}
@@ -31,9 +31,11 @@
       {{#if this.showButton}}
         <button
           type="button"
-          class="btn{{
-            if @options.btnClass (concat " " @options.btnClass) " btn-default"
-          }}"
+          class="btn{{if
+              @options.btnClass
+              (concat ' ' @options.btnClass)
+              ' btn-default'
+            }}"
           {{on "click" this.toggleCalendar}}
         >
           <IconCalendar />

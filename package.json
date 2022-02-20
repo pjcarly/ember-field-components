@@ -1,6 +1,6 @@
 {
   "name": "@getflights/ember-field-components",
-  "version": "3.2.8",
+  "version": "3.2.9",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
@@ -106,6 +106,10 @@
     "ember-truth-helpers": "^3.0.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34"
+  },
+  "resolutions": {
+    "**/@embroider/macros": "< 0.50.0",
+    "**/@embroider/util": "< 0.50.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
