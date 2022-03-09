@@ -115,6 +115,7 @@ export default class InputDateFlatpickrComponent extends InputDateComponent<
 
   @action
   onReady(_selectedDates: Date[], _dateStr: string, flatpickr: flatpickr.Instance) {
+    this.flatpickr = flatpickr;
     flatpickr.input.addEventListener("blur", this.inputBlurred);
   }
 

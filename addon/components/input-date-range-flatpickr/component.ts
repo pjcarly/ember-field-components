@@ -90,4 +90,9 @@ export default class InputDateRangeFlatpickrComponent extends BaseInput<
       this.flatpickr.toggle();
     }
   }
+
+  @action
+  onReady(_selectedDates: Date[], _dateStr: string, flatpickr: flatpickr.Instance) {
+    this.flatpickr = flatpickr;
+  }
 }

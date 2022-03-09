@@ -8,9 +8,12 @@
   {{/if}}
 
   <EmberFlatpickr
-    @id={{this.inputIdComputed}}
+    id={{this.inputIdComputed}}
+    class="form-control"
+    placeholder={{@placeholder}}
+    autocomplete="off"
+    disabled={{@disabled}}
     @date={{this.flatpickrValue}}
-    @flatpickrRef={{this.flatpickr}}
     @dateFormat={{this.flatpickrFormat}}
     @minDate={{this.minDate}}
     @maxDate={{this.maxDate}}
@@ -18,12 +21,8 @@
     @enableTime={{true}}
     @noCalendar={{true}}
     @time_24hr={{true}}
-    @placeholder={{@placeholder}}
-    @autocomplete="off"
-    @class="form-control"
-    @disabled={{@disabled}}
     @onChange={{this.setFlatpickrValue}}
-    @getFlatpickrRef={{this.onFlatpickrInstance}}
+    @onReady={{this.onReady}}
   />
 
   {{#if (or this.showButton @suffix)}}
@@ -31,9 +30,11 @@
       {{#if this.showButton}}
         <button
           type="button"
-          class="btn{{
-            if @options.btnClass (concat " " @options.btnClass) " btn-default"
-          }}"
+          class="btn{{if
+              @options.btnClass
+              (concat ' ' @options.btnClass)
+              ' btn-default'
+            }}"
           {{on "click" this.toggleCalendar}}
         >
           <IconCalendar />

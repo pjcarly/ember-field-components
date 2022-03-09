@@ -9,17 +9,16 @@
 
   <EmberFlatpickr
     id={{this.inputIdComputed}}
+    class="form-control"
+    placeholder={{@placeholder}}
+    autocomplete="off"
+    disabled={{@disabled}}
     @date={{this.flatpickrValue}}
-    @flatpickrRef={{this.flatpickr}}
     @dateFormat={{this.flatpickrFormat}}
     @minDate={{this.minDate}}
     @maxDate={{this.maxDate}}
     @allowInput={{true}}
     @enableTime={{false}}
-    @placeholder={{@placeholder}}
-    @autocomplete="off"
-    @class="form-control"
-    @disabled={{@disabled}}
     @onChange={{this.setFlatpickrValue}}
     @onReady={{this.onReady}}
   />
