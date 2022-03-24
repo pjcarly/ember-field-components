@@ -1,6 +1,6 @@
 {
   "name": "@getflights/ember-field-components",
-  "version": "3.2.12",
+  "version": "3.2.13",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
@@ -105,13 +105,13 @@
     "ember-flatpickr": "^3.2.2",
     "ember-intl": "^6.0.0-beta.3",
     "ember-truth-helpers": "^3.0.0",
+    "flatpickr": "4.6.3",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34"
   },
   "resolutions": {
     "**/@embroider/macros": "< 0.50.0",
-    "**/@embroider/util": "< 0.50.0",
-    "flatpickr": "4.6.3"
+    "**/@embroider/util": "< 0.50.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
