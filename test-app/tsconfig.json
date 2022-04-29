@@ -21,20 +21,6 @@
     "baseUrl": ".",
     "module": "es6",
     "paths": {
-      "dummy/tests/*": ["tests/*"],
-      "dummy/*": ["tests/dummy/app/*", "app/*"],
-      "@getflights/ember-field-components": ["addon"],
-      "@getflights/ember-field-components/*": ["addon/*"],
-      "@getflights/ember-field-components/test-support": ["addon-test-support"],
-      "@getflights/ember-field-components/test-support/*": [
-        "addon-test-support/*"
-      ],
-      "@getflights/ember-attribute-validations": [
-        "node_modules/@getflights/ember-attribute-validations/addon"
-      ],
-      "@getflights/ember-attribute-validations/*": [
-        "node_modules/@getflights/ember-attribute-validations/addon/*"
-      ],
       "@glimmer/tracking": [
         "node_modules/ember-cached-decorator-polyfill",
         "node_modules/@glimmer/tracking/dist/types"
@@ -50,8 +36,6 @@
     "tests/**/*",
     "types/**/*",
     "test-support/**/*",
-    "addon-test-support/**/*",
-    "node_modules/@getflights/ember-attribute-validations/app",
-    "node_modules/@getflights/ember-attribute-validations/addon"
+    "addon-test-support/**/*"
   ]
 }
