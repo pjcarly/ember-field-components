@@ -1,0 +1,13 @@
+<div class={{this.classComputed}} role="group">
+  {{#each @selectOptions as |selectOption|}}
+    <button
+      class="{{this.buttonClassComputed}}{{
+        if (deq selectOption.value @value) " active"
+      }}"
+      type="button"
+      {{on "click" (fn this.buttonClicked selectOption)}}
+    >
+      {{selectoption-label selectOption}}
+    </button>
+  {{/each}}
+</div>

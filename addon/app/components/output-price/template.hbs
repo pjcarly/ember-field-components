@@ -1,0 +1,25 @@
+<span class={{this.computedClass}}>
+  {{#if (and @value @prefix)}}
+    <span class="prefix">
+      {{@prefix}}
+    </span>
+  {{/if}}
+  {{#if (or @value (eq @value 0))}}
+    <span class="value" ...attributes>
+      {{format-number
+        @value
+        style="currency"
+        currency=this.currencyComputed
+        currencyDisplay=this.fieldInformation.currencyDisplay
+        minimumFractionDigits=@precision
+      }}
+    </span>
+  {{else}}
+    <span class="value empty" ...attributes></span>
+  {{/if}}
+  {{#if (and @value @suffix)}}
+    <span class="suffix">
+      {{@suffix}}
+    </span>
+  {{/if}}
+</span>

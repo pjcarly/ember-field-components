@@ -1,0 +1,49 @@
+<span class={{this.computedClass}}>
+  {{#if @prefix}}
+    <div class="input-group-prepend">
+      <span class="input-group-text prefix">
+        {{@prefix}}
+      </span>
+    </div>
+  {{/if}}
+
+  <EmberFlatpickr
+    @id={{this.inputIdComputed}}
+    @date={{this.flatpickrValue}}
+    @flatpickrRef={{this.flatpickr}}
+    @dateFormat={{this.flatpickrFormat}}
+    @minDate={{this.minDate}}
+    @maxDate={{this.maxDate}}
+    @allowInput={{true}}
+    @enableTime={{false}}
+    @placeholder={{@placeholder}}
+    @autocomplete="off"
+    @class="form-control"
+    @disabled={{@disabled}}
+    @onChange={{this.setFlatpickrValue}}
+    @onReady={{this.onReady}}
+  />
+
+  {{#if (or this.showButton @suffix)}}
+    <div class="input-group-append">
+      {{#if this.showButton}}
+        <button
+          type="button"
+          class="btn{{if
+              @options.btnClass
+              (concat ' ' @options.btnClass)
+              ' btn-default'
+            }}"
+          {{on "click" this.toggleCalendar}}
+        >
+          <IconCalendar />
+        </button>
+      {{/if}}
+      {{#if @suffix}}
+        <span class="input-group-text suffix">
+          {{@suffix}}
+        </span>
+      {{/if}}
+    </div>
+  {{/if}}
+</span>

@@ -1,0 +1,4 @@
+ember-field-components:
+  label:
+    select_none: "-- Geen --"
+    hidden: Verborgen

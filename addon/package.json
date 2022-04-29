@@ -1,0 +1,49 @@
+{
+  "name": "@getflights/ember-field-components",
+  "version": "4.0.0-beta.1",
+  "description": "The default blueprint for ember-cli addons.",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
+    "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
+    "lint:hbs": "ember-template-lint .",
+    "lint:hbs:fix": "ember-template-lint . --fix",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix"
+  },
+  "repository": "https://gitlab.com/getflights/ember-field-components",
+  "engines": {
+    "node": "12.* || 14.* || >= 16"
+  },
+  "author": "",
+  "license": "MIT",
+  "keywords": [
+    "ember-addon",
+    "ember-field-components"
+  ],
+  "dependencies": {
+    "@getflights/ember-attribute-validations": "^3.0.0-beta.1",
+    "@glimmer/component": "^1.0.4",
+    "@glimmer/tracking": "^1.0.4",
+    "ember-auto-import": "^2.2.4",
+    "ember-cached-decorator-polyfill": "^0.1.4",
+    "ember-cli-babel": "^7.26.11",
+    "ember-cli-htmlbars": "^6.0.1",
+    "ember-cli-typescript": "^4.2.1",
+    "ember-data": "~4.3.0",
+    "ember-flatpickr": "^3.2.2",
+    "ember-intl": "^6.0.0-beta.3",
+    "ember-truth-helpers": "^3.0.0",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.34"
+  },
+  "ember": {
+    "edition": "octane"
+  },
+  "publishConfig": {
+    "@getflights:registry": "https://gitlab.com/api/v4/projects/6672765/packages/npm/"
+  }
+}

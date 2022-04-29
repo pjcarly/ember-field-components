@@ -1,0 +1,34 @@
+{{#if (eq this.widgetName "button-group")}}
+  <InputButtonGroup
+    @selectOptions={{this.selectOptionsComputed}}
+    @value={{this.value}}
+    @valueChanged={{this.setSelectValue}}
+    @class={{@inputClass}}
+    @inputId={{@inputId}}
+    @noneLabel={{this.noneLabel}}
+    @required={{this.isRequired}}
+    @options={{this.inputOptions}}
+  />
+{{else if (eq this.widgetName "radio-buttons")}}
+  <InputRadioButtonList
+    @selectOptions={{this.selectOptionsComputed}}
+    @value={{this.value}}
+    @valueChanged={{this.setSelectValue}}
+    @class={{@inputClass}}
+    @inputId={{@inputId}}
+    @noneLabel={{this.noneLabel}}
+    @required={{this.isRequired}}
+    @options={{this.inputOptions}}
+  />
+{{else}}
+  <InputSelect
+    @selectOptions={{this.selectOptionsComputed}}
+    @value={{this.value}}
+    @valueChanged={{this.setSelectValue}}
+    @class={{@inputClass}}
+    @inputId={{@inputId}}
+    @noneLabel={{this.noneLabel}}
+    @required={{this.isRequired}}
+    @options={{this.inputOptions}}
+  />
+{{/if}}

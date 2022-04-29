@@ -1,0 +1,17 @@
+{{#if (eq this.widgetName "pre")}}
+  <OutputPre
+    @value={{this.value}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @class={{@outputClass}}
+    @options={{this.outputOptions}}
+  />
+{{else}}
+  <OutputTextarea
+    @value={{this.value}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @class={{@outputClass}}
+    @options={{this.outputOptions}}
+  />
+{{/if}}

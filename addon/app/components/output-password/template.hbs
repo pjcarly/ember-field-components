@@ -1,0 +1,15 @@
+<span class={{this.computedClass}}>
+  {{#if (and @value @prefix)}}
+    <span class="prefix">
+      {{@prefix}}
+    </span>
+  {{/if}}
+  <span class={{if this.selectedLabels "value" "value empty"}} ...attributes>
+    {{t "ember-field-components.label.hidden"}}
+  </span>
+  {{#if (and @value @suffix)}}
+    <span class="suffix">
+      {{@suffix}}
+    </span>
+  {{/if}}
+</span>
