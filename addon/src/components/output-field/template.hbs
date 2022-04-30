@@ -13,16 +13,15 @@
       {{! You can provide your own component for output. By using the component as a block component. The label will be displayed }}
       {{yield}}
     {{else if (component-exists this.componentName)}}
-      {{component
-        this.componentName
-        model=this.modelComputed
-        field=this.fieldComputed
-        outputClass=@outputClass
-        inline=@inline
-        prefix=@prefix
-        suffix=@suffix
-        options=@options
-      }}
+      <this.componentInstance
+        @model={{this.modelComputed}}
+        @field={{this.fieldComputed}}
+        @outputClass={{@outputClass}}
+        @inline={{@inline}}
+        @prefix={{@prefix}}
+        @suffix={{@suffix}}
+        @options={{@options}}
+      />
     {{else}}
       Component
       {{this.componentName}}

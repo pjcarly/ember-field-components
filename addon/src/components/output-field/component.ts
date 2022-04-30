@@ -15,7 +15,7 @@ export interface OutputFieldOptionsArgument {
 
 export default class OutputFieldComponent<
   T extends OutputFieldArguments
-> extends BaseField<T> {
+  > extends BaseField<T> {
   get value(): any {
     // @ts-ignore
     return this.args.model.get(this.args.field);

@@ -29,20 +29,19 @@
           @inline={{true}}
         />
       {{else if (component-exists this.componentName)}}
-        {{component
-          this.componentName
-          model=this.modelComputed
-          field=this.fieldComputed
-          placeholder=@placeholder
-          inputClass=@inputClass
-          inline=@inline
-          prefix=@prefix
-          suffix=@suffix
-          inputId=this.calculatedInputId
-          options=@options
-          preSetHook=this.preSetHook
-          valueChanged=this.notifyExternalAction
-        }}
+        <this.componentInstance
+          @model={{this.modelComputed}}
+          @field={{this.fieldComputed}}
+          @placeholder={{@placeholder}}
+          @inputClass={{@inputClass}}
+          @inline={{@inline}}
+          @prefix={{@prefix}}
+          @suffix={{@suffix}}
+          @inputId={{this.calculatedInputId}}
+          @options={{@options}}
+          @preSetHook={{this.preSetHook}}
+          @valueChanged={{this.notifyExternalAction}}
+        />
       {{else}}
         {{! template-lint-disable no-bare-strings }}
         Component

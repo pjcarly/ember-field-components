@@ -32,7 +32,7 @@ export interface InputFieldArguments<T> extends Arguments {
 export default class InputFieldComponent<
   T extends InputFieldArguments<T2>,
   T2
-> extends BaseField<T> {
+  > extends BaseField<T> {
   get value(): T2 | undefined {
     // @ts-ignore
     // There is a bug in Ember, where some tracking contexts are recomputed when rolling back a controllers model

@@ -5,6 +5,8 @@ import { inject as service } from "@ember/service";
 import { FieldOptionsInterface } from "../services/field-information";
 // @ts-ignore
 import { cached, tracked } from "@glimmer/tracking";
+import { importSync } from '@embroider/macros';
+import { ensureSafeComponent } from '@embroider/util';
 
 export interface Arguments {
   /**
@@ -123,6 +125,13 @@ export default abstract class BaseField<T extends Arguments> extends Component<
         this.fieldComputed
       )
       : undefined;
+  }
+
+  abstract get componentName(): string;
+
+  get componentInstance(): any {
+    const module = <any>importSync(this.componentName);
+    return ensureSafeComponent(module.default, this);
   }
 
   get isReadOnly(): boolean {
