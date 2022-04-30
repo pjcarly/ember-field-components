@@ -94,12 +94,8 @@
     "webpack": "^5.65.0"
   },
   "keywords": [
-    "ember-addon",
     "ember-field-components"
   ],
-  "ember-addon": {
-    "configPath": "tests/dummy/config"
-  },
   "ember": {
     "edition": "octane"
   },
