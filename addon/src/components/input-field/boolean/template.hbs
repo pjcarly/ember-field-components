@@ -1,0 +1,25 @@
+{{#if (eq this.widgetName "switch")}}
+  <Input::Switch
+    @value={{this.value}}
+    @valueChanged={{this.setNewValue}}
+    @preSetHook={{@preSetHook}}
+    @placeholder={{@placeholder}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @class={{@inputClass}}
+    @inputId={{@inputId}}
+    @options={{this.inputOptions}}
+  />
+{{else}}
+  <Input::Checkbox
+    @value={{this.value}}
+    @valueChanged={{this.setNewValue}}
+    @preSetHook={{@preSetHook}}
+    @placeholder={{@placeholder}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @class={{@inputClass}}
+    @inputId={{@inputId}}
+    @options={{this.inputOptions}}
+  />
+{{/if}}
