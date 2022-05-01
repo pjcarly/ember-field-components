@@ -127,10 +127,30 @@ export default abstract class BaseField<T extends Arguments> extends Component<
       : undefined;
   }
 
-  abstract get componentName(): string;
+  abstract get componentDirectory(): string;
+
+  get componentType(): string {
+    let type = this.type;
+
+    if (!type || type === 'id' || type === 'string') {
+      type = 'text';
+    }
+
+    return type;
+  }
+
+  get componentName(): string {
+    let type = this.type;
+
+    if (type === 'id' || type === 'string') {
+      type = 'text';
+    }
+
+    return `${this.componentDirectory}-${this.componentType}`.toLowerCase();
+  }
 
   get componentInstance(): any {
-    const module = <any>importSync(this.componentName);
+    const module = <any>importSync(`./${this.componentDirectory}/${this.componentType}`);
     return ensureSafeComponent(module.default, this);
   }
 

@@ -46,14 +46,8 @@ export default class OutputFieldComponent<
   /**
    * The name of the subcomponent that will be injected as the output-field. This is dependent on the type of field
    */
-  get componentName(): string {
-    let type = this.type;
-
-    if (type === "id" || type === "string") {
-      type = "text";
-    }
-
-    return `output-field-${type}`.toLowerCase();
+  get componentDirectory(): string {
+    return `output-field`;
   }
 
   /**

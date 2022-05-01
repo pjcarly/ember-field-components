@@ -96,14 +96,8 @@ export default class InputFieldComponent<
   /**
    * The name of the subcomponent that will be injected as the input-field. This is dependent on the type of field
    */
-  get componentName(): string {
-    let type = this.type;
-
-    if (type === 'id' || type === 'string') {
-      type = 'text';
-    }
-
-    return `input-field-${type}`.toLowerCase();
+  get componentDirectory(): string {
+    return `input-field`;
   }
 
   /**
