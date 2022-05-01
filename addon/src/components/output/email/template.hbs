@@ -1,0 +1,20 @@
+<span class={{this.computedClass}}>
+  {{#if (and @value @prefix)}}
+    <span class="prefix">
+      {{@prefix}}
+    </span>
+  {{/if}}
+  <span class={{if @value "value" "value empty"}} ...attributes>
+    {{@value}}
+  </span>
+  {{#if (and @value @suffix)}}
+    <span class="suffix">
+      {{@suffix}}
+    </span>
+  {{/if}}
+  {{#if (and @value this.showButton @showButton)}}
+    <a class="btn btn-default email-button" href="mailto:{{@value}}">
+      <Icon::Email />
+    </a>
+  {{/if}}
+</span>
