@@ -3,9 +3,13 @@
 # compiled output
 /dist
 /tmp
+/addon/dist
+/test-app/dist
 
 # dependencies
 /node_modules
+/addon/node_modules
+/test-app/node_modules
 
 # Logs
 logs
