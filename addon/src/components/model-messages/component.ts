@@ -1,7 +1,7 @@
 import Component from "@glimmer/component";
 import Model from "@ember-data/model";
 
-interface Arguments {
+export interface Arguments {
   /**
    * The Model you want to display the error messages from
    */
@@ -22,7 +22,7 @@ export default class ModelMessagesComponent extends Component<Arguments> {
     return this.args.displayAll
       ? errors
       : errors
-          // @ts-ignore
-          .errorsFor("base");
+        // @ts-ignore
+        .errorsFor("base");
   }
 }

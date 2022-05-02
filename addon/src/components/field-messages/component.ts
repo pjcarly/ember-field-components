@@ -2,7 +2,7 @@ import Component from "@glimmer/component";
 import Model from "@ember-data/model";
 import DS from "ember-data";
 
-interface Arguments {
+export interface Arguments {
   model: Model;
   field: string;
 }

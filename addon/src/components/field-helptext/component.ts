@@ -4,7 +4,7 @@ import Model from "@ember-data/model";
 import { inject as service } from "@ember/service";
 import type IntlService from 'ember-intl/services/intl';
 
-interface Arguments {
+export interface Arguments {
   model: Model;
   field: string;
   modelName?: string;

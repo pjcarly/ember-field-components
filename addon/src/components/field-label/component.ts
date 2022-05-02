@@ -4,7 +4,7 @@ import FieldInformation from "../../services/field-information";
 import { inject as service } from "@ember/service";
 import type IntlService from 'ember-intl/services/intl';
 
-interface Arguments {
+export interface Arguments {
   label?: string;
   modelName?: string;
   field: string;
