@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es2020",
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
@@ -10,7 +10,6 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -19,23 +18,29 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "baseUrl": ".",
+    "skipLibCheck": true,
     "module": "es6",
+    "experimentalDecorators": true,
     "paths": {
       "@glimmer/tracking": [
         "node_modules/ember-cached-decorator-polyfill",
         "node_modules/@glimmer/tracking/dist/types"
       ],
-      "*": ["types/*"]
-    },
-    "experimentalDecorators": true
+      "ember-app/tests/*": [
+        "tests/*"
+      ],
+      "ember-app/*": [
+        "app/*"
+      ],
+      "@getflights/ember-field-components/*": ["../addon/dist/*"],
+      "*": [
+        "types/*"
+      ]
+    }
   },
-  "exclude": ["node_modules/@getflights/**/*"],
   "include": [
     "app/**/*",
-    "addon/**/*",
     "tests/**/*",
-    "types/**/*",
-    "test-support/**/*",
-    "addon-test-support/**/*"
+    "types/**/*"
   ]
 }
