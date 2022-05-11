@@ -2,7 +2,7 @@ import Component from "@glimmer/component";
 import Model from "@ember-data/model";
 import FieldInformation from "../../services/field-information";
 import { inject as service } from "@ember/service";
-import type IntlService from 'ember-intl/services/intl';
+// import type IntlService from 'ember-intl/services/intl';
 
 export interface Arguments {
   label?: string;
@@ -13,7 +13,7 @@ export interface Arguments {
 }
 
 export default class LabelComponent extends Component<Arguments> {
-  @service intl!: IntlService;
+  @service intl!: any;
   @service fieldInformation!: FieldInformation;
 
   get labelComputed(): string {
