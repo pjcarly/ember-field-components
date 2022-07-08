@@ -27,12 +27,22 @@ export interface InputFieldArguments<T> extends Arguments {
    * @param value The value that is going to be changed
    */
   preSetHook?: (value?: T) => T | undefined;
+
+  /**
+   * Action that is called when the focus of the component is lost
+   */
+  focusOut?: () => void;
+
+  /**
+   * Action that is called when the focus of the component is active
+   */
+  focusIn?: () => void;
 }
 
 export default class InputFieldComponent<
   T extends InputFieldArguments<T2>,
   T2
-> extends BaseField<T> {
+  > extends BaseField<T> {
   get value(): T2 | undefined {
     // @ts-ignore
     // There is a bug in Ember, where some tracking contexts are recomputed when rolling back a controllers model
@@ -142,10 +152,16 @@ export default class InputFieldComponent<
   @action
   doFocusIn() {
     this.focus = true;
+    if (this.args.focusIn) {
+      this.args.focusIn();
+    }
   }
 
   @action
   doFocusOut() {
     this.focus = false;
+    if (this.args.focusOut) {
+      this.args.focusOut();
+    }
   }
 }
