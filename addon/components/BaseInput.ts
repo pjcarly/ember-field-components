@@ -97,7 +97,7 @@ export default abstract class BaseInput<T extends Arguments> extends Component<
 
   @action
   valueChanged(event: Event) {
-    const target = <HTMLInputElement>event.target;
+    const target = event.target as HTMLInputElement;
     this.setNewValue(target.value);
   }
 }
