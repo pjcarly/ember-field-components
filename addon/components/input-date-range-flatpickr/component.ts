@@ -8,6 +8,7 @@ import {
   momentFormatToFlatpickrFormat,
 } from "../input-date-flatpickr/component";
 import BaseInput, { Arguments } from "../BaseInput";
+import moment from 'moment';
 
 export interface DateRangeFlatpickrArguments extends Arguments {
   value?: [Date, Date] | [Date] | [];
@@ -94,5 +95,6 @@ export default class InputDateRangeFlatpickrComponent extends BaseInput<
   @action
   onReady(_selectedDates: Date[], _dateStr: string, flatpickr: flatpickr.Instance) {
     this.flatpickr = flatpickr;
+    this.flatpickr.changeMonth(moment(this.minDate).month());
   }
 }
