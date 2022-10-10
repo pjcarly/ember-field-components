@@ -20,6 +20,7 @@
     @mode="range"
     @onChange={{this.setFlatpickrValue}}
     @onReady={{this.onReady}}
+    @locale={{hash firstDayOfWeek=1}}
   />
 
   {{#if (or this.showButton @suffix)}}
