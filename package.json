@@ -105,7 +105,6 @@
     "ember-flatpickr": "^3.2.2",
     "ember-intl": "^6.0.0-beta.3",
     "ember-truth-helpers": "^3.0.0",
-    "flatpickr": "4.6.3",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34"
   },
