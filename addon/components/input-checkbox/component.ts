@@ -12,4 +12,14 @@ export default class InputTextComponent extends BaseInput<CheckboxArguments> {
   toggleValue() {
     this.setNewValue(!this.args.value);
   }
+
+  get computedClass() {
+    const classes = super.computedClass;
+
+    if (!classes.includes('input-group')) {
+      return classes + ' input-group';
+    }
+
+    return classes;
+  }
 }

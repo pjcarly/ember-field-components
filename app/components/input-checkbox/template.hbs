@@ -1,26 +1,24 @@
 <span class={{this.computedClass}}>
   {{#if @prefix}}
-    <div class="input-group-prepend">
-      <span class="input-group-text prefix">
-        {{@prefix}}
-      </span>
-    </div>
+    <span class="input-group-text prefix">
+      {{@prefix}}
+    </span>
   {{/if}}
-  <Input
-    id={{@inputId}}
-    @type="checkbox"
-    @checked={{@value}}
-    class="form-control"
-    disabled={{@disabled}}
-    placeholder={{@placeholder}}
-    ...attributes
-    {{on "input" this.toggleValue}}
-  />
+  <span class="input-group-text">
+    <Input
+      id={{@inputId}}
+      @type="checkbox"
+      @checked={{@value}}
+      class="form-control form-check-input"
+      disabled={{@disabled}}
+      placeholder={{@placeholder}}
+      ...attributes
+      {{on "input" this.toggleValue}}
+    />
+  </span>
   {{#if @suffix}}
-    <div class="input-group-append">
-      <span class="input-group-text suffix">
-        {{@suffix}}
-      </span>
-    </div>
+    <span class="input-group-text suffix">
+      {{@suffix}}
+    </span>
   {{/if}}
 </span>
