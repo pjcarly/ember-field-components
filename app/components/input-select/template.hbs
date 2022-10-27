@@ -1,10 +1,8 @@
 <span class={{this.computedClass}}>
   {{#if @prefix}}
-    <div class="input-group-prepend">
-      <span class="input-group-text prefix">
-        {{@prefix}}
-      </span>
-    </div>
+    <span class="input-group-text prefix">
+      {{@prefix}}
+    </span>
   {{/if}}
 
   <select
@@ -49,10 +47,8 @@
   </select>
 
   {{#if @suffix}}
-    <div class="input-group-append">
-      <span class="input-group-text suffix">
-        {{@suffix}}
-      </span>
-    </div>
+    <span class="input-group-text suffix">
+      {{@suffix}}
+    </span>
   {{/if}}
 </span>
