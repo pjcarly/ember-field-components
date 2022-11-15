@@ -83,21 +83,6 @@ export default class InputDateFlatpickrComponent extends InputDateComponent<
   }
 
   @action
-  inputBlurred() {
-    if (this.flatpickr) {
-      const inputValue = this.flatpickr.input.value;
-      const parsedMoment = moment(inputValue);
-
-      if (parsedMoment.isValid()) {
-        this.setNewValue(parsedMoment.toDate());
-      } else {
-        this.flatpickr.input.value = "";
-        this.setNewValue(null);
-      }
-    }
-  }
-
-  @action
   setFlatpickrValue(value: Date | null) {
     if (value instanceof Array) {
       value = value[0];
@@ -116,13 +101,5 @@ export default class InputDateFlatpickrComponent extends InputDateComponent<
   @action
   onReady(_selectedDates: Date[], _dateStr: string, flatpickr: flatpickr.Instance) {
     this.flatpickr = flatpickr;
-    flatpickr.input.addEventListener("blur", this.inputBlurred);
-  }
-
-  willDestroy() {
-    if (this.flatpickr) {
-      this.flatpickr.input.removeEventListener("blur", this.inputBlurred);
-    }
-    super.willDestroy();
   }
 }

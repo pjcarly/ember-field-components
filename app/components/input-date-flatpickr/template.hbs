@@ -6,20 +6,19 @@
   {{/if}}
 
   <EmberFlatpickr
-    data-test="dateSelector"
+    placeholder={{@placeholder}}
     id={{this.inputIdComputed}}
     class="form-control"
-    placeholder={{@placeholder}}
     autocomplete="off"
-    @disabled={{@disabled}}
+
     @date={{this.flatpickrValue}}
     @dateFormat={{this.flatpickrFormat}}
+    @onChange={{this.setFlatpickrValue}}
     @minDate={{this.minDate}}
     @maxDate={{this.maxDate}}
-    @allowInput={{true}}
-    @enableTime={{false}}
-    @onChange={{this.setFlatpickrValue}}
+    @disabled={{@disabled}}
     @onReady={{this.onReady}}
+    @dateFormat={{this.flatpickrFormat}}
     @locale={{hash firstDayOfWeek=1}}
   />
 

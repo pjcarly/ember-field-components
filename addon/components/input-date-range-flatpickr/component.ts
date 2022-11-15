@@ -88,7 +88,6 @@ export default class InputDateRangeFlatpickrComponent extends BaseInput<
   toggleCalendar() {
     if (this.flatpickr) {
       this.flatpickr.toggle();
-      console.log('toggl')
     }
   }
 
