@@ -5216,7 +5216,7 @@ ember-export-application-global@^2.0.1:
   resolved "https://registry.yarnpkg.com/ember-export-application-global/-/ember-export-application-global-2.0.1.tgz#b120a70e322ab208defc9e2daebe8d0dfc2dcd46"
   integrity sha512-B7wiurPgsxsSGzJuPFkpBWnaeuCu2PGpG2BjyrfA1VcL7//o+5RSnZqiCEY326y7qmxb2GoCgo0ft03KBU0rRw==
 
-ember-flatpickr@^3.2.2:
+ember-flatpickr@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/ember-flatpickr/-/ember-flatpickr-3.2.3.tgz#4ec405d03853d67316fb1813e4e39bca487f1b83"
   integrity sha512-ON6FNh3gFSxDTam2UOyPOSeYki5qNqPqPEB+SS/Q+L+kPEvxmDMPeG/lWLLvdDsPR0X55W9q7uSjzZZAD/UxqA==
@@ -6426,9 +6426,9 @@ flat-cache@^3.0.4:
     flatted "^3.1.0"
     rimraf "^3.0.2"
 
-flatpickr@^4.6.9, flatpickr@flatpickr/flatpickr#pull/2825/head:
-  version "4.6.13"
-  resolved "https://codeload.github.com/flatpickr/flatpickr/tar.gz/66cfd08e425eec7a948010e50de68875dd907fe1"
+flatpickr@^4.6.9, "flatpickr@https://github.com/BoussonKarel/flatpickr/releases/download/4.6.14/flatpickr-4.6.14.tar.gz":
+  version "4.6.14"
+  resolved "https://github.com/BoussonKarel/flatpickr/releases/download/4.6.14/flatpickr-4.6.14.tar.gz#8735d5c377a0f8cd9ac7d95364f3b81dd5e7ec61"
 
 flatted@^2.0.0:
   version "2.0.2"
@@ -9830,16 +9830,16 @@ regexpp@^3.0.0, regexpp@^3.1.0:
   integrity sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==
 
 regexpu-core@^5.1.0:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/regexpu-core/-/regexpu-core-5.2.1.tgz#a69c26f324c1e962e9ffd0b88b055caba8089139"
-  integrity sha512-HrnlNtpvqP1Xkb28tMhBUO2EbyUHdQlsnlAhzWcwHy8WJR53UWr7/MAvqrsQKMbV4qdpv03oTMG8iIhfsPFktQ==
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/regexpu-core/-/regexpu-core-5.2.2.tgz#3e4e5d12103b64748711c3aad69934d7718e75fc"
+  integrity sha512-T0+1Zp2wjF/juXMrMxHxidqGYn8U4R+zleSJhX9tQ1PUsS8a9UtYfbsF9LdiVgNX3kiX8RNaKM42nfSgvFJjmw==
   dependencies:
     regenerate "^1.4.2"
     regenerate-unicode-properties "^10.1.0"
     regjsgen "^0.7.1"
     regjsparser "^0.9.1"
     unicode-match-property-ecmascript "^2.0.0"
-    unicode-match-property-value-ecmascript "^2.0.0"
+    unicode-match-property-value-ecmascript "^2.1.0"
 
 registry-auth-token@^3.0.1:
   version "3.4.0"
@@ -11287,10 +11287,10 @@ unicode-match-property-ecmascript@^2.0.0:
     unicode-canonical-property-names-ecmascript "^2.0.0"
     unicode-property-aliases-ecmascript "^2.0.0"
 
-unicode-match-property-value-ecmascript@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/unicode-match-property-value-ecmascript/-/unicode-match-property-value-ecmascript-2.0.0.tgz#1a01aa57247c14c568b89775a54938788189a714"
-  integrity sha512-7Yhkc0Ye+t4PNYzOGKedDhXbYIBe1XEQYQxOPyhcXNMJ0WCABqqj6ckydd6pWRZTHV4GuCPKdBAUiMc60tsKVw==
+unicode-match-property-value-ecmascript@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/unicode-match-property-value-ecmascript/-/unicode-match-property-value-ecmascript-2.1.0.tgz#cb5fffdcd16a05124f5a4b0bf7c3770208acbbe0"
+  integrity sha512-qxkjQt6qjg/mYscYMC0XKRn3Rh0wFPlfxB0xkt9CfyTvpX1Ra0+rAmdX2QyAobptSEvuy4RtpPRui6XkV+8wjA==
 
 unicode-property-aliases-ecmascript@^2.0.0:
   version "2.1.0"
